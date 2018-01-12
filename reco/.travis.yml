@@ -1,0 +1,64 @@
+# Use new container infrastructure to enable caching
+sudo: false
+
+language: go
+
+go:
+  - 1.7.x
+  - 1.8.x
+
+env:
+  global: PROJECT_NAME="reco"
+
+install:
+- go get github.com/Masterminds/glide
+- make clean dependencies
+
+script:
+- make test benchmark integration
+
+notifications:
+  slack:
+    secure: FWI4CFnCtckIol8jA9VBm7Fy/+X7sAIgDKwc4UY2ufBIFAQekPmSl6YXMvCRKa4w4ndSjxGA1wd1YwB/tNUPxMkGDb1DCI2/E21aaxB0iwD/CM6OPlxpORiZ3mitB1rlb206D4dKzk5OsltikIkYK2s5PJ/w2Ax8ayMgpOYclt2myJLpxxPE5LDfBQ9DPyOpKyzdZuhRtC0hry/U8t/1zGcXkmXidzcUhfA67BR2jjUOKYvwnqgDauI2hXzDBtpTcsQ4t4nrLdq6YhUXBpPuUAvqBC9G9svztO+9OPMmz4bRHayCU1UUDgryEGA2eX8QSlYIwfRAI6Eg7Vx2UyDncItcX2KXU4o1vRLsVT6202UeTSLH1htip6gA8e+FPsMRgSpXT8peGCNmRI95FfX0Ovw6x4/8yVOIC2mndXBW0bScnUnsdwuCXvR7sfhnu8w7KCMSUyHWhpew+ndKhoU6sad650wlRqZQQobTzLI5fEravUYDsZjSXBCXifaotGph38bP+fmJaGqZimq7zogEgZaS55WOHz2zF+K7YUZ0+FjCXsv1EYx6m5XERXQT7kJpuIB2hBDHcaCIeAnr0gGDNZq5AWtDtUMBd0aBpFZW04Hj4GN+GcNLPQjVtiJlgdXwqaZkiNHcCc/t9T+50bCtPuXHLPmE4/bMhFy7u/FHlf8=
+
+branches:
+  only:
+  - master
+  - auto
+  - try
+  - rollup
+  # IMPORTANT Ruby regex to match tags. Required, or travis won't trigger deploys when a new tag
+  # is pushed. This regex matches semantic versions like v1.2.3-rc4+2016.02.22
+  - /^v\d+\.\d+\.\d+.*$/
+
+before_deploy:
+  - ./ci/cross_compile.sh $TRAVIS_BRANCH
+
+deploy:
+  - provider: s3
+    access_key_id:
+      secure: "HKhTFVqUvZwGKZ7SQ3PdCaxQA6QbWJXfAMMXwSgKa20X+bfTnQl+4q0v3yt0ilnPbGaKJ9kYb/LGMbJqNcMf+IR3eNfm7Smzt8ZGCF2vC7HhJjrMw4xlgVA5spxiISCjF42sSQ8/EKFEwsBb3E6TkBYut3Izhdjcdlm5aGPe8ZkuNR8WpQTNLU5YC9ZkzL6AgBJQUxdfaqqUI2Ks97v8zJILYpN+8mfaHm1PtGAkGSmkxBvK7b+QTn0+6JqMxLdkvAzdG0qiiWm+GMGKz8H/OTQWi7NMnf2UwZYIluckgMq6ClVDT0bBkyuGPqTr4Pdv9kya05z/GwRKm8WNTj5z9WPtXmXxk/h4cXIbRRKEmj46vF/GWBkiS+D3ZEpqRiDujdkcpR6JlK5PQrs5z0ahf0pXYBTJIDHLmiNDjzRaAwYP9hQQWITVxmNrgHp5wm9XnH1Wk99dOUf5Qkv8nmqC3GkWtDIgglWAMAlZt8OrTVKWXr77u98+uz/1s8DJ2Rddxi0lonYgotyina5DnPq3JrDNIRFBzr2FLtBazXY2wtz55oJ+lld33ftFpHbTGFyxhZhUYSizJgsU2uYXi8V6GOjQTwmym9RxDi6sh+xs4Al7rO/U8cnoM5ozXjscNs4op9FvM6HqvPfbgziMtT9y0uRjISFcDjPKKabt8s8YBkc="
+    secret_access_key:
+      secure: "j1b3Bu6DZrFR4FjTD3Zi+qdGWo0OWdcI9ioTJ8BqBAuqM5hQyaVDY1OWNDIMqKxuODADF/md4Xfhql8ZIBlT31ESIBepzlt0ctsY/9Kk0KzRyfnWG/0z6RmqTAMnEwwriwnjbE/o4R2TGiVoVc0eXyT7vJQ2sJYZZ2Kjoqjo8Ww4hppudlaU4JWo2dP8Bg8tCTsWuR7rV08bverUjrrHgKFiklumtHnL6e2RnA5sGNKjdqTF2t7Uo/9tjsImrs6B0wLZQYskNIca7+Ix7qk2HOOjfzKX5YgV5qO9RSVRWktR8mvYx0CNrYkZXM5XEySHhql4GNy5B3DKZRb65ee2uGuXE10bL0p+q6/cZPh1dPD4tfcpxG4Y3ci8z+Benh6qUzh2sVNgbdvdBMp6kkTMEuKy9lwlq17zMlYFhBo4L9JmNotiRQEf1wc0+/reQDEOtV8ZNHvWchxu7RRg8OYuHWa4KupBTmW72ahvuEOUm0Ws+qvk39GYoBftO7eXxjitQJzNr1qhDjSx13U911gVQw8D3GvH3QcMxf4ZK9wm0fk9ICx9if/SxsvJ83fKQGv3Z7YmBNCNdV6PJqtWdNgTjFyKeyuw7nyNkvOXHVgrWeuknWUIbcpePYfSxiPclKserNI/HLRkVIxnLpI7vROMyNjky59yioEq8WClkkJzXDU="
+    acl: public_read
+    bucket: reconfigure.io
+    local_dir: $TRAVIS_BUILD_DIR/dist
+    upload-dir: reco/releases
+    skip_cleanup: true
+    on:
+      branch: master
+      repo: ReconfigureIO/reco
+  - provider: s3
+    access_key_id:
+      secure: "HKhTFVqUvZwGKZ7SQ3PdCaxQA6QbWJXfAMMXwSgKa20X+bfTnQl+4q0v3yt0ilnPbGaKJ9kYb/LGMbJqNcMf+IR3eNfm7Smzt8ZGCF2vC7HhJjrMw4xlgVA5spxiISCjF42sSQ8/EKFEwsBb3E6TkBYut3Izhdjcdlm5aGPe8ZkuNR8WpQTNLU5YC9ZkzL6AgBJQUxdfaqqUI2Ks97v8zJILYpN+8mfaHm1PtGAkGSmkxBvK7b+QTn0+6JqMxLdkvAzdG0qiiWm+GMGKz8H/OTQWi7NMnf2UwZYIluckgMq6ClVDT0bBkyuGPqTr4Pdv9kya05z/GwRKm8WNTj5z9WPtXmXxk/h4cXIbRRKEmj46vF/GWBkiS+D3ZEpqRiDujdkcpR6JlK5PQrs5z0ahf0pXYBTJIDHLmiNDjzRaAwYP9hQQWITVxmNrgHp5wm9XnH1Wk99dOUf5Qkv8nmqC3GkWtDIgglWAMAlZt8OrTVKWXr77u98+uz/1s8DJ2Rddxi0lonYgotyina5DnPq3JrDNIRFBzr2FLtBazXY2wtz55oJ+lld33ftFpHbTGFyxhZhUYSizJgsU2uYXi8V6GOjQTwmym9RxDi6sh+xs4Al7rO/U8cnoM5ozXjscNs4op9FvM6HqvPfbgziMtT9y0uRjISFcDjPKKabt8s8YBkc="
+    secret_access_key:
+      secure: "j1b3Bu6DZrFR4FjTD3Zi+qdGWo0OWdcI9ioTJ8BqBAuqM5hQyaVDY1OWNDIMqKxuODADF/md4Xfhql8ZIBlT31ESIBepzlt0ctsY/9Kk0KzRyfnWG/0z6RmqTAMnEwwriwnjbE/o4R2TGiVoVc0eXyT7vJQ2sJYZZ2Kjoqjo8Ww4hppudlaU4JWo2dP8Bg8tCTsWuR7rV08bverUjrrHgKFiklumtHnL6e2RnA5sGNKjdqTF2t7Uo/9tjsImrs6B0wLZQYskNIca7+Ix7qk2HOOjfzKX5YgV5qO9RSVRWktR8mvYx0CNrYkZXM5XEySHhql4GNy5B3DKZRb65ee2uGuXE10bL0p+q6/cZPh1dPD4tfcpxG4Y3ci8z+Benh6qUzh2sVNgbdvdBMp6kkTMEuKy9lwlq17zMlYFhBo4L9JmNotiRQEf1wc0+/reQDEOtV8ZNHvWchxu7RRg8OYuHWa4KupBTmW72ahvuEOUm0Ws+qvk39GYoBftO7eXxjitQJzNr1qhDjSx13U911gVQw8D3GvH3QcMxf4ZK9wm0fk9ICx9if/SxsvJ83fKQGv3Z7YmBNCNdV6PJqtWdNgTjFyKeyuw7nyNkvOXHVgrWeuknWUIbcpePYfSxiPclKserNI/HLRkVIxnLpI7vROMyNjky59yioEq8WClkkJzXDU="
+    acl: public_read
+    bucket: reconfigure.io
+    local_dir: $TRAVIS_BUILD_DIR/dist
+    upload-dir: reco/releases
+    skip_cleanup: true
+    on:
+      repo: ReconfigureIO/reco
+      tags: true
+
