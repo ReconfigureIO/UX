@@ -1,0 +1,227 @@
+body {
+  color: #474B57;
+}
+
+footer {
+  margin-top: 64px;
+}
+
+a,
+a:hover,
+a:visited {
+  color: #2BCB96;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  display: inline-block;
+  background-color: rgba(43, 203, 150, 1) !important;
+  color: #FFFFFF !important;
+  font-size: 13px !important;
+  line-height: 16px !important;
+  padding: 16px 24px !important;
+  letter-spacing: 1.86px !important;
+  border: none !important;
+  border-radius: 0;
+  text-align: center !important;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  box-shadow: none;
+}
+
+.btn:hover {
+  background-color: rgba(128, 223, 192, 1) !important;
+}
+
+.btn:focus {
+  background-color: rgba(29, 187, 125, 1) !important;
+  outline: 0 !important;
+}
+
+.btn:visited {
+  color: #FFFFFF !important;
+}
+
+.btn span {
+  display: none !important;
+}
+
+.btn[rel="prev"] {
+  background: transparent !important;
+  padding: 14px 22px !important;
+  border: 2px solid rgba(71, 75, 87, 1) !important;
+  color: rgba(71, 75, 87, 1) !important;
+}
+
+.btn[rel="prev"]:hover {
+  background-color: rgba(71, 75, 87, 1) !important;
+  color: #FFFFFF !important;
+}
+
+.btn[rel="prev"]:focus {
+  background-color: rgba(71, 75, 87, 1) !important;
+  color: #FFFFFF !important;
+}
+
+.wy-nav-top {
+  background-color: #26272C;
+}
+
+.wy-nav-top a {
+  display: block;
+  margin: 12px 0;
+  line-height: 0;
+  font-size: 0;
+  color: transparent !important;
+}
+
+.wy-nav-top a:before {
+  content: url('https://app.reconfigure.io/assets/images/logo.svg');
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.wy-nav-side {
+  background-color: #474B57;
+}
+
+.wy-side-nav-search {
+  background-color: #26272C;
+}
+
+.wy-side-nav-search>a:hover, .wy-side-nav-search .wy-dropdown>a:hover {
+  background: transparent;
+}
+
+.wy-side-nav-search .icon {
+  color: transparent;
+  margin-top: -16px;
+  margin-bottom: 16px;
+  padding: 0;
+}
+
+.wy-side-nav-search .icon:before {
+  display: none !important;
+}
+
+.wy-side-nav-search .icon:after {
+  content: url('https://app.reconfigure.io/assets/images/logo.svg');
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.wy-side-nav-search>div.version {
+  color: #FFFFFF;
+}
+
+.wy-menu-vertical header, .wy-menu-vertical p.caption {
+  color: #e9ab70;
+}
+
+.wy-menu-vertical li.current {
+  background-color: rgba(61, 64, 76, 1);
+  color: #FFFFFF;
+}
+
+.wy-menu-vertical li.current a:hover {
+  background-color: #343741;
+}
+
+.wy-menu-vertical li.toctree-l2.current li.toctree-l3>a {
+  background-color: rgba(61, 64, 76, 1);
+}
+
+.wy-menu-vertical a {
+  color: #FFFFFF;
+  padding: 10px 20px;
+}
+
+.wy-menu-vertical a:hover {
+  background-color: #343741;
+}
+
+.wy-menu-vertical li.on a, .wy-menu-vertical li.current>a {
+  background-color: #343741;
+  color: #2BCB96;
+  border: none;
+  padding: 10px 20px;
+}
+
+.wy-menu-vertical li.current ul {
+  margin-bottom: 8px;
+}
+
+.wy-menu-vertical li.current ul li a {
+  color: #FFFFFF;
+  padding: 8px 32px;
+  border: none;
+}
+
+.wy-menu-vertical li.toctree-l2.current>a {
+  background-color: #343741;
+  padding: 8px 32px;
+}
+
+.wy-menu-vertical li.toctree-l2 span.toctree-expand, .wy-menu-vertical li.on a span.toctree-expand, .wy-menu-vertical li.current>a span.toctree-expand {
+  color: #FFFFFF;
+}
+
+.rst-content .toctree-wrapper ul li.toctree-l1,
+.rst-content .toctree-wrapper ul li.toctree-l1 {
+  margin-bottom: 16px;
+}
+
+.rst-content .toctree-wrapper ul li.toctree-l1 > a.reference,
+.rst-content .toctree-wrapper ul li.toctree-l1 > a.internal {
+  display: block;
+  margin-bottom: 8px;
+  color: #e9ab70;
+}
+
+.wy-plain-list-disc li li a,
+.rst-content .section ul li li a,
+.rst-content .toctree-wrapper ul li li a,
+article ul li li a {
+  color: #474B57;
+}
+
+.wy-alert-title, .rst-content .admonition-title {
+  background-color: #E9AB70 !important;
+  margin: 0;
+}
+
+.rst-content .admonition {
+  background: #e7f2fa !important;
+  border: 1px solid #E9AB70;
+  padding: 0 !important;
+  margin-bottom: 12px;
+}
+
+.rst-content .admonition .last {
+  padding: 6px 12px;
+  margin: 12px 0 !important;
+}
+
+.wy-table-odd td, .wy-table-striped tr:nth-child(2n-1) td, .rst-content table.docutils:not(.field-list) tr:nth-child(2n-1) td {
+  background-color: #EFEFEF;
+}
+
+/* override table width restrictions */
+@media screen and (min-width: 767px) {
+
+   .wy-table-responsive table td {
+      /* !important prevents the common CSS stylesheets from overriding
+         this as on RTD they are loaded after this stylesheet */
+      white-space: normal !important;
+   }
+
+   .wy-table-responsive {
+      overflow: visible !important;
+   }
+}
