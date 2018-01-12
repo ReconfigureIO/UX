@@ -1,0 +1,144 @@
+/* TABLE */
+
+.table-wrapper {
+  background-color: $alabaster;
+  padding: 0 $base-margin*3;
+  @include rhythm-padding(3);
+  box-sizing: border-box;
+
+  .alert {
+    background-color: $porsche;
+    color: $white;
+    padding: $base-margin;
+    @include margin-leader(2);
+    @include adjust-font-size-to(1.1125rem);
+    @include adjust-leading-to(1.1125);
+  }
+}
+
+.table {
+  width: 100%;
+
+  &--credits {
+    thead {
+      th {
+        color: $trout;
+        font-family: $font_primary_bold;
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          padding: 0 $base-margin*2;
+          @include rhythm-padding(1);
+          border-top: 1pt solid $alto;
+          border-bottom: 1pt solid $alto;
+          @include adjust-font-size-to(1.0625);
+          @include adjust-leading-to(1.25);
+          color: $trout;
+          box-sizing: border-box;
+
+          &:first-child {
+            padding-left: 0;
+          }
+
+          i {
+            @include adjust-font-size-to(1.5rem);
+            @include adjust-leading-to(1.5);
+          }
+
+          .sub-note {
+            display: block;
+            @include adjust-font-size-to(0.9375rem);
+            @include adjust-leading-to(1.125);
+            @include margin-leader(0.25);
+
+            i {
+              vertical-align: middle;
+              margin-right: $base-margin*0.25;
+
+              &:before {
+                width: auto;
+                margin: 0;
+              }
+            }
+          }
+        }
+
+        &:first-child {
+          td {
+            border-top: none;
+          }
+        }
+
+        &:last-child {
+          td {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+
+    tfoot {
+      border-top: $base-margin*2 solid transparent;
+
+      td {
+        padding: 0 $base-margin*2;
+
+        .btn {
+          display: block;
+        }
+      }
+    }
+  }
+
+  &--base {
+    thead {
+      th {
+        color: $trout;
+        @include adjust-font-size-to(0.9375rem);
+        @include adjust-leading-to(1.4375);
+        font-family: $font_primary_semi_bold;
+        padding: 0 $base-margin;
+        @include rhythm-padding(1);
+        box-sizing: border-box;
+      }
+    }
+
+    tbody {
+      tr {
+        background-color: $alabaster;
+        @include transition(0.2s linear);
+
+        &.spacer {
+          height: $base-margin*0.5;
+        }
+
+        td {
+          color: $trout;
+          @include adjust-font-size-to(1rem);
+          @include adjust-leading-to(1.5);
+          padding: 0 $base-margin;
+          @include rhythm-padding(1);
+          box-sizing: border-box;
+          cursor: pointer;
+
+          .link {
+            @include margin-trailer(0);
+          }
+        }
+
+        &:hover {
+          @include box-shadow(0 2px 6px 0px rgba(0, 0, 0, 0.12));
+        }
+      }
+    }
+
+    tfoot {
+      tr {
+        @include padding-leader(2);
+      }
+    }
+  }
+}

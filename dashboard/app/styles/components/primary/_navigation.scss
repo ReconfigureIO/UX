@@ -1,0 +1,72 @@
+/* NAVIGATION */
+
+.nav {
+  &--main {
+    a {
+      display: block;
+      color: $white;
+      font-family: $font_primary_semi_bold;
+      @include adjust-font-size-to(1.0625rem);
+      @include adjust-leading-to(1.25);
+      padding: 0 $base-margin*2;
+      @include rhythm-padding(1);
+      box-sizing: border-box;
+      text-decoration: none;
+      text-transform: none;
+      @include transition(0.2s linear);
+
+      &:hover {
+        background-color: $bright-gray;
+      }
+
+      &.active {
+        background-color: $tuna;
+        padding-left: $base-margin*2.5;
+        @include box-shadow(inset 0 3px 4px 0px rgba(25, 27, 61, 0.17));
+      }
+
+      @include breakpoint($break_tablet) {
+        padding: 0 $base-margin;
+        @include rhythm-padding(1);
+
+        &.active {
+          padding-left: $base-margin;
+        }
+      }
+    }
+  }
+
+  &--secondary {
+    a {
+      display: block;
+      color: $white;
+      font-family: $font_primary_semi_bold;
+      @include adjust-font-size-to(0.9375rem);
+      @include adjust-leading-to(1.4375);
+      padding: 0 $base-margin*1.5;
+      @include rhythm-padding(0.5);
+      box-sizing: border-box;
+      text-decoration: none;
+      text-transform: none;
+      @include transition(0.2s linear);
+
+      &:hover {
+        color: $bermuda;
+      }
+
+      &.active {
+        color: $shamrock;
+        padding-left: $base-margin*2;
+      }
+
+      @include breakpoint($break_tablet) {
+        padding: 0 $base-margin;
+        @include rhythm-padding(1);
+
+        &.active {
+          padding-left: $base-margin;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,223 @@
+/* GRID */
+
+@import "susy";
+@import "compass"; /* [1] */
+@import "../../bower_components/breakpoint-sass/stylesheets/_breakpoint.scss";
+@import "compass/reset"; /* [4] */
+
+// Define grid variables
+$total-columns      : 12;
+$gutter-width       : 0px/80px;
+$container-width    : 960px;
+$base-line-height   : 16px;
+$base-margin        : 16px;
+
+$break_container     : max-width $container-width;
+$break_standard      : max-width 1320px;
+$break_medium        : max-width 1100px;
+$break_tablet_large  : max-width 1000px;
+$break_tablet_above  : min-width 769px;
+$break_tablet        : max-width 768px;
+$break_mobile        : max-width 600px;
+$break_mobile_small  : max-width 420px;
+
+// Initiate susy
+$susy: (
+
+  // Basic stuff
+  global-box-sizing: border-box,
+  columns:           $total-columns,
+  gutters:           $gutter-width,
+  container:         $container-width,
+
+  // Debugging tools
+  debug: (
+    image:           hide,
+    color:           #C0C0C0,
+    output:          background
+  )
+
+);
+
+// BODY STYLES
+body {
+  background-color: $white;
+  color: $cod-gray;
+
+  &.noscroll {
+    overflow: hidden;
+  }
+}
+
+.clear {
+  clear: both;
+}
+
+// MAIN CONTAINER
+#content {
+  float: left;
+  width: calc(100% - 200px);
+  margin-left: 200px;
+  box-sizing: border-box;
+
+  &.has-sidebar {
+    width: calc(100% - 420px);
+    margin-left: 420px;
+    @include transition(0.2s linear);
+
+    @include breakpoint($break_medium) {
+      width: calc(100% - 230px);
+      margin-left: 230px;
+    }
+
+    @include breakpoint($break_tablet) {
+      width: 100%;
+      margin: 0;
+    }
+  }
+
+  @include breakpoint($break_tablet) {
+    width: 100%;
+    margin: 0;
+  }
+
+  &.no-sidebar {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.full-height {
+  display: table;
+  width: 100%;
+  height: 100vh;
+
+  .valign {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+.index {
+  .logo {
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .login {
+    @include margin-trailer(1.5);
+  }
+}
+
+.container {
+  @include container($susy);
+  padding: 0 $base-margin*2.5;
+
+  @include breakpoint($break_tablet) {
+    padding: 0 $base-margin*1.5;
+  }
+
+  @include breakpoint($break_mobile) {
+    padding: 0 $base-margin;
+  }
+}
+
+// ROW/COLUMNS
+.row {
+  @include full();
+  overflow: hidden;
+}
+
+.col {
+  box-sizing: border-box;
+
+  &--1 {@include span(1)}
+  &--2 {@include span(2)}
+  &--3 {@include span(3)}
+  &--4 {@include span(4)}
+  &--5 {@include span(5)}
+  &--6 {@include span(6)}
+  &--7 {@include span(7)}
+  &--8 {@include span(8)}
+  &--9 {@include span(9)}
+  &--10 {@include span(10)}
+  &--11 {@include span(11)}
+  &--12 {@include span(12)}
+  &--full {@include full();}
+
+  &--last {
+    @include last;
+  }
+
+  &--clear {
+    clear: left;
+  }
+
+  &--padding-left {
+    padding-left: $base-margin*0.5;
+  }
+
+  &--padding-right {
+    padding-right: $base-margin*0.5;
+  }
+
+  @include breakpoint($break_tablet) {
+    &--1--tablet {@include span(1)}
+    &--2--tablet {@include span(2)}
+    &--3--tablet {@include span(3)}
+    &--4--tablet {@include span(4)}
+    &--5--tablet {@include span(5)}
+    &--6--tablet {@include span(6)}
+    &--7--tablet {@include span(7)}
+    &--8--tablet {@include span(8)}
+    &--9--tablet {@include span(9)}
+    &--10--tablet {@include span(10)}
+    &--11--tablet {@include span(11)}
+    &--12--tablet {@include span(12)}
+    &--full--tablet {@include full();}
+
+    &--last {
+      @include last;
+    }
+  }
+
+  @include breakpoint($break_mobile) {
+    @include full();
+    padding-left: 0;
+    padding-right: 0;
+
+    &--1--mobile {@include span(1)}
+    &--2--mobile {@include span(2)}
+    &--3--mobile {@include span(3)}
+    &--4--mobile {@include span(4)}
+    &--5--mobile {@include span(5)}
+    &--6--mobile {@include span(6)}
+    &--7--mobile {@include span(7)}
+    &--8--mobile {@include span(8)}
+    &--9--mobile {@include span(9)}
+    &--10--mobile {@include span(10)}
+    &--11--mobile {@include span(11)}
+    &--12--mobile {@include span(12)}
+    &--full--mobile {@include full();}
+
+    &--last {
+      @include last;
+    }
+  }
+}
+
+// RESPONSIVE
+@include breakpoint($break_tablet) {
+  .tablet-hide {
+    display: none !important;
+  }
+}
+
+@include breakpoint($break_mobile) {
+  .mobile-hide {
+    display: none !important;
+  }
+}

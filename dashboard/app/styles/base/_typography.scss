@@ -1,0 +1,261 @@
+/*
+ * -
+ * PARTIALS/TYPOGRAPHY
+ * -
+ */
+
+@font-face {
+  font-family: 'bill_corp_narbold';
+  src: url('../fonts/bill-corporate-narrow-bold-webfont.woff2') format('woff2'),
+    url('../fonts/bill-corporate-narrow-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'bill_corp_narbook';
+  src: url('../fonts/bill-corporate-narrow-book-webfont.woff2') format('woff2'),
+    url('../fonts/bill-corporate-narrow-book-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'bill_corp_narroman';
+  src: url('../fonts/bill-corporate-narrow-roman-webfont.woff2') format('woff2'),
+    url('../fonts/bill-corporate-narrow-roman-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'bill_corp_narsemibold';
+  src: url('../fonts/bill-corporate-narrow-semibold-webfont.woff2') format('woff2'),
+    url('../fonts/bill-corporate-narrow-semibold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* [1] */
+@import "compass/typography";
+@import "compass/css3";
+
+/* [2] */
+$font_primary: 'bill_corp_narbook', sans-serif;
+$font_primary_roman: 'bill_corp_narroman', sans-serif;
+$font_primary_semi_bold: 'bill_corp_narsemibold', sans-serif;
+$font_primary_bold: 'bill_corp_narbold', sans-serif;
+
+/* [3] */
+$font_light: 300;
+$font_regular: 400;
+$font_semi_bold: 600;
+$font_bold: 700;
+
+/* [4] */
+$base-font-size: 16px;
+$rhythm-unit: "rem";
+$default-rhythm-border-style: solid $white;
+
+/* [5] */
+@include establish-baseline;
+
+/* [6] */
+html, button, input, select, textarea {
+  font-family: $font_primary;
+  font-weight: $font_regular;
+  -webkit-text-stroke: 1px transparent;
+  -webkit-font-smoothing: antialiased;
+  @include adjust-leading-to(1.35);
+
+}
+
+/* [7] */
+p {
+  color: $trout;
+  @include adjust-font-size-to(1rem);
+  @include adjust-leading-to(1.5);
+  @include margin-trailer(1);
+
+  // &:last-of-type {
+  //   @include margin-trailer(0);
+  // }
+
+  strong {
+    font-family: $font_primary_bold;
+  }
+
+  .section--dark & {
+    color: $white;
+  }
+}
+
+.xl-copy {
+  font-weight: $font_light;
+  @include adjust-font-size-to(1.3125rem);
+  @include adjust-leading-to(1.75);
+
+  strong {
+    font-family: $font_primary_bold;
+  }
+}
+
+.lg-copy {
+  font-weight: $font_light;
+  @include adjust-font-size-to(1.125rem);
+  @include adjust-leading-to(1.625);
+
+  strong {
+    font-family: $font_primary_bold;
+  }
+}
+
+.sm-copy {
+  @include adjust-font-size-to(0.9375rem);
+  @include adjust-leading-to(1.4375);
+
+  strong {
+    font-family: $font_primary_semi_bold;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* [8] */
+h1, h2, h3, h4 {
+  color: $trout;
+  font-family: $font_primary_bold;
+  @include margin-trailer(1);
+
+  .section--dark & {
+    color: $white;
+  }
+}
+
+h1, .h1 {
+  @include adjust-font-size-to(3rem);
+  @include adjust-leading-to(4.625);
+}
+
+h2, .h2 {
+  @include adjust-font-size-to(2rem);
+  @include adjust-leading-to(2.625);
+
+  &--light {
+    font-weight: $font_light;
+  }
+}
+
+h3, .h3 {
+  @include adjust-font-size-to(1.3125rem);
+  @include adjust-leading-to(1.75);
+
+  &--light {
+    font-weight: $font_light;
+  }
+}
+
+h4, .h4 {
+  @include adjust-font-size-to(1rem);
+  @include adjust-leading-to(2.125);
+}
+
+h5, .h5 {
+  @include adjust-font-size-to(0.875rem);
+  @include adjust-leading-to(1.1875);
+
+  &--light {
+    font-weight: $font_light;
+  }
+}
+
+// Colours
+.green {
+  color: $shamrock;
+}
+
+/* [9] */
+a {
+  color: $cod-gray;
+  outline: 0;
+  @include adjust-font-size-to(0.875rem);
+  @include adjust-leading-to(1.25);
+  font-family: $font_primary_bold;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/* [10] */
+.elipsis-overflow {
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* [11] */
+strong, b {
+  font-weight: $font_bold;
+}
+
+em, i {
+  font-style: italic;
+}
+
+/* [12] */
+hr {
+  display: block;
+  width: 20px;
+  @include margin-leader(2);
+  @include margin-trailer(2);
+  height: 3px;
+  background-color: $porsche;
+  border: none;
+
+  .text-center & {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* [13] */
+main {
+  ul {
+    list-style: none;
+
+    li {
+      position: relative;
+      display: block;
+      @include adjust-font-size-to(1rem);
+      @include adjust-leading-to(1.5);
+      padding-left: $base-margin;
+      @include margin-trailer(0.5);
+
+      &:last-child {
+        @include margin-trailer(0);
+      }
+
+      &:after {
+        content: '';
+        background-color: $cod-gray;
+        position: absolute;
+        top: $base-margin*0.5;
+        left: 0;
+        display: block;
+        width: 6px;
+        height: 6px;
+        @include border-radius(3px);
+      }
+    }
+  }
+}

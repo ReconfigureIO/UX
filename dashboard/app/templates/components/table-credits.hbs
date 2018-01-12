@@ -1,0 +1,80 @@
+<div class="table-wrapper">
+  <table class="table table--credits">
+    <thead>
+      <th></th>
+      <th class="text-center">Open source</th>
+      <th class="text-center">Single user</th>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Access to AWS F1 Cloud-based FPGAs</td>
+        <td class="text-center"><i class="icon-ok green"></i></td>
+        <td class="text-center"><i class="icon-ok green"></i></td>
+      </tr>
+      <tr>
+        <td>Support from the team in the community forum</td>
+        <td class="text-center"><i class="icon-ok green"></i></td>
+        <td class="text-center"><i class="icon-ok green"></i></td>
+      </tr>
+      <tr>
+        <td>Hardware simulation</td>
+        <td class="text-center"><i class="icon-ok green"></i></td>
+        <td class="text-center"><i class="icon-ok green"></i></td>
+      </tr>
+      <tr>
+        <td>Example code library</td>
+        <td class="text-center"><i class="icon-ok green"></i></td>
+        <td class="text-center"><i class="icon-ok green"></i></td>
+      </tr>
+      <tr>
+        <td>Tutorials</td>
+        <td class="text-center"><i class="icon-ok green"></i></td>
+        <td class="text-center"><i class="icon-ok green"></i></td>
+      </tr>
+      <tr>
+        <td title="Open source plans requires uploaded code to contain an open source license.">Support for proprietary code*</td>
+        <td class="text-center"></td>
+        <td class="text-center"><i class="icon-ok green"></i></td>
+      </tr>
+      <tr>
+        <td>Priority chat and email support</td>
+        <td class="text-center"></td>
+        <td class="text-center"><i class="icon-ok green"></i></td>
+      </tr>
+      <tr>
+        <td>60-day free trial</td>
+        <td class="text-center"></td>
+        <td class="text-center"><i class="icon-ok green"></i></td>
+      </tr>
+      <tr>
+        <td>Time included each month</td>
+        <td class="text-center">20 hours</td>
+        <td class="text-center">80 hours</td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td class="text-center">Free</td>
+        <td class="text-center">$250/month</td>
+      </tr>
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <td></td>
+        <td>
+          <a href="#" class="btn {{if (eq billing_plan 'open-source') 'disabled'}}" {{action "updatePlan" "open-source"}}><span>{{#if (eq billing_plan 'open-source')}}Current Plan{{else}}Select{{/if}}</span></a>
+        </td>
+        <td>
+          <a href="#" class="btn {{if (eq billing_plan 'single-user') 'disabled'}}" {{action "updatePlan" "single-user"}}><span>{{#if (eq billing_plan 'single-user')}}Current Plan{{else}}Select{{/if}}</span></a>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+
+  {{#if show_alert }}
+    <div class="alert">
+      <i class="icon-alert"></i> Your pricing plan has been updated
+    </div>
+  {{/if}}
+</div>

@@ -1,0 +1,59 @@
+{{#unless isIndex}}
+  <aside class="sidebar">
+    {{#if media.isMobile}}
+      <div class="sidebar__mobile">
+        <figure class="logo">
+          {{#link-to "dashboard"}}
+            <img src="assets/images/logo.svg" alt="Reconfigure.io">
+          {{/link-to}}
+        </figure>
+
+        <div class="sidebar__mobile__toggle" {{action "showMainNav"}}>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    {{/if}}
+
+    <div class="sidebar__main">
+      {{#unless media.isMobile}}
+        <div class="sidebar__main__header">
+          <figure class="logo">
+            {{#if hideNav}}
+              <img src="assets/images/logo.svg" alt="Reconfigure.io">
+            {{else}}
+              {{#link-to "dashboard"}}
+                <img src="assets/images/logo.svg" alt="Reconfigure.io">
+              {{/link-to}}
+            {{/if}}
+          </figure>
+        </div>
+      {{/unless}}
+
+      {{#unless hideNav}}
+        <div class="sidebar__main__content">
+          <nav class="nav nav--main">
+            {{#link-to "dashboard"}}Dashboard{{/link-to}}
+            {{#link-to "pricing-plan"}}Pricing Plan{{/link-to}}
+            {{#link-to "account.details"}}My account{{/link-to}}
+            <a {{action (route-action 'logout')}}>Logout</a>
+          </nav>
+        </div>
+      {{/unless}}
+    </div>
+
+    {{#unless hideNav}}
+      <div class="sidebar__secondary {{if showSideBar "show" "hide"}}">
+        <nav class="nav nav--secondary">
+          {{#link-to "account.details"}}Personal Details{{/link-to}}
+          {{#link-to "account.billing"}}Billing Information{{/link-to}}
+        </nav>
+
+        <div class="sidebar__secondary__toggle" {{action "showSubNav"}}>
+          <i class="icon-right-open"></i>
+        </div>
+      </div>
+    {{/unless}}
+  </aside>
+{{/unless}}

@@ -1,0 +1,8 @@
+/* SIGNUP */
+
+.sign-up {
+  &__continue {
+    display: none;
+    @include full();
+  }
+}

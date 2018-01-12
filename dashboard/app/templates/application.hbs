@@ -1,0 +1,5 @@
+{{sidebar-nav isIndex=isIndex hideNav=hideNav showSideBar=showSideBar}}
+
+<main id="content" role="main" class="{{if showSideBar "has-sidebar"}}{{if isIndex "no-sidebar"}}">
+  {{outlet}}
+</main>

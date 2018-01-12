@@ -1,0 +1,14 @@
+/* SECTION */
+.section {
+  @include full();
+  @include rhythm-padding(2);
+  box-sizing: border-box;
+
+  &--dark {
+    background-color: $trout;
+  }
+
+  &--gray {
+    background-color: $alabaster;
+  }
+}

@@ -1,0 +1,67 @@
+<section class="section section--dark">
+  <div class="container">
+    <div class="col col--8">
+      <h1>Billing Information</h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="col col--8">
+      <form id="billingInformation" class="form form--actions">
+        <h3>Card Details</h3>
+
+        <div class="col col--8 col--clear">
+          {{form-input questionType="text" label="Card holders name" name="cardName" value=billing.name required="true"}}
+        </div>
+
+        <div class="col col--8 col--clear">
+          {{form-input questionType="text" label="Card number" name="cardNumber" placeholder=fullCard required="true" max="16"}}
+        </div>
+
+        <div class="col col--4 col--6--tablet col--padding-right col--clear">
+          {{form-input questionType="number" label="Expiry Month" name="cardExpiryMonth" value=billing.exp_month required="true" max="2"}}
+        </div>
+
+        <div class="col col--4 col--6--tablet col--padding-left">
+          {{form-input questionType="number" label="Expiry Year" name="cardExpiryYear" value=billing.exp_year required="true" max="4"}}
+        </div>
+
+        <div class="col col--4 col--6--tablet col--clear">
+          {{form-input questionType="number" label="CVC" name="cardCvc" placeholder=cvc required="true" max="3"}}
+        </div>
+
+        <div class="clear"></div>
+
+        <h3>Billing Address</h3>
+
+        <div class="col col--8 col--clear">
+          {{form-input questionType="text" label="Address line 1" name="addressLine1" value=billing.address_line1 required="true"}}
+        </div>
+
+        <div class="col col--8 col--clear">
+          {{form-input questionType="text" label="Address line 2" name="addressLine2" value=billing.address_line2}}
+        </div>
+
+        <div class="col col--8 col--clear">
+          {{form-input questionType="text" label="City" name="addressCity" value=billing.address_city required="true"}}
+        </div>
+
+        <div class="col col--8 col--clear">
+          {{form-input questionType="text" label="Postcode" name="addressZip" value=billing.address_zip required="true"}}
+        </div>
+
+        <div class="col col--8 col--clear">
+          {{form-input questionType="text" label="Country" name="addressCountry" value=billing.address_country required="true"}}
+        </div>
+
+        <div class="form-messages col col--full"></div>
+
+        <div class="actions">
+          <button type="submit" class="btn" {{action "submitPaymentMethod"}}><span>Update Details</span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

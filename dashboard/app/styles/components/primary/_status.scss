@@ -1,0 +1,16 @@
+/* STATUS */
+
+.status {
+  display: block;
+  width: 24px;
+  height: 24px;
+  @include border-radius(12px);
+
+  &--ok {
+    background-color: $lima;
+  }
+
+  &--error {
+    background-color: $cinnabar;
+  }
+}

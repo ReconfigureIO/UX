@@ -1,0 +1,31 @@
+<section class="section section--gray">
+  <div class="container">
+    {{cta-alert}}
+    {{#if (lte hoursRemaining 5)}}
+      {{cta-base hoursRemaining=hoursRemaining}}
+    {{/if}}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Your recent builds</h2>
+    <!-- <a href="#" class="link link--next">See all projects</a> -->
+
+    {{projects-overview deployments=deployments.value builds=builds.value}}
+    {{api-key key=key}}
+  </div>
+</section>
+
+<section class="section section--gray">
+  <div class="container">
+    <h2>Extra help</h2>
+
+    <div class="col col--6 col--full--tablet">
+      {{card-base image="/assets/images/docs-icon.png" title="Documentation" description="" linkTitle="See documentation" linkUrl="http://docs.reconfigure.io/" target="_blank"}}
+    </div>
+    <div class="col col--6 col--full--tablet">
+      {{card-base image="/assets/images/faqs-icon.png" title="FAQs" description="" linkTitle="View FAQs" linkUrl="http://docs.reconfigure.io/FAQ.html" target="_blank"}}
+    </div>
+  </div>
+</section>

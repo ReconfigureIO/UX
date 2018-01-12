@@ -1,0 +1,64 @@
+{{#if (eq questionType "select")}}
+  <div class="field field--select">
+    <select class="select" style="width: 100%">
+      <option>Option</option>
+      <option>Option</option>
+      <option>Option</option>
+      <option>Option</option>
+      <option>Option</option>
+    </select>
+  </div>
+{{/if}}
+
+{{#if (eq questionType "text")}}
+  <div class="field {{if required 'required'}}">
+    <input type="text" id="{{name}}" class="input input--text hide-label" name="{{name}}" value="{{value}}" placeholder="{{placeholder}}" minlength="{{min}}" maxlength="{{max}}"/>
+    <label for="{{name}}">{{label}}</label>
+  </div>
+{{/if}}
+
+{{#if (eq questionType "email")}}
+  <div class="field">
+    <input type="email" id="{{name}}" class="input input--text hide-label" name="{{name}}" value="{{value}}" placeholder="{{placeholder}}" minlength="{{min}}" maxlength="{{max}}"/>
+    <label for="{{name}}">{{label}}</label>
+  </div>
+{{/if}}
+
+{{#if (eq questionType "number")}}
+  <div class="field">
+    <input type="number" id="{{name}}" class="input input--text hide-label" name="{{name}}" value="{{value}}" placeholder="{{placeholder}}" minlength="{{min}}" maxlength="{{max}}"/>
+    <label for="{{name}}">{{label}}</label>
+  </div>
+{{/if}}
+
+{{#if (eq questionType "tel")}}
+  <div class="field">
+    <input type="tel" id="{{name}}" class="input input--text hide-label" name="{{name}}" value="{{value}}" placeholder="{{placeholder}}" minlength="{{min}}" maxlength="{{max}}"/>
+    <label for="{{name}}">{{label}}</label>
+  </div>
+{{/if}}
+
+{{#if (eq questionType "textarea")}}
+  <div class="field">
+    <textarea class="input input--textarea" name="{{name}} hide-label" value="{{value}}" placeholder="{{placeholder}}" minlength="{{min}}" maxlength="{{max}}"></textarea>
+    <label for="{{name}}">{{label}}</label>
+  </div>
+{{/if}}
+
+{{#if (eq questionType "radio")}}
+  <div class="field field--radio">
+    <div class="radio">
+      <input type="radio" id="radio1" class="input input--radio" name="input_radio"/>
+      <label for="radio1"><span><span></span></span> {{label}}</label>
+    </div>
+  </div>
+{{/if}}
+
+{{#if (eq questionType "checkbox")}}
+  <div class="field field--checkbox">
+    <div class="checkbox">
+      <input type="checkbox" id="checkbox1" class="input input--checkbox" name="input_checkbox"/>
+      <label for="checkbox1"><span><span></span></span> {{label}}</label>
+    </div>
+  </div>
+{{/if}}

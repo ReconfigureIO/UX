@@ -1,0 +1,47 @@
+/* TABS */
+
+.tabs {
+  &__header {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    @include margin-trailer(1);
+
+    &__item {
+      background-color: $white;
+      display: table-cell;
+      width: 2%;
+      @include adjust-font-size-to(1.125rem);
+      @include adjust-leading-to(1.125);
+      padding: 0 $base-margin;
+      @include rhythm-padding(1);
+      border: 2px solid $alto;
+      box-sizing: border-box;
+      text-align: center;
+      cursor: pointer;
+
+      &:first-child {
+        border-right: none;
+      }
+
+      &:not(:first-child) {
+        border-left: none;
+      }
+
+      &.active {
+        background-color: $merino;
+        border: 2pt $porsche solid;
+      }
+    }
+  }
+
+  &__content {
+    &__item {
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+  }
+}

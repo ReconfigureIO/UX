@@ -1,0 +1,65 @@
+/* CARD */
+.card {
+  &--base {
+    padding-right: $base-margin;
+    box-sizing: border-box;
+
+    .wrapper {
+      display: table;
+      width: 100%;
+      background-color: $white;
+      padding: 0 $base-margin*1.5;
+      @include rhythm-padding(1.5);
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    @include breakpoint($break_tablet) {
+      padding-right: 0;
+      @include margin-trailer(1);
+    }
+
+    .card__image {
+      display: table-cell;
+      vertical-align: middle;
+      padding-right: $base-margin;
+      box-sizing: border-box;
+
+      img {
+        width: 100px;
+        height: auto;
+        @include border-radius(50px);
+      }
+
+      @include breakpoint($break_mobile) {
+        display: block;
+        float: none;
+        margin: 0 auto;
+        @include margin-trailer(1);
+      }
+    }
+
+    .card__content {
+      display: table-cell;
+      vertical-align: middle;
+
+      @include breakpoint($break_mobile) {
+        @include full();
+      }
+    }
+
+    .card__title {
+      color: $trout !important;
+      @include margin-trailer(0.25);
+    }
+
+    .card__description {
+      color: $trout !important;
+      @include margin-trailer(0.75);
+    }
+
+    .card__link {
+      @include margin-trailer(0);
+    }
+  }
+}

@@ -1,0 +1,69 @@
+<div class="tabs">
+  <div class="tabs__header">
+    <div class="tabs__header__item {{if (eq currentTab 1) "active"}}" {{action "setTab" 1}}>Builds (X)</div>
+    <div class="tabs__header__item {{if (eq currentTab 2) "active"}}" {{action "setTab" 2}}>Deployments (X)</div>
+  </div>
+
+  <div class="tabs__content">
+    <div class="tabs__content__item {{if (eq currentTab 1) "active"}}">
+      <table class="table table--tabs">
+        <thead>
+          <th></th>
+          <th>Created</th>
+          <th>Last modified</th>
+          <th>Status</th>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>Build Id</strong></td>
+            <td>01-01-2017</td>
+            <td>Today | 14:13</td>
+            <td><span class="status status--error"></span></td>
+          </tr>
+          <tr class="spacer"></tr>
+          <tr>
+            <td><strong>Build Id</strong></td>
+            <td>01-01-2017</td>
+            <td>Today | 14:13</td>
+            <td><span class="status status--ok"></span></td>
+          </tr>
+          <tr class="spacer"></tr>
+          <tr>
+            <td><strong>Build Id</strong></td>
+            <td>01-01-2017</td>
+            <td>Today | 14:13</td>
+            <td><span class="status status--ok"></span></td>
+          </tr>
+          <tr class="spacer"></tr>
+          <tr>
+            <td><strong>Build Id</strong></td>
+            <td>01-01-2017</td>
+            <td>Today | 14:13</td>
+            <td><span class="status status--ok"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tabs__content__item {{if (eq currentTab 2) "active"}}">
+      <table class="table table--tabs">
+        <thead>
+          <th></th>
+          <th>Created</th>
+          <th>Last modified</th>
+          <th>Status</th>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Build Id</td>
+            <td>01-01-2017</td>
+            <td>Today | 14:13</td>
+            <td><span class="status status--error"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

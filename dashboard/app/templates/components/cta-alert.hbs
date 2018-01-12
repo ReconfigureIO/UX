@@ -1,0 +1,14 @@
+{{#each notifications as |notification index|}}
+  <div class="cta cta--alert cta--alert--{{notification.impact}}">
+    <div class="cta__icon">
+      <i class="icon-alert"></i>
+    </div>
+    <div class="cta__content">
+      <p class="sm-copy description"><strong>{{notification.name}}</strong> - {{notification.incident_updates.[0].body}} - <em>Updated at: {{moment notification.updated_at allow-empty=true}}</em></p>
+      <a href="{{notification.shortlink}}" class="action" target="_blank">Read more</a>
+    </div>
+    <div class="cta__close" {{action "close"}}>
+      <i class="icon-close-circle"></i>
+    </div>
+  </div>
+{{/each}}

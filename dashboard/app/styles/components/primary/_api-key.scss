@@ -1,0 +1,33 @@
+/* API Key */
+
+.api-key {
+  padding: 0 $base-margin*1.5;
+  @include rhythm-padding(1.5);
+  border: 2px solid $quill-gray;
+  @include border-radius(4px);
+
+  &__title {
+    font-family: $font_primary;
+  }
+
+  &__container {
+    &__key {
+      display: inline-block;
+      color: $trout;
+      margin-right: $base-margin;
+      @include margin-trailer(0.5);
+      border: none;
+      padding: 0;
+      background: transparent;
+      max-width: 100%;
+      font-family: $font_primary_roman;
+      @include adjust-font-size-to(18px);
+    }
+
+    &__trigger {
+      display: inline-block;
+      color: $trout;
+      text-transform: none;
+    }
+  }
+}

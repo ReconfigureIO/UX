@@ -1,0 +1,64 @@
+pipeline {
+    agent {
+        dockerfile {
+            args '-u 0:0'
+        }
+    }
+    environment {
+        BASE_URL = "/${env.BRANCH_NAME}/"
+    }
+    options {
+        buildDiscarder(logRotator(daysToKeepStr: '', numToKeepStr: '20'))
+    }
+    post {
+        failure {
+            slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        }
+        success {
+            slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        }
+    }
+    stages {
+        stage("notify") {
+            steps {
+                slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+            }
+        }
+
+        stage('pre clean') {
+            steps {
+                sh 'make clean'
+            }
+        }
+
+        stage('build') {
+            steps {
+                script {
+                    if(env.BRANCH_NAME == "master") {
+                        sh 'make production'
+                    }else{
+                        sh 'make build'
+                    }
+                }
+            }
+        }
+
+        stage('upload') {
+            steps {
+                script {
+                    if(env.BRANCH_NAME == "master") {
+                        step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "app.reconfigure.io", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'dist/**/*', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
+                    }else{
+                        step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "app-staging.reconfigure.io/${env.BRANCH_NAME}", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'dist/**/*', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
+                    }
+                }
+            }
+        }
+
+        stage('clean') {
+            steps {
+                sh 'make clean'
+            }
+        }
+    }
+}

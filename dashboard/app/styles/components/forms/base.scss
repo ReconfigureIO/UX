@@ -1,0 +1,206 @@
+/* BASE FORMS */
+
+form,
+.form {
+  display: block;
+  width: 100%;
+  float: left;
+  @include margin-leader(1);
+  @include margin-trailer(1);
+
+  button {
+    cursor: pointer;
+  }
+
+  // GENERAL FIELD WRAPPER
+  .field {
+    position: relative;
+    display: table;
+    width: 100%;
+    max-width: 444px;
+    @include margin-trailer(1.5);
+    border: none;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    @include breakpoint($break_mobile) {
+      display: block;
+      width: 100%;
+    }
+
+    // Field icons
+    &__icons {
+      position: absolute;
+      top: $base-margin*0.75;
+      right: $base-margin*0.5;
+
+      &__icon {
+        display: inline-block;
+
+        img {
+          height: 36px;
+          width: auto;
+        }
+      }
+    }
+
+    // Select label styling
+    &--select {
+      label {
+        display: block;
+        position: relative;
+        top: auto;
+        left: auto;
+        @include margin-trailer(1);
+      }
+    }
+
+    // Toggle
+    &--radio {
+      background: transparent;
+      overflow: visible;
+    }
+
+    // With button
+    &--with-button {
+      float: left;
+      width: 200px;
+      margin-right: $base-margin;
+
+      input {
+        width: 200px;
+      }
+
+      @include breakpoint($break_mobile) {
+        width: 120px;
+
+        input {
+          width: 120px;
+        }
+      }
+    }
+
+    // File field
+    &--assets {
+      input {
+        @include rhythm-padding(1.05, 0.95);
+
+        &:focus,
+        &.has-content {
+          @include rhythm-padding(1.05, 0.95);
+        }
+      }
+
+      label {
+        display: none;
+      }
+    }
+
+    // VALIDATED STATE
+    &.validated,
+    &.error {
+      position: relative;
+
+      &:after {
+        content: '\e804';
+        font-family: "fontello";
+        position: absolute;
+        top: $base-margin*1.125;
+        right: $base-margin;
+        @include adjust-font-size-to(1.25rem);
+        @include adjust-leading-to(1.25);
+
+        @include breakpoint($break_mobile) {
+          left: auto;
+          right: $base-margin;
+        }
+      }
+    }
+
+    &.validated {
+      input {
+        border-color: $shamrock;
+      }
+
+      &:after {
+        content: '\e804';
+        color: $shamrock;
+      }
+    }
+
+    // ERROR STATE
+    &.error {
+      input{
+        border-color: $cinnabar;
+      }
+
+      &:after {
+        content: '\e805';
+        color: $cinnabar;
+      }
+    }
+  }
+
+  // LABEL STYLE
+  label {
+    position: absolute;
+    top: 5px;
+    left: $base-margin*0.8;
+    color: $gray;
+    @include adjust-font-size-to(0.8125rem);
+    @include adjust-leading-to(1.4375);
+
+    @include breakpoint($break_tablet) {
+      @include adjust-font-size-to(14px);
+      @include adjust-leading-to(1.125);
+    }
+  }
+
+  .actions {
+    display: block;
+    clear: both;
+  }
+
+  // Form messages
+  .form-messages {
+    display: none;
+    width: 100%;
+    @include margin-trailer(1.5);
+    @include adjust-font-size-to(0.9375rem);
+    @include adjust-leading-to(1.4375);
+    font-family: $font_primary_bold;
+    vertical-align: middle;
+
+    &.error-message,
+    &.error-message p {
+      color: $cinnabar;
+    }
+
+    &.success-message {
+      color: $shamrock;
+    }
+
+    a {
+      color: $cod-gray;
+    }
+
+    @include breakpoint($break_mobile) {
+      display: block;
+      width: 100%;
+      padding-left: 0;
+      @include margin-leader(1);
+    }
+
+    .errors {
+      margin-bottom: 0;
+
+      li {
+        padding: 0;
+
+        &:before {
+          display: none;
+        }
+      }
+    }
+  }
+}

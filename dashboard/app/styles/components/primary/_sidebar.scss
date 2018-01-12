@@ -1,0 +1,185 @@
+/* SIDEBAR */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: table;
+  background-color: $trout;
+  z-index: 10;
+
+  @include breakpoint($break_tablet) {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .logo {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    @include breakpoint($break_tablet) {
+      display: inline-block;
+      float: left;
+      width: auto;
+    }
+  }
+
+  &__main {
+    position: relative;
+    float: left;
+    width: 210px;
+    height: 100vh;
+    background-color: $trout;
+    z-index: 2;
+    overflow-y: scroll;
+
+    @include breakpoint($break_tablet) {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    &__header {
+      background-color: $shark;
+      padding: 0 $base-margin*1.5;
+      @include rhythm-padding(1.5);
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    &__content {
+      @include breakpoint($break_tablet) {
+        display: none;
+
+        &.active {
+          display: block;
+        }
+      }
+    }
+  }
+
+  &__secondary {
+    position: relative;
+    float: left;
+    width: 210px;
+    height: 100vh;
+    background-color: $bright-gray;
+    @include rhythm-padding(4.5);
+    box-sizing: border-box;
+    z-index: 1;
+    @include transition(0.2s linear);
+
+    &.hide {
+      margin-left: -210px;
+    }
+
+    &.show {
+      margin-left: 0;
+    }
+
+    &__toggle {
+      color: $white;
+      position: absolute;
+      width: 30px;
+      height: 100%;
+      top: 0;
+      right: 0;
+      display: table;
+      @include opacity(0);
+      @include transition(0.2s linear);
+      cursor: pointer;
+
+      i {
+        display: table-cell;
+        vertical-align: middle;
+        padding: 0 8px 0 10px;
+        box-sizing: border-box;
+        @include transition(0.2s linear);
+
+        &:before {
+          width: auto;
+          margin: 0;
+        }
+
+        .active & {
+          @include rotate(180deg);
+        }
+      }
+
+      @include breakpoint($break_tablet) {
+        display: none;
+      }
+
+      @include breakpoint($break_medium) {
+        @include opacity(1);
+      }
+    }
+
+    @include breakpoint($break_medium) {
+      margin-left: -180px !important;
+
+      &.active {
+        margin-left: 0px !important;
+      }
+
+      &.hide {
+        margin-left: -210px !important;
+      }
+    }
+
+    @include breakpoint($break_tablet) {
+      width: 100%;
+      height: auto;
+      @include rhythm-padding(0);
+      margin-left: 0 !important;
+
+      &.hide,
+      &.show {
+        display: none;
+        margin-left: 0 !important;
+      }
+
+      &.mobile-show.show {
+        display: block;
+      }
+    }
+  }
+
+  &__mobile {
+    background-color: $shark;
+    padding: 0 $base-margin*1.5;
+    @include rhythm-padding(1.5);
+    box-sizing: border-box;
+    overflow: hidden;
+
+    @include breakpoint($break_mobile) {
+      padding: 0 $base-margin*1;
+      @include rhythm-padding(1);
+    }
+
+    &__toggle {
+      display: none;
+      float: right;
+      cursor: pointer;
+
+      .bar {
+        background-color: $white;
+        display: block;
+        width: 26px;
+        height: 4px;
+        margin-bottom: 4px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      @include breakpoint($break_tablet) {
+        display: inline-block;
+      }
+    }
+  }
+}

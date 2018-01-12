@@ -1,0 +1,68 @@
+<div class="projects-overview">
+  <div class="projects-overview__stats">
+    <!-- <div class="projects-overview__stats__stat projects-overview__stats__stat--deployments active" {{action "setTab" "deployments"}}>
+      <span class="number">{{deployments.length}}</span>
+      <span class="description">Deployments currently running</span>
+    </div> -->
+    <div class="projects-overview__stats__stat projects-overview__stats__stat--builds active" {{action "setTab" "builds"}}>
+      <span class="number">{{builds.length}}</span>
+      <span class="description">number of builds</span>
+    </div>
+  </div>
+
+  <!-- <div class="projects-overview__content projects-overview__content--deployments active">
+    {{#if deployments.length}}
+      <table class="table table--base">
+        <tbody>
+          {{#each deployments as |deployment index|}}
+            <tr {{action "toggleItem" index "deployments"}}>
+              <td><strong>{{deployment.id}}</strong></td>
+              <td></td>
+              <td class="text-right"><a href="#" class="link link--down">View</a></td>
+            </tr>
+            <tr class="spacer"></tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      <p>You currently have no deployments running.</p>
+    {{/if}}
+  </div> -->
+
+  <div class="projects-overview__content projects-overview__content--builds active">
+    {{#if builds.length}}
+      <table class="table table--base">
+        <tbody>
+          {{#each builds as |build index|}}
+            <tr class="table__header" data-id="{{index}}" {{action "toggleItem" index "builds"}}>
+              <td><strong>{{build.id}}</strong></td>
+              <td>{{build.job.events.lastObject.status}}</td>
+              <td class="text-right"><a href="#" class="link link--down">View</a></td>
+            </tr>
+            <tr class="table__content" data-id="{{index}}">
+              <td colspan="3">
+                <h4>Build History</h4>
+                <div class="history">
+                  {{#each build.job.events as |history index|}}
+                    <div class="history__item">
+                      <div class="history__item__number">
+                        {{index}}
+                      </div>
+                      <div class="history__item__content">
+                        <strong>Status:</strong> {{history.status}}<br>
+                        <strong>Timestamp:</strong> {{history.timestamp}}<br>
+                      </div>
+                    </div>
+                  {{/each}}
+                </div>
+              </td>
+            </tr>
+            <tr class="spacer"></tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      <p>You currently have no builds.</p>
+    {{/if}}
+  </div>
+</div>
