@@ -1,0 +1,135 @@
+/* ANIMATIONS */
+
+@-webkit-keyframes bounceDownload {
+  0%, 30%, 50% {
+    @include transform(translateY(0));
+  }
+  20%, 40% {
+    @include transform(translateY(-5px));
+  }
+}
+@-moz-keyframes bounceDownload {
+  0%, 30%, 50% {
+    @include transform(translateY(0));
+  }
+  20%, 40% {
+    @include transform(translateY(-5px));
+  }
+}
+@-o-keyframes bounceDownload {
+  0%, 30%, 50% {
+    @include transform(translateY(0));
+  }
+  20%, 40% {
+    @include transform(translateY(-5px));
+  }
+}
+@keyframes bounceDownload {
+  0%, 30%, 50% {
+    @include transform(translateY(0));
+  }
+  20%, 40% {
+    @include transform(translateY(-5px));
+  }
+}
+
+@-webkit-keyframes growEnvelope {
+  0% {
+    @include transform(scale(1));
+  }
+  100% {
+    @include transform(scale(1.2));
+  }
+}
+@-moz-keyframes growEnvelope {
+  0% {
+    @include transform(scale(1));
+  }
+  100% {
+    @include transform(scale(1.2));
+  }
+}
+@-o-keyframes growEnvelope {
+  0% {
+    @include transform(scale(1));
+  }
+  100% {
+    @include transform(scale(1.2));
+  }
+}
+@keyframes growEnvelope {
+  0% {
+    @include transform(scale(1));
+  }
+  100% {
+    @include transform(scale(1.2));
+  }
+}
+
+@-webkit-keyframes gravitateTopLeft {
+  0%   { @include transform(translateX(32px) translateY(32px)); @include opacity(0); }
+  100% { @include transform(translateX(0) translateY(0)); @include opacity(1); }
+}
+@-moz-keyframes gravitateTopLeft {
+  0%   { @include transform(translateX(32px) translateY(32px)); @include opacity(0); }
+  100% { @include transform(translateX(0) translateY(0)); @include opacity(1); }
+}
+@-o-keyframes gravitateTopLeft {
+  0%   { @include transform(translateX(32px) translateY(32px)); @include opacity(0); }
+  100% { @include transform(translateX(0) translateY(0)); @include opacity(1); }
+}
+@keyframes gravitateTopLeft {
+  0%   { @include transform(translateX(32px) translateY(32px)); @include opacity(0); }
+  100% { @include transform(translateX(0) translateY(0)); @include opacity(1); }
+}
+
+@-webkit-keyframes gravitateTopRight {
+  0%   { @include transform(translateX(-32px) translateY(32px)); @include opacity(0); }
+  100% { @include transform(translateX(0) translateY(0)); @include opacity(1); }
+}
+@-moz-keyframes gravitateTopRight {
+  0%   { @include transform(translateX(-32px) translateY(32px)); @include opacity(0); }
+  100% { @include transform(translateX(0) translateY(0)); @include opacity(1); }
+}
+@-o-keyframes gravitateTopRight {
+  0%   { @include transform(translateX(-32px) translateY(32px)); @include opacity(0); }
+  100% { @include transform(translateX(0) translateY(0)); @include opacity(1); }
+}
+@keyframes gravitateTopRight {
+  0%   { @include transform(translateX(-32px) translateY(32px)); @include opacity(0); }
+  100% { @include transform(translateX(0) translateY(0)); @include opacity(1); }
+}
+
+@-webkit-keyframes gravitateBottomLeft {
+  0%   { @include transform(translateX(32px) translateY(-32px)); @include opacity(0); }
+  100% { @include transform(translateX(0) translateY(0)); @include opacity(1); }
+}
+@-moz-keyframes gravitateBottomLeft {
+  0%   { @include transform(translateX(32px) translateY(-32px)); @include opacity(0); }
+  100% { @include transform(translateX(0) translateY(0)); @include opacity(1); }
+}
+@-o-keyframes gravitateBottomLeft {
+  0%   { @include transform(translateX(32px) translateY(-32px)); @include opacity(0); }
+  100% { @include transform(translateX(0) translateY(0)); @include opacity(1); }
+}
+@keyframes gravitateBottomLeft {
+  0%   { @include transform(translateX(32px) translateY(-32px)); @include opacity(0); }
+  100% { @include transform(translateX(0) translateY(0)); @include opacity(1); }
+}
+
+@-webkit-keyframes gravitateBottomRight {
+  0%   { @include transform(translateX(-32px) translateY(32px)); @include opacity(0); }
+  100% { @include transform(translateX(0) translateY(0)); @include opacity(1); }
+}
+@-moz-keyframes gravitateBottomRight {
+  0%   { @include transform(translateX(-32px) translateY(32px)); @include opacity(0); }
+  100% { @include transform(translateX(0) translateY(0)); @include opacity(1); }
+}
+@-o-keyframes gravitateBottomRight {
+  0%   { @include transform(translateX(-32px) translateY(32px)); @include opacity(0); }
+  100% { @include transform(translateX(0) translateY(0)); @include opacity(1); }
+}
+@keyframes gravitateBottomRight {
+  0%   { @include transform(translateX(-32px) translateY(32px)); @include opacity(0); }
+  100% { @include transform(translateX(0) translateY(0)); @include opacity(1); }
+}

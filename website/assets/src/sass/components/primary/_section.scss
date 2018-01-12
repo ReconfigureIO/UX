@@ -1,0 +1,188 @@
+/* SECTION */
+.section {
+  position: relative;
+  @include full();
+  @include rhythm-padding(5);
+  box-sizing: border-box;
+
+  @include breakpoint($break_tablet) {
+    @include rhythm-padding(4);
+  }
+
+  @include breakpoint($break_mobile) {
+    @include rhythm-padding(3);
+  }
+
+  // Grey section
+  &--grey {
+    background-color: $alabaster;
+  }
+
+  // Dark section
+  &--dark {
+    background-color: $trout;
+  }
+
+  // No padding
+  &--no-padding {
+    @include rhythm-padding(0);
+  }
+
+  // Text styles
+  h1, h2, h3 {
+    color: $tuna;
+  }
+
+  p, ul {
+    color: $trout;
+    @include margin-trailer(1.5);
+
+    &:last-child {
+      @include margin-trailer(0);
+    }
+  }
+
+  ul {
+    li {
+      @include margin-trailer(1.5);
+    }
+  }
+
+  // Header
+  &__header {
+    display: block;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    @include margin-trailer(4);
+    text-align: center;
+    overflow: hidden;
+
+    @include breakpoint($break_tablet) {
+      @include margin-trailer(3);
+    }
+
+    @include breakpoint($break_mobile) {
+      @include margin-trailer(1.5);
+    }
+
+    &--background {
+      background-image: url('../dist/img/modules/section__background.png');
+      background-size: cover;
+      background-position: top center;
+    }
+  }
+
+  // Header title
+  &__title {
+    @include margin-trailer(1.5);
+
+    &--light {
+      font-family: $font_primary_light;
+    }
+
+    &__icon {
+      display: inline-block;
+      margin-right: $base-margin;
+      vertical-align: middle;
+    }
+  }
+
+  // Header description
+  &__description {
+    margin-bottom: $base-margin*2.5 !important;
+  }
+
+  &__cta {
+    &.link--next {
+      &:before {
+        top: 5px;
+      }
+    }
+  }
+
+  // Components
+  &__component {
+    @include full();
+    @include margin-trailer(2);
+
+    &:last-child {
+      @include margin-trailer(0);
+    }
+
+    &--heading {
+      @include margin-leader(1);
+      @include margin-trailer(1);
+
+      h1, h2, h3, h4, h5,
+      .h1, .h2, .h3, .h4, .h5 {
+        @include margin-trailer(0);
+      }
+    }
+
+    &--lead-copy,
+    &--base-copy {
+      a {
+        color: $tuna;
+        letter-spacing: normal;
+        text-decoration: underline;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    &--image {
+      &__caption {
+        display: block;
+        @include adjust-font-size-to(0.75rem);
+        @include adjust-leading-to(0.75);
+        @include margin-leader(0.5);
+
+        p {
+          @include adjust-font-size-to(0.75rem);
+          @include adjust-leading-to(0.75);
+        }
+
+        a {
+          color: $tuna;
+          font-family: $font_primary;
+          letter-spacing: normal;
+          text-decoration: underline;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+
+    &--hr {
+      hr {
+        @include margin-leader(6.5);
+        @include margin-trailer(1.5);
+      }
+    }
+
+    &--module {
+      .section__cta {
+        @include full();
+        @include margin-leader(3);
+        text-align: center;
+
+        @include breakpoint($break_tablet) {
+          @include margin-leader(2);
+        }
+
+        @include breakpoint($break_mobile) {
+          @include margin-leader(1);
+        }
+      }
+    }
+
+    &--tabs {
+      overflow: hidden;
+    }
+  }
+}

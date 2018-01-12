@@ -1,0 +1,38 @@
+<header class="header {% if entry is defined and entry.headerColour == 'grey' or craft.request.firstSegment() == 'sign-up' %}header--grey{% endif %}">
+  <div class="header__top {% if craft.request.firstSegment() == 'sign-up' %}header__top--sign-up{% endif %}">
+    {% if craft.request.firstSegment() != 'sign-up' %}
+      <button type="button" class="nav-trigger tablet-show">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    {% endif %}
+
+    <figure class="logo">
+      <a href="{{siteUrl}}">
+        <img src="/assets/dist/img/global/logo.svg" alt="Reconfigure.io" class="img-responsive"/>
+      </a>
+    </figure>
+  </div>
+
+  {% if craft.request.firstSegment() != 'sign-up' %}
+    <div class="header__bottom header__navigation">
+      <a href="#" class="tablet-show nav-close"><i class="icon-close"></i> Close</a>
+
+      {% set navConfig = {
+        'maxDepth' : 1
+      } %}
+
+      {% set navigation = craft.navee.getNav('primaryNavigation', navConfig) %}
+
+      <nav class="nav nav--primary text-right">
+        <a href="{{siteUrl}}" class="nav__link tablet-show">Home</a>
+
+        {% nav node in navigation %}
+          <a href="{{ node.link }}" class="nav__link{% if node.class %} {{ node.class }}{% endif %}" target="{{node.target}}">{{ node.title }}{% if node.link | slice(0,4) == 'http' %}<i class="icon-link-ext"></i>{% endif %}</a>
+        {% endnav %}
+        <a href="#" class="btn modal-trigger" data-id="sign-in">Sign in/Register</a>
+      </nav>
+    </div>
+  {% endif %}
+</header>

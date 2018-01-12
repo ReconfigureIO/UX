@@ -1,0 +1,5 @@
+<div class="advert-banner">
+  {% if advertLink.url | length %}<a href="{{ advertLink.url }}">{% endif %}
+    <img src="{{advert.getUrl}}" alt="{{advert.title}}">
+  {% if advertLink.url | length %}</a>{% endif %}
+</div>

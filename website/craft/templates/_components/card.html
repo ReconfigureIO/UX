@@ -1,0 +1,25 @@
+<div class="card {% if alignment is defined and alignment | length %}card--{{alignment}} text-{{alignment}}{% endif %} col col--4 col--full--tablet">
+  {% if image | length %}
+    <div class="card__image">
+      <img src="{{image}}"/>
+    </div>
+  {% endif %}
+
+  <div class="card__detail">
+    {% if title | length %}
+      <h3 class="card__title">{{title}}</h3>
+    {% endif %}
+    {% if description | length %}
+      <div class="card__description md-copy">
+        {{description}}
+      </div>
+    {% endif %}
+    {% if ctas | length %}
+      <div class="card__ctas">
+        {% for cta in ctas %}
+          <a href="{{cta.cta.url}}" class="card__ctas__cta link link--{% if cta.ctaIcon != 'nA' %}{{cta.ctaIcon}}{% else %}next{% endif %}" target="{{cta.cta.target}}">{{cta.cta.text}}</a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>

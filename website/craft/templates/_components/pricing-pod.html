@@ -1,0 +1,42 @@
+<div class="pricing-pod">
+  {% if pod.podCta | length %}
+    <a href="{{pod.podCta.url}}">
+  {% endif %}
+  
+  {% if pod.podCallout | length %}
+    <div class="pricing-pod__callout">
+      {{pod.podCallout}}
+    </div>
+  {% endif %}
+  
+  <div class="pricing-pod__wrapper">
+    {% if pod.podTitle | length %}
+      <h3 class="pricing-pod__title h3--light">{{pod.podTitle}}</h3>
+    {% endif %}
+    {% if pod.podDescription | length %}
+      <div class="pricing-pod__description">
+        {{pod.podDescription}}
+      </div>
+    {% endif %}
+    <hr>
+    {% if pod.podPrice | length %}
+      <h3 class="pricing-pod__price"><strong>{{pod.podPrice}}</strong></h3>
+    {% endif %}
+    {% if pod.podPriceByline | length %}
+      <div class="pricing-pod__byline"><strong>{{pod.podPriceByline}}</strong></div>
+    {% endif %}
+    {% if pod.podPriceDescription | length %}
+      <div class="pricing-pod__price-description">
+        {{pod.podPriceDescription}}
+      </div>
+    {% endif %}
+
+    {% if pod.podCta | length %}
+      <span class="pricing-pod__cta btn" target="{{pod.podCta.target}}">{{pod.podCta.text}}</span>
+    {% endif %}
+  </div>
+
+  {% if pod.podCta | length %}
+    </a>
+  {% endif %}
+</div>

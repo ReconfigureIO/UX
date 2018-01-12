@@ -1,0 +1,31 @@
+{
+  "name": "Mob45",
+  "version": "0.0.0",
+  "authors": [
+    "Sean Jessen <sean@ayup.agency>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "modernizr": "~3.2.0",
+    "fastclick": "~1.0.6",
+    "fitvids": "~1.1.0",
+    "jquery-placeholder": "~2.3.0",
+    "select2": "^4.0.3",
+    "chart.js": "^2.6.0",
+    "isotope": "isotope-layout#^3.0.4",
+    "prism-js": "^1.0.0"
+  },
+  "overrides": {
+    "select2": {
+      "main": [
+        "dist/css/select2.min.css",
+        "dist/js/select2.full.js"
+      ]
+    },
+    "isotope": {
+      "main": "dist/isotope.pkgd.min.js",
+      "dependencies": null
+    }
+  }
+}

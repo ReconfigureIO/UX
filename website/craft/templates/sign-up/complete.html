@@ -1,0 +1,22 @@
+{% extends "_layouts/_master" %}
+
+{% do craft.sproutSeo.meta({
+  title: 'Technical details - Sign up'
+}) %}
+
+{% block content %}
+  <section class="section section--grey signup signup--step-6">
+    <div class="container">
+      <div class="wrapper">
+        <div class="signup__header">
+          <h1 class="signup__title h1--light">Congratulations, you're all set up</h1>
+          <p class="signup__description">Now you're all set up, visit <a href="http://docs.reconfigure.io">our documentation</a> and run through our <a href="http://docs.reconfigure.io/getting_started.html">getting started guide</a> to see it all working.</p>
+        </div>
+
+        <div class="signup__content">
+          <a href="http://docs.reconfigure.io/getting_started.html" class="btn" target="_blank">deploy some code</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

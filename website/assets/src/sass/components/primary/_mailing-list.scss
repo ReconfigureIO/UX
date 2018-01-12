@@ -1,0 +1,99 @@
+/* MAILING LIST */
+
+.mailing-list {
+  display: table;
+  width: 100%;
+  padding: 0 span(1);
+  @include rhythm-padding(3.5);
+  box-sizing: border-box;
+
+  @include breakpoint($break_medium) {
+    padding: 0;
+    @include rhythm-padding(2.5);
+  }
+
+  @include breakpoint($break_mobile) {
+    display: block;
+  }
+
+  &__content {
+    display: table-cell;
+    width: span(8);
+    padding-right: $base-margin*4.5;
+    vertical-align: middle;
+
+    @include breakpoint($break_tablet) {
+      @include full();
+      padding-right: $base-margin*1.5;
+      @include margin-trailer(1);
+    }
+
+    @include breakpoint($break_mobile) {
+      padding-right: 0;
+    }
+  }
+
+  &__image {
+    display: table-cell;
+    width: span(4);
+    vertical-align: middle;
+
+    @include breakpoint($break_tablet) {
+      display: none;
+    }
+
+    img {
+      display: block;
+      margin: 0 auto;
+      max-width: 400px;
+    }
+  }
+
+  &__title {
+    @include margin-trailer(0.5);
+  }
+
+  &__description {
+    @include adjust-font-size-to(1.25rem);
+    @include adjust-leading-to(1.875);
+  }
+
+  &__form {
+    display: block;
+    width: auto;
+    @include margin-leader(1);
+
+    .field {
+      display: block;
+
+      @include breakpoint($break_mobile) {
+        margin: 0 auto;
+      }
+    }
+
+    input {
+      display: inline-block;
+      max-width: 330px;
+      @include adjust-font-size-to(1.3125rem);
+      @include adjust-leading-to(1.75);
+      padding: 0;
+      @include rhythm-padding(0.625);
+      margin-right: $base-margin;
+      @include margin-leader(0.5);
+      @include margin-trailer(0.5);
+      border: none;
+      border-bottom: 1px solid $silver-chalice;
+      @include border-radius(0);
+
+      &:focus {
+        padding: 0;
+        @include rhythm-padding(0.625);
+      }
+    }
+
+    .btn {
+      @include margin-leader(0.5);
+      @include margin-trailer(0.5);
+    }
+  }
+}

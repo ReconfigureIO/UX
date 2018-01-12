@@ -1,0 +1,70 @@
+{% if entry is defined and entry.bodyElements | length %}
+
+  {% for component in entry.bodyElements %}
+
+    {% switch component.type %}
+
+      {% case "heading" %}
+        <div class="section__component section__component--heading section__component--heading--{{component.headingType}}">
+          {% switch component.headingType %}
+            {% case "h1" %}
+              <h1>{{ component.headingText }}</h1>
+            {% case "h2" %}
+              <h2>{{ component.headingText }}</h2>
+            {% case "h3" %}
+              <h3>{{ component.headingText }}</h3>
+            {% case "h4" %}
+              <h4>{{ component.headingText }}</h4>
+            {% case "h5" %}
+              <h5>{{ component.headingText }}</h5>
+          {% endswitch %}
+        </div>
+
+      {% case "leadCopy" %}
+
+        <div class="section__component section__component--lead-copy lg-copy">
+          {{ component.copy | raw }}
+        </div>
+
+      {% case "bodyCopy" %}
+
+        <div class="section__component section__component--base-copy base-copy">
+          {{ component.copy | raw }}
+        </div>
+
+      {% case "image" %}
+
+        {% if component.imageFile | length %}
+          <div class="section__component section__component--image">
+            <img src="{{component.imageFile.first.getUrl('fullImage')}}" class="img-responsive">
+            {% if component.imageCaption | length %}
+              <span class="section__component--image__caption">{{component.imageCaption|raw}}</span>
+            {% endif %}
+          </div>
+        {% endif %}
+
+      {% case "video" %}
+
+        {% if component.videoUrl | length %}
+          <div class="section__component section__component--video">
+            <div class="responsive-embed">
+              {{component.videoUrl|videoEmbed}}
+            </div>
+          </div>
+        {% endif %}
+
+      {% case "code" %}
+
+        {% if component.code | length %}
+          <div class="section__component section__component--code">
+            <pre><code class="language-{{ component.code.language }}">
+              {{ component.code.code|raw }}
+            </code></pre>
+          </div>
+        {% endif %}
+
+    {% endswitch %}
+
+  {% endfor %}
+
+{% endif %}

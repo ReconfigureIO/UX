@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+	{% sproutseo 'optimize' %}
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <link rel="canonical" href="{{ siteUrl }}" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="format-detection" content="telephone=no">
+
+	<!-- Icons -->
+	<link rel="shortcut icon" href="/assets/dist/img/icons/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="/assets/dist/img/icons/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/assets/dist/img/icons/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/dist/img/icons/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/assets/dist/img/icons/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/dist/img/icons/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/assets/dist/img/icons/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/dist/img/icons/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/dist/img/icons/apple-touch-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/dist/img/icons/apple-touch-icon-180x180.png" />
+
+	<!-- Google Analytics -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-5W369HM');</script>
+
+	<!-- Site styles -->
+  <link href="/assets/dist/main.css?2018010423" media="screen, projection" rel="stylesheet" />
+	<link href="/assets/dist/vendor.css?2016111859" media="screen, projection" rel="stylesheet" />
+</head>
+
+<body>
+	{{ include('_components/banner') }}
+	{{ include('_snippets/header') }}
+
+	{% if entry is defined and entry.hero | length %}
+		{% include('_components/hero') with { hero: entry.hero.first } %}
+	{% endif %}
+
+	{% if entry is defined and entry.subNav | length %}
+		{% include('_components/sub-nav') %}
+	{% endif %}
+
+	<main id="content" {% if entry is defined %}class="page page--{{entry.type}}"{% endif %}>
+		{% block content %}{% endblock %}
+	</main>
+
+	{{ include('_snippets/footer') }}
+	{{ include('_components/modal') }}
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="/assets/dist/vendor.min.js?2018010423"></script>
+	<script src="/assets/dist/app.min.js?2018010423"></script>
+
+  <script type='text/javascript'>
+    window.__lo_site_id = 100212;
+  	(function() {
+  		var wa = document.createElement('script'); wa.type = 'text/javascript'; wa.async = true;
+  		wa.src = 'https://d10lpsik1i8c69.cloudfront.net/w.js';
+  		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wa, s);
+  	  })();
+	</script>
+  {% set userData = craft.signup.getUser().value %}
+  {% if userData | length %}
+  <script>
+    var customData = {
+       'name' : "{{userData.name}}",
+       'email' : "{{userData.email}}",
+    }
+    window._loq = window._loq || []
+    window._loq.push(['custom', customData])
+  </script>
+  {% endif %}
+
+	<!-- ~~~~~~~~~~~~ BUILT BY ~~~~~~~~~~~~
+		 AAAAAAA YYY  YYY UU    UU PPPPPPP
+		AA     AA YY  YY  UU    UU PP   PP
+		AAAAAAAAA  YYYY   UU    UU PPPPPPP
+		AA     AA   YY    UU    UU PP
+		AA     AA   YY     UUUUUU  PP
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+</body>
+</html>

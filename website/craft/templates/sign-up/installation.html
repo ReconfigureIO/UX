@@ -1,0 +1,75 @@
+{% extends "_layouts/_master" %}
+
+{% do craft.sproutSeo.meta({
+  title: 'Technical details - Sign up'
+}) %}
+
+{% block content %}
+  <section class="section section--grey signup signup--step-5">
+    <div class="container">
+      <div class="wrapper">
+        <div class="signup__header">
+          <h1 class="signup__title h1--light">Command line installation</h1>
+          <p class="signup__description">Now you can install our command line tool <code>reco</code>.</p>
+          <p class="signup__description">Choose your operating system and follow the instructions.</p>
+        </div>
+
+        <div class="signup__content">
+          <nav class="sub-nav sub-nav--tabs">
+            <a data-id="1" class="active">Linux</a>
+            <a data-id="2">OSX</a>
+            <a data-id="3">Windows</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white signup signup--tabs">
+    <div class="container">
+      <div class="wrapper">
+        <div class="signup__content">
+          <div class="signup__tabs nav-tabs">
+            <div class="signup__tab nav-tabs__tab active" data-id="1">
+              <p class="lg-copy">Run the following from your terminal, you may be asked to enter your password:</p>
+
+              <pre>curl -LO https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.3-x86_64-linux.zip \<br>
+&amp;&amp; unzip reco-v0.3.3-x86_64-linux.zip \<br>
+&amp;&amp; sudo mv reco /usr/local/bin</pre>
+
+              <p><code>reco</code> will now be available in new terminal sessions.</p>
+            </div>
+
+            <div class="signup__tab nav-tabs__tab" data-id="2">
+              <p class="lg-copy">Run the following from your terminal, you may be asked to enter your password:</p>
+
+              <pre>curl -LO https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.3-x86_64-apple-darwin.zip \<br>
+&amp;&amp; unzip reco-v0.3.3-x86_64-apple-darwin.zip \<br>
+&amp;&amp; sudo mv reco /usr/local/bin</pre>
+
+              <p><code>reco</code> will now be available in new terminal sessions.</p>
+            </div>
+
+            <div class="signup__tab nav-tabs__tab" data-id="3">
+              <p class="lg-copy">If you're a Windows user you have two options for installing <code>reco</code>, either download our <a href="https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.1.exe" target="_blank">installer</a> or, if you prefer, launch Powershell as administrator and paste:</p>
+
+              <pre>Invoke-WebRequest https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.3-x86_64-pc-windows.zip -OutFile reco-v0.3.3-x86_64-pc-windows.zip;<br>
+Expand-Archive -Path reco-v0.3.3-x86_64-pc-windows.zip -DestinationPath C:\reco -Force;<br>
+setx PATH "$env:path;C:\reco" -m;</pre>
+
+              <p><code>reco</code> will now be available in new terminal/Powershell sessions.</p>
+            </div>
+          </div>
+
+          <form class="form form--actions form--installation" name="signup-installation" action="/sign-up/auth" method="post">
+            <div class="form__content">
+              <div class="actions">
+                  <button type="submit" name="submit" class="btn"><span>Continue</span></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% if type == 'outer' %}
+  {% set entries = craft.entries({
+    section:        'blog',
+    order:          'postDate desc',
+    offset:         1
+  }) %}
+{% else %}
+  {% set entries = craft.entries({
+    section:        'blog',
+    order:          'postDate desc'
+  }).id('not ' ~ entry.id) %}
+{% endif %}
+
+<div class="blog-list masonry">
+  {% for post in entries.limit(count) %}
+    <div class="blog-list__item masonry__item">
+      <a href="{{post.url}}">
+        <div class="wrapper">
+          <h3 class="blog-list__item__title">{{post.title}}</h3>
+          <span class="blog-list__item__cta link link--next">Read post</span>
+
+          <div class="blog-list__item__meta">
+            <div class="blog-list__item__meta__details">
+              Posted by {{post.author.name}}<br>
+              {{post.postDate|date('j F Y')}}
+            </div>
+            {% if post.author.photoUrl | length %}
+              <div class="blog-list__item__meta__image">
+                <img src="{{ post.author.photoUrl }}">
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</div>

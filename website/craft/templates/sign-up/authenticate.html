@@ -1,0 +1,22 @@
+{% extends "_layouts/_master" %}
+
+{% do craft.sproutSeo.meta({
+  title: 'Authenticating - Sign up'
+}) %}
+{% block content %}
+
+  <section class="section section--grey signup signup--step-2">
+    <div class="container">
+      <div class="signup__image">
+        <img src="/assets/dist/img/modules/octocat.png" alt="Github" class="img-responsive">
+      </div>
+
+      <div class="wrapper">
+        <div class="signup__header">
+          <h1 class="signup__title h1--light">Authenticating...</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

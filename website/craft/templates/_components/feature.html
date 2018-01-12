@@ -1,0 +1,29 @@
+<div class="feature">
+  <div class="container">
+    {% if image | length %}
+      <div class="feature__image feature__image--{{imageSize}}">
+        <img src="{{image.first.getUrl()}}">
+      </div>
+    {% endif %}
+    <div class="feature__content">
+      {% if title | length %}
+        <h3 class="feature__title">{{title}}</h3>
+      {% endif %}
+      {% if subTitle | length %}
+        <div class="feature__sub-title xl-copy">
+          <p>{{subTitle}}</p>
+        </div>
+      {% endif %}
+      {% if description | length %}
+        <div class="feature__description {% if not subTitle | length %}xl-copy{% else %}md-copy{% endif %}">
+          {{description|raw}}
+        </div>
+      {% endif %}
+      {% if ctas | length %}
+        {% for cta in ctas %}
+          <a href="{{cta.cta.url}}" class="feature__cta {% if cta.ctaIcon == 'button' %}btn{% else %}link {% if cta.ctaIcon != 'nA' %}link--{{cta.ctaIcon}}{% endif %}{% endif %}" target="{{cta.cta.target}}">{{cta.cta.text}}</a>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>

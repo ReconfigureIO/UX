@@ -1,0 +1,52 @@
+/* FOOTER */
+
+.footer {
+  background-color: $white;
+  padding: 0 $base-line-height*1.375;
+  @include rhythm-padding(2.5, 0.25);
+  font-family: $font_primary_roman;
+  overflow: hidden;
+
+  .container {
+    padding: 0;
+  }
+
+  @include breakpoint($break_standard) {
+    padding: 0 $base-line-height*1;
+    @include rhythm-padding(2.5, 0.25);
+  }
+
+  @include breakpoint($break_medium) {
+    padding: 0 $base-line-height*0.75;
+    @include rhythm-padding(2, 0.25);
+  }
+
+  @include breakpoint($break_mobile) {
+    padding: 0 $base-line-height*0.5;
+    @include rhythm-padding(3.5, 2.5);
+  }
+
+  &__top {
+    @include full();
+    @include margin-trailer(2);
+
+    @include breakpoint($break_mobile) {
+      @include margin-trailer(1.5);
+      text-align: center !important;
+    }
+  }
+
+  &__bottom {
+    @include full();
+
+    .col {
+      @include breakpoint($break_mobile) {
+        text-align: center !important;
+
+        &:first-child {
+          @include margin-trailer(0.5);
+        }
+      }
+    }
+  }
+}

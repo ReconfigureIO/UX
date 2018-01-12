@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+    <th>Job title</th>
+    <th>Date posted</th>
+    <th>Deadline</th>
+    <th></th>
+  </thead>
+
+  <tbody>
+    {% for row in content %}
+      <tr>
+        <td data-th="Job title">{{row.jobTitle}}</td>
+        <td data-th="Date posted">{{row.datePosted}}</td>
+        <td data-th="Deadline">{{row.deadline}}</td>
+        <td data-th=""><a href="{{row.cta.url}}" class="btn" target="{{row.cta.target}}">Learn more</a></td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

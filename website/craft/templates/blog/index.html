@@ -1,0 +1,29 @@
+{% extends "_layouts/_master" %}
+
+{% do craft.sproutSeo.meta({
+  title: 'Blog'
+}) %}
+
+{% block content %}
+  {% set featured = craft.entries.section('blog').first %}
+
+  {% if featured | length %}
+    <section class="section">
+      <div class="container">
+        <div class="section__component">
+          {% include('_components/blog-feature') with { type: 'outer', title: featured.title, image: featured.heroImage, link: featured.url, author: featured.author, postDate: featured.postDate } %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  {% if craft.entries.section('blog') | length > 1 %}
+  	<section class="section section--grey section--no-padding">
+      <div class="container">
+        <div class="section__component">
+    			{% include('_components/blog-list') with { type: 'outer', count: -1 } %}
+    		</div>
+      </div>
+  	</section>
+  {% endif %}
+{% endblock %}

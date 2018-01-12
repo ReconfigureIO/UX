@@ -1,0 +1,9 @@
+<div class="image">
+  {% if type == 'contained' %}
+    <div class="container">
+  {% endif %}
+    <img src="{{image}}" class="img-responsive">
+  {% if type == 'contained' %}
+    </div>
+  {% endif %}
+</div>

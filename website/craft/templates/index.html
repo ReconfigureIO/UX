@@ -1,0 +1,100 @@
+{% extends "_layouts/_master" %}
+
+{% block content %}
+	{{ include('_components/hero') }}
+
+	<section class="section section--grey">
+		<div class="section__header">
+			<div class="container">
+				<h2 class="section__title">The benefits of FPGAs</h2>
+			</div>
+		</div>
+
+		<div class="section__component">
+			{% include('_components/feature') with { type: 'secondary', image: 'https://unsplash.it/300x300', title: 'Title here', description: 'High output through data analysis - loT data handling, infrastructure management, betting and bidding', link: 'Learn more' } %}
+			{% include('_components/feature') with { type: 'secondary', image: 'https://unsplash.it/300x300', title: 'Title here', description: 'High output through data analysis - loT data handling, infrastructure management, betting and bidding', link: 'Learn more' } %}
+			{% include('_components/feature') with { type: 'secondary', image: 'https://unsplash.it/300x300', title: 'Title here', description: 'High output through data analysis - loT data handling, infrastructure management, betting and bidding', link: 'Learn more' } %}
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__header">
+			<div class="container">
+				<h2 class="section__title section__title--light">Speed</h2>
+				<p class="section__description xl-copy">FPGAs provide significant speed enhancements (10–100x) over the same code running on traditional CPUs</p>
+				<a href="#" class="section__cta link link--next">Learn more</a>
+			</div>
+		</div>
+
+		<div class="section__component">
+			{{ include('_components/cpu-animation') }}
+		</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="section__header">
+			<div class="container">
+				<h2 class="section__title section__title--light">Who's using Reconfigure.io?</h2>
+				<p class="section__description xl-copy">Learn how these organisations are using reconfigure</p>
+				<a href="#" class="section__cta link link--next">Read case studies</a>
+			</div>
+		</div>
+
+		<div class="section__component">
+			{{ include('_components/image-grid') }}
+		</div>
+	</section>
+
+	<section class="section section--grey">
+		<div class="section__component">
+			{{ include('_components/signup') }}
+		</div>
+	</section>
+
+	<section class="section section--grey">
+		<div class="section__component">
+			{% include('_components/feature') with { type: 'primary', image: '/assets/dist/img/modules/feature-wide__placeholder.svg', title: 'Title here', subTitle: 'High throughput data analysis - IoT data handling, infrastructure management, betting and bidding', description: '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, <p>consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>', link: 'Learn more' } %}
+		</div>
+	</section>
+
+	<section class="section section--grey">
+		<div class="section__component">
+			{{ include('_components/tabs') }}
+		</div>
+	</section>
+
+	<section class="section section--no-padding">
+		<div class="section__component">
+			{% include('_components/image') with { type: 'full', image: 'https://unsplash.it/1400/600' } %}
+		</div>
+	</section>
+
+	<section class="section section--grey">
+		<div class="section__header">
+			<div class="container">
+				<h2 class="section__title section__title--light">Meet the team</h2>
+			</div>
+		</div>
+
+		<div class="section__component">
+			{{ include('_components/pods') }}
+		</div>
+	</section>
+
+	<section class="section section--grey">
+		<div class="section__header">
+			<div class="container">
+				<h2 class="section__title section__title--light">Careers</h2>
+				<p class="section__description xl-copy">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+				<a href="#" class="section__cta link link--down">Why is working at Reconfigure just so darn great?</a>
+			</div>
+		</div>
+
+		<div class="section__component">
+			<div class="container">
+				{{ include('_components/table') }}
+			</div>
+		</div>
+	</section>
+{% endblock %}

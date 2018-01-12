@@ -1,0 +1,19 @@
+<section class="hero" {% if hero.heroImage | length and hero.heroImageSize == 'full' %}style="background-image: url({{hero.heroImage.first.getUrl('heroFull')}})"{% endif %}>
+  <div class="container">
+    {% if hero.heroImage | length and hero.heroImageSize == 'contained' %}
+      <img src="{{hero.heroImage.first.getUrl('heroContained')}}" class="hero__background">
+    {% endif %}
+
+    <div class="hero__content">
+      {% if hero.heroTitle | length %}
+        <h1 class="hero__title">{{hero.heroTitle}}</h1>
+      {% endif %}
+      {% if hero.heroDescription | length %}
+        <h4 class="hero__description lg-copy">{{hero.heroDescription}}</h4>
+      {% endif %}
+      {% if hero.heroCta | length %}
+        <a href="{{hero.heroCta.url}}" class="hero__cta btn" target="{{hero.heroCta.target}}">{{hero.heroCta.text}}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>

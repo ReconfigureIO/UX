@@ -1,0 +1,14 @@
+/* COLUMN */
+
+.column {
+  padding-right: $base-margin*2.5;
+
+  @include breakpoint($break_tablet) {
+    padding: 0;
+    @include margin-trailer(2);
+
+    &:last-child {
+      @include margin-trailer(0);
+    }
+  }
+}

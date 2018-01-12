@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:ReconfigureIO/J148-Reconfigure-io-v3.git
+	branch = master
+	commit = 416a6d8fc72103f134abc434554653d2fde109a1
+	parent = b2b1da41736e8a14d00660e79ff573b307874c12
+	cmdver = 0.3.1

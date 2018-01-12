@@ -1,0 +1,431 @@
+/* BLOG */
+
+// Featured post
+.blog-feature {
+  display: table;
+  width: 100%;
+  direction: rtl;
+
+  @include breakpoint($break_mobile) {
+    direction: ltr;
+  }
+
+  &__image {
+    display: table-cell;
+    width: span(5);
+    direction: ltr;
+    vertical-align: middle;
+
+    img {
+      display: block;
+      margin: 0 auto;
+      width: 245px;
+      max-width: 100%;
+      height: auto;
+      @include border-radius(50%);
+    }
+
+    @include breakpoint($break_standard) {
+      width: span(4);
+    }
+
+    @include breakpoint($break_medium) {
+      width: span(3);
+    }
+
+    @include breakpoint($break_tablet) {
+      display: none;
+    }
+  }
+
+  &__content {
+    display: table-cell;
+    width: span(7);
+    vertical-align: middle;
+    direction: ltr;
+    padding-right: $base-margin*5;
+    box-sizing: border-box;
+
+    @include breakpoint($break_standard) {
+      width: span(8);
+      padding-right: $base-margin*4;
+    }
+
+    @include breakpoint($break_medium) {
+      width: span(9);
+      padding-right: $base-margin*3;
+    }
+
+    @include breakpoint($break_tablet) {
+      display: block;
+      width: 100%;
+      padding-right: 0;
+    }
+  }
+
+  &__sub-title {
+    display: block;
+    font-family: $font_primary_semi_bold;
+    @include adjust-font-size-to(0.8125rem);
+    @include adjust-leading-to(1.1875);
+    color: $silver-chalice !important;
+    letter-spacing: 1.73px;
+    @include margin-trailer(0.5);
+    text-transform: uppercase;
+  }
+
+  &__title {
+    @include margin-trailer(1);
+  }
+
+  &__meta {
+    display: table;
+    width: 100%;
+    @include margin-trailer(2);
+
+    &__image {
+      display: table-cell;
+      width: 40px;
+      padding-right: $base-margin;
+      vertical-align: middle;
+      box-sizing: border-box;
+
+      img {
+        display: block;
+        @include border-radius(50%);
+      }
+    }
+
+    &__detail {
+      display: table-cell;
+      vertical-align: middle;
+      color: $gray;
+      font-family: $font_primary_semi_bold;
+      @include adjust-font-size-to(0.8125rem);
+      @include adjust-leading-to(1.1875);
+      letter-spacing: 1.73px;
+      text-transform: uppercase;
+    }
+  }
+
+  &__cta {
+    clear: both;
+  }
+}
+
+// Blog items
+.blog-list {
+  margin: 0 -$base-margin*1.25;
+  @include rhythm-padding(1.25, 6.5);
+
+  @include breakpoint($break_tablet) {
+    margin: 0 -$base-margin*0.75;
+  }
+
+  @include breakpoint($break_mobile) {
+    margin: 0;
+  }
+
+  &__item {
+    width: 50%;
+    padding: 0 $base-margin*1.25;
+    @include rhythm-padding(1.25);
+    box-sizing: border-box;
+
+    @include breakpoint($break_tablet) {
+      padding: 0 $base-margin*0.75;
+      @include rhythm-padding(0.75);
+    }
+
+    @include breakpoint($break_mobile) {
+      width: 100%;
+      padding: 0;
+      @include margin-trailer(1.25);
+    }
+
+    > a {
+      &:hover {
+        text-decoration: none;
+
+        .blog-list__item__title {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .wrapper {
+      background-color: $white;
+      padding: 0 $base-margin*2.5;
+      @include rhythm-padding(2.5);
+
+      @include breakpoint($break_mobile) {
+        padding: 0 $base-margin*1.5;
+        @include rhythm-padding(1.5);
+      }
+    }
+
+    &__title {
+      @include margin-trailer(0.75);
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    // Title colours
+    &:nth-of-type(1n) {
+      .blog-list__item__title {
+        color: $trout;
+      }
+    }
+    &:nth-of-type(2n) {
+      .blog-list__item__title {
+        color: $mountain-meadow;
+      }
+    }
+    &:nth-of-type(3n) {
+      .blog-list__item__title {
+        color: $porsche;
+      }
+    }
+    &:nth-of-type(4n) {
+      .blog-list__item__title {
+        color: $fountain-blue;
+      }
+    }
+
+    &__cta {
+      color: $gray;
+    }
+
+    &__meta {
+      display: table;
+      width: 100%;
+      @include margin-leader(3);
+      text-align: right;
+
+      &__details {
+        display: table-cell;
+        color: $gray;
+        padding-right: $base-margin;
+        font-family: $font_primary_semi_bold;
+        @include adjust-font-size-to(0.8125rem);
+        @include adjust-leading-to(1.1875);
+        letter-spacing: 1.73px;
+        text-transform: uppercase;
+        vertical-align: middle;
+      }
+
+      &__image {
+        display: table-cell;
+        width: 40px;
+        vertical-align: middle;
+        @include border-radius(50%);
+        overflow: hidden;
+
+        img {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// Blog Inner
+.blog-inner {
+  @include rhythm-padding(3.5);
+
+  @include breakpoint($break_tablet) {
+    @include rhythm-padding(2.5);
+  }
+
+  @include breakpoint($break_mobile) {
+    @include rhythm-padding(1.5);
+  }
+
+  &:after {
+    @include content("");
+    background-color: $gallery;
+    width: calc(100% - 80px);
+    max-width: 1000px;
+    height: 2px;
+    display: block;
+    margin: 0 auto;
+    @include margin-leader(9);
+    padding: 0 $base-margin;
+    box-sizing: border-box;
+
+    @include breakpoint($break_tablet) {
+      @include margin-leader(6);
+    }
+
+    @include breakpoint($break_mobile) {
+      @include margin-leader(3.5);
+      width: calc(100% - 32px);
+    }
+  }
+
+  .wrapper {
+    display: table;
+    direction: rtl;
+
+    @include breakpoint($break_tablet) {
+      display: block;
+      direction: ltr;
+    }
+  }
+
+  &__list {
+    @include rhythm-padding(5.5, 2.5);
+
+    @include breakpoint($break_tablet) {
+      @include rhythm-padding(4.5, 1.5);
+    }
+
+    @include breakpoint($break_mobile) {
+      @include rhythm-padding(3.5, 0.5);
+    }
+
+    .section__header {
+      @include margin-trailer(2);
+    }
+  }
+
+  &__content {
+    display: table-cell;
+    vertical-align: top;
+    max-width: 700px;
+    direction: ltr;
+    overflow: hidden;
+
+    @include breakpoint($break_medium) {
+      max-width: 800px;
+      max-width: none;
+    }
+
+    @include breakpoint($break_tablet) {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  &__meta {
+    display: table-cell;
+    vertical-align: top;
+    width: span(3);
+    direction: ltr;
+    padding-right: span(1);
+    box-sizing: border-box;
+
+    @include breakpoint($break_medium) {
+      padding-right: span(1);
+      width: span(4);
+    }
+
+    @include breakpoint($break_tablet) {
+      display: block;
+      width: 100%;
+      padding: 0;
+      @include margin-leader(3.5);
+      text-align: center;
+    }
+
+    &__back {
+      display: block;
+      color: $gray;
+      @include margin-trailer(3.5);
+    }
+
+    &__share {
+      overflow: hidden;
+
+      p {
+        @include margin-trailer(1);
+      }
+
+      .social {
+        margin: 0;
+        @include margin-trailer(1.5);
+        overflow: hidden;
+
+        @include breakpoint($break_tablet) {
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        li {
+          display: block;
+          float: left;
+          padding: 0;
+          margin: 0;
+          margin-right: $base-margin*2;
+
+          &:after {
+            display: none;
+          }
+
+          a {
+            cursor: pointer;
+          }
+
+          i {
+            @include adjust-font-size-to(1.625rem);
+            @include adjust-leading-to(1.625);
+
+            &:before {
+              margin: 0;
+              width: auto;
+            }
+
+            &.icon-facebook {
+              color: #3B5998;
+            }
+
+            &.icon-twitter {
+              color: #4099FF;
+            }
+          }
+        }
+      }
+
+      .copy {
+        display: block;
+        @include margin-trailer(1.5);
+
+        @include breakpoint($break_tablet) {
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        a {
+          font-family: $font_primary;
+          @include adjust-leading-to(1.875);
+          text-decoration: underline;
+        }
+
+        i {
+          display: inline-block;
+          color: #6C6C6C;
+          @include adjust-font-size-to(1.875rem);
+          @include adjust-leading-to(1.875);
+          margin-right: $base-margin*0.75;
+          vertical-align: middle;
+
+          &:before {
+            margin: 0;
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+
+  &__comments {
+    .wrapper {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 1000px;
+    }
+  }
+}

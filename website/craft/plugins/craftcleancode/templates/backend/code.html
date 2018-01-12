@@ -1,0 +1,62 @@
+<select class="backendcodelanguage" name="{{ name }}[language]">
+    <option value="javascript">JavaScript</option>
+    <option value="xml">HTML</option>
+    <option value="css">CSS</option>
+    <option value="bash">Bash</option>
+    <option value="clike">C/C++</option>
+    <option value="csharp">C#</option>
+    <option value="go">GO</option>
+    <option value="lua">Lua</option>
+    <option value="markdown">MarkDown</option>
+    <option value="nginx">Nginx</option>
+    <option value="php">PHP</option>
+    <option value="python">Python</option>
+    <option value="clike">Java</option>
+    <option value="sass">Sass</option>
+    <option value="sql">SQL</option>
+    <option value="vue">Vue</option>
+    <option value="xml">XML</option>
+    <option value="yaml">Yaml</option>
+</select>
+
+{% set safename = id | replace({'-': ''}) %}
+
+<textarea class="backendcode" name="{{ name }}[code]">{{ value.code is defined ? value.code }}</textarea>
+
+<script>
+    if(document.readyState === "complete") {
+        createCodeArea{{safename}}();
+    } else {
+        document.addEventListener("DOMContentLoaded", function(event) {
+            createCodeArea{{safename}}();
+        });
+    }
+
+
+    function createCodeArea{{safename}}() {
+        console.log('[name="{{ name }}[code]"]');
+        var editor = CodeMirror.fromTextArea(
+            $('[name="{{ name }}[code]"]').get(0), {
+                mode: "{{ value.language is defined ? value.language : 'javascript' }}",
+                json: true,
+                indentUnit: 4,
+                lineWrapping: true,
+                lineNumbers: true,
+                readOnly: false,
+                autoRefresh: true
+            }
+        );
+
+        /*editor.on('change', function() {
+            editor.save();
+        });*/
+
+        $('[name="{{ name }}[language]"]').change(function() {
+            var language = $(this).val();
+
+            editor.setOption("mode", language);
+        });
+
+        $('[name="{{ name }}[language]"]').val("{{ value.language is defined ? value.language : 'javascript' }}");
+    }
+</script>

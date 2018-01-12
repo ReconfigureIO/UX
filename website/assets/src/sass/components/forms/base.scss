@@ -1,0 +1,249 @@
+/* BASE FORMS */
+
+form,
+.form {
+  display: block;
+  width: 100%;
+
+  button {
+    cursor: pointer;
+  }
+
+  // FORM SECTION
+  &__section {
+    @include full();
+    @include margin-trailer(2.5);
+
+    &:last-child {
+      @include margin-trailer(0);
+    }
+
+    .field {
+      &:last-child {
+        @include margin-trailer(0.5);
+      }
+    }
+
+    &__description {
+      @include margin-trailer(1);
+    }
+  }
+
+  // GENERAL FIELD WRAPPER
+  .field {
+    position: relative;
+    display: table;
+    width: 100%;
+    @include margin-trailer(2.5);
+    border: none;
+    box-sizing: border-box;
+
+    @include breakpoint($break_mobile) {
+      display: block;
+      width: 100%;
+    }
+
+    // Field icons
+    &__icons {
+      position: absolute;
+      top: $base-margin*0.75;
+      right: $base-margin*0.5;
+
+      &__icon {
+        display: inline-block;
+
+        img {
+          height: 36px;
+          width: auto;
+        }
+      }
+    }
+
+    // Select label styling
+    &--select {
+      label {
+        display: block;
+        position: relative;
+        top: auto;
+        left: auto;
+        @include margin-trailer(1);
+      }
+    }
+
+    // Toggle
+    &--radio {
+      background: transparent;
+      overflow: visible;
+    }
+
+    &--text-radio {
+      @include margin-trailer(1);
+    }
+
+    // With button
+    &--with-button {
+      float: left;
+      width: 200px;
+      margin-right: $base-margin;
+
+      input {
+        width: 200px;
+      }
+
+      @include breakpoint($break_mobile) {
+        width: 120px;
+
+        input {
+          width: 120px;
+        }
+      }
+    }
+
+    // File field
+    &--assets {
+      input {
+        @include rhythm-padding(1.05, 0.95);
+
+        &:focus,
+        &.has-content {
+          @include rhythm-padding(1.05, 0.95);
+        }
+      }
+
+      label {
+        display: none;
+      }
+    }
+
+    // VALIDATED STATE
+    &.validated,
+    &.error {
+      position: relative;
+
+      // &:after {
+      //   content: '\e804';
+      //   font-family: "fontello";
+      //   position: absolute;
+      //   top: $base-margin*1.125;
+      //   right: $base-margin;
+      //   @include adjust-font-size-to(1.25rem);
+      //   @include adjust-leading-to(1.25);
+      //
+      //   @include breakpoint($break_mobile) {
+      //     left: auto;
+      //     right: $base-margin;
+      //   }
+      // }
+    }
+
+    &.validated {
+      input,
+      textarea {
+        border-color: $shamrock;
+      }
+    }
+
+    // ERROR STATE
+    &.error {
+      input,
+      textarea,
+      .radio--text label {
+        border-color: $cinnabar;
+      }
+    }
+  }
+
+  // FORM ACTIONS
+  &__actions {
+    @include margin-leader(5.5);
+  }
+
+  // LABEL STYLE
+  label {
+    position: absolute;
+    top: $base-margin*1.25;
+    left: $base-margin*0.8;
+    color: $cod-gray;
+    @include adjust-font-size-to(0.9375rem);
+    @include adjust-leading-to(1.4375);
+    @include transition(0.1s ease-in-out);
+
+    @include breakpoint($break_tablet) {
+      @include adjust-font-size-to(14px);
+      @include adjust-leading-to(1.125);
+    }
+  }
+
+  .action {
+    display: block;
+    clear: both;
+  }
+
+  // Error message
+  .form__messages {
+    display: block;
+    width: auto;
+    @include margin-leader(1);
+    color: $cod-gray;
+    font-family: $font_primary_bold;
+    @include adjust-font-size-to(1rem);
+    @include adjust-leading-to(1.4375);
+    vertical-align: middle;
+
+    a {
+      color: $cod-gray;
+    }
+
+    @include breakpoint($break_mobile) {
+      display: block;
+      width: 100%;
+      padding-left: 0;
+      @include margin-leader(1);
+    }
+
+    &.success {
+      color: $mountain-meadow;
+    }
+
+    &.error {
+      color: $cinnabar;
+    }
+  }
+
+  // Billing information
+  &--billing-info {
+    .input, input, textarea {
+      max-width: 100%;
+    }
+  }
+}
+
+// Stripe
+.StripeElement {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  background: $white;
+  color: $cod-gray;
+  font-family: $font_primary !important;
+  @include adjust-font-size-to(1rem);
+  @include adjust-leading-to(1.5);
+  padding: 0 $base-line-height*0.75;
+  @include rhythm-padding(1.05, 0.95);
+  border: 2pt solid $alto;
+  @include border-radius(3px);
+  box-sizing: border-box;
+  @include transition(0.2s ease-in-out);
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}

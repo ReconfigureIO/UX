@@ -1,0 +1,120 @@
+/* LINK */
+
+.link {
+  position: relative;
+  color: $mountain-meadow;
+  @include adjust-font-size-to(0.875rem);
+  @include adjust-leading-to(1.25);
+  text-decoration: underline;
+  clear: both;
+  @include transition(0.2s linear);
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &--back {
+    &:before {
+      content: '\e804';
+      display: inline-block;
+      font-family: "fontello";
+      @include adjust-font-size-to(0.8125rem);
+      @include adjust-leading-to(0.8125);
+      margin-right: $base-margin*0.5;
+      vertical-align: middle;
+    }
+  }
+
+  &--next {
+    position: relative;
+
+    &:before {
+      position: absolute;
+      top: 4px;
+      right: 0;
+      content: '\e805';
+      display: inline-block;
+      font-family: "fontello";
+      @include adjust-font-size-to(0.8125rem);
+      @include adjust-leading-to(0.8125);
+      @include transition(0.2s ease-out);
+    }
+
+    &:after {
+      content: '\e805';
+      display: inline-block;
+      font-family: "fontello";
+      @include adjust-font-size-to(0.8125rem);
+      @include adjust-leading-to(0.8125);
+      margin-left: $base-margin*0.5;
+      vertical-align: middle;
+      @include transition(0.2s ease-out);
+    }
+
+    &:hover {
+      &:before {
+        @include transform(translateX(-4px));
+      }
+      &:after {
+        @include transform(translateX(4px));
+      }
+    }
+  }
+
+  &--cancel {
+    color: $gray;
+    font-family: $font_primary_extra_bold;
+    @include adjust-font-size-to(0.875rem);
+    @include adjust-leading-to(1.25);
+
+    &:before {
+      content: '\e801';
+      display: inline-block;
+      font-family: "fontello";
+      @include adjust-font-size-to(0.8125rem);
+      @include adjust-leading-to(0.8125);
+      margin-right: $base-margin*0.5;
+      vertical-align: middle;
+    }
+  }
+
+  &--download {
+    &:before {
+      content: '\e808';
+      display: inline-block;
+      font-family: "fontello";
+      @include adjust-font-size-to(0.8125rem);
+      @include adjust-leading-to(0.8125);
+      margin-right: $base-margin*0.5;
+      vertical-align: middle;
+    }
+
+    &:hover {
+      &:before {
+        @include animation(1s bounceDownload both linear infinite);
+      }
+    }
+  }
+
+  &--envelope {
+    &:before {
+      content: '\e809';
+      display: inline-block;
+      font-family: "fontello";
+      @include adjust-font-size-to(0.8125rem);
+      @include adjust-leading-to(0.8125);
+      margin-right: $base-margin*0.5;
+      vertical-align: middle;
+    }
+
+    &:hover {
+      &:before {
+        @include animation(0.25s growEnvelope both ease-out 1);
+      }
+    }
+  }
+
+  &--black {
+    color: $trout;
+  }
+}

@@ -1,0 +1,132 @@
+/* BUTTON */
+
+.btn {
+  display: inline-block;
+  background-color: $shamrock;
+  color: $white !important;
+  font-size: 13px !important;
+  line-height: 16px !important;
+  font-family: $font_primary_bold !important;
+  padding: 0 $base-line-height*1.5;
+  @include rhythm-padding(1, 1);
+  letter-spacing: 1.86px;
+  border: none;
+  @include border-radius(0);
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase !important;
+  @include transition(0.1s all linear);
+  cursor: pointer;
+  transform: translate3d(0, 0, 0);
+
+  &:hover {
+    background-color: $bermuda;
+    text-decoration: none;
+  }
+
+  &:focus {
+    background-color: $mountain-meadow;
+    outline: 0 !important;
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: $gray;
+    @include opacity(0.5);
+    pointer-events: none;
+  }
+
+  &--margin-right {
+    margin-right: $base-margin;
+  }
+
+  &--dark {
+    background-color: $white;
+    color: $port-gore;
+
+    &:hover {
+      background-color: $bermuda;
+    }
+
+    &:focus {
+      background-color: $polar;
+    }
+
+    &:disabled,
+    &.disabled {
+      background-color: $white;
+      cursor: not-allowed;
+    }
+  }
+
+  &--porsche {
+    background-color: $porsche;
+
+    &:hover {
+      background-color: $tuna;
+    }
+
+    &:focus {
+      background-color: $cod-gray;
+    }
+  }
+
+  &--secondary {
+    background: $white;
+    border: 2px solid $trout;
+    color: $trout !important;
+    padding: calc(14px) calc(22px);
+
+    &:hover {
+      background-color: $trout;
+      color: $white !important;
+    }
+
+    &:focus {
+      background-color: $trout;
+      color: $white !important;
+    }
+
+    &:disabled,
+    &.disabled {
+      background: transparent;
+      color: $trout;
+    }
+
+    &.btn--secondary--dark {
+      color: $white;
+      border-color: $white;
+
+      &:hover {
+        background-color: $white;
+        color: $trout;
+      }
+    }
+  }
+
+  // KILL BUTTON
+  &--kill {
+    background-color: $white;
+    border: 2px solid $cinnabar;
+    color: $cinnabar;
+    padding: 0 $base-margin*0.5;
+    @include rhythm-padding(0.5);
+
+    &:hover {
+      background-color: $cinnabar;
+      color: $white;
+    }
+
+    &:focus {
+      background-color: $porsche;
+      border-color: $porsche;
+    }
+
+    &:before {
+      display: inline-block;
+      content: '\e802';
+      font-family: "fontello";
+      margin-right: $base-margin*0.5;
+    }
+  }
+}

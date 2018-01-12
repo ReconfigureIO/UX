@@ -1,0 +1,105 @@
+/* SUB NAV */
+
+.sub-nav {
+  background-color: $alabaster;
+  @include full();
+  @include padding-leader(4);
+  text-align: center;
+
+  @include breakpoint($break_tablet) {
+    @include padding-leader(3);
+  }
+
+  @include breakpoint($break_mobile) {
+    display: none;
+  }
+
+  &--tabs {
+    @include padding-leader(0);
+    text-align: left;
+
+    a {
+      padding: 0 !important;
+      margin-right: $base-margin*3.5;
+      min-width: 65px;
+    }
+  }
+
+  a {
+    position: relative;
+    display: inline-block;
+    color: $cod-gray;
+    font-family: $font_primary_roman;
+    @include adjust-font-size-to(1.3125rem);
+    @include adjust-leading-to(1.75);
+    letter-spacing: 0px;
+    @include margin-trailer(1);
+    padding: 0 $base-margin*1.75;
+    text-align: center;
+    cursor: pointer;
+    @include transition(0.2s ease-out);
+    z-index: 0;
+
+    &:hover {
+      color: $mountain-meadow;
+      text-decoration: none;
+
+      &:before {
+        @include opacity(1);
+      }
+
+      &:after {
+        width: 100%;
+        @include opacity(1);
+      }
+    }
+
+    &:focus,
+    &.active {
+      color: $mountain-meadow;
+
+      &:before {
+        background-color: rgba($shamrock, 0.15);
+        @include opacity(1);
+      }
+
+      &:after {
+        width: 100%;
+        @include opacity(1);
+      }
+    }
+
+    &:before {
+      @include content("");
+      background-color: $white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      width: 64px;
+      height: 64px;
+      @include border-radius(32px);
+      @include opacity(0);
+      @include transition(0.2s ease-out);
+      z-index: -1;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      margin: 0 auto;
+      width: 0;
+      height: 2px;
+      background-color: $mountain-meadow;
+      @include opacity(0);
+      @include transition(0.3s ease-out);
+    }
+
+    @include breakpoint($break_tablet) {
+      @include adjust-font-size-to(1.25rem);
+      @include adjust-leading-to(1.625);
+    }
+  }
+}

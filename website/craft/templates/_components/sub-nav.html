@@ -1,0 +1,5 @@
+<nav class="sub-nav sub-nav--anchor">
+  {% for item in entry.subNav %}
+    <a href="#{{item.anchor|replace(' ', '-')|lower}}">{{item.anchor}}</a>
+  {% endfor %}
+</nav>

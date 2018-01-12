@@ -1,0 +1,93 @@
+/* TABLE */
+
+.table {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-spacing:0 1rem;
+  border-collapse:separate;
+  overflow-x:auto;
+
+  thead {
+    @include breakpoint($break_mobile) {
+      display: none;
+    }
+
+    th {
+      color: $gray;
+      font-family: $font_primary_medium;
+      @include adjust-font-size-to(1.0625rem);
+      @include adjust-leading-to(1.625);
+      padding: 0 $base-margin*1.5;
+      @include rhythm-padding(0.75);
+      box-sizing: border-box;
+    }
+  }
+
+  tbody {
+    tr {
+      background-color: $white;
+      @include padding-trailer(1);
+      @include transition(0.2s ease-out);
+      cursor: pointer;
+
+      &:hover {
+        @include box-shadow(0px 0px 8px 0px rgba(0,0,0,0.1));
+      }
+
+      td {
+        color: $shark;
+        font-family: $font_primary_medium;
+        @include adjust-font-size-to(1.0625rem);
+        @include adjust-leading-to(1.625);
+        padding: 0 $base-margin*1.5;
+        @include rhythm-padding(1);
+        box-sizing: border-box;
+
+        @include breakpoint($break_mobile) {
+          display: block;
+          width: 100%;
+          @include rhythm-padding(0.75);
+        }
+
+        &:first-child {
+          color: $cod-gray;
+          @include adjust-font-size-to(1.25rem);
+
+          @include breakpoint($break_mobile) {
+            @include rhythm-padding(1.5, 0.75);
+          }
+        }
+
+        &:last-child {
+          @include breakpoint($break_mobile) {
+            @include rhythm-padding(0.75, 1.5);
+          }
+        }
+
+        .btn {
+          float: right;
+
+          @include breakpoint($break_mobile) {
+            float: none;
+          }
+        }
+
+        // Responsive headings
+        &:before {
+          content: attr(data-th);
+          display: none;
+          color: $gray;
+          font-family: $font_primary_medium;
+          @include adjust-font-size-to(1.0625rem);
+          @include adjust-leading-to(1.625);
+          @include margin-trailer(0.25);
+
+          @include breakpoint($break_mobile) {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

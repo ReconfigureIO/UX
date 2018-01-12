@@ -1,0 +1,96 @@
+{% extends "_layouts/_master" %}
+
+{% do craft.sproutSeo.meta({
+  title: entry.title
+}) %}
+
+{% block content %}
+  {% if entry.heroImage | length %}
+    <section class="section section--no-padding">
+      <img src="{{entry.heroImage.first.getUrl('heroFull')}}" class="img-responsive">
+    </section>
+  {% endif %}
+
+  <section class="section">
+    <div class="container">
+      <div class="section__component">
+        {% include('_components/blog-feature') with { type: 'inner', title: entry.title, image: entry.heroImage, link: entry.url, author: entry.author, postDate: entry.postDate } %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--grey section--no-padding blog-inner">
+    <div class="container">
+      <div class="wrapper">
+        <div class="blog-inner__content">
+          {{ include('_components/body-elements') }}
+        </div>
+
+        <div class="blog-inner__meta">
+          <a href="/blog" class="blog-inner__meta__back link link--back tablet-hide">Back</a>
+
+          <div class="blog-inner__meta__share">
+            <p><strong>Share</strong></p>
+
+            <ul class="social">
+              <li>
+                <a href="http://www.facebook.com/sharer.php?u={{entry.url}}" target="_blan"><i class="icon-facebook"></i></a>
+              </li>
+              <li>
+                <a href="https://twitter.com/intent/tweet?status={{entry.title|url_encode}}: {{entry.url}}" target="_blank"><i class="icon-twitter"></i></a>
+              </li>
+            </ul>
+
+            <span class="copy">
+              <a href="#">
+                <i class="icon-link"></i>Copy link
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--grey blog-inner__comments">
+    <div class="container">
+      <div class="wrapper">
+        <div id="disqus_thread"></div>
+        <script>
+          var disqus_config = function () {
+          this.page.url = '{{entry.url}}';
+          this.page.identifier = 'Blog';
+          };
+
+          (function() {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://reconfigure-io.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--grey section--no-padding blog-inner__list">
+    <div class="section__header">
+      <h3 class="section__title h3--light">Continue reading</h3>
+    </div>
+
+    <div class="section__component">
+      <div class="container">
+        {% include('_components/blog-list') with { type: 'inner', count: 2 } %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white section--no-padding">
+    <div class="section__component">
+      <div class="container">
+        {{ include('_components/mailing-list') }}
+      </div>
+    </div>
+  </section>
+{% endblock %}

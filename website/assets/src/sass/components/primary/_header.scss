@@ -1,0 +1,160 @@
+/* HEADER */
+
+.header {
+  display: table;
+  width: 100%;
+  position: relative;
+  background: $white;
+  padding: 0 $base-line-height*1.375;
+  @include rhythm-padding(0.75, 2.125);
+  box-sizing: border-box;
+  overflow: hidden;
+
+  @include breakpoint($break_container) {
+    padding: 0 $base-line-height*0.75;
+    @include rhythm-padding(0.375, 1.5);
+  }
+
+  @include breakpoint($break_tablet) {
+    padding: 0 $base-line-height*0.75;
+    @include rhythm-padding(0.25, 0.75);
+  }
+
+  @include breakpoint($break_mobile) {
+    padding: 0 $base-line-height*0.75;
+    @include rhythm-padding(0.75, 1.25);
+  }
+
+  // Grey header
+  &--grey {
+    background-color: $alabaster;
+  }
+
+  &__top {
+    display: block;
+
+    &--sign-up {
+      .logo {
+        margin: 0 !important;
+        margin-top: $base-margin*0.5 !important;
+      }
+    }
+  }
+
+  &__bottom {
+    display: block;
+  }
+
+  .nav-trigger {
+    display: block;
+    position: absolute;
+    top: $base-line-height*0.25;
+    left: $base-line-height*0.5;
+    padding: 0;
+    border: none;
+    background: transparent;
+    -webkit-appearance: none;
+
+    @include breakpoint($break_mobile) {
+      top: $base-line-height*0.75;
+    }
+
+    .bar {
+      display: block;
+      width: 28px;
+      height: 4px;
+      margin-bottom: 4px;
+      background-color: $trout;
+      @include border-radius(4px);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .nav-close {
+    display: block;
+    color: $gray;
+    font-family: $font_primary;
+    @include adjust-font-size-to(1rem);
+    @include adjust-leading-to(1.5);
+    margin-left: $base-margin*0.75;
+    @include margin-leader(0.75);
+    @include margin-trailer(1.5);
+
+    i {
+      display: inline-block;
+      vertical-align: middle;
+      @include adjust-font-size-to(1.5rem);
+      @include adjust-leading-to(1.5);
+      margin-right: $base-margin*0.75;
+
+      &:before {
+        width: auto;
+        margin: 0;
+      }
+    }
+  }
+
+  .logo {
+    display: block;
+    width: 100%;
+    max-width: 288px;
+    margin: 0 auto;
+    @include margin-trailer(0.5);
+
+    @include breakpoint($break_standard) {
+      max-width: 240px;
+    }
+
+    @include breakpoint($break_tablet) {
+      max-width: 200px;
+    }
+
+    @include breakpoint($break_mobile) {
+      max-width: 160px;
+      @include margin-trailer(0);
+    }
+  }
+
+  &__navigation {
+    @include breakpoint($break_tablet) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $white;
+      border: $base-line-height*0.75 solid $alabaster;
+      z-index: -1;
+      visibility: hidden;
+      @include opacity(0);
+      overflow-y: scroll;
+      @include transition(0.4s ease-out);
+
+      &.active {
+        visibility: visible;
+        @include opacity(1);
+        z-index: 99999;
+      }
+
+      .nav--secondary {
+        position: relative;
+
+        &:after {
+          content: "";
+          background-image: url('../dist/img/global/mobile-nav__bg.png');
+          background-size: cover;
+          background-position: center;
+          display: block;
+          margin: 0 auto;
+          margin-top: -80px;
+          width: 100%;
+          height: 200px;
+          z-index: -1;
+        }
+      }
+    }
+  }
+}

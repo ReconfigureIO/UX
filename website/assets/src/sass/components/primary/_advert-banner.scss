@@ -1,0 +1,11 @@
+/* Advert Banner */
+
+.advert-banner {
+    background-color: $trout;
+    @include rhythm-padding(1.75);
+
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+}

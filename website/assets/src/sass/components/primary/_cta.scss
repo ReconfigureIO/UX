@@ -1,0 +1,174 @@
+/* CTA */
+
+.cta {
+  position: relative;
+  display: table;
+  width: 100%;
+  max-width: 950px;
+  background-color: $white;
+  @include margin-trailer(2);
+  box-sizing: border-box;
+
+  &--alert {
+    padding: 0 $base-margin*3 0 $base-margin*0.5;
+    @include rhythm-padding(0.5);
+    border: 2pt solid $porsche;
+  }
+
+  &--base {
+    padding: 0 $base-margin*4 0 $base-margin*2;
+    @include rhythm-padding(2.5);
+    border: 2pt solid $porsche;
+
+    @include breakpoint($break_tablet) {
+      display: block;
+      padding: 0 $base-margin*3 0 $base-margin;
+      @include rhythm-padding(1.5);
+    }
+  }
+
+  &--slim {
+    background-color: $white-linen;
+    width: 280px;
+    padding: 0 $base-margin*1.5 0 $base-margin;
+    @include rhythm-padding(1);
+    box-sizing: border-box;
+
+    .cta__content {
+      color: $trout;
+    }
+  }
+
+  &__icon,
+  &__info,
+  &__content,
+  &__figure {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  &__icon {
+    color: $porsche;
+    width: 28px;
+    @include adjust-font-size-to(2rem);
+    @include adjust-leading-to(2);
+    padding-right: $base-margin;
+
+    i {
+      &:before {
+        width: auto;
+        margin: 0;
+      }
+    }
+  }
+
+  &__content {
+    @include breakpoint($break_tablet) {
+      display: block;
+    }
+
+    .description {
+      display: table-cell;
+      vertical-align: middle;
+      padding-right: $base-margin*2;
+      max-width: 660px;
+
+      @include breakpoint($break_tablet) {
+        display: block;
+        width: auto;
+        padding: 0;
+      }
+    }
+
+    .action {
+      display: table-cell;
+      vertical-align: middle;
+      width: 80px;
+      color: $shamrock;
+      font-family: $font_primary_bold;
+      text-transform: none;
+      text-decoration: none;
+
+      @include breakpoint($break_tablet) {
+        display: block;
+        width: auto;
+        @include margin-leader(0.5);
+      }
+    }
+  }
+
+  &__info {
+    width: 136px;
+
+    @include breakpoint($break_tablet) {
+      display: block;
+      @include margin-trailer(2);
+    }
+
+    &__circle {
+      display: table;
+      width: 136px;
+      height: 136px;
+      @include border-radius(100%);
+      padding: 0 $base-margin*2;
+      @include rhythm-padding(1);
+      margin-right: $base-margin*2;
+      background-color: $white-linen;
+      text-align: center;
+      box-sizing: border-box;
+
+      .valign {
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      .number,
+      .description {
+        display: block;
+        color: $trout;
+        font-family: $font_primary_bold;
+      }
+
+      .number {
+        @include adjust-font-size-to(3rem);
+        @include adjust-leading-to(3);
+        letter-spacing: 3px;
+      }
+
+      .description {
+        @include adjust-font-size-to(0.875rem);
+        @include adjust-leading-to(1);
+      }
+    }
+  }
+
+  &__figure {
+    color: $trout;
+    @include adjust-font-size-to(3rem);
+    @include adjust-leading-to(2);
+    font-family: $font_primary_bold;
+    letter-spacing: 3px;
+    padding-right: $base-margin*0.75;
+    @include padding-leader(0.25);
+  }
+
+  &__btn {
+    @include margin-leader(1.5);
+  }
+
+  &__close {
+    position: absolute;
+    top: $base-margin*0.75;
+    right: $base-margin*0.75;
+    color: $trout;
+    @include adjust-font-size-to(1.5rem);
+    @include adjust-leading-to(1.5);
+
+    i {
+      &:before {
+        width: auto;
+        margin: 0;
+      }
+    }
+  }
+}

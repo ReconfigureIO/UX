@@ -1,0 +1,30 @@
+<div class="blog-feature">
+  {% if type == 'outer' and image | length %}
+    <div class="blog-feature__image">
+      <img src="{{image.first.getUrl('blogThumbnail')}}">
+    </div>
+  {% endif %}
+  <div class="blog-feature__content">
+    {% if type == 'inner' %}
+      <a href="/blog" class="blog-inner__meta__back link link--back tablet-show">Back</a>
+    {% endif %}
+    {% if type == 'outer' %}
+      <span class="blog-feature__sub-title">latest post</span>
+    {% endif %}
+    <h1 class="blog-feature__title h1--light">{{title}}</h1>
+    <div class="blog-feature__meta">
+      {% if author.photoUrl | length %}
+        <div class="blog-feature__meta__image">
+          <img src="{{ author.photoUrl }}">
+        </div>
+      {% endif %}
+      <div class="blog-feature__meta__detail">
+        Posted by {{author.name}}<br>
+        {{postDate|date('j F Y')}}
+      </div>
+    </div>
+    {% if type == 'outer' %}
+      <a href="{{link}}" class="blog-feature__cta btn">Read post</a>
+    {% endif %}
+  </div>
+</div>

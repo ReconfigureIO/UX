@@ -1,0 +1,10 @@
+/* IMAGE */
+
+.image {
+  @include full();
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}

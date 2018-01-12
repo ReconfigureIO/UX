@@ -1,0 +1,24 @@
+{% extends "_layouts/_master" %}
+
+{% do craft.sproutSeo.meta({
+  title: 'Sign up'
+}) %}
+
+{% block content %}
+  <section class="section section--grey signup signup--step-1">
+    <div class="container">
+      <div class="signup__image">
+        <img src="/assets/dist/img/modules/octocat.png" alt="Github" class="img-responsive">
+      </div>
+
+      <div class="wrapper">
+        <div class="signup__header">
+          <h1 class="signup__title h1--light">Sign up using Github</h1>
+          <p class="signup__description">We can create your account right away, just tell us a bit about your setup, and what your goals are, and we'll send you an invite. We're currently in our public beta phase, so our service is being refined all the time.</p>
+          <a href="https://api.reconfigure.io/oauth/new-account?redirect_url={{siteUrl}}sign-up/authenticate" class="signup__cta btn github"><i class="icon-github"></i> Sign in with Github</a>
+          <a href="{{siteUrl}}" class="signup__cta link link--cancel">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

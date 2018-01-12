@@ -1,0 +1,124 @@
+/* TABS */
+
+.tabs {
+  position: relative;
+
+  &:before {
+    content: '';
+    background-image: url('../../assets/dist/img/shapes/tabs-background.svg');
+    position: absolute;
+    top: $base-margin;
+    left: -700px;
+    width: 1049px;
+    height: 448px;
+    z-index: 0;
+
+    @include breakpoint($break_mobile) {
+      width: 525px;
+      height: 224px;
+      top: 0;
+      left: -300px;
+    }
+  }
+
+  &__content {
+    position: relative;
+    @include rhythm-padding(4);
+    z-index: 1;
+
+    @include breakpoint($break_tablet) {
+      @include rhythm-padding(3);
+    }
+
+    @include breakpoint($break_mobile) {
+      @include rhythm-padding(2);
+    }
+
+    &__image {
+      @include breakpoint($break_mobile) {
+        @include margin-trailer(2);
+      }
+
+      #tab-image {
+        max-width: 100%;
+        height: auto;
+
+        image {
+          @include opacity(0);
+          will-change: opacity;
+          @include transition(0.15s linear);
+  
+          &.active {
+            @include opacity(1);
+          }
+        }
+      }
+    }
+
+    &__tab {
+      padding: 0 $base-margin*1.5;
+      @include margin-trailer(1.25);
+      @include border-radius(23px);
+      @include transition(0.1s linear);
+
+      &:last-child {
+        @include margin-trailer(0);
+      }
+
+      &.active {
+        background-color: $white;
+        @include rhythm-padding(1.5);
+      }
+
+      &__title {
+        font-family: $font_primary_bold;
+        margin-bottom: 0 !important;
+        @include transition(0.1s linear);
+        cursor: pointer;
+
+        &:hover {
+          color: $mountain-meadow;
+          @include transform(translateX(5px));
+        }
+
+        .active & {
+          @include adjust-font-size-to(2rem);
+          @include adjust-leading-to(1.875);
+          @include margin-trailer(1.375);
+          cursor: default;
+          pointer-events: none;
+
+          &:hover {
+            color: $trout;
+            @include transform(translateX(none));
+          }
+
+          @include breakpoint($break_tablet) {
+            @include adjust-font-size-to(1.75rem);
+            @include adjust-leading-to(1.625);
+          }
+
+          @include breakpoint($break_mobile) {
+            @include adjust-font-size-to(1.5rem);
+            @include adjust-leading-to(1.375);
+          }
+        }
+      }
+
+      &__description {
+        height: 0;
+        overflow: hidden;
+        @include transition(0.1s ease-out);
+
+        .active & {
+          height: auto;
+          @include margin-leader(1.375);
+        }
+      }
+    }
+  }
+
+  &__cta {
+    @include margin-leader(1);
+  }
+}

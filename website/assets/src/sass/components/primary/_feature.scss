@@ -1,0 +1,154 @@
+/* FEATURE */
+
+.feature {
+  display: table;
+  width: 100%;
+  max-width: 1200px;
+  @include rhythm-padding(3);
+  margin: 0 auto;
+  @include margin-trailer(3.5);
+  box-sizing: border-box;
+
+  @include breakpoint($break_mobile) {
+    padding: 0 $base-margin*0.75;
+    @include rhythm-padding(1.5);
+  }
+
+  &:nth-child(odd) {
+    direction: rtl;
+
+    @include breakpoint($break_mobile) {
+      direction: ltr;
+    }
+
+    .feature__image,
+    .feature__content {
+      direction: ltr;
+    }
+
+    .feature__image {
+      padding-right: 0;
+      padding-left: $base-margin*6.5;
+
+      @include breakpoint($break_standard) {
+        padding-left: $base-margin*5;
+      }
+
+      @include breakpoint($break_medium) {
+        padding-left: $base-margin*3;
+      }
+
+      @include breakpoint($break_mobile) {
+        padding-left: 0;
+      }
+    }
+  }
+
+  &:last-child {
+    @include margin-trailer(0);
+  }
+
+  &__image {
+    display: table-cell;
+    width: 300px;
+    padding-right: $base-margin*6.5;
+    box-sizing: border-box;
+    vertical-align: middle;
+
+    @include breakpoint($break_standard) {
+      padding-right: $base-margin*5;
+    }
+
+    @include breakpoint($break_medium) {
+      padding-right: $base-margin*3;
+    }
+
+    @include breakpoint($break_tablet) {
+      max-width: 200px;
+    }
+
+    @include breakpoint($break_mobile) {
+      display: block;
+      max-width: 140px;
+      margin: 0;
+      @include margin-trailer(1);
+      padding-right: 0;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+
+      @include breakpoint($break_tablet) {
+        max-width: 200px;
+      }
+
+      @include breakpoint($break_mobile) {
+        max-width: 140px;
+      }
+    }
+
+    &--large {
+      width: 470px;
+
+      @include breakpoint($break_tablet) {
+        width: 260px;
+      }
+
+      @include breakpoint($break_mobile) {
+        width: 220px;
+      }
+
+      img {
+        max-width: 470px !important;
+
+        @include breakpoint($break_tablet) {
+          max-width: 300px !important;
+        }
+
+        @include breakpoint($break_mobile) {
+          max-width: 100% !important;
+        }
+      }
+    }
+  }
+
+  &__content {
+    display: table-cell;
+    width: auto;
+    vertical-align: middle;
+
+    @include breakpoint($break_mobile) {
+      display: block;
+    }
+  }
+
+  &__title {
+    @include adjust-leading-to(2.625);
+    @include margin-trailer(0);
+
+    .feature--primary & {
+      @include margin-trailer(0.5);
+    }
+  }
+
+  &__sub-title {
+    @include margin-trailer(1);
+  }
+
+  &__description {
+    @include margin-trailer(1);
+  }
+
+  &__cta {
+    display: inline-block;
+    clear: both;
+    @include margin-trailer(1);
+
+    &:last-child {
+      @include margin-trailer(0);
+    }
+  }
+}

@@ -1,0 +1,23 @@
+/* Banner */
+
+.banner {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: $mountain-meadow;
+  @include rhythm-padding(0.5);
+  z-index: 99999;
+
+  > a {
+    color: $white;
+    font-family: $font_primary;
+    text-decoration: none;
+  }
+
+  i {
+    @include adjust-font-size-to(0.5625);
+    @include adjust-leading-to(0.5625);
+    vertical-align: middle;
+  }
+}

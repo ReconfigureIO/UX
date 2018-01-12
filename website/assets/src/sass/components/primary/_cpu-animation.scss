@@ -1,0 +1,204 @@
+/* CPU ANIMATION */
+
+.cpu-animation {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+
+  &__control {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    @include margin-trailer(4);
+
+    &__item {
+      position: relative;
+      display: inline-block;
+      padding: 0 $base-margin;
+      @include rhythm-padding(1.1);
+      vertical-align: middle;
+      @include adjust-font-size-to(1.3125rem);
+      @include adjust-leading-to(1.75);
+      cursor: pointer;
+      @include transition(0.3s ease-out);
+
+      &:after {
+        @include content("");
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        width: 64px;
+        height: 64px;
+        @include border-radius(32px);
+        @include opacity(0);
+        z-index: -1;
+      }
+
+      &.active,
+      &:hover {
+        &:after {
+          @include opacity(1);
+        }
+      }
+
+      &.active {
+        color: $shamrock;
+        text-decoration: underline;
+
+        &:after {
+          background-color: rgba($shamrock, 0.15);
+        }
+
+        &:hover {
+          color: $shamrock;
+
+          &:after {
+            background-color: rgba($shamrock, 0.15);
+          }
+        }
+      }
+
+      &:hover {
+        &:after {
+          background-color: $alabaster;
+        }
+      }
+    }
+  }
+
+  &__icons {
+    position: absolute;
+    top: 124px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 2400px;
+    height: 100%;
+    background-image: url('../dist/img/modules/cpu__track.svg');
+    background-repeat: repeat-x;
+    overflow: hidden;
+    @include transition(0.2s ease-out);
+
+    &.fpgas {
+      height: 220px;
+
+      span {
+        @include animation(moveIcon 5s linear infinite);
+
+        @for $i from 1 to 72 {
+          &:nth-child(#{$i}) { @include animation-delay($i * 0.08333s); }
+        }
+      }
+    }
+
+    &.cpu {
+      height: 96px;
+
+      span {
+        @include animation(moveIcon 10s linear infinite);
+
+        @for $i from 1 to 72 {
+          &:nth-child(#{$i}) { @include animation-delay($i * 0.16666s); }
+        }
+      }
+    }
+
+    span {
+      position: absolute;
+      top: 0;
+      left: -30px;
+
+      &.triangle {
+        &.grey {
+          &:after {
+            content: url('../dist/img/icons/triangle-grey.svg');
+          }
+        }
+        &.green {
+          &:after {
+            content: url('../dist/img/icons/triangle-green.svg');
+          }
+        }
+        &.orange {
+          &:after {
+            content: url('../dist/img/icons/triangle-orange.svg');
+          }
+        }
+        &.blue {
+          &:after {
+            content: url('../dist/img/icons/triangle-light-blue.svg');
+          }
+        }
+      }
+
+      &.square {
+        &.grey {
+          &:after {
+            content: url('../dist/img/icons/square-grey.svg');
+          }
+        }
+        &.green {
+          &:after {
+            content: url('../dist/img/icons/square-green.svg');
+          }
+        }
+        &.orange {
+          &:after {
+            content: url('../dist/img/icons/square-orange.svg');
+          }
+        }
+        &.blue {
+          &:after {
+            content: url('../dist/img/icons/square-light-blue.svg');
+          }
+        }
+      }
+
+      &.circle {
+        &.grey {
+          &:after {
+            content: url('../dist/img/icons/circle-grey.svg');
+          }
+        }
+        &.green {
+          &:after {
+            content: url('../dist/img/icons/circle-green.svg');
+          }
+        }
+        &.orange {
+          &:after {
+            content: url('../dist/img/icons/circle-orange.svg');
+          }
+        }
+        &.blue {
+          &:after {
+            content: url('../dist/img/icons/circle-light-blue.svg');
+          }
+        }
+      }
+    }
+  }
+}
+
+@-webkit-keyframes moveIcon {
+  0%   { left: -1%; }
+  100% { left: 101%; }
+}
+@-moz-keyframes moveIcon {
+  0%   { left: -1%; }
+  100% { left: 101%; }
+}
+@-o-keyframes moveIcon {
+  0%   { left: -1%; }
+  100% { left: 101%; }
+}
+@keyframes moveIcon {
+  0%   { left: -1%; }
+  100% { left: 101%; }
+}

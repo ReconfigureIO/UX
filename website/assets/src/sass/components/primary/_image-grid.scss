@@ -1,0 +1,39 @@
+/* IMAGE GRID */
+
+.image-grid {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+
+  &__image {
+    display: inline-block;
+    width: 100%;
+    max-width: 235px;
+    padding: 0 $base-margin*1.5;
+    @include margin-trailer(3);
+    box-sizing: border-box;
+    vertical-align: middle;
+
+    @include breakpoint($break_tablet) {
+      padding: 0 $base-margin;
+    }
+
+    @include breakpoint($break_mobile) {
+      display: block;
+      margin: 0 auto;
+      @include margin-trailer(2.5);
+      padding: 0 $base-margin;
+
+      &:last-child {
+        @include margin-trailer(0);
+      }
+    }
+
+    img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}

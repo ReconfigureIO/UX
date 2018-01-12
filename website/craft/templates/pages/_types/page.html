@@ -1,0 +1,17 @@
+{% extends "_layouts/_master" %}
+
+{% do craft.sproutSeo.meta({
+  title: entry.title
+}) %}
+
+{% block content %}
+	{{include('_components/sections')}}
+
+  <section class="section section--white section--no-padding">
+    <div class="section__component">
+      <div class="container">
+        {{ include('_components/mailing-list') }}
+      </div>
+    </div>
+  </section>
+{% endblock %}

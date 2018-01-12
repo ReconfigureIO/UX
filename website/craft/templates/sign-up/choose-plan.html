@@ -1,0 +1,97 @@
+{% extends "_layouts/_master" %}
+
+{% do craft.sproutSeo.meta({
+  title: 'Choose plan - Sign up'
+}) %}
+
+{% block content %}
+  {% set userData = craft.signup.getUser().value %}
+  
+  <section class="section section--grey signup signup--step-3">
+    <div class="container">
+      <div class="wrapper">
+        <div class="signup__header">
+					<h1 class="signup__title h1--light">Choose plan</h1>
+					<p>We have retrieved the following information for you from github.<br><em class="xs-copy">* If these are incorrect please check you are logged in to the correct github account.</em></p>
+          <p>
+            {% if userData.name | length %}
+              <strong>Name:</strong> {{userData.name}}<br>
+            {% endif %}
+
+            {% if userData.email | length %}
+              <strong>Email:</strong> {{userData.email}}
+            {% endif %}
+          </p>
+        </div>
+      </div>
+
+      <div class="signup__content">
+        <div class="pricing-pods">
+          <div class="pricing-pod">
+            <a href="/sign-up/goal">
+              <div class="pricing-pod__wrapper">
+                <h3 class="pricing-pod__title h3--light">Open-source<sup>*</sup></h3>
+                <div class="pricing-pod__description">
+                  <p><strong>20hrs p/m runtime</strong></p>
+                </div>
+                
+                <hr>
+                
+                <h3 class="pricing-pod__price"><strong>Free</strong></h3>
+                
+                <div class="pricing-pod__byline">Each additional hour $2.50</div>
+                
+                <span class="pricing-pod__cta btn">Choose plan</span>
+
+                <div class="pricing-pod__terms">
+                  <p class="xs-copy text-center"><em>* all code submitted must have an OSI-approved open source license, and as such may be redistributed by Reconfigure.io under the appropriate terms. Any code without a suitable license may be removed and access restricted at any time.</em></p>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div class="pricing-pod">
+              <a href="/sign-up/billing-information">
+              <div class="pricing-pod__wrapper">
+                <h3 class="pricing-pod__title h3--light">Single-user</h3>
+                <div class="pricing-pod__description">
+                  <p><strong>80hrs p/m runtime</strong><br>Priority chat and email support</p>
+                </div>
+                
+                <hr>
+                
+                <h3 class="pricing-pod__price"><strong>$250pm <span class="sm-copy">+ VAT</span></strong></h3>
+                
+                <div class="pricing-pod__byline">Each additional hour $2.50</div>
+                
+                <span class="pricing-pod__cta btn">Choose plan</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="pricing-pod">
+            <a href="mailto:enterprise@reconfigure.io">
+              <div class="pricing-pod__wrapper">
+                <h3 class="pricing-pod__title h3--light">Enterprise</h3>
+                
+                <div class="pricing-pod__description">
+                  <p><strong>Unlimited runtime</strong><br>Phone support</p>
+                </div>
+                
+                <hr>
+                
+                <h3 class="pricing-pod__price"><strong>POA</strong></h3>
+                
+                <span class="pricing-pod__cta btn" target="_blank">Enquire</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        
+        <div class="signup__terms">
+          <p class="sm-copy text-center"><a href="{{siteUrl}}service-terms">View our full terms &amp; conditions</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

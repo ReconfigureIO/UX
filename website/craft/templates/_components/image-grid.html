@@ -1,0 +1,13 @@
+<div class="image-grid">
+  {% for image in images %}
+    <div class="image-grid__image">
+      {% if image.imageLink | length %}
+        <a href="{{image.imageLinks}}">
+      {% endif %}
+      <img src="{{image.imageFile.first.getUrl()}}">
+      {% if image.imageLink | length %}
+        </a>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>

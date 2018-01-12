@@ -1,0 +1,65 @@
+<div class="tabs">
+  <div class="container">
+    {% if title | length %}
+      <div class="tabs__title text-center">
+        <h2>{{title}}</h2>
+      </div>
+    {% endif %}
+
+    {% if tabs | length %}
+      <div class="tabs__content">
+        <div class="col col--5">
+          <svg class="tabs__content__image" width="100%" height="100%" viewBox="0 0 533 430" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="V5-Homepage" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="W-V5-Homepage" transform="translate(-118.000000, -1196.000000)" stroke-width="3" stroke="#474B57">
+                <g id="Overview" transform="translate(-478.000000, 1094.000000)">
+                  <g id="Screen" transform="translate(598.000000, 104.000000)">
+                    <g id="Group-4">
+                      <rect id="Rectangle-3" x="231" y="368" width="67" height="58"></rect>
+                      <path d="M331,426 L198,426" id="Line"></path>
+                      <rect id="Rectangle-2" fill="#FFFFFF" x="0" y="0" width="529" height="375" rx="6"></rect>
+                      
+                      {% if tabs | length %}
+                        <g id="tab-image">
+                          {% for tab in tabs %}
+                            {% if tab.tabAsset | length %}
+                              <image xlink:href="{{tab.tabAsset.first.getUrl('tabsImage')}}"  x="17" y="17" width="495" height="340" rx="3" class="{% if loop.first %}active{% endif %}" data-id="{{loop.index}}"/>
+                            {% else %}
+                              <image xlink:href="/assets/dist/img/modules/screen-placeholder.png"  x="17" y="17" width="495" height="340" rx="3" class="{% if loop.first %}active{% endif %}" data-id="{{loop.index}}"/>
+                            {% endif %}
+                          {% endfor %}
+                        </g>
+                      {% endif %}
+
+                      <rect x="17" y="17" width="495" height="340" rx="3"></rect>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+
+        <div class="col col--5 col--6--tablet col--last">
+          {% for tab in tabs %}
+            <div class="tabs__content__tab {% if loop.first %}active{% endif %}" data-id="{{loop.index}}">
+              {% if tab.tabTitle | length %}
+                <p class="tabs__content__tab__title xl-copy">{{tab.tabTitle}}</p>
+              {% endif %}
+  
+              {% if tab.tabContent | length %}
+                <div class="tabs__content__tab__description xl-copy">
+                  {{tab.tabContent}}
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+  
+          {% if cta | length %}
+            <a href="{{cta.url}}" class="tabs__cta btn btn--secondary" target="{{cta.target}}">{{cta.text}}</a>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>

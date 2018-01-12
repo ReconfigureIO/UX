@@ -1,0 +1,34 @@
+{% extends "_layouts/elementindex" %}
+
+{% set subnav = {} %}
+
+{% set formSettings = craft.sproutForms.getSettings() %}
+
+{% if formSettings.enableSaveData or formSettings.enableSaveDataPerFormBasis %}
+
+	{% set subnav = {
+		entries: {
+			label: "Entries"|t,
+			url: url('sproutforms/entries')
+		}
+	} %}
+
+{% endif %}
+
+{% set subnav = subnav|merge({
+	forms: {
+		label: "Forms"|t,
+		url: url('sproutforms/forms')
+	}
+}) %}
+
+{% if currentUser.can('editSproutFormsSettings') %}
+	{% set subnav = subnav|merge({
+		settings: {
+			label: "Settings"|t,
+			url: url('sproutforms/settings')
+		}
+	}) %}
+{% endif %}
+
+{% set selectedSubnavItem = craft.request.segment(2) %}

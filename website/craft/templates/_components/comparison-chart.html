@@ -1,0 +1,25 @@
+<div class="comparison-chart">
+  <div class="comparison-chart__control">
+    {% for item in items %}
+      <a
+        href="#"
+        class="comparison-chart__control__item{% if loop.first %} active{% endif %}"
+        data-stats="[{% for stat in item.itemStats %}{{stat.stat}}{% if not loop.last %},{% endif %}{% endfor %}]"
+        >
+        {{item.itemLabel}}
+      </a>
+    {% endfor %}
+  </div>
+
+  <canvas id="comparison-chart" width="400" height="400"></canvas>
+
+  <div class="comparison-chart__items" style="display: none;">
+    {% for item in items %}
+      <div class="comparison-chart__items__item" data-label="{{item.itemLabel}}">
+        {% for stat in item.itemStats %}
+          <span class="comparison-chart__items__item__data" data-value="{{stat.stat}}"></span>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+</div>

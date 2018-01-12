@@ -1,0 +1,40 @@
+{% extends "_layouts/_master" %}
+
+{% do craft.sproutSeo.meta({
+  title: 'Technical details - Sign up'
+}) %}
+
+{% set userData = craft.signup.getUser().value %}
+
+{% block content %}
+  <section class="section section--grey signup signup--step-5">
+    <div class="container">
+      <div class="wrapper">
+        <div class="signup__header">
+          <h1 class="signup__title h1--light">Authentication</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white signup signup--tabs">
+    <div class="container">
+      <div class="wrapper">
+        <div class="signup__content">
+          <div class="signup__tabs nav-tabs">
+            <p class="lg-copy">Copy and paste the command below to connect your installation to your account:</p>
+            <pre>reco auth {{ userData.token }}</pre>
+          </div>
+
+          <form class="form form--actions form--installation" name="signup-installation" action="/sign-up/complete" method="post">
+            <div class="form__content">
+              <div class="actions">
+                  <button type="submit" name="submit" class="btn"><span>Complete</span></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

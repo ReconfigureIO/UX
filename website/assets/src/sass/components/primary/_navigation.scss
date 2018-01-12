@@ -1,0 +1,161 @@
+/* NAVIGATION */
+
+.nav {
+  a {
+    display: inline-block;
+    color: $trout;
+    font-family: $font_primary_roman;
+    @include adjust-font-size-to(0.9375rem);
+    @include adjust-leading-to(1.4375);
+    letter-spacing: 1px;
+    margin-right: $base-margin*2.5;
+    @include margin-trailer(1.25);
+    box-sizing: border-box;
+    text-transform: none;
+    text-decoration: none;
+
+    &.active {
+      color: $mountain-meadow;
+    }
+  }
+
+  &--primary {
+    text-align: center;
+    
+    // @include breakpoint($break_medium) {
+    //   text-align: center;
+    // }
+
+    @include breakpoint($break_tablet) {
+      @include margin-leader(2);
+      @include margin-trailer(3.5);
+    }
+
+    a {
+      display: inline-block;
+      color: $trout;
+      font-family: $font_primary_roman;
+      @include adjust-font-size-to(0.9375rem);
+      @include adjust-leading-to(1.4375);
+      margin-right: $base-margin*2.5;
+      @include margin-leader(0.5);
+      @include margin-trailer(0.5);
+      box-sizing: border-box;
+      text-transform: none;
+      text-decoration: none;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      i {
+        display: inline-block;
+        @include adjust-font-size-to(0.5625rem);
+        @include adjust-leading-to(0.5625);
+        padding-top: 4px;
+        margin-left: $base-margin*0.25;
+        vertical-align: top;
+
+        &:before {
+          width: auto;
+          margin: 0;
+          display: block;
+        }
+      }
+
+      @include breakpoint($break_container) {
+        @include adjust-font-size-to(0.875rem);
+        @include adjust-leading-to(1.375);
+        margin-right: $base-margin*2;
+      }
+
+      @include breakpoint($break_standard) {
+        margin-right: $base-margin*1.75;
+      }
+
+      @include breakpoint($break_medium) {
+        margin-right: $base-margin*1.5;
+      }
+
+      @include breakpoint($break_tablet) {
+        display: block;
+        color: $cod-gray;
+        margin-right: 0;
+        @include margin-trailer(1.5);
+        @include adjust-font-size-to(1.3125rem);
+        @include adjust-leading-to(1.75);
+      }
+
+      &.btn {
+        &:hover {
+          text-decoration: none;
+        }
+
+        @include breakpoint($break_standard) {
+          padding: 0 $base-line-height;
+          @include rhythm-padding(0.75);
+        }
+
+        @include breakpoint($break_tablet) {
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  &--secondary {
+    @include breakpoint($break_medium) {
+      text-align: center;
+    }
+
+    @include breakpoint($break_tablet) {
+      display: block;
+    }
+
+    a {
+      margin-right: $base-margin*2.5;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &.link {
+        color: $mountain-meadow;
+        font-family: $font_primary_bold;
+        text-transform: none;
+      }
+    }
+  }
+
+  &--footer {
+    a {
+      display: block;
+      color: $cod-gray;
+      margin-right: 0;
+      @include margin-trailer(0.5);
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      i {
+        display: inline-block;
+        @include adjust-font-size-to(0.5625rem);
+        @include adjust-leading-to(0.5625);
+        padding-top: 4px;
+        margin-left: $base-margin*0.25;
+        vertical-align: top;
+
+        &:before {
+          width: auto;
+          margin: 0;
+          display: block;
+        }
+      }
+    }
+  }
+}

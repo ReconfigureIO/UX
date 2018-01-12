@@ -1,0 +1,17 @@
+{% extends "_layouts/_master" %}
+
+{% do craft.sproutSeo.meta({
+  title: '404'
+}) %}
+
+{% block content %}
+	<section class="section section--grey">
+		<div class="section__component">
+			<div class="container">
+				<h1>Page not found</h1>
+
+				<p>What’s worse, a hilarious 404 page can’t be found either.</p>
+			</div>
+		</div>
+	</section>
+{% endblock %}

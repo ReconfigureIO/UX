@@ -1,0 +1,261 @@
+/* SIGNUP */
+
+// Signup block
+.signup-block {
+  &__header {
+    @include breakpoint($break_mobile) {
+      text-align: center;
+    }
+  }
+
+  &__title {
+    @include margin-trailer(0.5);
+  }
+
+  &__cta {
+    @include margin-leader(1.5);
+  }
+
+  &__form {
+    @include margin-leader(1.5);
+  }
+}
+
+// Signup process
+.signup {
+  position: relative;
+  @include rhythm-padding(0);
+  overflow: hidden;
+
+  @include breakpoint($break_tablet) {
+    @include rhythm-padding(0);
+  }
+
+  @include breakpoint($break_mobile) {
+    @include rhythm-padding(0);
+  }
+
+  .container {
+    position: relative;
+    @include rhythm-padding(3.5, 6);
+
+    @include breakpoint($break_tablet) {
+      @include rhythm-padding(2.5, 3);
+    }
+
+    @include breakpoint($break_mobile) {
+      @include rhythm-padding(1.5, 2.5);
+    }
+  }
+
+  // Authenticating
+  &--step-2 {
+    @include rhythm-padding(6.5, 3);
+  }
+
+  // Installation
+  &--step-5 {
+    .container {
+      @include rhythm-padding(6.5, 3);
+
+      @include breakpoint($break_tablet) {
+        @include rhythm-padding(3.5, 1.5);
+      }
+
+      @include breakpoint($break_mobile) {
+        @include rhythm-padding(1.5, 1);
+      }
+    }
+  }
+
+  // Tabs
+  &--tabs {
+    .container {
+      @include rhythm-padding(3, 6.5);
+
+      @include breakpoint($break_tablet) {
+        @include rhythm-padding(1.5, 3.5);
+      }
+
+      @include breakpoint($break_mobile) {
+        @include rhythm-padding(1, 1.5);
+      }
+    }
+  }
+
+  // Github image
+  &__image {
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+    bottom: -$base-margin*3.5;
+    right: -$base-margin*3.5;
+    width: 420px;
+
+    @include breakpoint($break_container) {
+      width: 320px;
+    }
+
+    @include breakpoint($break_medium) {
+      width: 300px;
+    }
+
+    @include breakpoint($break_tablet_large) {
+      position: relative;
+      width: 260px;
+      bottom: auto;
+      right: auto;
+      @include margin-trailer(1.5);
+    }
+
+    @include breakpoint($break_mobile) {
+      width: 200px;
+    }
+  }
+
+  // Terms text
+  &__terms {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    @include margin-leader(5);
+    overflow: hidden;
+  }
+
+  .wrapper {
+    display: block;
+    width: span(8);
+    margin-left: span(2);
+    overflow: hidden;
+
+    @include breakpoint($break_tablet_large) {
+      width: span(12);
+      margin-left: 0;
+    }
+  }
+
+  &__header {
+    @include full();
+    text-align: left;
+
+    @include breakpoint($break_tablet) {
+      text-align: center;
+    }
+  }
+
+  &__title {
+    @include margin-trailer(0.5);
+  }
+
+  &__description {
+    @include adjust-font-size-to(1.25rem);
+    @include adjust-leading-to(1.875);
+
+    @include breakpoint($break_mobile) {
+      @include adjust-font-size-to(1.0625rem);
+      @include adjust-leading-to(1.5625);
+    }
+  }
+
+  &__cta {
+    @include margin-leader(3.5);
+
+    @include breakpoint($break_mobile) {
+      @include margin-leader(2);
+    }
+
+    &.link--cancel {
+      display: block !important;
+    }
+  }
+
+  &__content {
+    @include full();
+    @include margin-leader(3.5);
+
+    form {
+      overflow: hidden;
+    }
+
+    .link--cancel,
+    .link--back {
+      color: $gray;
+      margin-right: $base-margin*4;
+    }
+
+    // Tabs
+    .signup--tabs & {
+      @include margin-leader(0);
+    }
+
+    // Sub Nav
+    .sub-nav {
+      display: block !important;
+
+      @include breakpoint($break_mobile) {
+        text-align: center;
+      }
+
+      a {
+        &:last-child {
+          margin-right: 0;
+        }
+
+        @include breakpoint($break_mobile) {
+          margin-right: $base-margin;
+        }
+      }
+    }
+  }
+
+  // Tabs
+  &__tabs {
+    @include margin-trailer(3);
+  }
+
+  &__tab {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  // Override button styles
+  .btn {
+    &.github {
+      padding: 0 $base-margin;
+      @include rhythm-padding(0.5);
+
+      @include breakpoint($break_mobile) {
+        padding: 0 $base-margin*0.5;
+        @include rhythm-padding(0.5);
+      }
+
+      i {
+        display: inline-block;
+        @include adjust-font-size-to(2rem);
+        @include adjust-leading-to(2);
+        margin-right: $base-margin*0.5;
+        vertical-align: middle;
+
+        &:before {
+          width: auto;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .link--cancel,
+  .link--back {
+    display: inline-block;
+    clear: both;
+    @include margin-leader(2);
+
+    @include breakpoint($break_mobile) {
+      @include margin-leader(1);
+    }
+  }
+}

@@ -1,0 +1,21 @@
+<div class="mailing-list">
+  <div class="mailing-list__content">
+    <h3 class="mailing-list__title">Join our mailing list</h3>
+    <p class="mailing-list__description">Add yourself to our mailing list to receive news and updates from Reconfigure.io.</p>
+
+    <form class="mailing-list__form form--ajax" action="/actions/signup/SignupNewsletter" method="post">
+      <div class="form__content">
+        <div class="field">
+          <input type="email" name="email" placeholder="your email address">
+          <button type="submit" class="btn">Join</button>
+        </div>
+      </div>
+
+      <div class="form__messages"></div>
+    </form>
+  </div>
+
+  <div class="mailing-list__image">
+    <img src="/assets/dist/img/modules/newsletter-illo.png" class="img-responsive">
+  </div>
+</div>

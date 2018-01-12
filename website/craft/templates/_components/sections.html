@@ -1,0 +1,226 @@
+{% if entry is defined and entry.sections | length %}
+
+  {% for section in entry.sections %}
+
+    {% switch section.type.handle %}
+
+      {% case "pageSection" %}
+
+        <section class="section section--{{section.sectionBackgroundColour}} {% if section.removePadding %} section--no-padding{% endif %}" {% if section.sectionAnchorName | length %}id="{{section.sectionAnchorName|replace(' ', '-')|lower}}"{% endif %}>
+
+            {% if section.sectionTitle | length or section.sectionDescription | length or section.sectionCta | length %}
+              <div class="section__header {% if section.enableSectionBackgroundImage %}section__header--background{% endif %}">
+                <div class="container">
+                  {% if section.sectionTitle | length %}
+                    <h2 class="section__title section__title--{{section.sectionTitleWeight}} {% if section.sectionTitleColour | length %}{{section.sectionTitleColour}}{% endif %}">{{section.sectionTitle}}</h2>
+                  {% endif %}
+                  {% if section.sectionDescription | length %}
+                    <p class="section__description xl-copy">{{section.sectionDescription}}</p>
+                  {% endif %}
+                  {% if section.sectionCta | length %}
+                    <a href="{{section.sectionCta.url}}" class="section__cta btn btn--secondary" target="{{section.sectionCta.target}}">{{section.sectionCta.text}}</a>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+
+            {% for component in section.children %}
+
+              {% switch component.type %}
+
+                {% case "heading" %}
+                  <div class="section__component section__component--heading section__component--heading--{{component.headingType}} text-{{component.headingAlignment}}">
+                    <div class="container">
+                      {% switch component.headingType %}
+                        {% case "h1" %}
+                          <h1 class="h1--{{component.headingWeight}}">{{ component.headingText }}</h1>
+                        {% case "h2" %}
+                          <h2 class="h2--{{component.headingWeight}}">{{ component.headingText }}</h2>
+                        {% case "h3" %}
+                          <h3 class="h3--{{component.headingWeight}}">{{ component.headingText }}</h3>
+                        {% case "h4" %}
+                          <h4 class="h4--{{component.headingWeight}}">{{ component.headingText }}</h4>
+                        {% case "h5" %}
+                          <h5 class="h5--{{component.headingWeight}}">{{ component.headingText }}</h5>
+                      {% endswitch %}
+                    </div>
+                  </div>
+
+                {% case "leadCopy" %}
+
+                  <div class="section__component section__component--lead-copy xl-copy">
+                    <div class="container">
+                      {{ component.bodyCopy | raw }}
+                    </div>
+                  </div>
+
+                {% case "largeCopy" %}
+
+                  <div class="section__component section__component--lead-copy lg-copy">
+                    <div class="container">
+                      {{ component.bodyCopy | raw }}
+                    </div>
+                  </div>
+
+                {% case "bodyCopy" %}
+
+                  <div class="section__component section__component--body-copy body-copy">
+                    <div class="container">
+                      {{ component.bodyCopy | raw }}
+                    </div>
+                  </div>
+
+                {% case "horizontalRule" %}
+
+                  <div class="section__component section__component--hr">
+                    <div class="container">
+                      <hr>
+                    </div>
+                  </div>
+
+                {% case "features" %}
+
+                  <div class="section__component section__component--features">
+                    {% for feature in component.features %}
+
+                      {% include('_components/feature') with { image: feature.featureImage, imageSize: feature.featureImageSize, title: feature.featureTitle, subTitle: feature.featureSubtitle, description: feature.featureDescription, ctas: feature.featureCtas } %}
+                    {% endfor %}
+                  </div>
+
+                {% case "pods" %}
+
+                  <div class="section__component section__component--pods">
+                    <div class="pods pods--{{component.podsTextAlign}}">
+                      <div class="container">
+                        {% for pod in component.pods %}
+                          {% if pod.podImage | length %}
+                            {% set image = pod.podImage.first.getUrl('podImage') %}
+                          {% else %}
+                            {% set image = '' %}
+                          {% endif %}
+
+                          {% include('_components/pod') with { animation: component.podsEnableAnimation, image: image, title: pod.podTitle, description: pod.podDescription, link: pod.podLink } %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+
+                {% case "cards" %}
+
+                  <div class="section__component section__component--cards">
+                    <div class="cards">
+                      <div class="container">
+                        {% for card in component.cards %}
+                          {% if card.cardImage | length %}
+                            {% set image = card.cardImage.first.getUrl() %}
+                          {% else %}
+                            {% set image = '' %}
+                          {% endif %}
+
+                          {% include('_components/card') with { alignment: card.cardAlignment, image: image, title: card.cardTitle, description: card.cardDescription, ctas: card.cardCtas } %}
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+
+                {% case "columns" %}
+
+                  <div class="section__component">
+                    <div class="container">
+                      {% for column in component.columns %}
+                        <div class="col col--6 col--full--tablet">
+                          {% include('_components/column') with { content: column.columnContent } %}
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+
+                {% case "imageGrid" %}
+
+                  <div class="section__component section__component--image-grid">
+                    <div class="container">
+                      {% include('_components/image-grid') with { images: component.images } %}
+                    </div>
+                  </div>
+
+                {% case "image" %}
+
+                  {% if component.imageFile | length %}
+                    <div class="section__component section__component--image">
+                      {% if component.imageType == 'contained' %}
+                        <div class="container">
+                      {% endif %}
+                        <img src="{{component.imageFile.first.getUrl('fullImage')}}" class="img-responsive">
+                      {% if component.imageType == 'contained' %}
+                        </div>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+
+                {% case "module" %}
+
+                  <div class="section__component section__component--module">
+                    {% if component.moduleType == 'cpuAnimation' %}
+                      {{ include('_components/cpu-animation') }}
+                    {% elseif component.moduleType == 'featureAnimation' %}
+                      {{ include('_components/feature-animation') }}
+                    {% elseif component.moduleType == 'pricingPods' %}
+                      {% if component.pricingPods | length %}
+                        <div class="pricing-pods">
+                          {% for pod in component.pricingPods %}
+                            {% include('_components/pricing-pod') with { pod: pod } %}
+                          {% endfor %}
+                        </div>
+                      {% endif %}
+                    {% elseif component.moduleType == 'comparisonChart' %}
+                      {% include('_components/comparison-chart') with { items: component.comparisonItems } %}
+                    {% elseif component.moduleType == 'mailingList' %}
+                      <div class="container">
+                        {{ include('_components/mailing-list') }}
+                      </div>
+                    {% endif %}
+
+                    {% if component.moduleCta | length %}
+                      <div class="section__cta">
+                        <a href="{{component.moduleCta.url}}" class="btn btn--porsche" target="{{component.moduleCta.target}}">{{component.moduleCta.text}}</a>
+                      </div>
+                    {% endif %}
+                  </div>
+
+                {% case "jobsTable" %}
+
+                  <div class="section__component section__component--table">
+                    <div class="container">
+                      {% include('_components/jobs-table') with { content: component.jobsTable } %}
+                    </div>
+                  </div>
+
+                {% case "advertBanner" %}
+
+                  <div class="section__component section__component--advert-banner">
+                    {% include('_components/advert-banner') with { advert: component.advertImage.first, advertLink: component.advertLink } %}
+                  </div>
+
+                {% case "tabs" %}
+
+                  <div class="section__component section__component--tabs">
+                    <div class="container">
+                      {% include('_components/tabs') with { title: component.tabsTitle, cta: component.tabsCta, tabs: component.tabs } %}
+                    </div>
+                  </div>
+
+              {% endswitch %}
+
+            {% endfor %}
+
+          {% if not section.removePadding %}
+            </div>
+          {% endif %}
+
+        </section>
+
+    {% endswitch %}
+
+  {% endfor %}
+
+{% endif %}

@@ -1,0 +1,57 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="col col--2 col--3--medium col--4--tablet">
+        {% set navConfig = {
+          'maxDepth' : 1
+        } %}
+
+        {% set navigation1 = craft.navee.getNav('footerNavigation1', navConfig) %}
+
+        <nav class="nav nav--footer">
+          {% nav node in navigation1 %}
+            <a href="{{ node.link }}" target="{{node.target}}">{{ node.title }}{% if node.link | slice(0,4) == 'http' %}<i class="icon-link-ext"></i>{% endif %}</a>
+          {% endnav %}
+        </nav>
+      </div>
+
+      <div class="col col--2 col--3--medium col--4--tablet">
+        {% set navConfig = {
+          'maxDepth' : 1
+        } %}
+
+        {% set navigation2 = craft.navee.getNav('footerNavigation2', navConfig) %}
+
+        <nav class="nav nav--footer">
+          {% nav node in navigation2 %}
+            <a href="{{ node.link }}" target="{{node.target}}">{{ node.title }}{% if node.link | slice(0,4) == 'http' %}<i class="icon-link-ext"></i>{% endif %}</a>
+          {% endnav %}
+        </nav>
+      </div>
+
+      <div class="col col--2 col--3--medium col--4--tablet">
+        {% set navConfig = {
+          'maxDepth' : 1
+        } %}
+
+        {% set navigation3 = craft.navee.getNav('footerNavigation3', navConfig) %}
+
+        <nav class="nav nav--footer">
+          {% nav node in navigation3 %}
+            <a href="{{ node.link }}" target="{{node.target}}">{{ node.title }}{% if node.link | slice(0,4) == 'http' %}<i class="icon-link-ext"></i>{% endif %}</a>
+          {% endnav %}
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="col col--6 col--full--mobile">
+        <p>&copy; Reconfigure.io {{now.year}}<br>Registered in England and Wales, No. 09742706. VAT GB 262 9884 57</p>
+      </div>
+
+      <div class="col col--6 col--full--mobile text-right">
+        <p>Built by <a href="https://ayup.agency">Ayup</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
