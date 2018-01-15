@@ -10,7 +10,11 @@ node ('master') {
             sh 'cd docs && docker build -t "reconfigureio/sphinx:latest" .'
 
             stage 'build'
-            sh 'cd docs && docker run -v $PWD:/mnt "reconfigureio/sphinx:latest" make html'
+            if(env.BRANCH_NAME == "master") {
+                sh 'cd docs && docker run --env-file=./vars/production.env -v $PWD:/mnt "reconfigureio/sphinx:latest" make html'
+            }else{
+                sh 'cd docs && docker run --env-file=./vars/staging.env -v $PWD:/mnt "reconfigureio/sphinx:latest" make html' 
+            }
 
             stage 'upload'
 
