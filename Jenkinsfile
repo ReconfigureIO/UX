@@ -14,10 +14,10 @@ node ('master') {
 
             stage 'build'
             if(env.BRANCH_NAME == "master") {
-                sh 'docker run -v $PWD/docs:/mnt --env-file=./vars/production.env "reconfigureio/sphinx:latest" make html'
+                sh 'docker run -v $PWD/docs:/mnt --env-file=docs/vars/production.env "reconfigureio/sphinx:latest" make html'
                 sh 'docker run -v $PWD/dashboard:/mnt /"reconfigureio/dashboard:latest" make production'
             }else{
-                sh 'docker run -v $PWD/docs:/mnt --env-file=./vars/staging.env "reconfigureio/sphinx:latest" make html' 
+                sh 'docker run -v $PWD/docs:/mnt --env-file=docs/vars/staging.env "reconfigureio/sphinx:latest" make html' 
                 sh 'docker run -v $PWD/dashboard:/mnt "reconfigureio/dashboard:latest" make build'
             }
 
