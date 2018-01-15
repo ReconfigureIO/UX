@@ -194,3 +194,9 @@ epub_copyright = copyright
 
 # A list of files that should not be packed into the epub file.
 epub_exclude_files = ['search.html']
+
+#Reconfigure.io defined variables
+web_md5_uuid = os.environ['WEB_MD5_UUID']
+rst_epilog =  """
+.. |web_md5_uuid| replace:: {0}
+""".format(web_md5_uuid)

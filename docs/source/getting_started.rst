@@ -8,9 +8,9 @@ If you've found your way here without signing up first, please head to our `webs
 
 1. Open a terminal and enter the command below to deploy a build of our MD5 code example to an FPGA. We've set a time limit of 30 minutes for the deployment to avoid using up your available hours if you forget to stop it at the end. If you have problems running this command you may need to :ref:`update to the latest version of our command line tool <install>`.
 
-  .. code-block:: shell
+  .. parsed-literal:: 
 
-     reco deploy run 3e21bae1-5367-419e-9bc2-7e01e7fe9942 timeout 30m run-webserver --wait=http
+     reco deploy run |web_md5_uuid| timeout 30m run-webserver --wait=http
 
   And you should see:
 
