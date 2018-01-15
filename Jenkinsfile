@@ -1,15 +1,14 @@
+def production_host = "docs.reconfigureio-infra.com"
+def production_base = "/ux/production"
+def staging_host = "docs.reconfigureio-infra.com"
+def staging_base = "ux/${env.BRANCH_NAME}"
+
+def production_bucket = "${production_host}${production_base}"
+def staging_bucket = "${staging_host}${staging_base}"
+
 notifyStarted()
 
 node ('master') {
-    def production_host = "docs.reconfigureio-infra.com"
-    def production_base = "/ux/production/"
-    def staging_host = "docs.reconfigureio-infra.com"
-    def staging_base = "ux/${env.BRANCH_NAME}"
-
-    def production_bucket = "${production_host}${production_bucket}"
-    def staging_bucket = "${staging_host}${staging_bucket}"
-
-
     try {
         timeout(time: 10, unit: 'MINUTES') {
             stage 'checkout'
