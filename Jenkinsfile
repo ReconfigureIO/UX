@@ -15,7 +15,7 @@ node ('master') {
             stage 'build'
             if(env.BRANCH_NAME == "master") {
                 sh 'cd docs && docker run --env-file=./vars/production.env -v $PWD:/mnt "reconfigureio/sphinx:latest" make html'
-                sh 'make -C dashbaord production'
+                sh 'make -C dashboard production'
             }else{
                 sh 'cd docs && docker run --env-file=./vars/staging.env -v $PWD:/mnt "reconfigureio/sphinx:latest" make html' 
                 sh 'make -C dashboard build'
