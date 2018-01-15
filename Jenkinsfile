@@ -33,7 +33,7 @@ node ('master') {
 
             stage 'clean'
             sh 'docker run -v $PWD/docs:/mnt "reconfigureio/sphinx:latest" make clean'
-            sh 'docker run -v $PWD/dashboard:/mnt "reconfigureio/dashboard:latest" clean'
+            sh 'docker run -v $PWD/dashboard:/mnt "reconfigureio/dashboard:latest" make clean'
 
 
             notifySuccessful()
