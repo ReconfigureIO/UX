@@ -9,31 +9,31 @@ node ('master') {
             checkout scm
 
             stage 'lint'
-            sh 'cd docs && docker build -t "reconfigureio/sphinx:latest" .'
-            sh 'make -C dashboard clean'
+            sh 'docker build -t "reconfigureio/sphinx:latest" docs'
+            sh 'docker build -t "reconfigureio/dashboard:latest" dashboard'
 
             stage 'build'
             if(env.BRANCH_NAME == "master") {
-                sh 'cd docs && docker run --env-file=./vars/production.env -v $PWD:/mnt "reconfigureio/sphinx:latest" make html'
-                sh 'make -C dashboard production'
+                sh 'docker run -v $PWD/docs:/mnt --env-file=./vars/production.env "reconfigureio/sphinx:latest" make html'
+                sh 'docker run -v $PWD/dashboard:/mnt /"reconfigureio/dashboard:latest" make production'
             }else{
-                sh 'cd docs && docker run --env-file=./vars/staging.env -v $PWD:/mnt "reconfigureio/sphinx:latest" make html' 
-                sh 'make -C dashboard build'
+                sh 'docker run -v $PWD/docs:/mnt --env-file=./vars/staging.env "reconfigureio/sphinx:latest" make html' 
+                sh 'docker run -v $PWD/dashboard:/mnt "reconfigureio/dashboard:latest" make build'
             }
 
             stage 'upload'
 
             if(env.BRANCH_NAME == "master") {
-                step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "docs.reconfigure.io/ux/production/dashboard", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'dist/**/*', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
+                step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "docs.reconfigure.io/ux/production/dashboard", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'dashbaored/dist/**/*', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
                 step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "docs.reconfigureio-infra.com/ux/production/docs", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'docs/build/html/**/*', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
             }else{
-                step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "docs.reconfigure.io/ux/${env.BRANCH_NAME}/dashboard", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'dist/**/*', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
+                step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "docs.reconfigure.io/ux/${env.BRANCH_NAME}/dashboard", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'dashboard/dist/**/*', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
                 step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "docs.reconfigureio-infra.com/ux/${env.BRANCH_NAME}/docs", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'docs/build/html/**/*', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
             }
 
             stage 'clean'
-            sh 'cd docs && docker run -v $PWD:/mnt "reconfigureio/sphinx:latest" make clean'
-            sh 'make -C dashboard clean'
+            sh 'docker run -v $PWD/docs:/mnt "reconfigureio/sphinx:latest" make clean'
+            sh 'docker run -v $PWD/dashboard:/mnt "reconfigureio/dashboard:latest" clean'
 
 
             notifySuccessful()

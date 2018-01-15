@@ -11,4 +11,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && gem install sass -v 3.4.21 \
     && gem install compass -v 1.0.3
 
-WORKDIR /myapp
+WORKDIR /mnt
