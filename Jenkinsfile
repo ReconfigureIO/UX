@@ -14,19 +14,16 @@ node ('master') {
             sh 'docker build -t "reconfigureio/sphinx:latest" docs'
             sh 'docker build -t "reconfigureio/dashboard:latest" dashboard'
 
-            stage 'reco - satisfy dependencies'
+            stage 'reco'
             dir ('reco/') {
-                sh 'docker-compose run --rm go make clean dependencies'
-            }
+                stage 'reco - satisfy dependencies'
+                    sh 'docker-compose run --rm go make clean dependencies'
 
-            stage 'reco - test'
-            dir ('reco/') {
-                sh 'docker-compose run --rm go make test benchmark integration'
-            }
+                stage 'reco - test'
+                    sh 'docker-compose run --rm go make test benchmark integration'
 
-            stage 'reco - build'
-            dir ('reco/') {
-                sh "docker-compose run --rm  go ./ci/cross_compile.sh \"${env.BRANCH_NAME}\""
+                stage 'reco - build'
+                    sh "docker-compose run --env-file=vars/reco/staging.env --rm  go ./ci/cross_compile.sh \"${env.BRANCH_NAME}\""
             }
 
             stage 'build'
