@@ -14,6 +14,21 @@ node ('master') {
             sh 'docker build -t "reconfigureio/sphinx:latest" docs'
             sh 'docker build -t "reconfigureio/dashboard:latest" dashboard'
 
+            stage 'reco - satisfy dependencies'
+            dir (./reco/) {
+                sh 'docker-compose run --rm go make clean dependencies'
+            }
+
+            stage 'reco - test'
+            dir (./reco/) {
+                sh 'docker-compose run --rm go make test benchmark integration'
+            }
+
+            stage 'reco - build'
+            dir (./reco/) {
+                sh "docker-compose run --rm  go ./ci/cross_compile.sh \"${env.BRANCH_NAME}\""
+            }
+
             stage 'build'
             if(env.BRANCH_NAME == "master") {
                 sh "docker run -v \$PWD/docs:/mnt --env-file=docs/vars/production.env 'reconfigureio/sphinx:latest' make html"
