@@ -1,7 +1,7 @@
-def production_host = "docs.reconfigureio-infra.com"
-def production_base = "/ux/production"
-def staging_host = "docs.reconfigureio-infra.com"
-def staging_base = "ux/${env.BRANCH_NAME}"
+def production_host = "staging.reconfigureio-infra.com"
+def production_base = "/"
+def staging_host = "staging.reconfigureio-infra.com"
+def staging_base = "${env.BRANCH_NAME}"
 
 def production_bucket = "${production_host}${production_base}"
 def staging_bucket = "${staging_host}${staging_base}"
@@ -21,7 +21,7 @@ node ('master') {
             stage 'build'
             if(env.BRANCH_NAME == "master") {
                 sh "docker run -v \$PWD/docs:/mnt --env-file=docs/vars/production.env 'reconfigureio/sphinx:latest' make html"
-                sh "docker run -v \$PWD/dashboard:/mnt 'reconfigureio/dashboard:latest' make production BASE_URL=${production_base}/dashboard"
+                sh "docker run -v \$PWD/dashboard:/mnt 'reconfigureio/dashboard:latest' make production"
             }else{
                 sh "docker run -v \$PWD/docs:/mnt --env-file=docs/vars/staging.env 'reconfigureio/sphinx:latest' make html"
                 sh "docker run -v \$PWD/dashboard:/mnt 'reconfigureio/dashboard:latest' make build BASE_URL=${staging_base}/dashboard"
