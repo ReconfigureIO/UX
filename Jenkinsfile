@@ -1,5 +1,5 @@
 def production_host = "staging.reconfigureio-infra.com"
-def production_base = "/"
+def production_base = ""
 def staging_host = "staging.reconfigureio-infra.com"
 def staging_base = "${env.BRANCH_NAME}"
 
