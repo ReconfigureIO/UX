@@ -23,7 +23,7 @@ node ('master') {
                     sh 'docker-compose run --rm go make test benchmark integration'
 
                 stage 'reco - build'
-                    sh "docker-compose run --env-file=vars/reco/staging.env --rm  go ./ci/cross_compile.sh \"${env.BRANCH_NAME}\""
+                    sh "docker-compose run --env-file=../vars/reco/staging.env --rm  go ./ci/cross_compile.sh \"${env.BRANCH_NAME}\""
             }
 
             stage 'build'
