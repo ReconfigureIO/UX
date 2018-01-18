@@ -14,10 +14,10 @@ test: dependencies
 	ember test
 
 build: dependencies
-	BASE_URL=$(BASE_URL) ember build
+	BASE_URL=$(BASE_URL) ember build --environment=development
 
 production: dependencies
-	BASE_URL=$(BASE_URL) ember build -prod
+	BASE_URL=$(BASE_URL) ember build --environment=production
 
 clean:
 	rm -rf dist
