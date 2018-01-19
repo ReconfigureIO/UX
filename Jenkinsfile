@@ -14,6 +14,18 @@ node ('master') {
             sh 'docker build -t "reconfigureio/sphinx:latest" docs'
             sh 'docker build -t "reconfigureio/dashboard:latest" dashboard'
 
+            stage 'reco'
+            dir ('reco/') {
+                stage 'reco - satisfy dependencies'
+                    sh 'docker-compose run --rm go make clean dependencies'
+
+                stage 'reco - test'
+                    sh 'docker-compose run --rm go make test benchmark integration'
+
+                stage 'reco - build'
+                    sh "docker-compose run -e API_SERVER=https://staging-api.reconfigure.io --rm  go ./ci/cross_compile.sh \"${env.BRANCH_NAME}\""
+            }
+
             stage 'build'
             if(env.BRANCH_NAME == "master") {
                 sh "docker run -v \$PWD/docs:/mnt --env-file=docs/vars/production.env 'reconfigureio/sphinx:latest' make html"
