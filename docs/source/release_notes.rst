@@ -4,6 +4,17 @@
 Release Notes
 =============
 
+Reconfigure.io v0.16.3
+======================
+
+This is a bugfix release fixing generated code causing a crash in some vendor tooling.
+
+Bugfixes
+~~~~~~~~
+
+* Altered the representation of BRAM initilization constants to prevent segfaults during synthesis.
+
+
 Reconfigure.io v0.16.2
 ======================
 

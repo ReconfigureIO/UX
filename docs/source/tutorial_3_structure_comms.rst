@@ -1,7 +1,11 @@
 .. _structure:
 
-Tutorial 4 – Structure and Communication
+Tutorial 3 – Structure and Communication
 =========================================
+.. admonition:: Make sure you're up to date.
+
+    Run ``reco version`` to check if your installation in up-to-date. Our current version is ``v0.4.1``. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
+
 In this tutorial we're going to look at how to structure your programs to write effective Go code for FPGAs. There are some elements that need to be present in your code to keep our compiler happy, and there are some areas where you're free to move and process data however you want. Also, we're not just dealing with an FPGA in isolation, Reconfigure.io programs include code for a host CPU and an FPGA, so you need to consider how best to split up the work between the two, and how to pass data around effectively. For more on splitting your code between the CPU and FPGA, see our :ref:`style guide <organization>`.
 
 First we're going to look at the general program structure and then cover the following:
@@ -13,6 +17,11 @@ First we're going to look at the general program structure and then cover the fo
 
 Program Structure
 -----------------
+First let's check you've got the most up-to-date version of our examples repo by running::
+
+    cd $GOPATH/src/github.com/ReconfigureIO/examples
+    git checkout v0.4.2
+
 Reconfigure.io programs all have the same structure, a main.go file for the FPGA and then a ``cmd`` directory in which the code for the CPU is stored. You can have several main.go files for the host within the same program. When you come to simulate or run a build you can chose which host command to use by using the name of the 'test' directory it sits within, for examples, to simulate the program below using ``reco`` you would use the command ``reco test run test-my-program`` from the ``my-program`` directory.
 
 .. image:: ProgramStructure.png
@@ -226,4 +235,4 @@ Once the compiler has run through the simulation, you should see the result arra
 
 What have we done
 ------------------
-So, we've looked at how to structure your code to work with Reconfigure.io, and how to use our template as a basis for writing programs. Also, we've seen how to pass arguments straight from the host to the FPGA using the control register, and pass data from the host to the FPGA via shared memory, and back again. Next, :ref:`tutorial 5 <graphstutorial>` show you how to use dataflow graphs to optimize your FPGA code.
+So, we've looked at how to structure your code to work with Reconfigure.io, and how to use our template as a basis for writing programs. Also, we've seen how to pass arguments straight from the host to the FPGA using the control register, and pass data from the host to the FPGA via shared memory, and back again. Next, :ref:`tutorial 5 <graphstutorial>` shows you how to use dataflow graphs to optimize your FPGA code.

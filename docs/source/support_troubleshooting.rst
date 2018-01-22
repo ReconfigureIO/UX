@@ -71,3 +71,17 @@ When testing and building your code, Reconfigure.io provides helpful error messa
 Timeouts
 ---------
 If you receive a timeout error this is an indication that there is an issue with your code, such as an infinite loop, or it could be that you just have a very complex runtime - If you need help getting to the bottom of a timeout error please `contact us <https://community.reconfigure.io/c/help>`_.
+
+.. Code examples written before vendor support
+.. --------------------------------------------
+.. Next, if you have already written some applications with Reconfigure.io, you will need to run a fix on them. First run:
+
+..    .. code-block:: shell
+
+..       go install github.com/ReconfigureIO/sdaccel/cmd/fix
+
+..  Then, in the root of any programs you have previously created, run:
+
+..  .. code-block:: shell
+
+..       fix .

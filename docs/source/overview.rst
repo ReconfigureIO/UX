@@ -96,7 +96,7 @@ Our compiler takes your Go code through several stages to get it into a format s
 
 Build
 ^^^^^^^^
-When your program is complete and tested it needs to be built. Our compiler will check compatibility and convert it into a bit-stream format suitable for deploying to an FPGA. Builds will :ref:`timeout <timeout>` if they don't complete within 12 hours.
+When your program is complete and tested it needs to be built. Our compiler will check compatibility and convert it into an image suitable for deploying to an FPGA. Builds will :ref:`timeout <timeout>` if they don't complete within 12 hours.
 
 .. admonition:: Build Times
 
@@ -108,7 +108,7 @@ When your program is complete and tested it needs to be built. Our compiler will
 
 Deploy
 ^^^^^^
-Once your build is complete you can deploy it to an FPGA and run your command on the host CPU.
+Once your build is complete you can deploy the image to an F1 instance. This programs the FPGA with your compiled and optimized code and runs your chosen command on the host CPU.
 
-*  ``reco deployment run <build_ID> <cmd>`` will deploy your build to the FPGA and run your chosen command on the host CPU.
+*  ``reco deploy run <build_ID> <cmd>`` will deploy your build to the FPGA and run your chosen command on the host CPU.
 * If your deployment is designed to run indefinitely, it is important to remember to stop it – live deployments are charged to your account (open-source users get 20 hours/month for free). Run ``reco deployment stop <deployment-ID>`` to stop a deployment. It is also good practice to include a timeout, just in case you forget to stop a deployment. To do this you can run ``reco deployment run <build-ID> timeout 30m <cmd>`` to ensure that the deployment runs for 30 minutes max. You can set whatever timeout you want, using hours ``1h``, minutes ``1m`` and seconds ``1s``.
