@@ -196,7 +196,8 @@ epub_copyright = copyright
 epub_exclude_files = ['search.html']
 
 #Reconfigure.io defined variables
-web_md5_uuid = os.environ['WEB_MD5_UUID']
-rst_epilog =  """
-.. |web_md5_uuid| replace:: {0}
-""".format(web_md5_uuid)
+env = ['WEB_MD5_UUID']
+keys = [x.lower() for x in env]
+vals = map(os.getenv, env)
+
+rst_epilog = "\n".join(".. |%s| replace:: %s" % tup for tup in zip(keys,vals)) + '\n'
