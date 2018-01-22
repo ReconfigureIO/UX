@@ -44,7 +44,7 @@ node ('master') {
                 sh "docker run -v \$PWD/dashboard:/mnt 'reconfigureio/dashboard:latest' make production"
             }else{
                 sh "docker run -v \$PWD/docs:/mnt --env-file=docs/vars/staging.env -e RECO_VERSION=${env.BRANCH_NAME} 'reconfigureio/sphinx:latest' make html"
-                sh "docker run -v \$PWD/dashboard:/mnt 'reconfigureio/dashboard:latest' make build BASE_URL=${staging_base}/"
+                sh "docker run -v \$PWD/dashboard:/mnt 'reconfigureio/dashboard:latest' make build BASE_URL=/${staging_base}/"
             }
 
             stage 'upload'
