@@ -43,19 +43,37 @@ You will be guided though authenticating your account during the signup process.
 
 Using standard Go Tooling
 -------------------------
-You can use standard Go tooling during development. If you set this up you will have access to correct Go in-editor checking, and you'll be able to run tests against your code using ``go test``. This is an optional but recommended feature. To use Go tools you'll need to run through a few steps:
+Using Go tools during development means you'll be able to run tests against your code using ``go test`` and you'll see correct code highlighting in your editor. If you're new to Go, you'll need to run through a few steps first:
 
-1. Set up your local Go development environment (if you haven't already). Follow the instructions `here <https://golang.org/doc/install>`_.
-2. Next, if you have already written some applications with Reconfigure.io, you will need to run a fix on them. First run:
+1. Download and install Go tools using one of the methods described `here <https://golang.org/doc/install>`_.
+2. Now we'll set up your `Go workspace <https://golang.org/doc/code.html#Workspaces>`_. All your Reconfigure.io projects need to be within your ``GOPATH``. To set your ``GOPATH`` `environmental variable <https://golang.org/doc/code.html#GOPATH>`_, choose the instructions for your operating system (for alternative operating systems/shells visit the `go wiki <https://github.com/golang/go/wiki/SettingGOPATH>`_):
 
-   .. code-block:: shell
+Linux/Mac OSX
+^^^^^^^^^^^^^^
+Run the following from a terminal::
 
-       go install github.com/ReconfigureIO/sdaccel/cmd/fix
+    echo "export GOPATH=\$HOME/go" >> ~/.bash_profile
+    echo "export GOBIN=\$GOPATH/bin"  >> ~/.bash_profile
+    echo "export PATH=\$PATH:\$GOPATH/bin"  >> ~/.bash_profile
 
-  Then, in the root of any programs you have previously created, run:
+Then clone our code examples repo into your ``GOPATH`` by running the following in a terminal::
 
-  .. code-block:: shell
+    git clone https://github.com:/ReconfigureIO/examples $GOPATH/src/github.com/ReconfigureIO/examples
+    cd $GOPATH/src/github.com/ReconfigureIO/examples
+    git checkout v0.4.2
 
-       fix .
+Windows 10
+^^^^^^^^^^
+* Click on the Cortana 'search' icon in the toolbar and type ``env``, select 'Environment variables...'
+* Click 'New' from the 'User variables' section
+* Type ``GOPATH`` into the 'Variable name' field
+* Type ``C:\go-work`` into the 'Variable value' field
+* Click OK
 
-3. Vendor our package for interacting with SDAccel from Go: http://github.com/ReconfigureIO/sdaccel. For information on how to vendor packages, see: :ref:`packages`.
+Then clone our code examples repo into your ``GOPATH`` by running the following in a terminal::
+
+    git clone https://github.com:/ReconfigureIO/examples $Env:GOPATH/src/github.com/ReconfigureIO/examples
+    cd $Env:GOPATH/src/github.com/ReconfigureIO/examples
+    git checkout v0.4.2
+
+3. Now head back to :ref:`tutorial 1 <test>` to check everything is set up correctly ...

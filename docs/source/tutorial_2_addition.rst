@@ -2,6 +2,11 @@
 
 Tutorial 2 – Filling in the Gaps
 ================================================
+
+.. admonition:: Make sure you're up to date.
+
+    Run ``reco version`` to check if your installation in up-to-date. Our current version is ``v0.4.1``. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
+
 In this tutorial, we will look at pretty much the simplest calculation possible – adding two numbers together. This is to get you writing and testing your own code. We will look at the problem, discuss how to design the program, and then, once you've had a go at filling in some gaps in the code, you can simulate the program using ``test``. Then, we'll look at our full code solution. This tutorial assumes you have already run through our first tutorial: :ref:`demo`.
 
 What's the problem?
@@ -16,17 +21,14 @@ Let's break this process down. There are just two operands involved so the host 
 
    Addition flow diagram
 
-The example code
---------------------------
-You should already have the code examples in your workspace after downloading them for the previous tutorial. If not, you can download them by running:
-
-.. code-block:: shell
-
-  git clone https://github.com/ReconfigureIO/examples.git && cd examples && git checkout v0.4.1
-
 Filling in the gaps
 -------------------
-Navigate to ``examples/addition-gaps/cmd/test-addition/main.go`` to look at the incomplete code for the host CPU. You will notice some of the code is missing. Using the information given in the comments, along with the flowchart above, have a go at filling in the missing sections:
+First let's check you've got the most up-to-date version of our examples repo by running::
+
+    cd $GOPATH/src/github.com/ReconfigureIO/examples
+    git checkout v0.4.2
+
+Navigate to ``examples/addition-gaps/cmd/test-addition/main.go`` to look at the incomplete code for the host CPU. You will notice some of the code is missing. Using the information given in the comments, along with the flowchart above, have a go at filling in the missing sections, here's what needs completing:
 
 * Pass operands and results pointer to the kernal (**lines 28, 30 and 32**)
 * Print the result from the FPGA (**line 48**)
@@ -166,7 +168,7 @@ And here's the FPGA code:
      	go axiprotocol.ReadDisable(memReadAddr, memReadData)
 
      	// Add the two input integers together
-     	val := addition.Add(a, b)
+     	val := a + b
 
      	// Write the result of the addition to the shared memory address provided by the host
      	aximemory.WriteUInt32(
@@ -175,4 +177,4 @@ And here's the FPGA code:
 
 What's next?
 -------------
-Now you've had a go at writing some code for yourself, lets go back to our histogram example for :ref:`tutorial 3 <demo2>` and deploy the build you started in tutorial 1 to an FPGA!
+Now you've had a go at writing some code for yourself, let's move on to :ref:`structure` to look in more detail at how we share data between the host CPU and FPGA, and we'll build on a project template to create another simple program.

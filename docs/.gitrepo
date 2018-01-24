@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:ReconfigureIO/docs.git
 	branch = master
-	commit = 803a9aeb19cd5f4ede8d98ee291b88d272f4e58d
+	commit = da0bc1bacddc568400bb79572d287303e10dfaa8
 	parent = ac6582f75a434095e89853bd31306831589f00da
 	cmdver = 0.4.0
 	method = merge
