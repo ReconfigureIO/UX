@@ -176,7 +176,7 @@ Deploy an image
 -----------------
 Let's deploy our pre-built image for this example. Running a deployment will program the FPGA with the compiled and optimized Go and deploy the host Go to the host CPU. Please copy and paste the following command and run it in a terminal:
 
-.. subst-code-block::
+.. parsed-literal::
 
     reco deploy run 31b835ac-5575-4ebc-b8c8-0007d629bd8f test-histogram
 

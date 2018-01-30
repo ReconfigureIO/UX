@@ -34,7 +34,7 @@ sys.path.insert(0, os.path.abspath('.'))
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.todo', 'hidden_code_block', 'subst_code_block']
+extensions = ['sphinx.ext.todo', 'hidden_code_block']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -196,9 +196,7 @@ epub_copyright = copyright
 epub_exclude_files = ['search.html']
 
 #Reconfigure.io defined variables
-env = ['WEB_MD5_UUID']
-keys = [x.lower() for x in env]
-vals = map(os.getenv, env)
-code_substitutions = dict(zip(keys, vals))
-
-rst_epilog = "\n".join(".. |%s| replace:: %s" % tup for tup in zip(keys,vals)) + '\n'
+web_md5_uuid = os.environ['WEB_MD5_UUID']
+rst_epilog =  """
+.. |web_md5_uuid| replace:: {0}
+""".format(web_md5_uuid)
