@@ -4,7 +4,7 @@ Tutorial 4 – Using Graphs for Optimization
 ================================================
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check if your installation in up-to-date. Our current version is ``v0.4.1``. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
+    Run ``reco version`` to check if your installation in up-to-date. Our current version is ``v0.4.3``. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
 
 In this tutorial we will look at using dataflow graphs to optimize your code. We'll take a simple function that adds up some numbers using a for loop, generate its dataflow graph, and identify ways to improve performance.
 
@@ -105,13 +105,13 @@ Generate a graph
 Now we can use ``reco`` to generate a graph for this function. Open a terminal and navigate to ``tutorial3/bad_example``, then generate the graph using ``reco graph gen``::
 
   $ reco graph gen
-  2017-09-11 08:04:09| preparing graph
-  2017-09-11 08:04:09| done. Graph id: <graph_ID>
-  2017-09-11 08:04:09| archiving
-  2017-09-11 08:04:09| done
-  2017-09-11 08:04:09| uploading ...
-  2017-09-11 08:04:10| done
-  2017-09-11 08:04:10| <graph_ID>
+  preparing graph
+  done. Graph id: <graph_ID>
+  archiving
+  done
+  uploading ...
+  done
+  <graph_ID>
 
 Copy the unique graph ID to open the graph::
 
@@ -147,13 +147,13 @@ Taking away the for loop and summing the bits of the array together, in one go, 
 Create a new folder in ``tutorial3`` called ``good_example``. Copy the snippet above into your text editor, call it ``main.go`` and save it in your ``good_example`` folder. From a terminal, navigate to ``tutoria3/good_example`` and use ``reco graph gen`` to generate the graph::
 
   $ reco graph gen
-  2017-09-11 08:04:09| preparing graph
-  2017-09-11 08:04:09| done. Graph id: <graph_ID>
-  2017-09-11 08:04:09| archiving
-  2017-09-11 08:04:09| done
-  2017-09-11 08:04:09| uploading ...
-  2017-09-11 08:04:10| done
-  2017-09-11 08:04:10| <graph_ID>
+  preparing graph
+  done. Graph id: <graph_ID>
+  archiving
+  done
+  uploading ...
+  done
+  <graph_ID>
 
 Copy the unique graph ID to open the graph::
 

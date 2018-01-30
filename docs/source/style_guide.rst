@@ -7,15 +7,21 @@ This style guide sets out some best practices for writing programs to be used wi
 
 Template
 --------
-We provide a stripped down version of our project code to help you get started creating your own projects. You can find the template here: ``examples/template``. For more information on using the template, see :ref:`structure`.
+We provide a stripped down version of our project code to help you get started creating your own projects. You can find the template included in the examples you downloaded during our :ref:`first tutorial <examples>`. They're located here: ``examples/template``. For more information on using the template, see :ref:`structure`.
+
+FPGA interface
+-------------------
+Our FPGA interface documentation details the Go packages required to communicate between the CPU and FPGA, and for using the shared memory available on the FPGA card. The term 'kernel' is used to refer to the code running on the FPGA:
+
+* `FPGA docs <http://godoc.reconfigure.io/v0.15.0/kernel/pkg>`_
+* `Host CPU docs <http://godoc.reconfigure.io/v0.15.0/host/pkg>`_
 
 .. _organization:
 
 Code Organization
 -----------------
 
-Splitting code between a CPU and FPGA usually involves a separation that's different to what you would expect when using just a CPU. A CPU is flexible and good at sequential things, whereas the FPGA is good for static things that lend themselves to parallelism. The best separation will depend on you application, but dividing based upon the relative strengths of CPUs and FPGAs is generally a great place to start. For instance, for data processing applications, a natural separation would be to do data preprocessing and postprocessing on the CPU, while having the FPGA do a calculation intensive loop.
-
+Splitting code between a CPU and FPGA usually involves a separation that is different to what you would expect when using just a CPU. A CPU is flexible and good at sequential things, whereas the FPGA is good for static things that lend themselves to parallelism. The best separation will depend on your application, but dividing based upon the relative strengths of CPUs and FPGAs is generally a great place to start. For instance, for data processing applications, a natural separation would be to do data preprocessing and postprocessing on the CPU, while having the FPGA do a calculation intensive loop.
 
 The FPGA
 -------

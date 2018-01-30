@@ -16,19 +16,18 @@ If you've found your way here without signing up first, please head to our `webs
 
   .. code-block:: shell
 
-     2018-01-08 16:17:24| creating deployment
-     2018-01-08 16:17:24| creating deployment
-     2018-01-08 16:17:25| done. Deployment ID: <deploy_ID>
-     2018-01-08 16:17:25| you can run "reco deployment log <deploy_ID>" to manually stream logs
-     2018-01-08 16:17:26| status: SUBMITTED
-     2018-01-08 16:17:26| Waiting for Spot Instance Request to be created
-     2018-01-08 16:17:46| status: QUEUED
-     2018-01-08 16:17:46| Waiting for EC2 instance to be allocated
-     2018-01-08 16:17:46| Waiting for EC2 instance to be allocated
-     2018-01-08 16:26:14| status: STARTED
-     2018-01-08 16:26:24| Waiting for deployment to listen on port 80
-     2018-01-08 16:27:05| Deployment ready at <deployment_IP>
-     <deploy_ID>
+     creating deployment
+     done. Deployment ID: <deployment_ID>
+     you can run "reco deployment log <deployment_ID>" to manually stream logs
+     status: SUBMITTED
+     Waiting for Spot Instance Request to be created
+     status: QUEUED
+     Waiting for EC2 instance to be allocated
+     Waiting for EC2 instance to be allocated
+     status: STARTED
+     Waiting for deployment to listen on port 80
+     Deployment ready at <deployment_IP>
+     <deployment_ID>
 
 2. Connect to the deployment using the command below, but substituting <deploy_ID> for your unique deployment ID:
 
@@ -45,7 +44,7 @@ If you've found your way here without signing up first, please head to our `webs
 
    .. code-block:: shell
 
-      reco deploy stop <deploy_ID>
+      reco deploy stop <deployment_ID>
 
 **Now visit your** |dashboard| **to view your account.**
 

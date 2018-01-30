@@ -35,7 +35,7 @@ Tooling and project structure
 
 The ``reco`` tool
 ^^^^^^^^^^^^^^
-All access to the Reconfigure.io service is through our tool – ``reco``. Use ``reco`` to upload and test your code, manage builds and deploy to a remote FPGA. If you need to install or update ``reco`` you can find instructions :ref:`here <install>`.
+All access to the Reconfigure.io service is through our tool – ``reco``. Use ``reco`` to upload and simulate your code, manage builds and deploy to a remote FPGA. If you need to install or update ``reco`` you can find instructions :ref:`here <install>`.
 
 ``reco`` is a simple tool with several intuitive commands, we'll look at some of these in the relevant sections below – commands are described in bullet points. For a full list see, :ref:`tool`.
 
@@ -79,7 +79,7 @@ Simulate
 ^^^^^^^^^
 It's a good idea to test your code using our hardware simulator. Any errors will be highlighted and it's considerably quicker than creating a build so will save you time during the development process. Simulations will :ref:`timeout <timeout>` if they don't complete within one hour.
 
-*  ``reco test run <my_cmd>`` tests your code on our hardware simulator.
+*  ``reco sim run <my_cmd>`` simulates how your program would run on an FPGA.
 
 .. _graph:
 

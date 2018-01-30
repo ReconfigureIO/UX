@@ -5,7 +5,7 @@ Tutorial 2 – Filling in the Gaps
 
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check if your installation in up-to-date. Our current version is ``v0.4.1``. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
+    Run ``reco version`` to check if your installation in up-to-date. Our current version is ``v0.4.3``. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
 
 In this tutorial, we will look at pretty much the simplest calculation possible – adding two numbers together. This is to get you writing and testing your own code. We will look at the problem, discuss how to design the program, and then, once you've had a go at filling in some gaps in the code, you can simulate the program using ``test``. Then, we'll look at our full code solution. This tutorial assumes you have already run through our first tutorial: :ref:`demo`.
 
@@ -45,7 +45,7 @@ Now the code is complete, make sure you are back in ``examples/addition-gaps`` a
 
   reco check
 
-Next, once you have dealt with any errors, use our hardware simulator to test how your code will run on the FPGA. First, create a project to work within::
+Next, once you have dealt with any errors, simulate how your code will run on the FPGA. First, create a project to work within::
 
   reco project create addition
 
@@ -53,9 +53,9 @@ Then, set this to be the active project::
 
   reco project set addition
 
-Now you can simulate using the ``test`` command::
+Now you can simulate using the ``reco sim`` command::
 
-  reco test run test-addition
+  reco sim run test-addition
 
 .. admonition:: Getting in the queue
 

@@ -5,7 +5,7 @@ Tutorial 1 – Setup and workflow
 
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check if your installation is up-to-date. Our current version is ``v0.4.1``. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
+    Run ``reco version`` to check if your installation is up-to-date. Our current version is ``v0.4.3``. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
 
 This tutorial is a simple introduction to the Reconfigure.io workflow. It's all pretty straightforward so in a few minutes you will have done a hardware simulation of a project running on an FPGA, and then deployed a build to an FPGA in the cloud. Then we'll step through the code and discuss how it was written.
 
@@ -87,28 +87,27 @@ Our tooling requires that you work within a project, so, before we start anythin
   reco project create histogram
   reco project set histogram
 
-You can now test the code with our hardware simulator using the ``reco test`` command. This is a really useful stage in our workflow as it allows you to see how the program will run on the FPGA before the more time-intensive build stage.
+You can now simulate the program using the ``reco sim`` command. This is a really useful stage in our workflow as it allows you to see how the program will run on the FPGA before the more time-intensive build stage.
 
 .. admonition:: Getting in the queue
 
     Simulation should normally only take around 20 seconds but could be up to 10 minutes depending on what else is in the queue.
 
-Run ``reco test run test-histogram`` and you should see:
+Run ``reco sim run test-histogram`` and you should see:
 
 .. code-block:: shell
 
     $ reco test run test-histogram
-    2018-01-15 14:26:13| preparing simulation
-    2018-01-15 14:26:14| done
-    2018-01-15 14:26:14| archiving
-    2018-01-15 14:26:14| done
-    2018-01-15 14:26:14| uploading
-    2018-01-15 14:26:15| done
-    2018-01-15 14:26:15| running simulation
-    2018-01-15 14:26:15|
-    2018-01-15 14:26:15| status: QUEUED
-    2018-01-15 14:26:15| Waiting for Batch job to start
-    2018-01-15 14:26:46| status: STARTED
+    preparing simulation
+    done
+    archiving
+    done
+    uploading
+    done
+    running simulation
+    status: QUEUED
+    Waiting for Batch job to start
+    status: STARTED
     ...
     INFO: [XOCC 60-629] Linking for hardware emulation target
     INFO: [XOCC 60-895]    Target platform: /opt/Xilinx/SDx/2017.1.op/platforms/xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0/xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.xpfm
@@ -170,7 +169,7 @@ The build ID referenced above will be a long string of characters, unique to eac
    cdb339dd-8fb5-457c-9439-3f40267678e8    2016-12-08T18:31:58Z    COMPLETED WITH ERROR
 
 .. note::
-  When you come to work on your own projects, you might create many different builds for the same code. The build list's date-stamping and status reports help to identify the build you want to run.
+   When you come to work on your own projects, you might create many different builds for the same code. The build list's date-stamping and status reports help to identify the build you want to run.
 
 Deploy an image
 -----------------

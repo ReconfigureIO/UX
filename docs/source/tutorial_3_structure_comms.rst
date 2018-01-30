@@ -4,7 +4,7 @@ Tutorial 3 – Structure and Communication
 =========================================
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check if your installation in up-to-date. Our current version is ``v0.4.1``. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
+    Run ``reco version`` to check if your installation in up-to-date. Our current version is ``v0.4.3``. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
 
 In this tutorial we're going to look at how to structure your programs to write effective Go code for FPGAs. There are some elements that need to be present in your code to keep our compiler happy, and there are some areas where you're free to move and process data however you want. Also, we're not just dealing with an FPGA in isolation, Reconfigure.io programs include code for a host CPU and an FPGA, so you need to consider how best to split up the work between the two, and how to pass data around effectively. For more on splitting your code between the CPU and FPGA, see our :ref:`style guide <organization>`.
 
@@ -181,9 +181,9 @@ You can type-check your code for compatibility with our compiler. From the ``mul
 
   reco check
 
-Once you've addressed any errors thrown up by ``reco check``, test your code with our hardware simulator::
+Once you've addressed any errors thrown up by ``reco check``, you can simulate how your code will run on an FPGA::
 
-  $ reco test run test-multiply1
+  $ reco sim run test-multiply1
   (.....)
   2
 
@@ -225,9 +225,9 @@ You can type-check your code for compatibility with our compiler. From the ``mul
 
   reco check
 
-Once you've addressed any errors thrown up by ``reco check``, test your code with our hardware simulator::
+Once you've addressed any errors thrown up by ``reco check``, you can simulate how your code will run on an FPGA::
 
-  $ reco test run test-multiply1
+  $ reco sim run test-multiply1
   (.....)
   024681012141618
 

@@ -16,7 +16,7 @@ Throughout the public beta phase you may encounter bugs or rough edges. We will 
 
 Error messages
 --------------
-When testing and building your code, Reconfigure.io provides helpful error messages when things don't go quite right. Each error message is explained in the table below. If at any point you encounter an error message which isn't listed here, please let us `know <https://community.reconfigure.io/c/early-access-feedback/report-a-bug>`_!
+When simulating and building your code, Reconfigure.io provides helpful error messages when things don't go quite right. Each error message is explained in the table below. If at any point you encounter an error message which isn't listed here, please let us `know <https://community.reconfigure.io/c/early-access-feedback/report-a-bug>`_!
 
 +--------+-----------------------------------------------+-------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |  Code  | Error Condition                               | Error Message                                                                                   | Description                                                                                                                                                                                                                                                                                                                        |
