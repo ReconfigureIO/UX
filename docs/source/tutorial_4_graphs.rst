@@ -4,7 +4,7 @@ Tutorial 4 – Using Graphs for Optimization
 ================================================
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check if your installation in up-to-date. Our current version is ``v0.4.3``. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
+    Run ``reco version`` to check if your installation in up-to-date. Our current version is |reco_version|. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
 
 In this tutorial we will look at using dataflow graphs to optimize your code. We'll take a simple function that adds up some numbers using a for loop, generate its dataflow graph, and identify ways to improve performance.
 

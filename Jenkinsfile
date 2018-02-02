@@ -1,9 +1,18 @@
 def production_zone = "reconfigureio-infra.com"
 def staging_zone = "reconfigureio-infra.com"
-def staging_base = "${env.BRANCH_NAME}"
+def staging_base = "/${env.BRANCH_NAME}"
 
 notifyStarted()
 
+def zone = ""
+def base = ""
+if(env.BRANCH_NAME == "master") {
+    zone = production_zone
+} else {
+    zone = staging_zone
+    base = staging_base
+}
+ 
 node ('master') {
     try {
         timeout(time: 10, unit: 'MINUTES') {
@@ -24,6 +33,9 @@ node ('master') {
 
                 stage 'reco - build'
                     sh "docker-compose run -e API_SERVER=https://staging-api.reconfigure.io --rm  go ./ci/cross_compile.sh \"${env.BRANCH_NAME}\""
+
+		stage 'reco - upload'
+                step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "downloads.${zone}/reco", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'dist/*.zip', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
             }
 
             stage 'build'
@@ -31,19 +43,14 @@ node ('master') {
                 sh "docker run -v \$PWD/docs:/mnt --env-file=docs/vars/production.env 'reconfigureio/sphinx:latest' make html"
                 sh "docker run -v \$PWD/dashboard:/mnt 'reconfigureio/dashboard:latest' make production"
             }else{
-                sh "docker run -v \$PWD/docs:/mnt --env-file=docs/vars/staging.env 'reconfigureio/sphinx:latest' make html"
-                sh "docker run -v \$PWD/dashboard:/mnt 'reconfigureio/dashboard:latest' make build BASE_URL=/${staging_base}/"
+                sh "docker run -v \$PWD/docs:/mnt --env-file=docs/vars/staging.env -e RECO_VERSION=${env.BRANCH_NAME} 'reconfigureio/sphinx:latest' make html"
+                sh "docker run -v \$PWD/dashboard:/mnt 'reconfigureio/dashboard:latest' make build BASE_URL=${staging_base}/"
             }
 
             stage 'upload'
 
-            if(env.BRANCH_NAME == "master") {
-                step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "app.${production_zone}", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'dashboard/dist/**/*', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
-                step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "docs.${production_zone}", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'docs/build/html/**/*', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
-            }else{
-                step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "app.${staging_zone}/${staging_base}", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'dashboard/dist/**/*', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
-                step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "docs.${staging_zone}/${staging_base}", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'docs/build/html/**/*', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
-            }
+            step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "app.${zone}${staging_base}", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'dashboard/dist/**/*', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
+            step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "docs.${zone}${staging_base}", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'docs/build/html/**/*', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
 
             stage 'clean'
             sh 'docker run -v $PWD/docs:/mnt "reconfigureio/sphinx:latest" make clean'
