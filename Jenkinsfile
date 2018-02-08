@@ -22,6 +22,7 @@ node ('master') {
             stage 'lint'
             sh 'docker build -t "reconfigureio/sphinx:latest" docs'
             sh 'docker build -t "reconfigureio/dashboard:latest" dashboard'
+            sh 'docker build -t "398048034572.dkr.ecr.us-east-1.amazonaws.com/reconfigureio/nginx_proxy:latest" nginx_proxy'
 
             stage 'reco'
             dir ('reco/') {
@@ -51,6 +52,10 @@ node ('master') {
 
             step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "app.${zone}${staging_base}", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'dashboard/dist/**/*', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
             step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "docs.${zone}${staging_base}", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'docs/build/html/**/*', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
+            
+            stage 'push containers'
+            sh 'aws ecr get-login --region us-east-1'
+            docker push 398048034572.dkr.ecr.us-east-1.amazonaws.com/reconfigureio/nginx_proxy:latest"
 
             stage 'clean'
             sh 'docker run -v $PWD/docs:/mnt "reconfigureio/sphinx:latest" make clean'
