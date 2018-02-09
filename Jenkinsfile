@@ -55,7 +55,7 @@ node ('master') {
             
             stage 'push containers'
             sh 'aws ecr get-login --region us-east-1'
-            docker push 398048034572.dkr.ecr.us-east-1.amazonaws.com/reconfigureio/nginx_proxy:latest"
+            sh 'docker push 398048034572.dkr.ecr.us-east-1.amazonaws.com/reconfigureio/nginx_proxy:latest'
 
             stage 'clean'
             sh 'docker run -v $PWD/docs:/mnt "reconfigureio/sphinx:latest" make clean'
