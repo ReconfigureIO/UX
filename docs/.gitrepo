@@ -7,5 +7,5 @@
 	remote = git@github.com:ReconfigureIO/docs.git
 	branch = fix/code-block-substiutions
 	commit = 2ff3c3e7dc53c3cf00594a0536ba709cc57c38a8
-	parent = fa9cfe717948f28319f335e474f36bcab1e4950e
+	parent = c82732e38fc8558780a6364066d9a7cd12cb49e7
 	cmdver = 0.3.1
