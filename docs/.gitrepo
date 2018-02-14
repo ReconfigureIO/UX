@@ -6,7 +6,6 @@
 [subrepo]
 	remote = git@github.com:ReconfigureIO/docs.git
 	branch = fix/code-block-substiutions
-	commit = f44a087f1da557c1c5a1e9115d6effd4825cb85c
-	parent = ce1d74933cb3681c55d8bd82c5f0ae791ed083d8
-	cmdver = 0.4.0
-	method = merge
+	commit = 2ff3c3e7dc53c3cf00594a0536ba709cc57c38a8
+	parent = c82732e38fc8558780a6364066d9a7cd12cb49e7
+	cmdver = 0.3.1
