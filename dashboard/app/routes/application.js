@@ -27,7 +27,7 @@ export default Ember.Route.extend({
       var customData = {
         'name' : response.value.name,
         'email' : response.value.email
-      }
+      };
       window._loq = window._loq || [];
       window._loq.push(['custom', customData]);
     });

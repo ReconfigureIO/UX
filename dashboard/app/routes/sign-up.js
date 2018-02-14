@@ -34,7 +34,7 @@ export default Ember.Route.extend({
       var formCompleted = true;
 
       $('#billingInformation .field.required').each(function() {
-        if($('input', this).val() == '') {
+        if($('input', this).val() === '') {
           $(this).addClass('error');
           formCompleted = false;
         } else {

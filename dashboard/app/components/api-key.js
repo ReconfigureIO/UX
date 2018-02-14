@@ -16,6 +16,12 @@ export default Ember.Component.extend({
         return text === "Show API key" ? "Hide API key" : "Show API key";
       });
       Ember.$('.api-key__container__copy').toggleClass('active');
+    },
+    copySuccess: function(response) {
+      alert('The API key has been copied to your clipboard.');
+    },
+    copyError: function(response) {
+      alert('There was an error copying the API key to your clipboard. Please try again.');
     }
   }
 });
