@@ -22,12 +22,28 @@
       max-width: 100%;
       font-family: $font_primary_roman;
       @include adjust-font-size-to(18px);
+      pointer-events: none;
+
+      &:focus {
+        padding: inherit;
+      }
     }
 
     &__trigger {
       display: inline-block;
       color: $trout;
       text-transform: none;
+      clear: both;
+    }
+
+    &__copy {
+      display: none;
+      clear: both;
+      margin-top: $base-margin*2;
+
+      &.active {
+        display: block;
+      }
     }
   }
 }

@@ -2,8 +2,19 @@
   <h2 class="api-key__title">API Key</h2>
 
   <div class="api-key__container">
-    <input type="password" class="api-key__container__key" value="{{key}}" disabled>
+    <input type="password" id="api-key" class="api-key__container__key" value="{{key}}">
 
     <a href="#" class="api-key__container__trigger" {{action "toggleKey"}}>Show API key</a>
+    
+    <div class="api-key__container__copy">
+      {{#copy-button
+        clipboardTarget="#api-key"
+        class="btn"
+        success=(action 'copySuccess')
+        error=(action 'copyError')
+      }}
+        Copy to clipboard
+      {{/copy-button}}
+    </div>
   </div>
 </section>
