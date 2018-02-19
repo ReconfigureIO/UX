@@ -225,3 +225,7 @@ article ul li li a {
       overflow: visible !important;
    }
 }
+
+.rst-content .highlight>pre {
+    line-height: 18px;
+}
