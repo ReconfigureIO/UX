@@ -2,10 +2,9 @@
 
 Tutorial 2 – Filling in the Gaps
 ================================================
-
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check if your installation in up-to-date. Our current version is |reco_version|. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
+    Run ``reco version`` to check if your installation is up-to-date. Our current version is |reco_version|. If you need to update, please run ``reco update`` before moving on to the tutorial.
 
 In this tutorial, we will look at pretty much the simplest calculation possible – adding two numbers together. This is to get you writing and testing your own code. We will look at the problem, discuss how to design the program, and then, once you've had a go at filling in some gaps in the code, you can simulate the program using ``test``. Then, we'll look at our full code solution. This tutorial assumes you have already run through our first tutorial: :ref:`demo`.
 
