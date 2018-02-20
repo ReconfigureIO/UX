@@ -5,32 +5,32 @@ Setup, Updating and Authenticating
 
 Update the command line tool
 ----------------------------
-The current version of our tooling is **v0.4.4**. To check which version you have installed run ``reco version``.
+The current version of our tooling is |reco_version|. To check which version you have installed run ``reco version``.
 
 To update to the current version of ``reco`` please follow the instructions for your operating system:
 
 **Linux**: Run the following from your terminal, you may be asked to enter your password:
 
-.. code-block:: shell
+.. subst-code-block::
 
-    curl -LO https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.4.4-x86_64-linux.zip \
-    && unzip reco-v0.4.4-x86_64-linux.zip \
+    curl -LO https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-|reco_version|-x86_64-linux.zip \
+    && unzip reco-|reco_version|-x86_64-linux.zip \
     && sudo mv reco /usr/local/bin
 
 **OSX**: Run the following from your terminal, you may be asked to enter your password:
 
-.. code-block:: shell
+..subst-code-block::
 
-    curl -LO https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.4.4-x86_64-apple-darwin.zip \
-    && unzip reco-v0.4.4-x86_64-apple-darwin.zip \
+    curl -LO https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-|reco_version|-x86_64-apple-darwin.zip \
+    && unzip reco-|reco_version|-x86_64-apple-darwin.zip \
     && sudo mv reco /usr/local/bin
 
 **Windows**: If you're a Windows user launch **Powershell** as administrator and paste:
 
-.. code-block:: shell
+..subst-code-block::
 
-  Invoke-WebRequest https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.4.4-x86_64-pc-windows.zip -OutFile reco-v0.4.4-x86_64-pc-windows.zip;
-  Expand-Archive -Path reco-v0.4.4-x86_64-pc-windows.zip -DestinationPath C:\reco -Force;
+  Invoke-WebRequest https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-|reco_version|-x86_64-pc-windows.zip -OutFile reco-|reco_version|-x86_64-pc-windows.zip;
+  Expand-Archive -Path reco-|reco_version|-x86_64-pc-windows.zip -DestinationPath C:\reco -Force;
   setx PATH "$env:path;C:\reco" -m;
 
 ``reco`` will be available in further terminal/powershell sessions.
