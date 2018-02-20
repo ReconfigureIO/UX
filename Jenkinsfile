@@ -12,7 +12,7 @@ if(env.BRANCH_NAME == "master") {
     zone = staging_zone
     base = staging_base
 }
- 
+
 node ('master') {
     try {
         timeout(time: 10, unit: 'MINUTES') {
@@ -25,7 +25,7 @@ node ('master') {
 
             stage 'reco'
             if(env.BRANCH_NAME != "master") {
-            
+
                 dir ('reco/') {
                     stage 'reco - satisfy dependencies'
                         sh 'docker-compose run --rm go make clean dependencies'
@@ -46,7 +46,7 @@ node ('master') {
                 sh "docker run -v \$PWD/docs:/mnt --env-file=docs/vars/production.env 'reconfigureio/sphinx:latest' make html"
                 sh "docker run -v \$PWD/dashboard:/mnt 'reconfigureio/dashboard:latest' make production"
             }else{
-                sh "docker run -v \$PWD/docs:/mnt --env-file=docs/vars/staging.env -e RECO_VERSION=${env.BRANCH_NAME} 'reconfigureio/sphinx:latest' make html"
+                sh "docker run -v \$PWD/docs:/mnt --env-file=docs/vars/staging.env -e 'reconfigureio/sphinx:latest' make html"
                 sh "docker run -v \$PWD/dashboard:/mnt 'reconfigureio/dashboard:latest' make build BASE_URL=${staging_base}/"
             }
 
