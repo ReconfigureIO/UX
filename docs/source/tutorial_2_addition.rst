@@ -5,7 +5,7 @@ Tutorial 2 – Filling in the Gaps
 
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check if your installation in up-to-date. Our current version is ``|reco_version|``. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
+    Run ``reco version`` to check if your installation in up-to-date. Our current version is |reco_version|. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
 
 In this tutorial you will complete the code for one of our example programs and find any errors in your code using ``reco check`` and ``reco sim``. The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.
 
