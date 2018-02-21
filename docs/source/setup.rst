@@ -7,7 +7,11 @@ Update the command line tool
 ----------------------------
 The current version of our tooling is |reco_version|. To check which version you have installed run ``reco version``.
 
-To update to the current version of ``reco`` please follow the instructions for your operating system:
+To update to the current version of ``reco`` please run ``reco update`` and you will be guided through the process.
+
+Install the command line tool
+------------------------------
+You will have been guided through installing our command line tool during the signup process, but here are the installation instructions should you need them again.
 
 **Linux**: Run the following from your terminal, you may be asked to enter your password:
 
@@ -19,7 +23,8 @@ To update to the current version of ``reco`` please follow the instructions for 
 
 **OSX**: Run the following from your terminal, you may be asked to enter your password:
 
-.. subst-code-block:: 
+.. subst-code-block::
+
 
     curl -LO https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-|reco_version|-x86_64-apple-darwin.zip \
     && unzip reco-|reco_version|-x86_64-apple-darwin.zip \
@@ -27,7 +32,7 @@ To update to the current version of ``reco`` please follow the instructions for 
 
 **Windows**: If you're a Windows user launch **Powershell** as administrator and paste:
 
-.. subst-code-block:: shell
+..subst-code-block::
 
   Invoke-WebRequest https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-|reco_version|-x86_64-pc-windows.zip -OutFile reco-|reco_version|-x86_64-pc-windows.zip;
   Expand-Archive -Path reco-|reco_version|-x86_64-pc-windows.zip -DestinationPath C:\reco -Force;
@@ -56,11 +61,7 @@ Run the following from a terminal::
     echo "export GOBIN=\$GOPATH/bin"  >> ~/.bash_profile
     echo "export PATH=\$PATH:\$GOPATH/bin"  >> ~/.bash_profile
 
-Then clone our code examples repo into your ``GOPATH`` by running the following in a terminal::
-
-    git clone https://github.com:/ReconfigureIO/examples $GOPATH/src/github.com/ReconfigureIO/examples
-    cd $GOPATH/src/github.com/ReconfigureIO/examples
-    git checkout v0.4.2
+Now head back to :ref:`tutorial 1 <examples-linux>` to fork our examples repo.
 
 Windows 10
 ^^^^^^^^^^
@@ -70,10 +71,4 @@ Windows 10
 * Type ``C:\go-work`` into the 'Variable value' field
 * Click OK
 
-Then clone our code examples repo into your ``GOPATH`` by running the following in a terminal::
-
-    git clone https://github.com:/ReconfigureIO/examples $Env:GOPATH/src/github.com/ReconfigureIO/examples
-    cd $Env:GOPATH/src/github.com/ReconfigureIO/examples
-    git checkout v0.4.2
-
-3. Now head back to :ref:`tutorial 1 <test>` to check everything is set up correctly ...
+Now head back to :ref:`tutorial 1 <examples-win>` to fork our examples repo.
