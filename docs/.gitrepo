@@ -4,8 +4,8 @@
 ; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
 ;
 [subrepo]
-	remote = git@github.com:ReconfigureIO/docs.git
-	branch = fix/code-block-substiutions
-	commit = 2ff3c3e7dc53c3cf00594a0536ba709cc57c38a8
-	parent = c82732e38fc8558780a6364066d9a7cd12cb49e7
+	remote = git@github.com:/ReconfigureIO/docs
+	branch = master
+	commit = 8dcef798fd5dc9b77e7a32c30579237a906745c4
+	parent = 5566514694adfdb73020448c7c658b148afbb2ae
 	cmdver = 0.3.1

@@ -6,9 +6,9 @@ Tutorial 4 – Using Graphs for Optimization
 
     Run ``reco version`` to check if your installation in up-to-date. Our current version is |reco_version|. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
 
-In this tutorial we will look at using dataflow graphs to optimize your code. We'll take a simple function that adds up some numbers using a for loop, generate its dataflow graph, and identify ways to improve performance.
+This tutorial is all about optimizing your code by looking at the flow of data. We do this by generating and analyzing graphs. When you start creating your own programs you'll probably want to start introducing more concurrency to make better use of the parallel processing possibilities of the FPGA. We'll start off simply by taking a single function that adds up some numbers using a for loop, then generate a dataflow graph and identify ways to improve performance.
 
-**The use of dataflow graphs for code optimization is an experimental feature, purely for use during this alpha development phase. It’s quite a complex process but gives an interesting insight into how Reconfigure.io works. We're currently working on automating this optimization stage, at which point, graph generation will no longer be part of our workflow.**
+**The use of dataflow graphs for code optimization is an experimental feature. It’s quite a complex process but gives an interesting insight into how Reconfigure.io works. We're currently working on automating this optimization stage, at which point, graph generation will no longer be part of our workflow.**
 
 Why use graphs?
 ---------------
@@ -81,10 +81,14 @@ Node types
 
 Let's get started
 -----------------
-First let's check you've got the most up-to-date version of our examples repo by running::
+First, let's check you're using the latest version of our examples – **v0.4.4**. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
 
-    cd $GOPATH/src/github.com/ReconfigureIO/examples
-    git checkout v0.4.2
+    git describe --tags
+
+If you have a different version, please run::
+
+    git pull upstream master
+    git checkout v0.4.4
 
 So, let's take a single function that takes an array of 8 integers and sums them together using a for loop::
 

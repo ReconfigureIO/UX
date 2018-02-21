@@ -7,39 +7,66 @@ Tutorial 1 – Setup and workflow
 
     Run ``reco version`` to check if your installation is up-to-date. Our current version is |reco_version|. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
 
-This tutorial is a simple introduction to the Reconfigure.io workflow. It's all pretty straightforward so in a few minutes you will have done a hardware simulation of a project running on an FPGA, and then deployed a build to an FPGA in the cloud. Then we'll step through the code and discuss how it was written.
+This tutorial is a simple introduction to the Reconfigure.io workflow. It's all pretty straightforward so in a few minutes you will have done a hardware simulation of a project running on an FPGA, and then deployed a build image of that project to an FPGA in the cloud. Then, we'll step through the code and discuss how it was written.
 
-**We will use a parallelized histogram example in this tutorial, in which a block of memory is filled with sample data before an FPGA is put to work classifying the samples into bins. The contents of each bin is then read out, providing the data required to draw a histogram.**
+**We will use our parallelized histogram example in this tutorial, in which a block of memory is filled with sample data before an FPGA is put to work classifying the samples into bins. The contents of each bin is then read out, providing the data required to draw a histogram.**
 
 From here, we're assuming you've already set up your account and :ref:`installed and authenticated <install>` ``reco`` – if you don't have an account yet, please visit our `website <https://reconfigure.io/sign-up>`_.
 
 .. _examples:
 
-Clone our examples repository
+Fork our examples repository
 ----------------------------
-If you already use Go, and have your ``GOPATH``, workspace and tooling set up, you can now clone our examples into your workspace.
+First we need some code to work with. If you already use Go, and have your ``GOPATH``, workspace and tooling set up, you can now clone a fork of our examples repo into your workspace. You'll also need to have `git <https://help.github.com/articles/set-up-git/#setting-up-git>`_ set up on your local machine.
 
 If you are new to Go, please follow our :ref:`quick setup guide <gotools>` first.
 
-To clone our examples into your workspace, choose your operating system and run the commands in terminal/powershell:
+To fork our examples repo head `here <https://github.com/ReconfigureIO/examples>`_ and click **fork** in the top right hand corner.
 
-Linux/Mac0SX
+.. image:: fork_button.png
+   :align: center
+
+You will be asked for authorization, at which point a copy of the repo will be made in your account. Then, you can clone your fork to your local machine from the command line by following the instructions for your operating system below:
+
+.. _examples-linux:
+
+Linux/MacOSX
 ^^^^^^^^^^^^
+From a terminal create an environment variable for your github username (substitute ``<username>`` for your github username):
 
 .. code-block:: shell
 
-    git clone https://github.com:/ReconfigureIO/examples $GOPATH/src/github.com/ReconfigureIO/examples
-    cd $GOPATH/src/github.com/ReconfigureIO/examples
-    git checkout v0.4.2
+    export GITHUB_USERNAME=<username>
+
+Then copy and paste the following:
+
+.. subst-code-block:: shell
+
+    git clone https://github.com/$GITHUB_USERNAME/examples.git $GOPATH/src/github.com/$GITHUB_USERNAME/examples
+    cd $GOPATH/src/github.com/$GITHUB_USERNAME/examples
+    git remote add upstream git://github.com/ReconfigureIO/examples.git
+    git fetch upstream
+    git checkout |reco_version|
+
+.. _examples-win:
 
 Windows 10
 ^^^^^^^^^^
+From a Powershell terminal create an environment variable for your github username (substitute ``<username>`` for your github username):
 
 .. code-block:: shell
 
-    git clone https://github.com:/ReconfigureIO/examples $Env:GOPATH/src/github.com/ReconfigureIO/examples
-    cd $Env:GOPATH/src/github.com/ReconfigureIO/examples
-    git checkout v0.4.2
+    $env:GithubUsername="<username>"
+
+Then copy and paste the following:
+
+.. code-block:: shell
+
+    git clone https://github.com/$env:GithubUsername/examples.git $Env:GOPATH/src/github.com/$env:GithubUsername/examples
+    cd $Env:GOPATH/src/github.com/$env:GithubUsername/examples
+    git remote add upstream git://github.com/ReconfigureIO/examples.git
+    git fetch upstream
+    git checkout |reco_version|
 
 .. _test:
 
