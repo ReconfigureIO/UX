@@ -5,7 +5,7 @@ Tutorial 2 – Filling in the Gaps
 
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check if your installation in up-to-date. Our current version is ``v0.4.4``. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
+    Run ``reco version`` to check if your installation in up-to-date. Our current version is ``|reco_version|``. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
 
 In this tutorial you will complete the code for one of our example programs and find any errors in your code using ``reco check`` and ``reco sim``. The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.
 
@@ -27,7 +27,7 @@ Let's break this process down. There are just two operands involved so the host 
 
 Filling in the gaps
 -------------------
-First, let's check you're using the latest version of our examples – **v0.4.4**. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
+First, let's check you're using the latest version of our examples – **|reco_version|**. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
 
     git describe --tags
 

@@ -5,7 +5,7 @@ Tutorial 1 – Setup and workflow
 
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check if your installation is up-to-date. Our current version is ``v0.4.4``. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
+    Run ``reco version`` to check if your installation is up-to-date. Our current version is ``|reco_version|``. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
 
 This tutorial is a simple introduction to the Reconfigure.io workflow. It's all pretty straightforward so in a few minutes you will have done a hardware simulation of a project running on an FPGA, and then deployed a build image of that project to an FPGA in the cloud. Then, we'll step through the code and discuss how it was written.
 
@@ -40,13 +40,13 @@ From a terminal create an environment variable for your github username (substit
 
 Then copy and paste the following:
 
-.. code-block:: shell
+.. subst-code-block:: shell
 
     git clone https://github.com/$GITHUB_USERNAME/examples.git $GOPATH/src/github.com/$GITHUB_USERNAME/examples
     cd $GOPATH/src/github.com/$GITHUB_USERNAME/examples
     git remote add upstream git://github.com/ReconfigureIO/examples.git
     git fetch upstream
-    git checkout v0.4.4
+    git checkout |reco_version|
 
 .. _examples-win:
 
@@ -66,7 +66,7 @@ Then copy and paste the following:
     cd $Env:GOPATH/src/github.com/$env:GithubUsername/examples
     git remote add upstream git://github.com/ReconfigureIO/examples.git
     git fetch upstream
-    git checkout v0.4.4
+    git checkout |reco_version|
 
 .. _test:
 
@@ -202,7 +202,7 @@ Deploy an image
 -----------------
 Let's deploy our pre-built image for this example. Running a deployment will program the FPGA with the compiled and optimized Go and deploy the host Go to the host CPU. Please copy and paste the following command and run it in a terminal:
 
-.. parsed-literal::
+.. subst-code-block::
 
     reco deploy run 31b835ac-5575-4ebc-b8c8-0007d629bd8f test-histogram
 
