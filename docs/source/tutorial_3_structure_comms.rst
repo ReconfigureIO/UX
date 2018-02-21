@@ -4,7 +4,7 @@ Tutorial 3 – Structure and Communication
 =========================================
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check if your installation in up-to-date. Our current version is |reco_version|. If you need to update, please head :ref:`here <install>` before moving on to the tutorial.
+    Run ``reco version`` to check if your installation is up-to-date. Our current version is |reco_version|. If you need to update, please run ``reco update`` before moving on to the tutorial.
 
 In this tutorial we're going to cover structuring your programs and writing effective Go code for FPGAs. We'll look at our template, which is available for you to use as the basis for new programs, and use it to complete a couple of examples. Along the way we'll learn a bit more about the shared memory available on the FPGA card.
 
