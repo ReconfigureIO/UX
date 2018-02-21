@@ -4,6 +4,22 @@
 Release Notes
 =============
 
+Reconfigure.io v0.16.4
+======================
+
+This is a minor release focused on improving performance for generated code, and fixing a bug in our `sdaccel <https://github.com/ReconfigureIO/sdaccel>`_ support.
+
+Features
+~~~~~~~~
+
+* Reduce the cost of functions calls.
+* Optimize some variable and channel concurrency operations.
+
+Bugfixes
+~~~~~~~~
+
+* Fix an issue in code generation where the ``ReadBurst`` memory functions could lock up when the consumer was too slow.
+
 Reconfigure.io v0.16.3
 ======================
 

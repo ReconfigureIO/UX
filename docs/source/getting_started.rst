@@ -29,11 +29,11 @@ If you've found your way here without signing up first, please head to our `webs
      Deployment ready at <deployment_IP>
      <deployment_ID>
 
-2. Connect to the deployment using the command below, but substituting <deploy_ID> for your unique deployment ID:
+2. Connect to the deployment using the command below, but substituting <deployment_ID> for your unique deployment ID:
 
    .. code-block:: shell
 
-       reco deploy connect <deploy_ID>
+       reco deploy connect <deployment_ID>
 
    The MD5 generator will open in your default browser. You can enter some text in the box on the left hand side and click GENERATE to see the MD5 hash straight from the FPGA!
 

@@ -6,11 +6,15 @@ Tutorial 2 – Filling in the Gaps
 
     Run ``reco version`` to check if your installation is up-to-date. Our current version is |reco_version|. If you need to update, please run ``reco update`` before moving on to the tutorial.
 
-In this tutorial, we will look at pretty much the simplest calculation possible – adding two numbers together. This is to get you writing and testing your own code. We will look at the problem, discuss how to design the program, and then, once you've had a go at filling in some gaps in the code, you can simulate the program using ``test``. Then, we'll look at our full code solution. This tutorial assumes you have already run through our first tutorial: :ref:`demo`.
+In this tutorial you will complete the code for one of our example programs and find any errors in your code using ``reco check`` and ``reco sim``. The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.
+
+**We'll look at pretty much the simplest calculation possible – adding two numbers together. First, we will look at the problem, discuss how to design the program, and then, once you've had a go at filling in the gaps in the code, you can check the code for compatibility with our compiler and simulate it how it would run on an FPGA to find any errors. Then, we'll look at our full code solution.**
+
+This tutorial assumes you have already run through our first tutorial: :ref:`demo`.
 
 What's the problem?
 -------------------
-We want the FPGA to take two integers, 1 and 2, add them together and send the result back to us. As you saw in our first example, there's a host CPU which works with the FPGA, with communication happening across a control interface. So, the first thing we need to do is decide what each element needs to do and when. Then we can write some Go code to tell the host CPU how to communicate with the FPGA, as well as some Go code to program the FPGA to carry out the required tasks.
+We want the FPGA to take two integers, 1 and 2, add them together and send the result back to us. As you saw in our first example, there's a host CPU which works with the FPGA, with communication happening across a control interface. So, the first thing we need to do is decide what each element needs to do, and when. Then we can write some Go code to tell the host CPU how to communicate with the FPGA, as well as some Go code to program the FPGA to carry out the required tasks.
 
 Let's break this process down. There are just two operands involved so the host can pass them straight to the FPGA along with an address at which to store the result. Then, the FPGA can add the numbers together and write the result back. The host can read the result and print it for us to see. A flow diagram could look like this:
 
@@ -22,12 +26,23 @@ Let's break this process down. There are just two operands involved so the host 
 
 Filling in the gaps
 -------------------
-First let's check you've got the most up-to-date version of our examples repo by running::
+First, let's check you're using the latest version of our examples – **|reco_version|**. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
 
-    cd $GOPATH/src/github.com/ReconfigureIO/examples
-    git checkout v0.4.2
+    git describe --tags
 
-Navigate to ``examples/addition-gaps/cmd/test-addition/main.go`` to look at the incomplete code for the host CPU. You will notice some of the code is missing. Using the information given in the comments, along with the flowchart above, have a go at filling in the missing sections, here's what needs completing:
+If you have a different version, please run::
+
+    git fetch upstream
+    git pull upstream master
+    git checkout v0.4.4
+
+Now navigate to ``examples/addition-gaps/cmd/test-addition/main.go`` to look at the incomplete code for the host CPU. You will notice some of the code is missing. Using the information given in the comments, along with the flowchart above, you can have a go at filling in the missing sections.
+
+First, as we're going to be editing existing code, let's make a new branch to work on, call it ``fill-gaps``::
+
+  git checkout -b fill-gaps
+
+Here's what needs completing:
 
 * Pass operands and results pointer to the kernal (**lines 28, 30 and 32**)
 * Print the result from the FPGA (**line 48**)
@@ -38,18 +53,21 @@ Once you have completed this, move on to the incomplete code for the FPGA, locat
 * Specify the operands and result pointer (**lines 18-20**)
 * Perform the addition (**line 34**)
 
+Once you've made your changes you can stage and commit them to your ``fill-gaps`` branch::
+
+  git add main.go && cmd/test-addition/main.go
+  git commit -m "code completed"
+  git push origin fill-gaps
+
 Check and then simulate your code
 ----------------------------------
 Now the code is complete, make sure you are back in ``examples/addition-gaps`` and you can quickly check it for compatibility with the compiler. Any syntax errors will be flagged up here. For more information on our various error messages see :ref:`errors`::
 
   reco check
 
-Next, once you have dealt with any errors, simulate how your code will run on the FPGA. First, create a project to work within::
+Next, once you have dealt with any errors, use our hardware simulator to test how your code will run on the FPGA. First, create a project to work within and set it to be active::
 
   reco project create addition
-
-Then, set this to be the active project::
-
   reco project set addition
 
 Now you can simulate using the ``reco sim`` command::
