@@ -1,7 +1,7 @@
 Setup, Updating and Authenticating
 ==================================
 
-Update the command line tool - available from v0.5.0 upwards
+Update the command line tool - available from v0.5.0
 ------------------------------------------------------------
 The current version of our tooling is |reco_version|. To check which version you have installed run ``reco version``.
 
