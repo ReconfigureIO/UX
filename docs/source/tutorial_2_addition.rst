@@ -28,7 +28,6 @@ Filling in the gaps
 -------------------
 First, let's check you're using the latest version of our examples – **v0.4.6**. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
 
-
     git describe --tags
 
 If you have a different version, please run::
@@ -45,7 +44,7 @@ First, as we're going to be editing existing code, let's make a new branch to wo
 
 Here's what needs completing:
 
-* Pass operands and results pointer to the kernal (**lines 28, 30 and 32**)
+* Pass operands and results pointer to the FPGA (**lines 28, 30 and 32**)
 * Print the result from the FPGA (**line 48**)
 * Create an ``if`` statement to exit if the result from the FPGA does not equal 3 (**lines 51-53**)
 
@@ -62,10 +61,11 @@ Once you've made your changes you can stage and commit them to your ``fill-gaps`
 
 Test your code
 --------------
-We've provided a test file for this example so you can test your program in your Go environment. Make sure you're in ``your-github-username/examples/addition-gaps`` and run ``go test``. All being well you should see::
+We've provided a test file for this example so you can test your program in your Go environment. Make sure you're in ``your-github-username/examples/addition-gaps`` and run ``go test``. All being well you should see something like::
 
-.. TODO::
-   add in what they'll see if it works
+  $ go test
+  PASS
+  ok  	github.com/your-github-username/examples/addition-gaps	0.007s
 
 Check and then simulate your code
 ----------------------------------
@@ -157,48 +157,51 @@ And here's the FPGA code:
    :linenos:
    :emphasize-lines: 21, 22, 23, 37
 
-     package main
+    package main
 
-     import (
-     	//  Import the entire framework for interracting with SDAccel from Go (including bundled verilog)
-     	_ "github.com/ReconfigureIO/sdaccel"
+    import (
+    //  Import the entire framework for interracting with SDAccel from Go (including bundled verilog)
+    _ "github.com/ReconfigureIO/sdaccel"
 
-     	// Use the new AXI protocol package for interracting with memory
-     	aximemory "github.com/ReconfigureIO/sdaccel/axi/memory"
-     	axiprotocol "github.com/ReconfigureIO/sdaccel/axi/protocol"
+    // Use the new AXI protocol package for interracting with memory
+    aximemory "github.com/ReconfigureIO/sdaccel/axi/memory"
+    axiprotocol "github.com/ReconfigureIO/sdaccel/axi/protocol"
+    )
 
-     	"github.com/ReconfigureIO/addition"
-     )
+    // function to add two uint32s
+    func Add(a uint32, b uint32) uint32 {
+    return a + b
+    }
 
-     func Top(
-     	// The first set of arguments to this function can be any number
-     	// of Go primitive types and can be provided via `SetArg` on the host.
+    func Top(
+    // The first set of arguments to this function can be any number
+    // of Go primitive types and can be provided via `SetArg` on the host.
 
-     	// For this example, we have 3 arguments: two operands to add
-     	// together and an address in shared memory where the FPGA will
-     	// store the output.
-     	a uint32,
-     	b uint32,
-     	addr uintptr,
+    // For this example, we have 3 arguments: two operands to add
+    // together and an address in shared memory where the FPGA will
+    // store the output.
+    a uint32,
+    b uint32,
+    addr uintptr,
 
-     	// Set up channels for interacting with the shared memory
-     	memReadAddr chan<- axiprotocol.Addr,
-     	memReadData <-chan axiprotocol.ReadData,
+    // Set up channels for interacting with the shared memory
+    memReadAddr chan<- axiprotocol.Addr,
+    memReadData <-chan axiprotocol.ReadData,
 
-     	memWriteAddr chan<- axiprotocol.Addr,
-     	memWriteData chan<- axiprotocol.WriteData,
-     	memWriteResp <-chan axiprotocol.WriteResp) {
+    memWriteAddr chan<- axiprotocol.Addr,
+    memWriteData chan<- axiprotocol.WriteData,
+    memWriteResp <-chan axiprotocol.WriteResp) {
 
-     	// Since we're not reading anything from memory, disable those reads
-     	go axiprotocol.ReadDisable(memReadAddr, memReadData)
+    // Since we're not reading anything from memory, disable those reads
+    go axiprotocol.ReadDisable(memReadAddr, memReadData)
 
-     	// Add the two input integers together
-     	val := a + b
+    // Add the two input integers together
+    val := Add(a, b)
 
-     	// Write the result of the addition to the shared memory address provided by the host
-     	aximemory.WriteUInt32(
-     		memWriteAddr, memWriteData, memWriteResp, false, addr, val)
-     }
+    // Write the result of the addition to the shared memory address provided by the host
+    aximemory.WriteUInt32(
+      memWriteAddr, memWriteData, memWriteResp, false, addr, val)
+    }
 
 What's next?
 -------------
