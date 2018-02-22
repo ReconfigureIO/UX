@@ -45,7 +45,7 @@ Then copy and paste the following:
     cd $GOPATH/src/github.com/$GITHUB_USERNAME/examples
     git remote add upstream git://github.com/ReconfigureIO/examples.git
     git fetch upstream
-    git checkout v0.4.4
+    git checkout v0.4.6
 
 .. _examples-win:
 
@@ -65,7 +65,7 @@ Then copy and paste the following:
     cd $Env:GOPATH/src/github.com/$env:GithubUsername/examples
     git remote add upstream git://github.com/ReconfigureIO/examples.git
     git fetch upstream
-    git checkout v0.4.4
+    git checkout v0.4.6
 
 .. _test:
 

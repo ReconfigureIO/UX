@@ -5,7 +5,7 @@ Tutorial 2 – Filling in the Gaps
 .. admonition:: Make sure you're up to date.
 
     Run ``reco version`` to check if your installation is up-to-date. Our current version is |reco_version|. If you need to update, please see our :ref:`install/update instructions <install>`.
-    
+
 In this tutorial you will complete the code for one of our example programs and find any errors in your code using ``reco check`` and ``reco sim``. The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.
 
 **We'll look at pretty much the simplest calculation possible – adding two numbers together. First, we will look at the problem, discuss how to design the program, and then, once you've had a go at filling in the gaps in the code, you can check the code for compatibility with our compiler and simulate it how it would run on an FPGA to find any errors. Then, we'll look at our full code solution.**
@@ -26,11 +26,8 @@ Let's break this process down. There are just two operands involved so the host 
 
 Filling in the gaps
 -------------------
-<<<<<<< HEAD
-First, let's check you're using the latest version of our examples – **|reco_version|**. Open a terminal and navigate to where you cloned your fork of our examples and run::
-=======
-First, let's check you're using the latest version of our examples – **v0.4.4**. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
->>>>>>> master
+First, let's check you're using the latest version of our examples – **v0.4.6**. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
+
 
     git describe --tags
 
@@ -38,9 +35,9 @@ If you have a different version, please run::
 
     git fetch upstream
     git pull upstream master
-    git checkout v0.4.4
+    git checkout v0.4.6
 
-Now navigate to ``examples/addition-gaps/cmd/test-addition/main.go`` to look at the incomplete code for the host CPU. You will notice some of the code is missing. Using the information given in the comments, along with the flowchart above, you can have a go at filling in the missing sections.
+Now navigate to ``your-github-username/examples/addition-gaps/cmd/test-addition/main.go`` to look at the incomplete code for the host CPU. You will notice some of the code is missing. Using the information given in the comments, along with the flowchart above, you can have a go at filling in the missing sections.
 
 First, as we're going to be editing existing code, let's make a new branch to work on, call it ``fill-gaps``::
 
@@ -52,7 +49,7 @@ Here's what needs completing:
 * Print the result from the FPGA (**line 48**)
 * Create an ``if`` statement to exit if the result from the FPGA does not equal 3 (**lines 51-53**)
 
-Once you have completed this, move on to the incomplete code for the FPGA, located at ``examples/addition-gaps/main.go``, and complete the following sections:
+Once you have completed this, move on to the incomplete code for the FPGA, located at ``your-github-username/examples/addition-gaps/main.go``, and complete the following sections:
 
 * Specify the operands and result pointer (**lines 18-20**)
 * Perform the addition (**line 34**)
@@ -62,6 +59,13 @@ Once you've made your changes you can stage and commit them to your ``fill-gaps`
   git add main.go && cmd/test-addition/main.go
   git commit -m "code completed"
   git push origin fill-gaps
+
+Test your code
+--------------
+We've provided a test file for this example so you can test your program in your Go environment. Make sure you're in ``your-github-username/examples/addition-gaps`` and run ``go test``. All being well you should see::
+
+.. TODO::
+   add in what they'll see if it works
 
 Check and then simulate your code
 ----------------------------------
