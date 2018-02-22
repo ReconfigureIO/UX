@@ -5,7 +5,7 @@ Update the command line tool - available from v0.5.0
 ------------------------------------------------------------
 The current version of our tooling is |reco_version|. To check which version you have installed run ``reco version``.
 
-To update to the current version of ``reco`` please run ``reco update`` and you will be guided through the process.
+To update to the current version of ``reco`` please run ``reco update`` and you will be guided through the process. If your current version is below v0.5.0, please use the installation instructions below to update.
 
 .. _install:
 
