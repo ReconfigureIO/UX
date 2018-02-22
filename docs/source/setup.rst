@@ -32,7 +32,7 @@ You will have been guided through installing our command line tool during the si
 
 **Windows**: If you're a Windows user launch **Powershell** as administrator and paste:
 
-..subst-code-block::
+.. subst-code-block::
 
   Invoke-WebRequest https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-|reco_version|-x86_64-pc-windows.zip -OutFile reco-|reco_version|-x86_64-pc-windows.zip;
   Expand-Archive -Path reco-|reco_version|-x86_64-pc-windows.zip -DestinationPath C:\reco -Force;
