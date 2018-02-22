@@ -155,7 +155,7 @@ And here's the FPGA code:
 
 .. code-block:: Go
    :linenos:
-   :emphasize-lines: 21, 22, 23, 37
+   :emphasize-lines: 24, 25, 26, 40
 
     package main
 
