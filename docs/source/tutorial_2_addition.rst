@@ -26,7 +26,7 @@ Let's break this process down. There are just two operands involved so the host 
 
 Filling in the gaps
 -------------------
-First, let's check you're using the latest version of our examples – **|reco_version|**. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
+First, let's check you're using the latest version of our examples – **|reco_version|**. Open a terminal and navigate to where you cloned your fork of our examples and run::
 
     git describe --tags
 
