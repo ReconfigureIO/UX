@@ -4,7 +4,7 @@ Tutorial 1 – Setup and workflow
 ===============================================
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check if your installation is up-to-date. Our current version is |reco_version|. If you need to update, please run ``reco update`` before moving on to the tutorial.
+    Run ``reco version`` to check if your installation is up-to-date. Our current version is |reco_version|. If you need to update, please see our :ref:`install/update instructions <install>`.
 
 This tutorial is a simple introduction to the Reconfigure.io workflow. It's all pretty straightforward so in a few minutes you will have done a hardware simulation of a project running on an FPGA, and then deployed a build image of that project to an FPGA in the cloud. Then, we'll step through the code and discuss how it was written.
 
@@ -45,7 +45,7 @@ Then copy and paste the following:
     cd $GOPATH/src/github.com/$GITHUB_USERNAME/examples
     git remote add upstream git://github.com/ReconfigureIO/examples.git
     git fetch upstream
-    git checkout |reco_version|
+    git checkout v0.4.4
 
 .. _examples-win:
 
@@ -65,7 +65,7 @@ Then copy and paste the following:
     cd $Env:GOPATH/src/github.com/$env:GithubUsername/examples
     git remote add upstream git://github.com/ReconfigureIO/examples.git
     git fetch upstream
-    git checkout |reco_version|
+    git checkout v0.4.4
 
 .. _test:
 

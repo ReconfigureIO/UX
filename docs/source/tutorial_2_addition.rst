@@ -4,8 +4,8 @@ Tutorial 2 – Filling in the Gaps
 ================================================
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check if your installation is up-to-date. Our current version is |reco_version|. If you need to update, please run ``reco update`` before moving on to the tutorial.
-
+    Run ``reco version`` to check if your installation is up-to-date. Our current version is |reco_version|. If you need to update, please see our :ref:`install/update instructions <install>`.
+    
 In this tutorial you will complete the code for one of our example programs and find any errors in your code using ``reco check`` and ``reco sim``. The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.
 
 **We'll look at pretty much the simplest calculation possible – adding two numbers together. First, we will look at the problem, discuss how to design the program, and then, once you've had a go at filling in the gaps in the code, you can check the code for compatibility with our compiler and simulate it how it would run on an FPGA to find any errors. Then, we'll look at our full code solution.**
@@ -26,7 +26,11 @@ Let's break this process down. There are just two operands involved so the host 
 
 Filling in the gaps
 -------------------
+<<<<<<< HEAD
 First, let's check you're using the latest version of our examples – **|reco_version|**. Open a terminal and navigate to where you cloned your fork of our examples and run::
+=======
+First, let's check you're using the latest version of our examples – **v0.4.4**. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
+>>>>>>> master
 
     git describe --tags
 

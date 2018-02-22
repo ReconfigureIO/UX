@@ -1,15 +1,15 @@
 Setup, Updating and Authenticating
 ==================================
 
-.. _install:
-
-Update the command line tool
-----------------------------
+Update the command line tool - available from v0.5.0
+------------------------------------------------------------
 The current version of our tooling is |reco_version|. To check which version you have installed run ``reco version``.
 
-To update to the current version of ``reco`` please run ``reco update`` and you will be guided through the process.
+To update to the current version of ``reco`` please run ``reco update`` and you will be guided through the process. If your current version is below v0.5.0, please use the installation instructions below to update.
 
-Install the command line tool
+.. _install:
+
+Install/Update the command line tool
 ------------------------------
 You will have been guided through installing our command line tool during the signup process, but here are the installation instructions should you need them again.
 
