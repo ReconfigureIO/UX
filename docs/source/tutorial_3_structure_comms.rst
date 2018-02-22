@@ -218,7 +218,7 @@ To explore these methods of passing data around further let's use our template t
     :width: 90%
     :align: center
 
-We can use our template to write the code to perform this multiplication. First, let's check you're using the latest version of our examples – **v0.4.4**. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
+We can use our template to write the code to perform this multiplication. First, let's check you're using the latest version of our examples – **|examples_version|**. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
 
     git describe --tags
 
@@ -226,7 +226,7 @@ If you have a different version, please run::
 
     git fetch upstream
     git pull upstream master
-    git checkout v0.4.4
+    git checkout |examples_version|
 
 We're going to be editing and adding to our template now so let's make a new branch to work on, call it ``multiply``::
 
