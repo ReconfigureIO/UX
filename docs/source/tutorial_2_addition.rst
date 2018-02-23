@@ -50,8 +50,8 @@ Here's what needs completing:
 
 Once you have completed this, move on to the incomplete code for the FPGA, located at ``your-github-username/examples/addition-gaps/main.go``, and complete the following sections:
 
-* Specify the operands and result pointer (**lines 18-20**)
-* Perform the addition (**line 34**)
+* Specify the operands and result pointer (**lines 24-26**)
+* Perform the addition (**line 40**)
 
 Once you've made your changes you can stage and commit them to your ``fill-gaps`` branch::
 
@@ -61,26 +61,37 @@ Once you've made your changes you can stage and commit them to your ``fill-gaps`
 
 Test your code
 --------------
-We've provided a test file for this example so you can test your program in your Go environment. Make sure you're in ``your-github-username/examples/addition-gaps`` and run ``go test``. All being well you should see something like::
+Now you can test your program for syntax and semantic errors within your Go environment. We've included a test file – ``main_test.go`` which will check that the Add function in the FPGA code does what's it's supposed to. So let's test that first. Make sure you're in ``your-github-username/examples/addition-gaps`` and run ``go test``. All being well you should see something like::
 
   $ go test
   PASS
   ok  	github.com/your-github-username/examples/addition-gaps	0.007s
 
+If there are any errors in your code they will be flagged up here for you to fix. A pass here tells us that your code is compatible with the Go compiler, and they main function we're using does what we're expecting.
+
+Next navigate to ``your-github-username/examples/addition-gaps/cmd/test-addition`` and run ``go test``, and hopefully you'll see::
+
+  $ go test
+  PASS
+  ok  	github.com/your-github-username/examples/addition-gaps/cmd/test-addition	0.007s
+
+If not, you will be able to see where any errors are located. A pass here tell us that your CPU code is compatible with the Go compiler.
+
 Check and then simulate your code
 ----------------------------------
-Now the code is complete, make sure you are back in ``examples/addition-gaps`` and you can quickly check it for compatibility with the compiler. Any syntax errors will be flagged up here. For more information on our various error messages see :ref:`errors`::
+Now the code is complete and we know it conforms to the Go language, let's check your FPGA code is compatible with the Reconfigure.io compiler. Make sure you are back in ``examples/addition-gaps`` and run ``reco check``. Any syntax errors will be flagged up here. For more information on our various error messages see :ref:`errors`. All being well you should see::
 
-  reco check
+  $ reco check
+  $GOPATH/github.com/your-github-username/examples/addition-gaps/main.go checked successfully
 
 Next, once you have dealt with any errors, use our hardware simulator to test how your code will run on the FPGA. First, create a project to work within and set it to be active::
 
   reco project create addition
   reco project set addition
 
-Now you can simulate using the ``reco sim`` command::
+Now you can start a simulation by running ``reco sim run test-addition``::
 
-  reco sim run test-addition
+  $ reco sim run test-addition
 
 .. admonition:: Getting in the queue
 
