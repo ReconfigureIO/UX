@@ -187,16 +187,16 @@ So, the FPGA getting hold of the array requires three steps – first, the FPGA 
       outputData uintptr,
       length uint32,
 
-2. Create a variable called ``data`` to hold the input data::
+2. Create a variable called ``data`` to hold the input data, this will be located within the FPGA's block RAM::
 
       data := make([]uint32, length)
 
-3. Read the data from memory into the variable ``data``::
+3. Read the data from shared memory into the variable ``data``::
 
       aximemory.ReadUInt32(
         memReadAddr, memReadData, false, inputData, data)
 
-Now the FPGA has our array held in a variable called ``data``, let's send it back again. The process for getting data from the FPGA to the reserved space in shared memory is an `AXI write <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#WriteUInt32>`_ as follows::
+Now the FPGA has our array held within ``data``, let's send it back again. The process for getting data from the FPGA's block RAM to the reserved space in shared memory is an `AXI write <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#WriteUInt32>`_ as follows::
 
   aximemory.WriteUInt32(
     memWriteAddr, memWriteData, memWriteResp, false, outputData, data)

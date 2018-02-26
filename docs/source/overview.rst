@@ -8,7 +8,7 @@ System architecture
 --------------------
 Reconfigure.io is a platform as a service (PaaS), which takes your Go code, compiles and optimizes it, and deploys to cloud-based FPGAs. You will code in Go and interact with the service using our simple command-line tool. We use AWS F1 instances for our cloud FPGAs, but all you need to use our service is a Reconfigure.io account and our command-line tool – we take care of the rest.
 
-The image below describes how Reconfigure.io works. All coding is done locally in Go and you can type-check locally for compatibility before simulating, building and deploying in the cloud. The F1 instance hardware includes a host CPU with an FPGA connected via PCIe. The FPGA also has some dedicated memory (DRAM) which can be used to share data between the CPU and FPGA.
+The image below describes how Reconfigure.io works. All coding is done locally in Go and you can develop and debug your projects in your Go environment before checking for compatibility with our compiler and simulating, building and deploying in the cloud. F1 instances include a host CPU with an FPGA connected via PCIe. The FPGA also has 64 GiB dedicated memory (DRAM) which can be used to share data between the CPU and FPGA.
 
 .. image:: ReconfigureArchAWS.png
 
