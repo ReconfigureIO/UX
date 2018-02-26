@@ -26,11 +26,13 @@ Let's break this process down. There are just two operands involved so the host 
 
 Filling in the gaps
 -------------------
-First, let's check you're using the latest version of our examples – **|examples_version|**. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
+First, let's check you're using the latest version of our examples – |examples_version|. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
 
     git describe --tags
 
-If you have a different version, please run::
+If you have a different version, please run
+
+.. subst-code-block::
 
     git fetch upstream
     git pull upstream master

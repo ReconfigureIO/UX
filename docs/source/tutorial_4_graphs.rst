@@ -81,11 +81,13 @@ Node types
 
 Let's get started
 -----------------
-First, let's check you're using the latest version of our examples – **|examples_version|**. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
+First, let's check you're using the latest version of our examples – |examples_version|. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
 
     git describe --tags
 
-If you have a different version, please run::
+If you have a different version, please run
+
+.. subst-code-block::
 
     git pull upstream master
     git checkout |examples_version|
