@@ -92,6 +92,20 @@ Next, once you have dealt with any errors, use our hardware simulator to test ho
 Now you can start a simulation by running ``reco sim run test-addition``::
 
   $ reco sim run test-addition
+  preparing simulation
+  done
+  archiving
+  done
+  uploading
+  done
+  running simulation
+
+  status: QUEUED
+  Waiting for Batch job to start
+  status: STARTED
+  Beginning log stream for simulation 74c620cf-8fe0-4500-8a6f-fac0fa03edc2
+  ...
+  3
 
 .. admonition:: Getting in the queue
 
