@@ -222,7 +222,9 @@ We can use our template to write the code to perform this multiplication. First,
 
     git describe --tags
 
-If you have a different version, please run::
+If you have a different version, please run
+
+.. subst-code-block::
 
     git fetch upstream
     git pull upstream master

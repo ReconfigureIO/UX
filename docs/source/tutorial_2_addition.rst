@@ -26,15 +26,17 @@ Let's break this process down. There are just two operands involved so the host 
 
 Filling in the gaps
 -------------------
-First, let's check you're using the latest version of our examples – **v0.4.6**. Open a terminal and navigate to where you cloned your fork of our examples and run::
+First, let's check you're using the latest version of our examples – |examples_version|. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
 
     git describe --tags
 
-If you have a different version, please run::
+If you have a different version, please run
+
+.. subst-code-block::
 
     git fetch upstream
     git pull upstream master
-    git checkout v0.4.6
+    git checkout |examples_version|
 
 For this tutorial you'll also need to start using our tutorial materials repo, which contains an incomplete example for you to work on. So, as you did in the previous tutorial, let's fork the tutorials repo. You'll find it here: https://github.com/ReconfigureIO/tutorials. Click the **fork** button towardt the top right of the screen. You will be asked for authorization, at which point a copy of the repo will be made in your account. Then, you can clone your fork to your local machine from the command line by following the instructions for your operating system below:
 
