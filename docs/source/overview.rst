@@ -12,7 +12,7 @@ The image below describes how Reconfigure.io works. All coding is done locally i
 
 .. image:: ReconfigureArchAWS.png
 
-The FPGA has 64 GiB dedicated memory (DRAM) which can be used to share data between the CPU and FPGA.
+Each FPGA card has 64 GiB dedicated memory (DRAM) which can be used to share data between the CPU and FPGA.
 
 .. image:: ReconfigureFPGAarchitecture.png
 
