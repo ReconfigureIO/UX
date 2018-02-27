@@ -218,7 +218,7 @@ To explore these methods of passing data around further let's use our template t
     :width: 90%
     :align: center
 
-We can use our template to write the code to perform this multiplication. First, let's check you're using the latest version of our tutorial materials – **v0.1.0**. Open a terminal and navigate to where you cloned your fork of our tutorial materials ($GOPATH/src/github.com/<your-github-username>/tutorials) and run::
+We can use our template to write the code to perform this multiplication. First, let's check you're using the latest version of our tutorial materials – |tutorials_version|. Open a terminal and navigate to where you cloned your fork of our tutorial materials ($GOPATH/src/github.com/<your-github-username>/tutorials) and run::
 
     git describe --tags
 
@@ -228,7 +228,7 @@ If you have a different version, please run
 
     git fetch upstream
     git pull upstream master
-    git checkout v0.1.0
+    git checkout |tutorials_version|
 
 We're going to be editing and adding to our template now so let's make a new branch to work on, call it ``multiply``::
 
