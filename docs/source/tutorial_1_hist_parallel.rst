@@ -45,7 +45,7 @@ Then copy and paste the following:
     cd $GOPATH/src/github.com/$GITHUB_USERNAME/examples
     git remote add upstream git://github.com/ReconfigureIO/examples.git
     git fetch upstream
-    git checkout v0.4.4
+    git checkout |examples_version|
 
 .. _examples-win:
 
@@ -59,13 +59,13 @@ From a Powershell terminal create an environment variable for your github userna
 
 Then copy and paste the following:
 
-.. code-block:: shell
+.. subst-code-block:: shell
 
     git clone https://github.com/$env:GithubUsername/examples.git $Env:GOPATH/src/github.com/$env:GithubUsername/examples
     cd $Env:GOPATH/src/github.com/$env:GithubUsername/examples
     git remote add upstream git://github.com/ReconfigureIO/examples.git
     git fetch upstream
-    git checkout v0.4.4
+    git checkout |examples_version|
 
 .. _test:
 
