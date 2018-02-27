@@ -177,9 +177,9 @@ Next, the code snippets for passing our test data to the FPGA look like this (re
 
 FPGA code
 ^^^^^^^^^^
-The FPGA interacts with shared memory using the `AXI memory protocol <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/>`_. In the template in the section above you can see we always set up channels to act as ports for interacting with shared memory within the ``Top`` function in the FPGA code.
+The FPGA interacts with shared memory using the `AXI memory protocol <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/>`_. In the template above you can see we always set up channels to act as ports for interacting with shared memory within the ``Top`` function in the FPGA code.
 
-So, the FPGA getting hold of the array requires three steps – first, the FPGA must receive the memory location from the host, then create a variable for the data and use an `AXI read <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#ReadUInt32>`_ to read the data into that variable. Here are the code snippets for these steps:
+So, the FPGA getting hold of the array requires three steps – first, the FPGA must receive the memory location from the host, then create a variable for the data and use an `AXI read <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#ReadUInt32>`_ to read the data into that variable within the on-chip block RAM. Here are the code snippets for these steps:
 
 1. Receive the memory locations and data size from the host (the ``0``, ``1`` and ``2`` in ``krnl.SetMemoryArg...`` are translated by our comiler to be the first, second and third inputs to the FPGA)::
 
