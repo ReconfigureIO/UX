@@ -24,8 +24,8 @@ Let's break this process down. There are just two operands involved so the host 
 
    Addition flow diagram
 
-Filling in the gaps
--------------------
+Fork our tutorials repository
+---------------------------------
 First, let's check you're using the latest version of our examples – |examples_version|. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
 
     git describe --tags
@@ -76,6 +76,8 @@ Then copy and paste the following:
     git fetch upstream
     git checkout v0.1.0
 
+Filling in the gaps
+-------------------
 Now navigate to ``your-github-username/tutorials/addition-gaps/cmd/test-addition/main.go`` to look at the incomplete code for the host CPU. You will notice some of the code is missing. Using the information given in the comments, along with the flowchart above, you can have a go at filling in the missing sections.
 
 First, as we're going to be editing existing code, let's make a new branch to work on, call it ``fill-gaps``::
