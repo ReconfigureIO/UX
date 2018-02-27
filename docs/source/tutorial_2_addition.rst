@@ -6,7 +6,7 @@ Tutorial 2 – Filling in the Gaps
 
     Run ``reco version`` to check if your installation is up-to-date. Our current version is |reco_version|. If you need to update, please see our :ref:`install/update instructions <install>`.
 
-In this tutorial you will complete the code for one of our example programs and find any errors in your code using ``reco check`` and ``reco sim``. The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.
+In this tutorial you will complete the code for one of our example programs and find any errors in your code using ``go test`` and ``reco check``. You will then simulate the code running on an FPGA using ``reco sim``. The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.
 
 **We'll look at pretty much the simplest calculation possible – adding two numbers together. First, we will look at the problem, discuss how to design the program, and then, once you've had a go at filling in the gaps in the code, you can check the code for compatibility with our compiler and simulate it how it would run on an FPGA to find any errors. Then, we'll look at our full code solution.**
 
@@ -26,7 +26,7 @@ Let's break this process down. There are just two operands involved so the host 
 
 Filling in the gaps
 -------------------
-First, let's check you're using the latest version of our examples – **v0.4.6**. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
+First, let's check you're using the latest version of our examples – **v0.4.6**. Open a terminal and navigate to where you cloned your fork of our examples and run::
 
     git describe --tags
 
@@ -36,7 +36,45 @@ If you have a different version, please run::
     git pull upstream master
     git checkout v0.4.6
 
-Now navigate to ``your-github-username/examples/addition-gaps/cmd/test-addition/main.go`` to look at the incomplete code for the host CPU. You will notice some of the code is missing. Using the information given in the comments, along with the flowchart above, you can have a go at filling in the missing sections.
+For this tutorial you'll also need to start using our tutorial materials repo, which contains an incomplete example for you to work on. So, as you did in the previous tutorial, let's fork the tutorials repo. You'll find it here: https://github.com/ReconfigureIO/tutorials. Click the **fork** button towardt the top right of the screen. You will be asked for authorization, at which point a copy of the repo will be made in your account. Then, you can clone your fork to your local machine from the command line by following the instructions for your operating system below:
+
+Linux/MacOSX
+^^^^^^^^^^^^
+From a terminal create an environment variable for your github username (substitute ``<username>`` for your github username):
+
+.. code-block:: shell
+
+    export GITHUB_USERNAME=<username>
+
+Then copy and paste the following:
+
+.. subst-code-block:: shell
+
+    git clone https://github.com/$GITHUB_USERNAME/tutorials.git $GOPATH/src/github.com/$GITHUB_USERNAME/tutorials
+    cd $GOPATH/src/github.com/$GITHUB_USERNAME/tutorials
+    git remote add upstream git://github.com/ReconfigureIO/tutorials.git
+    git fetch upstream
+    git checkout v0.1.0
+
+Windows 10
+^^^^^^^^^^
+From a Powershell terminal create an environment variable for your github username (substitute ``<username>`` for your github username):
+
+.. code-block:: shell
+
+    $env:GithubUsername="<username>"
+
+Then copy and paste the following:
+
+.. code-block:: shell
+
+    git clone https://github.com/$env:GithubUsername/tutorials.git $Env:GOPATH/src/github.com/$env:GithubUsername/tutorials
+    cd $Env:GOPATH/src/github.com/$env:GithubUsername/tutorials
+    git remote add upstream git://github.com/ReconfigureIO/tutorials.git
+    git fetch upstream
+    git checkout v0.1.0
+
+Now navigate to ``your-github-username/tutorials/addition-gaps/cmd/test-addition/main.go`` to look at the incomplete code for the host CPU. You will notice some of the code is missing. Using the information given in the comments, along with the flowchart above, you can have a go at filling in the missing sections.
 
 First, as we're going to be editing existing code, let's make a new branch to work on, call it ``fill-gaps``::
 
@@ -61,28 +99,28 @@ Once you've made your changes you can stage and commit them to your ``fill-gaps`
 
 Test your code
 --------------
-Now you can test your program for syntax and semantic errors within your Go environment. We've included a test file – ``main_test.go`` which will check that the Add function in the FPGA code does what's it's supposed to. So let's test that first. Make sure you're in ``your-github-username/examples/addition-gaps`` and run ``go test``. All being well you should see something like::
+Now you can test your program for syntax and semantic errors within your Go environment. We've included a test file – ``main_test.go`` which will check that the Add function in the FPGA code does what's it's supposed to. So let's test that first. Make sure you're in ``your-github-username/tutorials/addition-gaps`` and run ``go test``. All being well you should see something like::
 
   $ go test
   PASS
-  ok  	github.com/your-github-username/examples/addition-gaps	0.007s
+  ok  	github.com/your-github-username/tutorials/addition-gaps	0.007s
 
 If there are any errors in your code they will be flagged up here for you to fix. A pass here tells us that your code is compatible with the Go compiler, and they main function we're using does what we're expecting.
 
-Next navigate to ``your-github-username/examples/addition-gaps/cmd/test-addition`` and run ``go test``, and hopefully you'll see::
+Next navigate to ``your-github-username/tutorials/addition-gaps/cmd/test-addition`` and run ``go test``, and hopefully you'll see::
 
   $ go test
   PASS
-  ok  	github.com/your-github-username/examples/addition-gaps/cmd/test-addition	0.007s
+  ok  	github.com/your-github-username/tutorials/addition-gaps/cmd/test-addition	0.007s
 
 If not, you will be able to see where any errors are located. A pass here tell us that your CPU code is compatible with the Go compiler.
 
 Check and then simulate your code
 ----------------------------------
-Now the code is complete and we know it conforms to the Go language, let's check your FPGA code is compatible with the Reconfigure.io compiler. Make sure you are back in ``examples/addition-gaps`` and run ``reco check``. Any syntax errors will be flagged up here. For more information on our various error messages see :ref:`errors`. All being well you should see::
+Now the code is complete and we know it conforms to the Go language, let's check your FPGA code is compatible with the Reconfigure.io compiler. Make sure you are back in ``tutorials/addition-gaps`` and run ``reco check``. Any syntax errors will be flagged up here. For more information on our various error messages see :ref:`errors`. All being well you should see::
 
   $ reco check
-  $GOPATH/github.com/your-github-username/examples/addition-gaps/main.go checked successfully
+  $GOPATH/github.com/your-github-username/tutorials/addition-gaps/main.go checked successfully
 
 Next, once you have dealt with any errors, use our hardware simulator to test how your code will run on the FPGA. First, create a project to work within and set it to be active::
 
@@ -115,7 +153,7 @@ For more detailed descriptions of any error messages you might receive here, you
 
 The complete example
 --------------------
-Take a look at our full example to see if there are any differences between our code and yours, you can find it here: ``examples/addition``. First, here's the host code:
+Take a look at our full example to see if there are any differences between our code and yours, you can find it here: ``<your-github-username>/examples/addition``. First, here's the host code:
 
 .. code-block:: Go
    :linenos:
