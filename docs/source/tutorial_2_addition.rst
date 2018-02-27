@@ -38,7 +38,7 @@ If you have a different version, please run
     git pull upstream master
     git checkout |examples_version|
 
-You'll also need to start using our tutorial materials repo, which contains an incomplete example for you to work on. So, as you did in the previous tutorial, let's fork the tutorials repo. You'll find it here: https://github.com/ReconfigureIO/tutorials. Click the **fork** button towardt the top right of the screen. You will be asked for authorization, at which point a copy of the repo will be made in your account. Then, you can clone your fork to your local machine from the command line by following the instructions for your operating system below:
+You'll also need to start using our tutorial materials repo, which contains an incomplete example for you to work on. So, as you did in the previous tutorial, let's fork the tutorials repo. You'll find it here: https://github.com/ReconfigureIO/tutorials. Click the **fork** button towards the top right of the screen. You will be asked to authorize the fork being placed into your account. Then, you can clone your fork to your local machine from the command line by following the instructions for your operating system below:
 
 Linux/MacOSX
 ^^^^^^^^^^^^
@@ -107,7 +107,7 @@ Now you can test your program for syntax and semantic errors within your Go envi
   PASS
   ok  	github.com/your-github-username/tutorials/addition-gaps	0.007s
 
-If there are any errors in your code they will be flagged up here for you to fix. A pass here tells us that your code is compatible with the Go compiler, and they main function we're using does what we're expecting.
+If there are any errors in your code they will be flagged up here for you to fix. A pass tells us that your code is compatible with the Go compiler, and the ``ADD`` function does what we're expecting.
 
 Next navigate to ``your-github-username/tutorials/addition-gaps/cmd/test-addition`` and run ``go test``, and hopefully you'll see::
 
@@ -115,7 +115,7 @@ Next navigate to ``your-github-username/tutorials/addition-gaps/cmd/test-additio
   PASS
   ok  	github.com/your-github-username/tutorials/addition-gaps/cmd/test-addition	0.007s
 
-If not, you will be able to see where any errors are located. A pass here tell us that your CPU code is compatible with the Go compiler.
+If not, you will be able to see where any errors are located. A pass here tells us that your CPU code is compatible with the Go compiler.
 
 Check and then simulate your code
 ----------------------------------
