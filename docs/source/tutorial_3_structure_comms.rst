@@ -177,9 +177,9 @@ Next, the code snippets for passing our test data to the FPGA look like this (re
 
 FPGA code
 ^^^^^^^^^^
-The FPGA interacts with shared memory using the `AXI memory protocol <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/>`_. In the template in the section above you can see we always set up channels to act as ports for interacting with shared memory within the ``Top`` function in the FPGA code.
+The FPGA interacts with shared memory using the `AXI memory protocol <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/>`_. In the template above you can see we always set up channels to act as ports for interacting with shared memory within the ``Top`` function in the FPGA code.
 
-So, the FPGA getting hold of the array requires three steps – first, the FPGA must receive the memory location from the host, then create a variable for the data and use an `AXI read <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#ReadUInt32>`_ to read the data into that variable. Here are the code snippets for these steps:
+So, the FPGA getting hold of the array requires three steps – first, the FPGA must receive the memory location from the host, then create a variable for the data and use an `AXI read <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#ReadUInt32>`_ to read the data into that variable within the on-chip block RAM. Here are the code snippets for these steps:
 
 1. Receive the memory locations and data size from the host (the ``0``, ``1`` and ``2`` in ``krnl.SetMemoryArg...`` are translated by our comiler to be the first, second and third inputs to the FPGA)::
 
@@ -187,16 +187,16 @@ So, the FPGA getting hold of the array requires three steps – first, the FPGA 
       outputData uintptr,
       length uint32,
 
-2. Create a variable called ``data`` to hold the input data::
+2. Create a variable called ``data`` to hold the input data, this will be located within the FPGA's block RAM::
 
       data := make([]uint32, length)
 
-3. Read the data from memory into the variable ``data``::
+3. Read the data from shared memory into the variable ``data``::
 
       aximemory.ReadUInt32(
         memReadAddr, memReadData, false, inputData, data)
 
-Now the FPGA has our array held in a variable called ``data``, let's send it back again. The process for getting data from the FPGA to the reserved space in shared memory is an `AXI write <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#WriteUInt32>`_ as follows::
+Now the FPGA has our array held within ``data``, let's send it back again. The process for getting data from the FPGA's block RAM to the reserved space in shared memory is an `AXI write <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#WriteUInt32>`_ as follows::
 
   aximemory.WriteUInt32(
     memWriteAddr, memWriteData, memWriteResp, false, outputData, data)
