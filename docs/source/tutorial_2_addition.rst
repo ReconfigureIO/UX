@@ -5,8 +5,8 @@ Tutorial 2 – Filling in the Gaps
 .. admonition:: Make sure you're up to date.
 
     Run ``reco version`` to check if your installation is up-to-date. Our current version is |reco_version|. If you need to update, please see our :ref:`install/update instructions <install>`.
-    
-In this tutorial you will complete the code for one of our example programs and find any errors in your code using ``reco check`` and ``reco sim``. The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.
+
+In this tutorial you will complete the code for one of our example programs and find any errors in your code using ``go test`` and ``reco check``. You will then simulate the code running on an FPGA using ``reco sim``. The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.
 
 **We'll look at pretty much the simplest calculation possible – adding two numbers together. First, we will look at the problem, discuss how to design the program, and then, once you've had a go at filling in the gaps in the code, you can check the code for compatibility with our compiler and simulate it how it would run on an FPGA to find any errors. Then, we'll look at our full code solution.**
 
@@ -24,21 +24,56 @@ Let's break this process down. There are just two operands involved so the host 
 
    Addition flow diagram
 
+Fork our tutorials repository
+---------------------------------
+We're now going to start using our tutorial materials repo, which contains an incomplete example for you to work on. So, as we're going to be making changes to the code, let's fork the repo. You'll find it here: https://github.com/ReconfigureIO/tutorials.
+
+First, click the **fork** button towards the top right of the screen.
+
+.. image:: fork_button.png
+   :align: center
+
+You will be asked to authorize the fork being placed into your account. Then, using the instructions for your operating system below, clone your fork to your local machine:
+
+Linux/MacOSX
+^^^^^^^^^^^^
+From a terminal create an environment variable for your github username (substitute ``<username>`` for your github username):
+
+.. code-block:: shell
+
+    export GITHUB_USERNAME=<username>
+
+Then copy and paste the following:
+
+.. subst-code-block:: shell
+
+    git clone https://github.com/$GITHUB_USERNAME/tutorials.git $GOPATH/src/github.com/$GITHUB_USERNAME/tutorials
+    cd $GOPATH/src/github.com/$GITHUB_USERNAME/tutorials
+    git remote add upstream git://github.com/ReconfigureIO/tutorials.git
+    git fetch upstream
+    git checkout |tutorials_version|
+
+Windows 10
+^^^^^^^^^^
+From a Powershell terminal create an environment variable for your github username (substitute ``<username>`` for your github username):
+
+.. code-block:: shell
+
+    $env:GithubUsername="<username>"
+
+Then copy and paste the following:
+
+.. code-block:: shell
+
+    git clone https://github.com/$env:GithubUsername/tutorials.git $Env:GOPATH/src/github.com/$env:GithubUsername/tutorials
+    cd $Env:GOPATH/src/github.com/$env:GithubUsername/tutorials
+    git remote add upstream git://github.com/ReconfigureIO/tutorials.git
+    git fetch upstream
+    git checkout v0.1.0
+
 Filling in the gaps
 -------------------
-First, let's check you're using the latest version of our examples – |examples_version|. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
-
-    git describe --tags
-
-If you have a different version, please run
-
-.. subst-code-block::
-
-    git fetch upstream
-    git pull upstream master
-    git checkout |examples_version|
-
-Now navigate to ``examples/addition-gaps/cmd/test-addition/main.go`` to look at the incomplete code for the host CPU. You will notice some of the code is missing. Using the information given in the comments, along with the flowchart above, you can have a go at filling in the missing sections.
+Now navigate to ``your-github-username/tutorials/addition-gaps/cmd/test-addition/main.go`` to look at the incomplete code for the host CPU. You will notice some of the code is missing. Using the information given in the comments, along with the flowchart above, you can have a go at filling in the missing sections.
 
 First, as we're going to be editing existing code, let's make a new branch to work on, call it ``fill-gaps``::
 
@@ -46,14 +81,14 @@ First, as we're going to be editing existing code, let's make a new branch to wo
 
 Here's what needs completing:
 
-* Pass operands and results pointer to the kernal (**lines 28, 30 and 32**)
+* Pass operands and results pointer to the FPGA (**lines 28, 30 and 32**)
 * Print the result from the FPGA (**line 48**)
 * Create an ``if`` statement to exit if the result from the FPGA does not equal 3 (**lines 51-53**)
 
-Once you have completed this, move on to the incomplete code for the FPGA, located at ``examples/addition-gaps/main.go``, and complete the following sections:
+Once you have completed this, move on to the incomplete code for the FPGA, located at ``your-github-username/examples/addition-gaps/main.go``, and complete the following sections:
 
-* Specify the operands and result pointer (**lines 18-20**)
-* Perform the addition (**line 34**)
+* Specify the operands and result pointer (**lines 24-26**)
+* Perform the addition (**line 40**)
 
 Once you've made your changes you can stage and commit them to your ``fill-gaps`` branch::
 
@@ -61,20 +96,53 @@ Once you've made your changes you can stage and commit them to your ``fill-gaps`
   git commit -m "code completed"
   git push origin fill-gaps
 
+Test your code
+--------------
+Now you can test your program for syntax and semantic errors within your Go environment. We've included a test file – ``main_test.go`` which will check that the Add function in the FPGA code does what's it's supposed to. So let's test that first. Make sure you're in ``your-github-username/tutorials/addition-gaps`` and run ``go test``. All being well you should see something like::
+
+  $ go test
+  PASS
+  ok  	github.com/your-github-username/tutorials/addition-gaps	0.007s
+
+If there are any errors in your code they will be flagged up here for you to fix. A pass tells us that your code is compatible with the Go compiler, and the ``ADD`` function does what we're expecting.
+
+Next navigate to ``your-github-username/tutorials/addition-gaps/cmd/test-addition`` and run ``go test``, and hopefully you'll see::
+
+  $ go test
+  PASS
+  ok  	github.com/your-github-username/tutorials/addition-gaps/cmd/test-addition	0.007s
+
+If not, you will be able to see where any errors are located. A pass here tells us that your CPU code is compatible with the Go compiler.
+
 Check and then simulate your code
 ----------------------------------
-Now the code is complete, make sure you are back in ``examples/addition-gaps`` and you can quickly check it for compatibility with the compiler. Any syntax errors will be flagged up here. For more information on our various error messages see :ref:`errors`::
+Now the code is complete and we know it conforms to the Go language, let's check your FPGA code is compatible with the Reconfigure.io compiler. Make sure you are back in ``tutorials/addition-gaps`` and run ``reco check``. Any syntax errors will be flagged up here. For more information on our various error messages see :ref:`errors`. All being well you should see::
 
-  reco check
+  $ reco check
+  $GOPATH/github.com/your-github-username/tutorials/addition-gaps/main.go checked successfully
 
 Next, once you have dealt with any errors, use our hardware simulator to test how your code will run on the FPGA. First, create a project to work within and set it to be active::
 
   reco project create addition
   reco project set addition
 
-Now you can simulate using the ``reco sim`` command::
+Now you can start a simulation by running ``reco sim run test-addition``::
 
-  reco sim run test-addition
+  $ reco sim run test-addition
+  preparing simulation
+  done
+  archiving
+  done
+  uploading
+  done
+  running simulation
+
+  status: QUEUED
+  Waiting for Batch job to start
+  status: STARTED
+  Beginning log stream for simulation 74c620cf-8fe0-4500-8a6f-fac0fa03edc2
+  ...
+  3
 
 .. admonition:: Getting in the queue
 
@@ -82,9 +150,20 @@ Now you can simulate using the ``reco sim`` command::
 
 For more detailed descriptions of any error messages you might receive here, you can take a look at our troubleshooting section: :ref:`errors`.
 
-The complete example
+See how we did it
 --------------------
-Take a look at our full example to see if there are any differences between our code and yours, you can find it here: ``examples/addition``. First, here's the host code:
+Now you can take a look at our full example to see if there are any differences between our code and yours, you can find it in the ``examples`` repo you cloned in the previous tutorial. It's always a good idea to check you have the most up-to-date version of our examples, so, first, open a terminal and navigate to ``$GOPATH/src/github.com/Reconfigureio/examples`` and run::
+
+    git describe --tags
+
+If you have a version other than |examples_version|, please run
+
+.. subst-code-block::
+
+    git fetch
+    git checkout |examples_version|
+
+Here's the host code with the missing sections highlighted:
 
 .. code-block:: Go
    :linenos:
@@ -149,50 +228,53 @@ And here's the FPGA code:
 
 .. code-block:: Go
    :linenos:
-   :emphasize-lines: 21, 22, 23, 37
+   :emphasize-lines: 24, 25, 26, 40
 
-     package main
+    package main
 
-     import (
-     	//  Import the entire framework for interracting with SDAccel from Go (including bundled verilog)
-     	_ "github.com/ReconfigureIO/sdaccel"
+    import (
+    //  Import the entire framework for interracting with SDAccel from Go (including bundled verilog)
+    _ "github.com/ReconfigureIO/sdaccel"
 
-     	// Use the new AXI protocol package for interracting with memory
-     	aximemory "github.com/ReconfigureIO/sdaccel/axi/memory"
-     	axiprotocol "github.com/ReconfigureIO/sdaccel/axi/protocol"
+    // Use the new AXI protocol package for interracting with memory
+    aximemory "github.com/ReconfigureIO/sdaccel/axi/memory"
+    axiprotocol "github.com/ReconfigureIO/sdaccel/axi/protocol"
+    )
 
-     	"github.com/ReconfigureIO/addition"
-     )
+    // function to add two uint32s
+    func Add(a uint32, b uint32) uint32 {
+    return a + b
+    }
 
-     func Top(
-     	// The first set of arguments to this function can be any number
-     	// of Go primitive types and can be provided via `SetArg` on the host.
+    func Top(
+    // The first set of arguments to this function can be any number
+    // of Go primitive types and can be provided via `SetArg` on the host.
 
-     	// For this example, we have 3 arguments: two operands to add
-     	// together and an address in shared memory where the FPGA will
-     	// store the output.
-     	a uint32,
-     	b uint32,
-     	addr uintptr,
+    // For this example, we have 3 arguments: two operands to add
+    // together and an address in shared memory where the FPGA will
+    // store the output.
+    a uint32,
+    b uint32,
+    addr uintptr,
 
-     	// Set up channels for interacting with the shared memory
-     	memReadAddr chan<- axiprotocol.Addr,
-     	memReadData <-chan axiprotocol.ReadData,
+    // Set up channels for interacting with the shared memory
+    memReadAddr chan<- axiprotocol.Addr,
+    memReadData <-chan axiprotocol.ReadData,
 
-     	memWriteAddr chan<- axiprotocol.Addr,
-     	memWriteData chan<- axiprotocol.WriteData,
-     	memWriteResp <-chan axiprotocol.WriteResp) {
+    memWriteAddr chan<- axiprotocol.Addr,
+    memWriteData chan<- axiprotocol.WriteData,
+    memWriteResp <-chan axiprotocol.WriteResp) {
 
-     	// Since we're not reading anything from memory, disable those reads
-     	go axiprotocol.ReadDisable(memReadAddr, memReadData)
+    // Since we're not reading anything from memory, disable those reads
+    go axiprotocol.ReadDisable(memReadAddr, memReadData)
 
-     	// Add the two input integers together
-     	val := a + b
+    // Add the two input integers together
+    val := Add(a, b)
 
-     	// Write the result of the addition to the shared memory address provided by the host
-     	aximemory.WriteUInt32(
-     		memWriteAddr, memWriteData, memWriteResp, false, addr, val)
-     }
+    // Write the result of the addition to the shared memory address provided by the host
+    aximemory.WriteUInt32(
+      memWriteAddr, memWriteData, memWriteResp, false, addr, val)
+    }
 
 What's next?
 -------------
