@@ -18,9 +18,9 @@ Teak is a hardware description dataflow language, designed to be easily translat
 
 **So, our goal is to write concurrent Go code to take advantage of the FPGA's parallel hardware, and we can use Teak graphs to identify where this parallelism can be increased by changing the way the original code is structured.**
 
-How are they structured?
+How are the graphs structured?
 -----------------------
-Teak graphs can be many pages long, with a page for each function used in your code. The complexity of each page depends on the complexity of the function. Here's an example, it's the graph for the ``axi/memory.WriteUInt32`` function in our addition example:
+Teak graphs can be many pages long, with a page for each function used in your code. The complexity of each page depends on the complexity of the function. Here's an example, it's the graph for the ``axi/memory.WriteUInt32`` function used in our addition example:
 
 .. figure:: graph_addition_writeuint32.png
     :align: center
@@ -31,49 +31,49 @@ Teak graphs can be many pages long, with a page for each function used in your c
 .. note::
    ``reco graph gen`` will generate content for every function that reaches our compiler, so some pages in the output may be for functions you haven't used.
 
-There are various node types, which we will look at below, connected by lines of varying color. The black lines represent control circuits, stop, go etc., so there's no data flowing there. The colored lines distinguish unique data widths.
+There are various **node** types, which we will look at below, connected by lines of varying color. The black lines represent control circuits, stop, go etc., so there's no data flowing there. The colored lines distinguish unique data widths.
 
-Each node has *ports* for connectivity. Input *ports* are at the top and output *ports* at the bottom. Some node types will have multiple inputs or outputs depending on their function.
+Each node has **ports** for connectivity. Input ports are at the top and output ports at the bottom. Some node types will have multiple inputs or outputs depending on their function.
 
 Node types
 ^^^^^^^^^^
-**Operator** – The most fundamental node type is the *operator*, which is responsible for operating on data. Anywhere you would use an arithmetic or logical operator in Go, you can expect it to be represented as an *Operator* node in Teak.
+**Operator** – The most fundamental node type is the operator. As you might expect, it's responsible for operating on data. Anywhere you would use an arithmetic or logical operator in Go, you can expect it to be represented as an operator node in Teak.
 
 .. figure:: operator.png
    :align: center
    :width: 40%
 
-**Latch** – A *latch* is inserted in the Teak model to break up operations into manageable chunks for the FPGA circuitry. A latch introduces a 1 clock delay into the system. Latches hold data, allowing *operators* to pass data between each other.
+**Latch** – A latch is inserted in the Teak model to break up operations into manageable chunks for the FPGA circuitry. A latch introduces a 1 clock delay into the system. Latches hold data, allowing operators to pass data between each other.
 
 .. figure:: Latch.png
    :align: center
    :width: 40%
 
-**Fork** – A *fork* indicates a split in the circuit. Forks are important for concurrency, because they can pass data to two or more nodes at the same time.
+**Fork** – A fork indicates a split in the circuit. Forks are important for concurrency, because they can pass data to two or more nodes at the same time.
 
 .. figure:: Fork.png
    :align: center
    :width: 40%
 
-**Join** – A *join* shows where data/control paths are synchronized and concatenated.
+**Join** – A join shows where data/control paths are synchronized and concatenated.
 
 .. figure:: Join.png
    :align: center
    :width: 40%
 
-**Steer** – A *steer* takes a single input and sends to multiple outputs, choosing based on the input control value assigned to the data. They act as data-dependent de-multiplexers.
+**Steer** – A steer takes a single input and sends to multiple outputs, choosing outputs is based on the input control value assigned to the data. They act as data-dependent de-multiplexers.
 
 .. figure:: Steer.png
    :align: center
    :width: 40%
 
-**Merge** – A *merge* multiplexes multiple, concurrent input data or control streams on a first-come-first-served basis.
+**Merge** – A merge multiplexes multiple, concurrent input data or control streams on a first-come-first-served basis.
 
 .. figure:: Merge.png
    :align: center
    :width: 40%
 
-**Arbitrate** – An *arbiter* uses a scheduling algorithm to decide the order it passes on its independent inputs.
+**Arbitrate** – An arbiter uses a scheduling algorithm to decide the order it passes on its independent inputs.
 
 .. figure:: Arbitrate.png
    :align: center
@@ -81,7 +81,7 @@ Node types
 
 Let's get started
 -----------------
-First, let's check you're using the latest version of our examples – |examples_version|. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
+First, let's check you're using the latest version of our tutorial materials – |examples_version|. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
 
     git describe --tags
 
