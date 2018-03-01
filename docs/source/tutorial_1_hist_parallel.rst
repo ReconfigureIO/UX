@@ -16,33 +16,23 @@ From here, we're assuming you've already set up your account and :ref:`installed
 
 Fork our examples repository
 ----------------------------
-First we need some code to work with. If you already use Go, and have your ``GOPATH``, workspace and tooling set up, you can now clone a fork of our examples repo into your workspace. You'll also need to have `git <https://help.github.com/articles/set-up-git/#setting-up-git>`_ set up on your local machine.
+First we need some code to work with. If you already use Go, and have your ``GOPATH``, workspace and tooling set up, and have `git <https://help.github.com/articles/set-up-git/#setting-up-git>`_ set up on your local machine, you can now clone our examples repo into your workspace by following the instructions for your operating system below.
 
 If you are new to Go, please follow our :ref:`quick setup guide <gotools>` first.
-
-To fork our examples repo head `here <https://github.com/ReconfigureIO/examples>`_ and click **fork** in the top right hand corner.
-
-.. image:: fork_button.png
-   :align: center
-
-You will be asked for authorization, at which point a copy of the repo will be made in your account. Then, you can clone your fork to your local machine from the command line by following the instructions for your operating system below:
 
 .. _examples-linux:
 
 Linux/MacOSX
 ^^^^^^^^^^^^
-From a terminal create an environment variable for your github username (substitute ``<username>`` for your github username):
+From a terminal copy and paste the following:
 
 .. code-block:: shell
 
-    export GITHUB_USERNAME=<username>
-
-Then copy and paste the following:
 
 .. subst-code-block:: shell
 
-    git clone https://github.com/$GITHUB_USERNAME/examples.git $GOPATH/src/github.com/$GITHUB_USERNAME/examples
-    cd $GOPATH/src/github.com/$GITHUB_USERNAME/examples
+    git clone https://github.com/Reconfigureio/examples.git $GOPATH/src/github.com/Reconfigureio/examples
+    cd $GOPATH/src/github.com/Reconfigureio/examples
     git remote add upstream git://github.com/ReconfigureIO/examples.git
     git fetch upstream
     git checkout |examples_version|
@@ -51,18 +41,14 @@ Then copy and paste the following:
 
 Windows 10
 ^^^^^^^^^^
-From a Powershell terminal create an environment variable for your github username (substitute ``<username>`` for your github username):
+From a Powershell terminal copy and paste the following:
 
 .. code-block:: shell
 
-    $env:GithubUsername="<username>"
-
-Then copy and paste the following:
-
 .. subst-code-block:: shell
 
-    git clone https://github.com/$env:GithubUsername/examples.git $Env:GOPATH/src/github.com/$env:GithubUsername/examples
-    cd $Env:GOPATH/src/github.com/$env:GithubUsername/examples
+    git clone https://github.com/Reconfigureio/examples.git $Env:GOPATH/src/github.com/Reconfigureio/examples
+    cd $Env:GOPATH/src/github.com/Reconfigureio/examples
     git remote add upstream git://github.com/ReconfigureIO/examples.git
     git fetch upstream
     git checkout |examples_version|

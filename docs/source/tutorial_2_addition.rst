@@ -26,19 +26,14 @@ Let's break this process down. There are just two operands involved so the host 
 
 Fork our tutorials repository
 ---------------------------------
-First, let's check you're using the latest version of our examples – |examples_version|. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
+You'll now need to start using our tutorial materials repo, which contains an incomplete example for you to work on. So, as we're going to be making changes to the code, let's fork the the repo. You'll find it here: https://github.com/ReconfigureIO/tutorials.
 
-    git describe --tags
+First, click the **fork** button towards the top right of the screen.
 
-If you have a different version, please run
+.. image:: fork_button.png
+   :align: center
 
-.. subst-code-block::
-
-    git fetch upstream
-    git pull upstream master
-    git checkout |examples_version|
-
-You'll also need to start using our tutorial materials repo, which contains an incomplete example for you to work on. So, as you did in the previous tutorial, let's fork the tutorials repo. You'll find it here: https://github.com/ReconfigureIO/tutorials. Click the **fork** button towards the top right of the screen. You will be asked to authorize the fork being placed into your account. Then, you can clone your fork to your local machine from the command line by following the instructions for your operating system below:
+You will be asked to authorize the fork being placed into your account. Then, using the instructions for your operating system below, clone your fork to your local machine:
 
 Linux/MacOSX
 ^^^^^^^^^^^^
@@ -157,7 +152,19 @@ For more detailed descriptions of any error messages you might receive here, you
 
 The complete example
 --------------------
-Take a look at our full example to see if there are any differences between our code and yours, you can find it here: ``<your-github-username>/examples/addition``. First, here's the host code:
+Now you can take a look at our full example to see if there are any differences between our code and yours, you can find it in the ``examples`` repo you cloned in the previous tutorial. It's always a good idea to check you have the most up-to-date version of our examples so, first, open a terminal and navigate to ``$GOPATH/src/github.com/Reconfigureio/examples`` and run::
+
+    git describe --tags
+
+If you have a version other than |examples_version|, please run
+
+.. subst-code-block::
+
+    git fetch upstream
+    git pull upstream master
+    git checkout |examples_version|
+
+Here's the host code with the missing sections highlighted:
 
 .. code-block:: Go
    :linenos:
