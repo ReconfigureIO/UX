@@ -26,15 +26,10 @@ Linux/MacOSX
 ^^^^^^^^^^^^
 From a terminal copy and paste the following:
 
-.. code-block:: shell
-
-
 .. subst-code-block:: shell
 
     git clone https://github.com/Reconfigureio/examples.git $GOPATH/src/github.com/Reconfigureio/examples
     cd $GOPATH/src/github.com/Reconfigureio/examples
-    git remote add upstream git://github.com/ReconfigureIO/examples.git
-    git fetch upstream
     git checkout |examples_version|
 
 .. _examples-win:
@@ -43,14 +38,10 @@ Windows 10
 ^^^^^^^^^^
 From a Powershell terminal copy and paste the following:
 
-.. code-block:: shell
-
 .. subst-code-block:: shell
 
     git clone https://github.com/Reconfigureio/examples.git $Env:GOPATH/src/github.com/Reconfigureio/examples
     cd $Env:GOPATH/src/github.com/Reconfigureio/examples
-    git remote add upstream git://github.com/ReconfigureIO/examples.git
-    git fetch upstream
     git checkout |examples_version|
 
 .. _test:

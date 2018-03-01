@@ -160,8 +160,8 @@ If you have a version other than |examples_version|, please run
 
 .. subst-code-block::
 
-    git fetch upstream
-    git pull upstream master
+    git fetch
+    git pull
     git checkout |examples_version|
 
 Here's the host code with the missing sections highlighted:
