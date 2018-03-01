@@ -26,7 +26,7 @@ Let's break this process down. There are just two operands involved so the host 
 
 Fork our tutorials repository
 ---------------------------------
-You'll now need to start using our tutorial materials repo, which contains an incomplete example for you to work on. So, as we're going to be making changes to the code, let's fork the the repo. You'll find it here: https://github.com/ReconfigureIO/tutorials.
+We're now going to start using our tutorial materials repo, which contains an incomplete example for you to work on. So, as we're going to be making changes to the code, let's fork the repo. You'll find it here: https://github.com/ReconfigureIO/tutorials.
 
 First, click the **fork** button towards the top right of the screen.
 
