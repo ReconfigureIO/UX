@@ -150,7 +150,7 @@ Now you can start a simulation by running ``reco sim run test-addition``::
 
 For more detailed descriptions of any error messages you might receive here, you can take a look at our troubleshooting section: :ref:`errors`.
 
-The complete example
+See how we did it
 --------------------
 Now you can take a look at our full example to see if there are any differences between our code and yours, you can find it in the ``examples`` repo you cloned in the previous tutorial. It's always a good idea to check you have the most up-to-date version of our examples so, first, open a terminal and navigate to ``$GOPATH/src/github.com/Reconfigureio/examples`` and run::
 

@@ -14,7 +14,7 @@ From here, we're assuming you've already set up your account and :ref:`installed
 
 .. _examples:
 
-Fork our examples repository
+Clone our examples repository
 ----------------------------
 First we need some code to work with. If you already use Go, and have your ``GOPATH``, workspace and tooling set up, and have `git <https://help.github.com/articles/set-up-git/#setting-up-git>`_ set up on your local machine, you can now clone our examples repo into your workspace by following the instructions for your operating system below.
 
@@ -83,7 +83,7 @@ For this example, ``main_test.go`` checks that the FPGA will not calculate an in
 
 This shows us that your Go environment is set up correctly and the code passes the conditions set in ``main_test.go``.
 
-Check for compatibility with Reconfigure.io
+Check for compatibility
 -------------------------------------------
 Now you can type-check the FPGA code using our command line tool ``reco``. This tells us whether the code is compatible with the Reconfigure.io compiler and will point out any syntactic errors. To do this run ``reco check`` and you should see:
 
