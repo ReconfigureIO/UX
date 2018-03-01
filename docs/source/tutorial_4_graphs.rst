@@ -81,18 +81,18 @@ Node types
 
 Let's get started
 -----------------
-First, let's check you're using the latest version of our tutorial materials – |examples_version|. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
+First, let's check you're using the latest version of our tutorial materials. Open a terminal and navigate to where you cloned your fork – ``$GOPATH/src/github.com/<your-github-username>/tutorials`` and run::
 
     git describe --tags
 
-If you have a different version, please run
+If you have a version other than |tutorials_version|, please run
 
 .. subst-code-block::
 
     git pull upstream master
-    git checkout |examples_version|
+    git checkout |tutorials_version|
 
-So, let's take a single function that takes an array of 8 integers and sums them together using a for loop::
+So, we're going to start with a bad example. ``tutorials/bad-graph`` contains a single main.go file with just one function that takes an array of 8 integers and sums them together using a for loop::
 
   package main
 
@@ -104,11 +104,14 @@ So, let's take a single function that takes an array of 8 integers and sums them
       }
   }
 
-Create a folder for this tutorial somewhere on your local machine, call it ``tutorial3``. Create another folder within that and call it ``bad_example``. Copy the snippet above into your text editor and save it into your ``bad_example`` folder, calling it ``main.go``.
-
 Generate a graph
 -----------------
-Now we can use ``reco`` to generate a graph for this function. Open a terminal and navigate to ``tutorial3/bad_example``, then generate the graph using ``reco graph gen``::
+We can use ``reco`` to generate a graph for this function but first we need to set a project to work within - all reco sims, builds, deployments and graphs are associated with a project so you can more easily find and view logs for a project later. Open a terminal and navigate to ``tutorials/bad-graph``. Create and set a project called ``graphs`` by running the following::
+
+  reco project create graphs
+  reco project set graphs
+
+Now you can generate the graph for our bad example by running ``reco graph gen``::
 
   $ reco graph gen
   preparing graph
@@ -129,7 +132,7 @@ It should look like this:
     :align: center
     :width: 100%
 
-So, looking at the graph, you can see it's pretty complex, there's a lot going on. But if we simply try to trace the various branches from ``go`` (at the top) to ``done`` (middle, right hand side), you can see that some of the branches are long and have quite a few nodes, including several latches, which increase the time the whole thing takes. And due to the use of a ``for`` loop in the code, some of these branches are looping too.
+Looking at the graph, you can see it's pretty complex, there's a lot going on. But if we simply try to trace the various branches from ``go`` (at the top) to ``done`` (middle, right hand side), you can see that some of the branches are long and have quite a few nodes, including several latches, which increase the time the whole thing takes. And due to the use of a ``for`` loop in the code, some of these branches are looping too.
 
 A sign of good parallelism is when a graph is wide, with multiple unconnected operations appearing horizontally. So, in this example, the only really parallel bit is in the middle, which corresponds to where the array is accessed in the code:
 
@@ -141,7 +144,9 @@ If we used this code to program an FPGA, we would not be making good use of it's
 
 More parallelism
 ----------------
-Taking away the for loop and summing the bits of the array together, in one go, is a good way to do this. Let's try that and see what the graph looks like::
+Taking away the for loop and summing the bits of the array together, in one go, is a good way to do this. Let's try that, and see what the graph looks like.
+
+The improved function is in ``tutorials/good-graph``. Again there's just a single main.go file in there containing one function::
 
   package main
 
@@ -150,7 +155,7 @@ Taking away the for loop and summing the bits of the array together, in one go, 
       sum := array[0] + array[1] + array[2] + array[3] + array[4] + array[5] + array[6] + array[7]
   }
 
-Create a new folder in ``tutorial3`` called ``good_example``. Copy the snippet above into your text editor, call it ``main.go`` and save it in your ``good_example`` folder. From a terminal, navigate to ``tutoria3/good_example`` and use ``reco graph gen`` to generate the graph::
+Navigate to ``tutorials/good-graph`` and generate a new graph by running ``reco graph gen``::
 
   $ reco graph gen
   preparing graph
@@ -161,7 +166,7 @@ Create a new folder in ``tutorial3`` called ``good_example``. Copy the snippet a
   done
   <graph_ID>
 
-Copy the unique graph ID to open the graph::
+Again, copy the unique graph ID to open the graph::
 
   reco graph open <graph_ID>
 
