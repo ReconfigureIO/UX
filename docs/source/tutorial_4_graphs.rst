@@ -89,10 +89,11 @@ If you have a version other than |tutorials_version|, please run
 
 .. subst-code-block::
 
+    git fetch upstream
     git pull upstream master
     git checkout |tutorials_version|
 
-So, we're going to start with a bad example. ``tutorials/bad-graph`` contains a single main.go file with just one function that takes an array of 8 integers and sums them together using a for loop::
+So, we're going to start with a simple example that could do with some optimization so you can see how it works. ``tutorials/bad-graph`` contains a single main.go file with just one function that takes an array of 8 integers and sums them together using a for loop::
 
   package main
 
@@ -106,7 +107,7 @@ So, we're going to start with a bad example. ``tutorials/bad-graph`` contains a 
 
 Generate a graph
 -----------------
-We can use ``reco`` to generate a graph for this function but first we need to set a project to work within - all reco sims, builds, deployments and graphs are associated with a project so you can more easily find and view logs for a project later. Open a terminal and navigate to ``tutorials/bad-graph``. Create and set a project called ``graphs`` by running the following::
+We can use ``reco`` to generate a graph for this function but first we need to set a project to work within - all reco sims, builds, deployments and graphs are associated with a project so you can easily find and view logs for a project later. Open a terminal and navigate to ``tutorials/bad-graph``. Create and set a project called ``graphs`` by running the following::
 
   reco project create graphs
   reco project set graphs
@@ -122,7 +123,7 @@ Now you can generate the graph for our bad example by running ``reco graph gen``
   done
   <graph_ID>
 
-Copy the unique graph ID to open the graph::
+Copy the unique graph ID to open the graph in your default PDF viewer::
 
   reco graph open <graph_ID>
 
@@ -174,11 +175,11 @@ Again, copy the unique graph ID to open the graph::
     :align: center
     :width: 100%
 
-As you can see, it's a lot clearer what's going on here, you can see the first two integers being summed together, and then the next being added to that, and so on. Clarity is usually a good sign that the code design is good for achieving parallelism. There are clear branches flowing from ``go`` to ``done``.
+As you can see, it's a lot clearer what's going on here, you can see the first two integers being summed together, and then the next being added to that, and so on. Clarity is usually a good sign that the code is designed well for achieving a high degree of parallelism. In this examples there are clear branches flowing from ``go`` to ``done``.
 
 Optimizing your own code
 -------------------------
-Analyzing Teak dataflow graphs is complex. For this reason, we suggest that when it comes to optimizing your own code, you should break out small functions from your overall code to see what's going on more easily. Taking the example from our coding style guide: if ``(a * b) + c`` is in an inner loop of your application, breaking it out into the function below will help you see its performance in isolation as it will appear as a separate page in the graph output::
+Analyzing Teak dataflow graphs is complex. For this reason, we suggest that when it comes to optimizing your own code, you should break out small functions from your overall code to get a clearer picture of what's going on. Taking the example from our coding style guide: if ``(a * b) + c`` is in an inner loop of your program, breaking it out into the function below will help you see its performance in isolation as it will appear as a separate page in the graph output::
 
   func MultiplyAndAdd(a uint, b uint, c uint) uint {
      return (a * b) + c
@@ -186,4 +187,4 @@ Analyzing Teak dataflow graphs is complex. For this reason, we suggest that when
 
 Once you have optimized these smaller functions you can embed them back into your wider code to improve the overall parallelism of the program.
 
-For early access users, we have a section on our `forum <https://community.reconfigure.io/c/early-access-feedback/optimization-support>`_ where you can post your own generated graphs to get optimization help from the Reconfigure.io team.
+For early access users, we have a section on our `forum <https://community.reconfigure.io/c/optimization-support>`_ where you can post your own generated graphs to get optimization help from the Reconfigure.io team.
