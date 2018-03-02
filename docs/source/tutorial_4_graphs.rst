@@ -187,4 +187,8 @@ Analyzing Teak dataflow graphs is complex. For this reason, we suggest that when
 
 Once you have optimized these smaller functions you can embed them back into your wider code to improve the overall parallelism of the program.
 
-For early access users, we have a section on our `forum <https://community.reconfigure.io/c/optimization-support>`_ where you can post your own generated graphs to get optimization help from the Reconfigure.io team.
+For early access users, we have a section on our |forum| where you can post your own generated graphs to get optimization help from the Reconfigure.io team.
+
+.. |forum| raw:: html
+
+   <a href="https://community.reconfigure.io/c/optimization-support" target="_blank">forum</a>
