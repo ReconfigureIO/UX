@@ -107,7 +107,7 @@ So, we're going to start with a simple example that could do with some optimizat
 
 Generate a graph
 -----------------
-We can use ``reco`` to generate a graph for this function, but first we need to set a project to work within - all `reco` simulations, builds, deployments and graphs are associated with a project so you can easily find, list and view the various elements later. Open a terminal and navigate to ``tutorials/bad-graph``. Create and set a project called ``graphs`` by running the following::
+We can use ``reco`` to generate a graph for this function, but first we need to set a project to work within - all ``reco`` simulations, builds, deployments and graphs are associated with a project so you can easily find, list and view the various elements later. Open a terminal and navigate to ``tutorials/bad-graph``. Create and set a project called ``graphs`` by running the following::
 
   reco project create graphs
   reco project set graphs
