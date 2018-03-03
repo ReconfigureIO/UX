@@ -16,6 +16,17 @@ Each FPGA card has 64 GiB dedicated memory (DRAM) which can be used to share dat
 
 .. image:: ReconfigureFPGAarchitecture.png
 
+A note about memory access
+----------------------------
+Our current standard way of having the FPGA talk to shared memory is using the AXI protocol, as discussed in :ref:`structure`. The level of parallelizm that AXI is designed to work with, is that of a multicore CPU with several cores accessing memory at the same time. But for us, as we're using Go for FPGAs, the level of parallelism is so much higher, we're dealing with many, many (potentially thousands) of go routines trying to access memory at the same time, and managing this with AXI is difficult.
+
+**Our engineers have developed a new protocol – SMI (Scalable Multiprotocol Infrastructure) – which addresses this issue, simplifies the code and reduces boilerplate for our users. It's availble on a testing basis from Reconfigure.io v0.17.0 and will we fully rolled out as our standard method soon.**
+
+As an example,
+
+.. todo::
+    add example code snippets showing reductions with SMI
+
 Go compilation stages
 ^^^^^^^^^^^^^^^^^^^^^
 Your Reconfigure.io projects will be coded using :ref:`our subset <gosupport>` of the standard Go language, using our :ref:`coding style-guide <style>` to help get the most out of the destination hardware.
