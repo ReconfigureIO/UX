@@ -98,7 +98,7 @@ Once you've made your changes you can stage and commit them to your ``fill-gaps`
 
 Test your code
 --------------
-Now you can test your program for syntax and semantic errors within your Go environment. We've included a test file – ``main_test.go`` which will check that the Add function in the FPGA code does what's it's supposed to. So let's test that first. Make sure you're in ``your-github-username/tutorials/addition-gaps`` and run ``go test``. All being well you should see something like::
+Now you can test your program for syntax and semantic errors within your Go environment. We've included a test file – ``main_test.go`` which will check that the function ``Add`` at the top of the FPGA code does what's it's supposed to. So, let's test that first. Make sure you're in ``your-github-username/tutorials/addition-gaps`` and run ``go test``. All being well you should see something like::
 
   $ go test
   PASS
