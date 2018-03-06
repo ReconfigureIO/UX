@@ -18,14 +18,39 @@ Each FPGA card has 64 GiB dedicated memory (DRAM) which can be used to share dat
 
 A note about memory access
 ----------------------------
-Our current standard way of having the FPGA talk to shared memory is using the AXI protocol, as discussed in :ref:`structure`. The level of parallelizm that AXI is designed to work with, is that of a multicore CPU with several cores accessing memory at the same time. But for us, as we're using Go for FPGAs, the level of parallelism is so much higher, we're dealing with many, many (potentially thousands) of go routines trying to access memory at the same time, and managing this with AXI is difficult.
+Our current standard way of having the FPGA talk to shared memory is using the AXI protocol (find more on this in our :ref:`third tutorial <structure>`). AXI is designed to work with multicore CPUs, with several cores accessing memory at the same time. But for us, as we're using Go for FPGAs, the level of parallelism is so much higher, we're dealing with many, many (potentially thousands) of go routines trying to access memory at the same time, and managing this with AXI is not stright forward.
 
-**Our engineers have developed a new protocol – SMI (Scalable Multiprotocol Infrastructure) – which addresses this issue, simplifies the code and reduces boilerplate for our users. It's availble on a testing basis from Reconfigure.io v0.17.0 and will we fully rolled out as our standard method soon.**
+**Our engineers have developed a new protocol – SMI (Scalable Multiprotocol Infrastructure) – which addresses the issue of fine-grained parallelizm, as well as simplifying code and reducing boilerplate for our users. It's available on a test basis from Reconfigure.io v0.17.0 onwards and it will we fully rolled out as our standard method of accessing memory very soon.**
 
-As an example,
+As an example, here's how we set up channels for accessing memory in for one of our histogram examples using AXI::
+
+  memReadAddr chan<- axiprotocol.Addr,
+  memReadData <-chan axiprotocol.ReadData,
+
+  memWriteAddr chan<- axiprotocol.Addr,
+  memWriteData chan<- axiprotocol.WriteData,
+  memWriteResp <-chan axiprotocol.WriteResp)
+
+And if we want two go routines to read from memory concurrently, we would need to using the AXI arbitration protocol, as follows:
+
+  memReadAddr0 := make(chan axiprotocol.Addr)
+  memReadData0 := make(chan axiprotocol.ReadData)
+  memReadAddr1 := make(chan axiprotocol.Addr)
+  memReadData1 := make(chan axiprotocol.ReadData)
+  go axiarbitrate.ReadArbitrateX2(
+    memReadAddr, memReadData, memReadAddr0, memReadData0,
+    memReadAddr1, memReadData1)
+
+But using SMI, all we need is this to have up to 64 ports of memory access::
+
+  readReq chan<- smi.Flit64,
+	readResp <-chan smi.Flit64,
+
+	writeReq chan<- smi.Flit64,
+	writeResp <-chan smi.Flit64)
 
 .. todo::
-    add example code snippets showing reductions with SMI
+   Link to example using SMI and AXI version
 
 Go compilation stages
 ^^^^^^^^^^^^^^^^^^^^^
