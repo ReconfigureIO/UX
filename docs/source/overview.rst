@@ -22,7 +22,7 @@ Our current standard way of having the FPGA talk to shared memory is using the A
 
 **Our engineers have developed a new protocol – SMI (Scalable Multiprotocol Infrastructure) – which addresses the issue of fine-grained parallelizm, as well as simplifying code and reducing boilerplate for our users.** It's available for testing from Reconfigure.io v0.17.0 onwards and will be fully rolled out as our standard method for accessing memory very soon.
 
-As an example, using SMI, this is how we set up channels to have two memory access ports (there will also be a ``.yml`` per project to set the number of ports your project requires)::
+SMI ports all consist of a request and a response channel and can be use for reading from or writing to memory. As an example, using SMI, this is how we set up channels to have two memory access ports (there will also be a ``.yml`` file per project to set the number of required ports)::
 
   smiPortAReq chan<- smi.Flit64,
   smiPortAResp <-chan smi.Flit64,
@@ -30,7 +30,7 @@ As an example, using SMI, this is how we set up channels to have two memory acce
   smiPortBReq chan<- smi.Flit64,
   smiPortBResp <-chan smi.Flit64
 
-SMI ports can be used for reads or writes interchangeably, we can just name the ports for our own use so we know which is being used for which function::
+SMI ports can be used for reads or writes interchangeably, we can just name the ports for our own reference so we know which is being used for which function, like this::
 
   readReq chan<- smi.Flit64,
   readResp <-chan smi.Flit64,
@@ -38,7 +38,7 @@ SMI ports can be used for reads or writes interchangeably, we can just name the 
   writeReq chan<- smi.Flit64,
   writeResp <-chan smi.Flit64
 
-And if we wanted to add another read port so we can have two concurrent memory reads, we could just make the following change and up the number of ports in the project's ``.yml`` file::
+And if we wanted to add another read port – ``readB`` – so we can have two concurrent memory reads, we could just make the following change along with upping the number of ports in the project's ``.yml`` file::
 
   readAReq chan<- smi.Flit64,
   readAResp <-chan smi.Flit64,
