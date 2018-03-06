@@ -22,7 +22,7 @@ Our current standard way of having the FPGA talk to shared memory is using the A
 
 **Our engineers have developed a new protocol – SMI (Scalable Multiprotocol Infrastructure) – which addresses the issue of fine-grained parallelizm, as well as simplifying code and reducing boilerplate for our users.** It's available for testing from Reconfigure.io v0.17.0 onwards and will be fully rolled out as our standard method for accessing memory very soon.
 
-As an example, using SMI, this is how we set up channels to have up to 64 ports of xmemory access::
+As an example, using SMI, this is how we set up channels to have up to 64 ports of memory access::
 
   readReq chan<- smi.Flit64,
   readResp <-chan smi.Flit64,
@@ -30,7 +30,7 @@ As an example, using SMI, this is how we set up channels to have up to 64 ports 
   writeReq chan<- smi.Flit64,
   writeResp <-chan smi.Flit64)
 
-But, using AXI, as we currently do, this is how we set up channels to access memory::
+But, using AXI as we currently do, this is how we set up channels to access memory::
 
   memReadAddr chan<- axiprotocol.Addr,
   memReadData <-chan axiprotocol.ReadData,
