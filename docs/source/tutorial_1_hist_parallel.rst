@@ -70,7 +70,7 @@ For this example, ``main_test.go`` checks that the FPGA will not calculate an in
 
     $ go test
     PASS
-    ok      /<your_path>/examples/histogram-array    0.005s
+    ok      /github.com/ReconfigureIO/examples/histogram-array    0.005s
 
 This shows us that your Go environment is set up correctly and the code passes the conditions set in ``main_test.go``.
 
@@ -81,7 +81,7 @@ Now you can type-check the FPGA code using our command line tool ``reco``. This 
 .. code-block:: shell
 
    $ reco check
-   /<your_path>/examples/histogram-array/main.go checked successfully
+   /github.com/ReconfigureIO/examples/histogram-array/main.go checked successfully
 
 Simulate
 --------
@@ -94,7 +94,7 @@ You can now simulate the program using the ``reco sim`` command. This is a reall
 
 .. admonition:: Getting in the queue
 
-    Simulation should normally only take around 20 seconds but could be up to 10 minutes depending on what else is in the queue.
+    Simulation should normally only take around 5 minutes but could be up to 30 minutes depending on what else is in the queue.
 
 Run ``reco sim run test-histogram`` and you should see:
 

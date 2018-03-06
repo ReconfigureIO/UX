@@ -146,7 +146,7 @@ Now you can start a simulation by running ``reco sim run test-addition``::
 
 .. admonition:: Getting in the queue
 
-    Simulation should normally only take around 20 seconds but could be up to 10 minutes depending on what else is in the queue.
+    Simulation should normally only take around 5 minutes but could be up to 30 minutes depending on what else is in the queue.
 
 For more detailed descriptions of any error messages you might receive here, you can take a look at our troubleshooting section: :ref:`errors`.
 
