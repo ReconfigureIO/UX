@@ -107,7 +107,7 @@ All the code you write will be in Go. You can create Go files in your working di
 
 Go test
 ^^^^^^^
-If you have followed our Go tooling :ref:`setup instructions <gotools>` you can use ``go test`` to run tests against your FPGA code and flag up any syntactic errors. You can read more about the Go testing framework `here <https://golang.org/doc/code.html#Testing>`_. Your ``_test.go`` files can just be stored in a program's top directory.
+If you have followed our Go tooling :ref:`setup instructions <gotools>` you can use ``go test`` to run tests against your FPGA code and flag up any semantic or syntactic errors. You can read more about the Go testing framework `here <https://golang.org/doc/code.html#Testing>`_. Your ``main_test.go`` files can just be stored in a program's top directory.
 
 Check
 ^^^^^
