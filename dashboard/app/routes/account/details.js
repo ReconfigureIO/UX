@@ -11,11 +11,12 @@ export default Ember.Route.extend({
     Ember.set(controller, 'user', model.user.value);
   },
   actions: {
-    updateUser: function(email) {
+    updateUser: function(id) {
       // Update Intercom
       window.Intercom('update', {
+        user_id: id,
         name: Ember.$('input[name="fullName"]').val(),
-        email: email,
+        email: Ember.$('input[name="emailAddress"]').val(),
         phone: Ember.$('input[name="phone"]').val(),
         "company": Ember.$('input[name="company"]').val()
       });
@@ -24,6 +25,7 @@ export default Ember.Route.extend({
       this.get('ajax').put('/user', {
         data: {
           name: Ember.$('input[name="fullName"]').val(),
+          email: Ember.$('input[name="emailAddress"]').val(),
           phone_number: Ember.$('input[name="phone"]').val(),
           company: Ember.$('input[name="company"]').val()
         },
