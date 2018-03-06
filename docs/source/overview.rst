@@ -41,13 +41,13 @@ And if we want two go routines to read from memory concurrently, we would need t
     memReadAddr, memReadData, memReadAddr0, memReadData0,
     memReadAddr1, memReadData1)
 
-But, using SMI, all we need is this to have up to 64 ports of memory access::
+But, using SMI, all we need is this to have up to **64 ports of memory access**::
 
   readReq chan<- smi.Flit64,
-	readResp <-chan smi.Flit64,
+  readResp <-chan smi.Flit64,
 
-	writeReq chan<- smi.Flit64,
-	writeResp <-chan smi.Flit64)
+  writeReq chan<- smi.Flit64,
+  writeResp <-chan smi.Flit64)
 
 .. todo::
    Link to example using SMI and AXI version
