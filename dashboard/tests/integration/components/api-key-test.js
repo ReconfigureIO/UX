@@ -11,14 +11,6 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{api-key}}`);
 
-  assert.equal(this.$().text().trim(), '');
+  assert.notEqual(this.$().text().trim(), '');
 
-  // Template block usage:
-  this.render(hbs`
-    {{#api-key}}
-      template block text
-    {{/api-key}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
 });
