@@ -41,6 +41,11 @@ node ('master') {
                 }
             }
 
+            stage 'dashboard - test'
+            dir ('dashboard/') {
+                'docker-compose run --rm make test'
+            }
+            
             stage 'build'
             if(env.BRANCH_NAME == "master") {
                 sh "docker run -v \$PWD/docs:/mnt --env-file=docs/vars/production.env 'reconfigureio/sphinx:latest' make html"
