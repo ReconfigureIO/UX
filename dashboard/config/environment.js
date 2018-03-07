@@ -120,7 +120,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.apiURL = 'http://localhost:8080';
+    ENV.apiURL = 'https://api.reconfigure.io';
   }
 
   if (environment === 'test') {
