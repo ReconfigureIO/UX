@@ -43,7 +43,7 @@ node ('master') {
 
             stage 'dashboard - test'
             dir ('dashboard/') {
-                sh 'docker-compose run --rm make test'
+                sh 'docker-compose run --rm test'
             }
 
             stage 'build'
