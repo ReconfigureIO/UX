@@ -21,7 +21,7 @@ node ('master') {
 
             stage 'lint'
             sh 'docker build -t "reconfigureio/sphinx:latest" docs'
-            sh 'docker build -t "reconfigureio/dashboard:latest" dashboard'
+            sh 'docker build -t "reconfigureio/dashboard:latest" dashboard/build'
 
             stage 'reco'
             if(env.BRANCH_NAME != "master") {
@@ -45,7 +45,7 @@ node ('master') {
             dir ('dashboard/') {
                 'docker-compose run --rm make test'
             }
-            
+
             stage 'build'
             if(env.BRANCH_NAME == "master") {
                 sh "docker run -v \$PWD/docs:/mnt --env-file=docs/vars/production.env 'reconfigureio/sphinx:latest' make html"
