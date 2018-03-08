@@ -6,7 +6,7 @@ Release Notes
 
 Reconfigure.io v0.17.0
 ======================
-
+ 
 This release adds initial support for our new memory infrastructure, called SMI (Scalable Multiprotocol Infrastructure).
 
 SMI
