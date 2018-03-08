@@ -11,7 +11,9 @@
   <section class="section sign-up__plan">
     <div class="container">
       <h2>Choose your plan</h2>
-      <p>Select a plan below to get started with Reconfigure.io</p>
+      <p>We have retrieved the following information from Github. Is this accurate?</p>
+      <p><strong>Name:</strong> {{form-input questionType="text" name="fullName" value=user.name}}<br>
+      <strong>Email:</strong> {{form-input questionType="text" name="emailAddress" value=user.email}}</p>
 
       <div class="table-wrapper">
         <table class="table table--credits">
