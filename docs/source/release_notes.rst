@@ -7,14 +7,16 @@ Release Notes
 Reconfigure.io v0.17.0
 ======================
 
-This release adds initial support for our new memory infrastructure, called SMI. 
+This release adds initial support for our new memory infrastructure, called SMI (Scalable Multiprotocol Infrastructure).
 
 SMI
 ~~~
 
-.. todo::
+Our engineers have developed SMI to provide improvements to the way we give memory access to FPGAs. Improvements through using SMI include:
 
-Some sort of description on why we use SMI.
+* Easier to scale up projects to use available memory bandwidth.
+* Increase in available bandwidth across multiple goroutines.
+* Simplified code, less boilerplate.
 
 Features
 ~~~~~~~~
