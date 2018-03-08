@@ -4,6 +4,24 @@
 Release Notes
 =============
 
+Reconfigure.io v0.17.0
+======================
+
+This release adds initial support for our new memory infrastructure, called SMI. 
+
+SMI
+~~~
+
+.. todo::
+
+Some sort of description on why we use SMI.
+
+Features
+~~~~~~~~
+
+* Further optimize some variable and channel concurrency operations.
+* Reduce verbose log output during synthesis.
+
 Reconfigure.io v0.16.4
 ======================
 
