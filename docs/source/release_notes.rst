@@ -12,9 +12,9 @@ This release adds initial support for our new memory infrastructure, called SMI 
 SMI
 ~~~
 
-Our engineers have developed SMI to provide improvements to the way we give memory access to FPGAs over using the AXI protocol. Improvements seen through using SMI include:
+Our engineers have developed SMI to provide improvements to the way we give memory access to FPGAs. Improvements through using SMI include:
 
-* Easier to scale up projects to use the available memory bandwidth
+* Easier to scale up projects to use available memory bandwidth
 * Increase in available bandwidth across multiple goroutines
 * Simplified code, less boilerplate
 
