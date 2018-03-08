@@ -196,7 +196,7 @@ epub_copyright = copyright
 epub_exclude_files = ['search.html']
 
 #Reconfigure.io defined variables
-env = ['WEB_MD5_UUID','RECO_VERSION','EXAMPLES_VERSION']
+env = ['WEB_MD5_UUID','RECO_VERSION','EXAMPLES_VERSION','TUTORIALS_VERSION']
 keys = [x.lower() for x in env]
 vals = map(os.getenv, env)
 code_substitutions = dict(zip(keys, vals))

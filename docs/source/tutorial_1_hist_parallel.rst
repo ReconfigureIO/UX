@@ -14,57 +14,34 @@ From here, we're assuming you've already set up your account and :ref:`installed
 
 .. _examples:
 
-Fork our examples repository
+Clone our examples repository
 ----------------------------
-First we need some code to work with. If you already use Go, and have your ``GOPATH``, workspace and tooling set up, you can now clone a fork of our examples repo into your workspace. You'll also need to have `git <https://help.github.com/articles/set-up-git/#setting-up-git>`_ set up on your local machine.
+First we need some code to work with. If you already use Go, and have your ``GOPATH``, workspace and tooling set up, and have `git <https://help.github.com/articles/set-up-git/#setting-up-git>`_ set up on your local machine, you can now clone our examples repo into your workspace by following the instructions for your operating system below.
 
 If you are new to Go, please follow our :ref:`quick setup guide <gotools>` first.
-
-To fork our examples repo head `here <https://github.com/ReconfigureIO/examples>`_ and click **fork** in the top right hand corner.
-
-.. image:: fork_button.png
-   :align: center
-
-You will be asked for authorization, at which point a copy of the repo will be made in your account. Then, you can clone your fork to your local machine from the command line by following the instructions for your operating system below:
 
 .. _examples-linux:
 
 Linux/MacOSX
 ^^^^^^^^^^^^
-From a terminal create an environment variable for your github username (substitute ``<username>`` for your github username):
-
-.. code-block:: shell
-
-    export GITHUB_USERNAME=<username>
-
-Then copy and paste the following:
+From a terminal copy and paste the following:
 
 .. subst-code-block:: shell
 
-    git clone https://github.com/$GITHUB_USERNAME/examples.git $GOPATH/src/github.com/$GITHUB_USERNAME/examples
-    cd $GOPATH/src/github.com/$GITHUB_USERNAME/examples
-    git remote add upstream git://github.com/ReconfigureIO/examples.git
-    git fetch upstream
+    git clone https://github.com/Reconfigureio/examples.git $GOPATH/src/github.com/Reconfigureio/examples
+    cd $GOPATH/src/github.com/Reconfigureio/examples
     git checkout |examples_version|
 
 .. _examples-win:
 
 Windows 10
 ^^^^^^^^^^
-From a Powershell terminal create an environment variable for your github username (substitute ``<username>`` for your github username):
-
-.. code-block:: shell
-
-    $env:GithubUsername="<username>"
-
-Then copy and paste the following:
+From a Powershell terminal copy and paste the following:
 
 .. subst-code-block:: shell
 
-    git clone https://github.com/$env:GithubUsername/examples.git $Env:GOPATH/src/github.com/$env:GithubUsername/examples
-    cd $Env:GOPATH/src/github.com/$env:GithubUsername/examples
-    git remote add upstream git://github.com/ReconfigureIO/examples.git
-    git fetch upstream
+    git clone https://github.com/Reconfigureio/examples.git $Env:GOPATH/src/github.com/Reconfigureio/examples
+    cd $Env:GOPATH/src/github.com/Reconfigureio/examples
     git checkout |examples_version|
 
 .. _test:
@@ -93,18 +70,18 @@ For this example, ``main_test.go`` checks that the FPGA will not calculate an in
 
     $ go test
     PASS
-    ok      /<your_path>/examples/histogram-array    0.005s
+    ok      /github.com/ReconfigureIO/examples/histogram-array    0.005s
 
 This shows us that your Go environment is set up correctly and the code passes the conditions set in ``main_test.go``.
 
-Check for compatibility with Reconfigure.io
+Check for compatibility
 -------------------------------------------
 Now you can type-check the FPGA code using our command line tool ``reco``. This tells us whether the code is compatible with the Reconfigure.io compiler and will point out any syntactic errors. To do this run ``reco check`` and you should see:
 
 .. code-block:: shell
 
    $ reco check
-   /<your_path>/examples/histogram-array/main.go checked successfully
+   /github.com/ReconfigureIO/examples/histogram-array/main.go checked successfully
 
 Simulate
 --------
@@ -117,7 +94,7 @@ You can now simulate the program using the ``reco sim`` command. This is a reall
 
 .. admonition:: Getting in the queue
 
-    Simulation should normally only take around 20 seconds but could be up to 10 minutes depending on what else is in the queue.
+    Simulation should normally only take around 5 minutes but could be up to 30 minutes depending on what else is in the queue.
 
 Run ``reco sim run test-histogram`` and you should see:
 

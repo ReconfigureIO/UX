@@ -218,7 +218,7 @@ To explore these methods of passing data around further let's use our template t
     :width: 90%
     :align: center
 
-We can use our template to write the code to perform this multiplication. First, let's check you're using the latest version of our examples – |examples_version|. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
+We can use our template to write the code to perform this multiplication. First, let's check you're using the latest version of our tutorial materials – |tutorials_version|. Open a terminal and navigate to where you cloned your fork of our tutorial materials (probably ``$GOPATH/src/github.com/<your-github-username>/tutorials``) and run::
 
     git describe --tags
 
@@ -228,7 +228,7 @@ If you have a different version, please run
 
     git fetch upstream
     git pull upstream master
-    git checkout |examples_version|
+    git checkout |tutorials_version|
 
 We're going to be editing and adding to our template now so let's make a new branch to work on, call it ``multiply``::
 
@@ -281,7 +281,7 @@ We're now going to use ``reco`` to debug and simulate your code, so lets create 
 First, you can type-check your code for compatibility with our compiler. From the ``examples/multiply1`` directory run ``reco check``, and if everything is ok, you should see::
 
   $ reco check
-  GOPATH/src/github.com/<your-github-username>/examples/multiply1/main.go checked successfully
+  GOPATH/src/github.com/<your-github-username>/tutorials/multiply1/main.go checked successfully
 
 Once you've addressed any errors thrown up by ``reco check``, you can simulate how your code will run on an FPGA::
 
@@ -289,7 +289,7 @@ Once you've addressed any errors thrown up by ``reco check``, you can simulate h
   (.....)
   2
 
-Once the compiler has run through the simulation, you should see the multiplication result displayed. When you're done, you can compare your code with ours, which you'll find here: ``examples/tutorial3_examples/multiply1/``
+Once the compiler has run through the simulation, you should see the multiplication result displayed. When you're done, you can compare your code with ours, which you'll find here: ``tutorials/tutorial3_examples/multiply1/``
 
 More data
 ------------
