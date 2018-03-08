@@ -22,7 +22,7 @@ Our current standard way of having the FPGA talk to shared memory is using the A
 
 **Our engineers have developed a new protocol – SMI (Scalable Multiprotocol Infrastructure) – which addresses the issue of fine-grained parallelizm, as well as simplifying code and reducing boilerplate for our users.** It's available for testing from Reconfigure.io v0.17.0 onwards and will be fully rolled out as our standard method for accessing memory very soon.
 
-For more information, please see our `blog post <https://medium.com/the-recon/introducing-smi-7a216e2dff45>`_ and you can check out our `examples <https://github.com/ReconfigureIO/examples>`_ – we've included a version of our histogram-array code which uses SMI rather than AXI.
+For more information, please see our `blog post <https://medium.com/the-recon/introducing-smi-7a216e2dff45>`_ and you can check out our `examples <https://github.com/ReconfigureIO/examples>`_ – we've included a version of our histogram-array code that uses SMI rather than AXI.
 
 Go compilation stages
 ^^^^^^^^^^^^^^^^^^^^^
