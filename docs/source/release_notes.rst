@@ -14,9 +14,9 @@ SMI
 
 Our engineers have developed SMI to provide improvements to the way we give memory access to FPGAs. Improvements through using SMI include:
 
-* Easier to scale up projects to use available memory bandwidth
-* Increase in available bandwidth across multiple goroutines
-* Simplified code, less boilerplate
+* Easier to scale up projects to use available memory bandwidth.
+* Increase in available bandwidth across multiple goroutines.
+* Simplified code, less boilerplate.
 
 Features
 ~~~~~~~~
