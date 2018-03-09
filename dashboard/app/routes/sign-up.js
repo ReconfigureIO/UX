@@ -7,10 +7,14 @@ export default Ember.Route.extend({
     return Ember.RSVP.hash({
       billing: this.get('ajax').request('/user/payment-info').catch(function(error) {
         if (error.error == 'Not Found') {
+          return false;
+        }
+      }),
+      user: this.get('ajax').request('/user').catch(function(error) {
+        if (error.error == 'Not Found') {
           return true;
         }
       }),
-      user: this.get('ajax').request('/user'),
       section: 'plan'
     });
   },
@@ -97,10 +101,17 @@ export default Ember.Route.extend({
         });
       }
     },
-    setPlanType: function(type) {
+    setPlanType: function(type, id) {
       // Set button class and the plan type property
+      var that = this;
       this.set('planType', type);
-      this.set('controller.model.section', 'billingInfo');
+      if(type == 'single-user') {
+        that.send('updateUser', 'id');
+        this.set('controller.model.section', 'billingInfo');
+      } else {
+        that.send('updateUser', 'id');
+        that.send('updatePlanType');
+      }
       Intercom('trackEvent', 'selected Plan', {
         plan: type
       });
@@ -116,7 +127,6 @@ export default Ember.Route.extend({
       }).then(function(response) {
         // Add tracking event
         Intercom('trackEvent', 'signed up', {
-          flow: 'require-card',
           plan: that.get('plan')
         });
 
@@ -125,6 +135,28 @@ export default Ember.Route.extend({
 
         // Show continue button
         $('.sign-up__continue').fadeIn();
+      }).catch(function() {
+
+      });
+    },
+    updateUser: function(id) {
+      // Update Intercom
+      Intercom('update', {
+        user_id: id,
+        name: Ember.$('input[name="fullName"]').val(),
+        email: Ember.$('input[name="emailAddress"]').val()
+      });
+
+      // Update API
+      this.get('ajax').put('/user', {
+        data: {
+          name: Ember.$('input[name="fullName"]').val(),
+          email: Ember.$('input[name="emailAddress"]').val()
+        },
+        contentType: "application/json"
+      }).then(function() {
+        // Add tracking event
+        Intercom('trackEvent', 'Updated Personal Details');
       }).catch(function() {
 
       });
