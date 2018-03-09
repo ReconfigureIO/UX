@@ -1,62 +1,187 @@
 /* TOGGLE */
 
+.radio,
+.checkbox {
+  display: inline-block;
+  width: 25%;
+  @include margin-trailer(1);
+  box-sizing: border-box;
+
+  @include breakpoint($break_mobile) {
+    width: 45%;
+  }
+
+  &:first-child {
+    @include margin-leader(0);
+  }
+
+  label {
+    position: relative;
+    top: auto;
+    left: auto;
+    color: $cod-gray;
+    @include adjust-font-size-to(1rem);
+    @include adjust-leading-to(1);
+    @include opacity(1);
+    vertical-align: middle;
+  }
+
+  &--terms {
+    width: 100%;
+    @include margin-trailer(0);
+
+    @include breakpoint($break_mobile) {
+      width: 100%;
+    }
+  }
+}
+
 // RADIO
 .radio {
   input[type="radio"] {
-    display:none;
+    position: absolute;
+    z-index: -1;
   }
 
   input[type="radio"] + label {
+    display: table;
     cursor: pointer;
+    @include opacity(0.5);
+  }
+
+  input[type="radio"] + label .radio__button {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  input[type="radio"] + label .radio__button > span {
+    float: left;
+    width:18px;
+    height:18px;
+    margin-right: $base-margin*0.5;
+    vertical-align:middle;
+    cursor:pointer;
+    @include border-radius(50%);
+    background-color: transparent;
+    border: 2pt solid $alto;
+    vertical-align: middle;
+  }
+
+  input[type="radio"] + label > .radio__description {
+    display: table-cell;
+    vertical-align: middle;
+    @include padding-leader(0.25);
+    @include adjust-leading-to(1.25);
+    overflow: hidden;
+  }
+
+  input[type="radio"] + label > .radio__description .edit {
+    display: block;
+    @include margin-leader(0.25);
   }
 
   input[type="radio"]:checked + label {
-    color: $cod-gray;
+    @include opacity(1);
   }
 
-  input[type="radio"] + label > span {
-    display:inline-block;
-    width:20px;
-    height:20px;
-    margin:-2px $base-line-height*0.5 0 0;
-    vertical-align:middle;
-    cursor:pointer;
-    -moz-border-radius:  50%;
-    border-radius:  50%;
-    background-color: transparent;
-    border: 2px solid $trout;
+  input[type="radio"]:checked + label .radio__button > span {
+    border-color: $cod-gray;
   }
 
-  input[type="radio"] + label:hover > span {
-    border-color: $trout;
-  }
-
-  input[type="radio"]:checked + label > span {
-    border-color: $trout;
-  }
-
-  input[type="radio"] + label > span > span {
+  input[type="radio"] + label .radio__button > span > span {
     display: block;
-    width:16px;
-    height:16px;
+    width:14px;
+    height:14px;
     margin: 2px;
-    -moz-border-radius:  50%;
-    border-radius:  50%;
+    @include border-radius(50%);
     border: none;
     background-color: transparent;
   }
 
-  input[type="radio"]:checked + label > span > span {
-    background-color: $trout;
+  input[type="radio"] + label:hover .radio__button > span > span {
+    background-color: rgba($cod-gray, 0.2);
   }
 
-  input[type="radio"] + label span,
-  input[type="radio"] + label:hover > span,
-  input[type="radio"]:checked + label span {
-    -webkit-transition:background-color 0.4s linear;
-    -o-transition:background-color 0.4s linear;
-    -moz-transition:background-color 0.4s linear;
-    transition:background-color 0.4s linear;
+  input[type="radio"]:checked + label .radio__button > span > span {
+    background-color: $cod-gray;
+  }
+
+  input[type="radio"] + label .radio__button span,
+  input[type="radio"] + label:hover .radio__button > span,
+  input[type="radio"]:checked + label .radio__button span {
+    @include transition(background-color 0.4s linear);
+  }
+
+  &--text {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    @include margin-leader(0);
+
+    @include breakpoint($break_mobile) {
+      display: block;
+      width: 100%;
+    }
+
+    &:last-child {
+      input[type="radio"] + label {
+        margin-right: 0;
+      }
+
+      @include breakpoint($break_mobile) {
+        margin-bottom: 3px;
+      }
+    }
+
+    input[type="radio"] + label {
+      position: relative;
+      color: $cod-gray;
+      font-family: $font_primary;
+      @include adjust-font-size-to(1.125rem);
+      @include adjust-leading-to(1.625);
+      padding: 0 $base-margin*2.5625 0 $base-margin*2.625;
+      @include rhythm-padding(0.9375, 0.6875);
+      margin-right: -3px;
+      border: 2pt solid $alto;
+      opacity: 1 !important;
+      box-sizing: border-box;
+      text-align: center;
+      z-index: 0;
+
+      &:hover {
+        /*border-color: $silver-chalice;*/
+        z-index: 1;
+      }
+
+      @include breakpoint($break_tablet) {
+        padding: 0 $base-margin*2;
+        @include rhythm-padding(0.9375, 0.6875);
+      }
+
+      @include breakpoint($break_mobile) {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: -3px;
+      }
+    }
+
+    input[type="radio"]:checked + label {
+      background-color: $polar;
+      /*border-color: $fountain-blue;*/
+      z-index: 2;
+    }
+
+    &.disabled {
+      label {
+        @include opacity(0.4);
+        cursor: default;
+      }
+
+      label:hover,
+      input[type="radio"]:checked + label {
+        background: transparent !important;
+      }
+    }
   }
 }
 

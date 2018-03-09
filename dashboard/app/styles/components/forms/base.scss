@@ -61,6 +61,10 @@ form,
       overflow: visible;
     }
 
+    &--text-radio {
+      @include margin-trailer(1);
+    }
+
     // With button
     &--with-button {
       float: left;
