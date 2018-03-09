@@ -240,3 +240,83 @@
     transition:background-color 0.4s linear;
   }
 }
+
+// Toggle buttons
+.toggle-buttons {
+  display: block;
+  margin: 0 -$base-margin*0.5;
+  @include margin-leader(0);
+  @include margin-trailer(0);
+  overflow: hidden;
+
+  .toggle-button {
+    @include gallery(3 of 12);
+    padding: 0 $base-margin*0.5;
+    @include margin-trailer(1);
+    box-sizing: border-box;
+    text-align: center;
+
+    @include breakpoint($break_medium) {
+      @include gallery(4 of 12);
+    }
+
+    @include breakpoint($break_mobile) {
+      @include gallery(6 of 12);
+    }
+
+    &__img {
+      @include margin-trailer(1.25);
+    }
+
+    &__label {
+      font-family: $font_primary_bold;
+      @include adjust-font-size-to(1.125rem);
+      @include adjust-leading-to(1.625);
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      display:none;
+    }
+  
+    input[type="checkbox"] + label,
+    input[type="radio"] + label {
+      display: block;
+      position: relative;
+      top: auto;
+      left: auto;
+      @include adjust-font-size-to(1rem);
+      @include adjust-leading-to(1);
+      padding: 0 $base-margin*0.55;
+      @include rhythm-padding(0.5);
+      border: 2px solid $alto;
+      box-sizing: border-box;
+      cursor: pointer;
+      word-break: break-word;
+      @include transition(0.2s ease-out);
+    }
+  
+    input[type="checkbox"] + label > span,
+    input[type="radio"] + label > span {
+      display: block;
+    }
+
+    input[type="checkbox"]:focus + label,
+    input[type="radio"]:focus + label {
+      border-color: $shamrock;
+    }
+  
+    input[type="checkbox"]:checked + label,
+    input[type="radio"]:checked + label {
+      color: $cod-gray;
+      font-family: $font_primary_bold;
+      border-color: $shamrock;
+    }
+  
+    input[type="checkbox"] + label:hover,
+    input[type="radio"] + label:hover {
+      color: $trout;
+      border-color: $trout;
+    }
+  }
+}
