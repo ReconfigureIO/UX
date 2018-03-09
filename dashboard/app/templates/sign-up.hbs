@@ -162,12 +162,255 @@
 
     </div>
   </section>
-
   <div class="container">
     By signing up, you agree to our <a target="_blank" href="http://reconfigure.io/agreement">Customer Agreement</a>, and you can view our <a target="_blank" href="http://reconfigure.io/privacy">Privacy Policy</a>.
   </div>
 
   {{/if}}
+
+  {{#if (eq model.section 'goals')}}
+  <section class="section sign-up__goals">
+  <div class="container">
+    <div class="wrapper">
+      <div class="signup__header">
+        <h1 class="signup__title h1--light">Goal</h1>
+        <p class="signup__description">We would like to find out some more information on how you intend to use Reconfigure.io so we can continue to improve the platform.</p>
+      </div>
+
+      <div class="signup__content">
+        <form class="form form--actions form--ajax form--additional-information" name="signup-technical-details" action="/actions/Signup/signupUser" method="post">
+          <div class="form__content">
+            <div class="col col--full">
+              <div class="form__section">
+                <div class="field">
+                  <div class="col col--8">
+                    <textarea name="main_goal" id="main_goal" rows="8" cols="40" required></textarea>
+                    <label for="main_goal">What's your goal with using Reconfigure.io?</label>
+                  </div>
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="form__section">
+                <p class="lg-copy">Please fill out the information below about your organisation.</p>
+
+                <div class="field">
+                  <div class="col col--8">
+                    <input type="text" name="organisation" id="organisation" required>
+                    <label for="organisation">Name of organisation</label>
+                  </div>
+                </div>
+
+                <p class="lg-copy">Alternative email address if you'd rather use a different account than your Github email</p>
+
+                <div class="field">
+                  <div class="col col--8">
+                    <input type="email" name="email" id="email" value="{{ userData.email }}" required>
+                    <label for="email">Email address</label>
+                  </div>
+                </div>
+
+                <p>How many people work at your organisation?</p>
+
+                <div class="field field--text-radio">
+                  <div class="radio radio--text">
+                    <input type="radio" id="how_many1" class="input input--radio" name="how_many" value="0-5" required/>
+                    <label for="how_many1">0-5</label>
+                  </div>
+
+                  <div class="radio radio--text">
+                    <input type="radio" id="how_many2" class="input input--radio" name="how_many" value="6-100" required/>
+                    <label for="how_many2">6-100</label>
+                  </div>
+
+                  <div class="radio radio--text">
+                    <input type="radio" id="how_many3" class="input input--radio" name="how_many" value="101-1000" required/>
+                    <label for="how_many3">101-1000</label>
+                  </div>
+
+                  <div class="radio radio--text">
+                    <input type="radio" id="how_many4" class="input input--radio" name="how_many" value="1001-5000" required/>
+                    <label for="how_many4">1001-5000</label>
+                  </div>
+
+                  <div class="radio radio--text">
+                    <input type="radio" id="how_many5" class="input input--radio" name="how_many" value="5000+" required/>
+                    <label for="how_many5">5000+</label>
+                  </div>
+                </div>
+
+                <p>What are your market and technology area(s)?</p>
+
+                <div class="field">
+                  <div class="toggle-buttons">
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical1" class="input input--checkbox" name="market_vertical[]" value="Data Center"/>
+                      <label for="market_vertical1"><span><span></span></span> Data Center</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical2" class="input input--checkbox" name="market_vertical[]" value="Media"/>
+                      <label for="market_vertical2"><span><span></span></span> Media</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical3" class="input input--checkbox" name="market_vertical[]" value="Finance"/>
+                      <label for="market_vertical3"><span><span></span></span> Finance</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical4" class="input input--checkbox" name="market_vertical[]" value="Data Analytics"/>
+                      <label for="market_vertical4"><span><span></span></span> Data Analytics</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical5" class="input input--checkbox" name="market_vertical[]" value="University/Research"/>
+                      <label for="market_vertical5"><span><span></span></span> University/Research</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical6" class="input input--checkbox" name="market_vertical[]" value="Telecoms"/>
+                      <label for="market_vertical6"><span><span></span></span> Telecoms</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical7" class="input input--checkbox" name="market_vertical[]" value="Database"/>
+                      <label for="market_vertical7"><span><span></span></span> Database</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical8" class="input input--checkbox" name="market_vertical[]" value="Developer Tools"/>
+                      <label for="market_vertical8"><span><span></span></span> Developer Tools</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical9" class="input input--checkbox" name="market_vertical[]" value="AI"/>
+                      <label for="market_vertical9"><span><span></span></span> AI</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical10" class="input input--checkbox" name="market_vertical[]" value="IoT"/>
+                      <label for="market_vertical10"><span><span></span></span> IoT</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical12" class="input input--checkbox" name="market_vertical[]" value="Security"/>
+                      <label for="market_vertical12"><span><span></span></span> Security</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical13" class="input input--checkbox" name="market_vertical[]" value="Advertising"/>
+                      <label for="market_vertical13"><span><span></span></span> Advertising</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical14" class="input input--checkbox" name="market_vertical[]" value="Logistics"/>
+                      <label for="market_vertical14"><span><span></span></span> Logistics</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical15" class="input input--checkbox" name="market_vertical[]" value="Oil and Gas"/>
+                      <label for="market_vertical15"><span><span></span></span> Oil and Gas</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical16" class="input input--checkbox" name="market_vertical[]" value="Aerospace"/>
+                      <label for="market_vertical16"><span><span></span></span> Aerospace</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical17" class="input input--checkbox" name="market_vertical[]" value="Biotech/Health"/>
+                      <label for="market_vertical17"><span><span></span></span> Biotech/Health</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical18" class="input input--checkbox" name="market_vertical[]" value="Professional Services"/>
+                      <label for="market_vertical18"><span><span></span></span> Professional Services</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical19" class="input input--checkbox" name="market_vertical[]" value="Automotive"/>
+                      <label for="market_vertical19"><span><span></span></span> Automotive</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical20" class="input input--checkbox" name="market_vertical[]" value="Cloud monitoring &amp; management"/>
+                      <label for="market_vertical20"><span><span></span></span> Cloud monitoring &amp; management</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical21" class="input input--checkbox" name="market_vertical[]" value="Social Networking"/>
+                      <label for="market_vertical21"><span><span></span></span> Social Networking</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical22" class="input input--checkbox" name="market_vertical[]" value="Environmental/Agricultural"/>
+                      <label for="market_vertical22"><span><span></span></span> Environmental/<br>Agricultural</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical24" class="input input--checkbox" name="market_vertical[]" value="Governmental"/>
+                      <label for="market_vertical24"><span><span></span></span> Governmental</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical25" class="input input--checkbox" name="market_vertical[]" value="Military"/>
+                      <label for="market_vertical25"><span><span></span></span> Military</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical26" class="input input--checkbox" name="market_vertical[]" value="Robotics"/>
+                      <label for="market_vertical26"><span><span></span></span> Robotics</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical27" class="input input--checkbox" name="market_vertical[]" value="VC"/>
+                      <label for="market_vertical27"><span><span></span></span> VC</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical28" class="input input--checkbox" name="market_vertical[]" value="Silicon IP Vendor"/>
+                      <label for="market_vertical28"><span><span></span></span> Silicon IP Vendor</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical29" class="input input--checkbox" name="market_vertical[]" value="Consumer"/>
+                      <label for="market_vertical29"><span><span></span></span> Consumer</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical30" class="input input--checkbox" name="market_vertical[]" value="Embedded Systems"/>
+                      <label for="market_vertical30"><span><span></span></span> Embedded Systems</label>
+                    </div>
+
+                    <div class="toggle-button">
+                      <input type="checkbox" id="market_vertical31" class="input input--checkbox" name="market_vertical[]" value="EDA"/>
+                      <label for="market_vertical31"><span><span></span></span> EDA</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <textarea name="market_vertical_other" id="market_vertical_other" rows="8"></textarea>
+                  <label for="market_vertical_other">If other please specify (optional)</label>
+                </div>
+              </div>
+
+              <div class="actions">
+                <button type="submit" name="submit" class="btn"><span>Complete Sign-up</span></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form__messages"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </section>
+  {{/if}}
+  
 </div>
 
 <section class="section sign-up__continue">
@@ -180,3 +423,4 @@
     </div>
   </div>
 </section>
+

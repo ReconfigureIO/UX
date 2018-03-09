@@ -110,7 +110,8 @@ export default Ember.Route.extend({
         this.set('controller.model.section', 'billingInfo');
       } else {
         that.send('updateUser', 'id');
-        that.send('updatePlanType');
+        //that.send('updatePlanType');
+        this.set('controller.model.section', 'goals');
       }
       Intercom('trackEvent', 'selected Plan', {
         plan: type
@@ -134,7 +135,7 @@ export default Ember.Route.extend({
         Ember.$('.sign-up__form').fadeOut();
 
         // Show continue button
-        $('.sign-up__continue').fadeIn();
+        $('.sign-up__goals').fadeIn();
       }).catch(function() {
 
       });
