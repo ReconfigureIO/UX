@@ -72,6 +72,7 @@ module.exports = function(environment) {
       'connect-src': [
         '*',
         'https://api.reconfigure.io',
+        'https://staging-api.reconfigure.io',
         'ws://local.reconfigure.io:49152/livereload',
         'https://api-iam.intercom.io',
         'https://api-ping.intercom.io',
@@ -121,7 +122,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.apiURL = 'https://api.reconfigure.io';
+    ENV.apiURL = 'https://staging-api.reconfigure.io';
   }
 
   if (environment === 'test') {
