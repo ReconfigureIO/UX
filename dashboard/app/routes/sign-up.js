@@ -7,12 +7,12 @@ export default Ember.Route.extend({
     return Ember.RSVP.hash({
       billing: this.get('ajax').request('/user/payment-info').catch(function(error) {
         if (error.error == 'Not Found') {
-          return false;
+          return true;
         }
       }),
       user: this.get('ajax').request('/user').catch(function(error) {
         if (error.error == 'Not Found') {
-          return true;
+          return false;
         }
       }),
       section: 'plan'
@@ -20,7 +20,7 @@ export default Ember.Route.extend({
   },
   setupController(controller, model) {
     this._super(...arguments);
-    if(model.billing) {
+    if(model.billing && model.billing.value && model.billing.value.last4) {
       Ember.set(controller, 'billing', model.billing.value);
       Ember.set(controller, 'fullCard', '•••• •••• •••• '+model.billing.value.last4);
       Ember.set(controller, 'cvc', '•••');
@@ -141,18 +141,15 @@ export default Ember.Route.extend({
       });
     },
     updateUser: function(id) {
-      // Update Intercom
-      Intercom('update', {
-        user_id: id,
-        name: Ember.$('input[name="fullName"]').val(),
-        email: Ember.$('input[name="emailAddress"]').val()
-      });
-
       // Update API
       this.get('ajax').put('/user', {
         data: {
           name: Ember.$('input[name="fullName"]').val(),
-          email: Ember.$('input[name="emailAddress"]').val()
+          email: Ember.$('input[name="emailAddress"]').val(),
+          main_goal: Ember.$('input[name="main_goal"]').val(),
+          company: Ember.$('input[name="organisation"]').val(),
+          employees: Ember.$('input[name="how_many"]').val(),
+          market_verticals: Ember.$('input[name="market_vertical"]').val(),
         },
         contentType: "application/json"
       }).then(function() {
@@ -161,6 +158,15 @@ export default Ember.Route.extend({
       }).catch(function() {
 
       });
-    }
+    },
+    submitUserGoals: function(id) {
+      var that = this;
+      that.send('updateUser', 'id');
+      // Hide billing form
+      Ember.$('.sign-up__goals').fadeOut();
+
+      // Show continue button
+      $('.sign-up__continue').fadeIn();
+    },
   }
 });

@@ -84,6 +84,7 @@ module.exports = function(environment) {
         'http://localhost:4200',
         'http://local.reconfigure.io:4200',
         'https://d10lpsik1i8c69.cloudfront.net',
+        'https://static.intercomassets.com',
         'https://static.intercomcdn.com',
         'https://js.intercomcdn.com'].join(' '),
       'frame-src' : [

@@ -178,7 +178,7 @@
       </div>
 
       <div class="signup__content">
-        <form class="form form--actions form--ajax form--additional-information" name="signup-technical-details" action="/actions/Signup/signupUser" method="post">
+        <form class="form form--actions form--ajax form--additional-information" name="signup-technical-details">
           <div class="form__content">
             <div class="col col--full">
               <div class="form__section">
@@ -199,15 +199,6 @@
                   <div class="col col--8">
                     <input type="text" name="organisation" id="organisation" required>
                     <label for="organisation">Name of organisation</label>
-                  </div>
-                </div>
-
-                <p class="lg-copy">Alternative email address if you'd rather use a different account than your Github email</p>
-
-                <div class="field">
-                  <div class="col col--8">
-                    <input type="email" name="email" id="email" value="{{ userData.email }}" required>
-                    <label for="email">Email address</label>
                   </div>
                 </div>
 
@@ -398,7 +389,7 @@
               </div>
 
               <div class="actions">
-                <button type="submit" name="submit" class="btn"><span>Complete Sign-up</span></button>
+                <button type="submit" class="btn" {{action "submitUserGoals"}}><span>Complete Sign-up</span></button>
               </div>
             </div>
           </div>
@@ -412,6 +403,7 @@
   {{/if}}
   
 </div>
+
 
 <section class="section sign-up__continue">
   <div class="container">
