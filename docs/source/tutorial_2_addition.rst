@@ -26,7 +26,7 @@ Let's break this process down. There are just two operands involved so the host 
 
 Fork our tutorials repository
 ---------------------------------
-We're now going to start using our tutorial materials repo, which contains an incomplete example for you to work on. So, as we're going to be making changes to the code, let's fork the repo. You'll find it here: https://github.com/ReconfigureIO/tutorials.
+We're now going to start using our tutorial materials repo, which contains an incomplete example for you to work on. So, as we're going to be making changes to the code, let's fork the repo. You'll find it |tutorials|.
 
 First, click the **fork** button towards the top right of the screen.
 
@@ -116,7 +116,7 @@ If not, you will be able to see where any errors are located. A pass here tells 
 
 Check and then simulate your code
 ----------------------------------
-Now the code is complete and we know it conforms to the Go language, let's check your FPGA code is compatible with the Reconfigure.io compiler. Make sure you are back in ``tutorials/addition-gaps`` and run ``reco check``. Any syntax errors will be flagged up here. For more information on our various error messages see :ref:`errors`. All being well you should see::
+Now the code is complete and we know it conforms to the Go language, let's check your FPGA code is compatible with the Reconfigure.io compiler. Make sure you are back in ``tutorials/addition-gaps`` and run ``reco check``. Any syntax errors will be flagged up here. All being well you should see::
 
   $ reco check
   $GOPATH/github.com/your-github-username/tutorials/addition-gaps/main.go checked successfully
@@ -279,3 +279,7 @@ And here's the FPGA code:
 What's next?
 -------------
 Now you've had a go at writing some code for yourself, let's move on to :ref:`structure` to look in more detail at how we share data between the host CPU and FPGA, and we'll build on a project template to create another simple program.
+
+.. |tutorials| raw:: html
+
+   <a href="https://github.com/ReconfigureIO/tutorials" target="_blank">here</a>
