@@ -35,7 +35,7 @@ The host's job is to create, receive, manage and organize data and send it to th
 
 There are a few elements that need to be included in your host code:
 
-* A ``world`` needs to be set up for managing the FPGA so it can work correctly and clean up when the work is done. For more information on this, see the ``world`` entry in our `FPGA interface docs <http://godoc.reconfigure.io/v0.12.7/host/pkg/xcl/index.html#World>`_.
+* A ``world`` needs to be set up for managing the FPGA so it can work correctly and clean up when the work is done. For more information on this, see the ``world`` entry in our |FPGA|.
 * Set aside some space in shared memory to put data for the FPGA to collect, and to pass results back to the host.
 * Pass data to the FPGA – input data, pointers to input data, a pointer to where you want the results to end up, maybe an expected length if you are passing an array etc.
 * Set the FPGA running.
@@ -145,7 +145,7 @@ We've seen how Reconfigure.io projects consist of host and FPGA code and that da
 
 Host CPU code
 ^^^^^^^^^^^^^
-So, lets look at how we actually do this. We can use a simple example of passing a small array from the host CPU to the FPGA and then have the FPGA send it back again. Starting with the code for the CPU, you can see from the template above that we need a `'world' <https://github.com/ReconfigureIO/sdaccel>`_ set up to interact with the FPGA, and we use this to let the CPU talk to the shared memory on the FPGA card. We can create spaces within shared memory for specific purposes, and send the addresses of these memory locations to the FPGA so it knows where to look for our data, and where to store its results.
+So, lets look at how we actually do this. We can use a simple example of passing a small array from the host CPU to the FPGA and then have the FPGA send it back again. Starting with the code for the CPU, you can see from the template above that we need a |world| set up to interact with the FPGA, and we use this to let the CPU talk to the shared memory on the FPGA card. We can create spaces within shared memory for specific purposes, and send the addresses of these memory locations to the FPGA so it knows where to look for our data, and where to store its results.
 
 Sending some data from the host to the FPGA is a three step process – create space in memory for our data, store data in that memory location, and pass the memory location to the FPGA so it knows where to find it. For this example we need to create our test data first, so lets make an array of 10 incrementing values::
 
@@ -177,9 +177,9 @@ Next, the code snippets for passing our test data to the FPGA look like this (re
 
 FPGA code
 ^^^^^^^^^^
-The FPGA interacts with shared memory using the `AXI memory protocol <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/>`_. In the template above you can see we always set up channels to act as ports for interacting with shared memory within the ``Top`` function in the FPGA code.
+The FPGA interacts with shared memory using the |axi|. In the template above you can see we always set up channels to act as ports for interacting with shared memory within the ``Top`` function in the FPGA code.
 
-So, the FPGA getting hold of the array requires three steps – first, the FPGA must receive the memory location from the host, then create a variable for the data and use an `AXI read <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#ReadUInt32>`_ to read the data into that variable within the on-chip block RAM. Here are the code snippets for these steps:
+So, the FPGA getting hold of the array requires three steps – first, the FPGA must receive the memory location from the host, then create a variable for the data and use an |axi_read| to read the data into that variable within the on-chip block RAM. Here are the code snippets for these steps:
 
 1. Receive the memory locations and data size from the host (the ``0``, ``1`` and ``2`` in ``krnl.SetMemoryArg...`` are translated by our comiler to be the first, second and third inputs to the FPGA)::
 
@@ -196,7 +196,7 @@ So, the FPGA getting hold of the array requires three steps – first, the FPGA 
       aximemory.ReadUInt32(
         memReadAddr, memReadData, false, inputData, data)
 
-Now the FPGA has our array held within ``data``, let's send it back again. The process for getting data from the FPGA's block RAM to the reserved space in shared memory is an `AXI write <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#WriteUInt32>`_ as follows::
+Now the FPGA has our array held within ``data``, let's send it back again. The process for getting data from the FPGA's block RAM to the reserved space in shared memory is an |axi_write| as follows::
 
   aximemory.WriteUInt32(
     memWriteAddr, memWriteData, memWriteResp, false, outputData, data)
@@ -344,3 +344,23 @@ Once the compiler has run through the simulation, you should see the resulting a
 What have we done
 ------------------
 So, we've looked at how to structure your code to work with Reconfigure.io, and how to use our template as a basis for writing new programs. Also, we've seen how to pass arguments straight from the host to the FPGA using the control register, and pass data from the host to the FPGA via shared memory, and back again. Next, :ref:`tutorial 4 <graphstutorial>` shows you how to use dataflow graphs to optimize your FPGA code.
+
+.. |FPGA| raw:: html
+
+   <a href="http://godoc.reconfigure.io/v0.12.7/host/pkg/xcl/index.html#World" target="_blank">FPGA interface docs</a>
+
+.. |world| raw:: html
+
+   <a href="http://godoc.reconfigure.io/v0.12.7/host/pkg/xcl/index.html#World" target="_blank">'world'</a>
+
+.. |axi| raw:: html
+
+   <a href="http://godoc.reconfigure.io/v0.15.0/kernel/pkg/" target="_blank">AXI memory protocol</a>
+
+.. |axi_read| raw:: html
+
+   <a href="http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#ReadUInt32" target="_blank">AXI read</a>
+
+.. |axi_write| raw:: html
+
+   <a href="http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#WriteUInt32" target="_blank">AXI write</a>
