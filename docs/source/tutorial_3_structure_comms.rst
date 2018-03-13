@@ -375,8 +375,8 @@ So, we've looked at how to structure your code to work with Reconfigure.io, and 
 
 .. |read_disable| raw:: html
 
-   <a href="http://godoc.reconfigure.io/v0.12.8/kernel/pkg/axi/protocol/index.html#ReadDisable">AXI protocol</a>
+   <a href="http://godoc.reconfigure.io/v0.12.8/kernel/pkg/axi/protocol/index.html#ReadDisable" target="_blank">AXI protocol</a>
 
 .. |read_burst| raw:: html
 
-   <a href="http://godoc.reconfigure.io/v0.12.8/kernel/pkg/axi/memory/index.html#ReadBurstUInt32">Read Burst</a>
+   <a href="http://godoc.reconfigure.io/v0.12.8/kernel/pkg/axi/memory/index.html#ReadBurstUInt32" target="_blank">Read Burst</a>
