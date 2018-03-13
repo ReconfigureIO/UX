@@ -14,10 +14,6 @@ Where do I sign up?
 -------------------
 If you're new to Reconfigure.io and would like an account with us, please |signup| using your Github account. You'll be able to pick a plan, tell us a bit about what you plan to use Reconfigure.io for and then we'll set up your account up and guide you through downloading and installing our command line tool.
 
-.. |signup| raw:: html
-
-   <a href="https://reconfigure.io/sign-up" target="_blank">sign up</a>
-
 How to use this guide
 ----------------------
 Switching from software development to hardware programming involves changing the way you think about and approach problems, not to mention the different tooling and skill requirements. Reconfigure.io provides a comfortable platform for you to make this change.
@@ -27,6 +23,10 @@ You can start off by running through our :ref:`first tutorial <demo>` to see how
 You can access technical support from our engineering team at any time, we're always available on the |forum| if you need us!
 
 Along the way, you may want to read a little more about a particular aspect of the Reconfigure.io service. For this, there is an :ref:`overview <overview>` section with clear descriptions of each stage of the workflow as well as details of system architecture to help you conceptualize what’s happening throughout the process.
+
+.. |signup| raw:: html
+
+   <a href="https://reconfigure.io/sign-up" target="_blank">sign up</a>
 
 .. |forum| raw:: html
 
