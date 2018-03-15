@@ -1,0 +1,169 @@
+<section class="section section--dark">
+  <div class="container">
+    <div class="col col--8">
+      <h1>Sign Up</h1>
+    </div>
+  </div>
+</section>
+
+<div class="section sign-up__form">
+  {{#if (eq model.section "plan")}}
+  <section class="section sign-up__plan">
+    <div class="container">
+      <h2>Choose your plan</h2>
+      <p>We have retrieved the following information from Github. Is this accurate?</p>
+      <p><strong>Name:</strong> {{form-input questionType="text" name="fullName" value=user.name}}<br>
+      <strong>Email:</strong> {{form-input questionType="text" name="emailAddress" value=user.email}}</p>
+
+      <div class="table-wrapper">
+        <table class="table table--credits">
+          <thead>
+            <th></th>
+            <th class="text-center">Open source</th>
+            <th class="text-center">Single user</th>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Access to AWS F1 Cloud-based FPGAs</td>
+              <td class="text-center"><i class="icon-ok green"></i></td>
+              <td class="text-center"><i class="icon-ok green"></i></td>
+            </tr>
+            <tr>
+              <td>Support from the team in the community forum</td>
+              <td class="text-center"><i class="icon-ok green"></i></td>
+              <td class="text-center"><i class="icon-ok green"></i></td>
+            </tr>
+            <tr>
+              <td>Hardware simulation</td>
+              <td class="text-center"><i class="icon-ok green"></i></td>
+              <td class="text-center"><i class="icon-ok green"></i></td>
+            </tr>
+            <tr>
+              <td>Example code library</td>
+              <td class="text-center"><i class="icon-ok green"></i></td>
+              <td class="text-center"><i class="icon-ok green"></i></td>
+            </tr>
+            <tr>
+              <td>Tutorials</td>
+              <td class="text-center"><i class="icon-ok green"></i></td>
+              <td class="text-center"><i class="icon-ok green"></i></td>
+            </tr>
+            <tr>
+              <td title="Open source plans requires uploaded code to contain an open source license.">Support for proprietary code*</td>
+              <td class="text-center"></td>
+              <td class="text-center"><i class="icon-ok green"></i></td>
+            </tr>
+            <tr>
+              <td>Priority chat and email support</td>
+              <td class="text-center"></td>
+              <td class="text-center"><i class="icon-ok green"></i></td>
+            </tr>
+            <tr>
+              <td>60-day free trial</td>
+              <td class="text-center"></td>
+              <td class="text-center"><i class="icon-ok green"></i></td>
+            </tr>
+            <tr>
+              <td>Time included each month</td>
+              <td class="text-center">20 hours</td>
+              <td class="text-center">80 hours</td>
+            </tr>
+            <tr>
+              <td>Price</td>
+              <td class="text-center">Free</td>
+              <td class="text-center">$250/month</td>
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <td></td>
+            <td>
+              <a href="#" class="btn btn--plan-type btn--open-source" {{action "setPlanType" "open-source" "user.id"}}>
+                <span>Select plan</span>
+              </a>
+            </td>
+            <td>
+              <a href="#" class="btn btn--plan-type btn--single-user" {{action "setPlanType" "single-user" "user.id"}}>
+                <span>Start Free Trial</span>
+              </a>
+            </td>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </section>
+  {{/if}}
+
+  {{#if (eq model.section 'billingInfo')}}
+  <section class="section">
+    <div class="container sign-up__billing">
+      <div class="col col--8">
+        <h2>Billing Information</h2>
+        <p>Input your credit card and billing information. We'll never bill you without your permission.</p>
+        <p><em>* Please note: Your credit card will not be charged for open-source access.</em></p>
+      </div>
+      <div class="col col--8">
+        <form id="billingInformation" class="form form--actions">
+          <h3>Card Details</h3>
+
+          <div class="col col--8 col--clear">
+            {{form-input questionType="text" label="Card holders name" name="cardName" value=billing.name required="true"}}
+          </div>
+
+          <div class="col col--8 col--clear">
+            {{form-input questionType="text" label="Card number" name="cardNumber" placeholder=fullCard required="true" max="16"}}
+          </div>
+
+          <div class="col col--4 col--6--tablet col--padding-right col--clear">
+            {{form-input questionType="number" label="Expiry Month" name="cardExpiryMonth" value=billing.exp_month required="true" max="2"}}
+          </div>
+
+          <div class="col col--4 col--6--tablet col--padding-left">
+            {{form-input questionType="number" label="Expiry Year" name="cardExpiryYear" value=billing.exp_year required="true" max="4"}}
+          </div>
+
+          <div class="col col--4 col--6--tablet col--clear">
+            {{form-input questionType="number" label="CVC" name="cardCvc" placeholder=cvc required="true" max="3"}}
+          </div>
+
+          <div class="clear"></div>
+
+          <h3>Billing Address</h3>
+
+          <div class="col col--8 col--clear">
+            {{form-input questionType="text" label="Address line 1" name="addressLine1" value=billing.address_line1 required="true"}}
+          </div>
+
+          <div class="col col--8 col--clear">
+            {{form-input questionType="text" label="Address line 2" name="addressLine2" value=billing.address_line2}}
+          </div>
+
+          <div class="col col--8 col--clear">
+            {{form-input questionType="text" label="City" name="addressCity" value=billing.address_city required="true"}}
+          </div>
+
+          <div class="col col--8 col--clear">
+            {{form-input questionType="text" label="Postcode" name="addressZip" value=billing.address_zip required="true"}}
+          </div>
+
+          <div class="col col--8 col--clear">
+            {{form-input questionType="text" label="Country" name="addressCountry" value=billing.address_country required="true"}}
+          </div>
+
+          <div class="form-messages col col--8"></div>
+
+          <div class="actions">
+            <button type="submit" class="btn" {{action "submitPaymentMethod"}}><span>Sign up</span></button>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+  </section>
+  <div class="container">
+    By signing up, you agree to our <a target="_blank" href="http://reconfigure.io/agreement">Customer Agreement</a>, and you can view our <a target="_blank" href="http://reconfigure.io/privacy">Privacy Policy</a>.
+  </div>
+
+  {{/if}}
