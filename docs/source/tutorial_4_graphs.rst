@@ -122,6 +122,9 @@ Now you can generate the graph for our bad example by running ``reco graph gen``
   uploading ...
   done
   <graph_ID>
+  
+  Graph submitted. Run 'reco graph list' to track the status of your graph
+  Once the graph has been completed run 'reco graph open <graph_ID>' to view it
 
 Copy the unique graph ID to open the graph in your default PDF viewer::
 
@@ -166,6 +169,9 @@ Navigate to ``tutorials/good-graph`` and generate a new graph by running ``reco 
   uploading ...
   done
   <graph_ID>
+
+  Graph submitted. Run 'reco graph list' to track the status of your graph
+  Once the graph has been completed run 'reco graph open <graph_ID>' to view it
 
 Again, copy the unique graph ID to open the graph::
 
