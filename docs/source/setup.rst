@@ -51,7 +51,7 @@ Using standard Go Tooling
 Using Go tools during development means you'll be able to run tests against your code using ``go test`` and you'll see correct code highlighting in your editor. If you're new to Go, you'll need to run through a few steps first:
 
 1. Download and install Go tools using one of the methods described |golang|.
-2. Now we'll set up your `Go workspace <https://golang.org/doc/code.html#Workspaces>`_. All your Reconfigure.io projects need to be within your ``GOPATH``. To set your ``GOPATH`` `environmental variable <https://golang.org/doc/code.html#GOPATH>`_, choose the instructions for your operating system (for alternative operating systems/shells visit the `go wiki <https://github.com/golang/go/wiki/SettingGOPATH>`_):
+2. Now we'll set up your |workspace|. All your Reconfigure.io projects need to be within your ``GOPATH``. To set your ``GOPATH`` |gopath|, choose the instructions for your operating system (for alternative operating systems/shells visit the `go wiki <https://github.com/golang/go/wiki/SettingGOPATH>`_):
 
 Linux/Mac OSX
 ^^^^^^^^^^^^^^
@@ -83,4 +83,16 @@ Now head back to :ref:`tutorial 1 <examples-win>` to fork our examples repo.
 
 .. |golang| raw:: html
 
-   <a href="https://reconfigure.io/" target="_blank">here</a>
+   <a href="https://golang.org/doc/install" target="_blank">here</a>
+
+.. |workspace| raw:: html
+
+   <a href="https://golang.org/doc/code.html#Workspaces" target="_blank">Go workspace</a>
+
+.. |gopath| raw:: html
+
+   <a href="https://golang.org/doc/code.html#GOPATH" target="_blank">environment variable</a>
+
+.. |wiki| raw:: html
+
+   <a href="https://github.com/golang/go/wiki/SettingGOPATH" target="_blank">go wiki</a>

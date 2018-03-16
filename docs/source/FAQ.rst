@@ -114,7 +114,7 @@ How do I go about setting up Go on my local machine?
 
 .. |forum| raw:: html
 
-   <a href="http//community.reconfigure.io" target="_blank">community forum</a>
+   <a href="https://community.reconfigure.io" target="_blank">community forum</a>
 
 .. |f1| raw:: html
 
