@@ -2,7 +2,7 @@
 
 Go support
 ==========
-This is a guide to the features of Go we currently support – the sections match up to the `Go spec <https://golang.org/ref/spec>`_ so you can refer that if you need more information on a feature. When new features are included they will be highlighted in our :ref:`release_notes`.
+This is a guide to the features of Go we currently support – the sections match up to the |spec| so you can refer that if you need more information on a feature. When new features are included they will be highlighted in our :ref:`release_notes`.
 
 Take a look at our `roadmap <https://community.reconfigure.io/t/find-out-what-were-working-on/313>`_ and feel free to make suggestions if there's anything you would like to see us support.
 
@@ -296,3 +296,11 @@ System considerations
 +-------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------+
 | size and alignment guarantees | **unsupported** |                                                                                                                            |
 +-------------------------------+-----------------+----------------------------------------------------------------------------------------------------------------------------+
+
+.. |spec| raw:: html
+
+   <a href="https://golang.org/ref/spec" target="_blank">Go spec</a>
+
+.. |roadmap| raw:: html
+
+   <a href="https://community.reconfigure.io/t/find-out-what-were-working-on/313" target="_blank">roadmap</a>
