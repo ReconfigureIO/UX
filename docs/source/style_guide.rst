@@ -13,8 +13,8 @@ FPGA interface
 -------------------
 Our FPGA interface documentation details the Go packages required to communicate between the CPU and FPGA, and for using the shared memory available on the FPGA card. The term 'kernel' is used to refer to the code running on the FPGA:
 
-* `FPGA docs <http://godoc.reconfigure.io/v0.15.0/kernel/pkg>`_
-* `Host CPU docs <http://godoc.reconfigure.io/v0.15.0/host/pkg>`_
+* |FPGA|
+* |host|
 
 .. _organization:
 
@@ -89,3 +89,11 @@ For small, often used inner loops, it's best to unroll them to ensure parallel p
    func Add4Unrolled(a [4]int) int {
       return (a[0] + a[1]) + (a[2] + a[3])
    }
+
+.. |FPGA| raw:: html
+
+   <a href="http://godoc.reconfigure.io/v0.15.0/kernel/pkg" target="_blank">FPGA docs</a>
+
+.. |host| raw:: html
+
+   <a href="http://godoc.reconfigure.io/v0.15.0/host/pkg" target="_blank">Host CPU docs</a>

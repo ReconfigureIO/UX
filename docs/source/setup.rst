@@ -42,7 +42,7 @@ You will have been guided through installing our command line tool during the si
 
 Authenticating your account
 -----------------------------
-You will be guided though authenticating your account during the signup process. If you have any issues or need to re-authenticate, run ``reco auth`` from a terminal and follow the instructions – you’ll need to enter your API key which you can find on your dashboard. You can access your dashboard directly using this link: http://app.reconfigure.io, or by logging in through our `website <https://reconfigure.io/>`_.
+You will be guided though authenticating your account during the signup process. If you have any issues or need to re-authenticate, run ``reco auth`` from a terminal and follow the instructions – you’ll need to enter your API key which you can find on your dashboard. You can access your |dashboard| directly or by logging in through our |login|.
 
 .. _gotools:
 
@@ -50,7 +50,7 @@ Using standard Go Tooling
 -------------------------
 Using Go tools during development means you'll be able to run tests against your code using ``go test`` and you'll see correct code highlighting in your editor. If you're new to Go, you'll need to run through a few steps first:
 
-1. Download and install Go tools using one of the methods described `here <https://golang.org/doc/install>`_.
+1. Download and install Go tools using one of the methods described |golang|.
 2. Now we'll set up your `Go workspace <https://golang.org/doc/code.html#Workspaces>`_. All your Reconfigure.io projects need to be within your ``GOPATH``. To set your ``GOPATH`` `environmental variable <https://golang.org/doc/code.html#GOPATH>`_, choose the instructions for your operating system (for alternative operating systems/shells visit the `go wiki <https://github.com/golang/go/wiki/SettingGOPATH>`_):
 
 Linux/Mac OSX
@@ -72,3 +72,15 @@ Windows 10
 * Click OK
 
 Now head back to :ref:`tutorial 1 <examples-win>` to fork our examples repo.
+
+.. |dashboard| raw:: html
+
+   <a href="http://app.reconfigure.io" target="_blank">dashboard</a>
+
+.. |login| raw:: html
+
+   <a href="https://reconfigure.io/" target="_blank">website</a>
+
+.. |golang| raw:: html
+
+   <a href="https://reconfigure.io/" target="_blank">here</a>
