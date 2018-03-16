@@ -4,7 +4,7 @@ Tutorial 2 – Filling in the Gaps
 ================================================
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check you are running the latest version: |reco_version|. If you need to update, please run `reco update`, or if your current version is below `v0.5.0` see our :ref:`install/update instructions <install>`.
+    Run ``reco version`` to check you are running the latest version: |reco_version|. If you need to update, please run ``reco update``, or if your current version is below ``v0.5.0`` see our :ref:`install/update instructions <install>`.
 
 In this tutorial you will complete the code for one of our example programs and find any errors in your code using ``go test`` and ``reco check``. You will then simulate the code running on an FPGA using ``reco sim``. The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.
 
