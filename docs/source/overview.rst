@@ -22,11 +22,7 @@ Our current standard way of having the FPGA talk to shared memory is using the A
 
 **Our engineers have developed a new protocol – SMI (Scalable Multiprotocol Infrastructure) – which addresses the issue of fine-grained parallelizm, as well as simplifying code and reducing boilerplate for our users.** It's available for testing from Reconfigure.io v0.17.0 onwards and will be fully rolled out as our standard method for accessing memory very soon.
 
-<<<<<<< HEAD
-For more information, please see our `blog post <https://medium.com/the-recon/introducing-smi-7a216e2dff45>`_ and you can check out our `examples <https://github.com/ReconfigureIO/examples>`_ – we've included a version of our histogram-array code that uses SMI rather than AXI.
-=======
 For more information, please see our |smi_blog| and you can check out our |examples| – we've included a version of our histogram-array code that uses SMI rather than AXI.
->>>>>>> master
 
 Go compilation stages
 ^^^^^^^^^^^^^^^^^^^^^
@@ -83,11 +79,7 @@ All the code you write will be in Go. You can create Go files in your working di
 
 Go test
 ^^^^^^^
-<<<<<<< HEAD
-If you have followed our Go tooling :ref:`setup instructions <gotools>` you can use ``go test`` to run tests against your FPGA code and flag up any semantic or syntactic errors. You can read more about the Go testing framework `here <https://golang.org/doc/code.html#Testing>`_. Your ``main_test.go`` files can just be stored in a program's top directory.
-=======
 If you have followed our Go tooling :ref:`setup instructions <gotools>` you can use ``go test`` to run tests against your FPGA code and flag up any semantic or syntactic errors. You can read more about the Go testing framework |go test|. Your ``main_test.go`` files can just be stored in a program's top directory.
->>>>>>> master
 
 Check
 ^^^^^

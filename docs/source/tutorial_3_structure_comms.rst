@@ -145,11 +145,7 @@ We've seen how Reconfigure.io projects consist of host and FPGA code and that da
 
 Host CPU code
 ^^^^^^^^^^^^^
-<<<<<<< HEAD
 So, lets look at how we actually do this. We can use a simple example of passing a small array from the host CPU to the FPGA and then have the FPGA send it back again. Starting with the code for the CPU, you can see from the template above that we need a |world| set up to interact with the FPGA, and we use this to let the CPU talk to the shared memory on the FPGA card. We can create spaces within shared memory for specific purposes, and send the addresses of these memory locations to the FPGA so it knows where to look for our data, and where to store its results.
-=======
-So, let's look at how we actually do this. We can use a simple example of passing a small array from the host CPU to the FPGA and then have the FPGA send it back again. Starting with the code for the CPU, you can see from the template above that we need a |world| set up to interact with the FPGA, and we use this to let the CPU talk to the shared memory on the FPGA card. We can create spaces within shared memory for specific purposes, and send the addresses of these memory locations to the FPGA so it knows where to look for our data, and where to store its results.
->>>>>>> master
 
 Sending some data from the host to the FPGA is a three step process – create space in memory for our data, store data in that memory location, and pass the memory location to the FPGA so it knows where to find it. For this example we need to create our test data first, so lets make an array of 10 incrementing values::
 
@@ -368,8 +364,6 @@ So, we've looked at how to structure your code to work with Reconfigure.io, and 
 .. |axi_write| raw:: html
 
    <a href="http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#WriteUInt32" target="_blank">AXI write</a>
-<<<<<<< HEAD
-=======
 
 .. |binary| raw:: html
 
@@ -386,4 +380,3 @@ So, we've looked at how to structure your code to work with Reconfigure.io, and 
 .. |read_burst| raw:: html
 
    <a href="http://godoc.reconfigure.io/v0.12.8/kernel/pkg/axi/memory/index.html#ReadBurstUInt32" target="_blank">Read Burst</a>
->>>>>>> master
