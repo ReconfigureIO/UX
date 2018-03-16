@@ -12,7 +12,7 @@ FPGA-based hardware acceleration, whilst nothing new, provides significant speed
 
 Where do I sign up?
 -------------------
-If you're new to Reconfigure.io and would like an account with us, please |signup| using your Github account. You'll be able to pick a plan, tell us a bit about what you plan to use Reconfigure.io for and then we'll set up your account up and guide you through downloading and :ref:`installing <install>`` our command line tool.
+If you're new to Reconfigure.io and would like an account with us, please |signup| using your Github account. You'll be able to pick a plan, tell us a bit about what you plan to use Reconfigure.io for and then we'll set up your account up and guide you through downloading and :ref:`installing <install>` our command line tool.
 
 How to use this guide
 ----------------------
