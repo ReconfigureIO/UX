@@ -4,7 +4,7 @@ Tutorial 4 – Using Graphs for Optimization
 ================================================
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check if your installation is up-to-date. Our current version is |reco_version|. If you need to update, please see our :ref:`install/update instructions <install>`.
+  Run ``reco version`` to check you are running the latest version: |reco_version|. If you need to update, please run `reco update`, or if your current version is below `v0.5.0` see our :ref:`install/update instructions <install>`.
 
 This tutorial is all about optimizing your code by looking at the flow of data. We do this by generating and analyzing graphs. When you start creating your own programs you'll probably want to start introducing more concurrency to make better use of the parallel processing possibilities of the FPGA. We'll start off simply by taking a single function that adds up some numbers using a for loop, then generate a dataflow graph and identify ways to improve performance.
 
@@ -122,7 +122,7 @@ Now you can generate the graph for our bad example by running ``reco graph gen``
   uploading ...
   done
   <graph_ID>
-  
+
   Graph submitted. Run 'reco graph list' to track the status of your graph
   Once the graph has been completed run 'reco graph open <graph_ID>' to view it
 
