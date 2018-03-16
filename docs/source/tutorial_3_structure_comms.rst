@@ -4,7 +4,7 @@ Tutorial 3 – Structure and Communication
 =========================================
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check if your installation is up-to-date. Our current version is |reco_version|. If you need to update, please see our :ref:`install/update instructions <install>`.
+    Run ``reco version`` to check you are running the latest version: |reco_version|. If you need to update, please run ``reco update``, or if your current version is below ``v0.5.0`` see our :ref:`install/update instructions <install>`.
 
 In this tutorial we're going to cover structuring your programs and writing effective Go code for FPGAs. We'll look at our template, which is available for you to use as the basis for new programs, and use it to complete a couple of examples. Along the way we'll learn a bit more about the shared memory available on the FPGA card.
 
@@ -145,7 +145,7 @@ We've seen how Reconfigure.io projects consist of host and FPGA code and that da
 
 Host CPU code
 ^^^^^^^^^^^^^
-So, let's look at how we actually do this. We can use a simple example of passing a small array from the host CPU to the FPGA and then have the FPGA send it back again. Starting with the code for the CPU, you can see from the template above that we need a |world| set up to interact with the FPGA, and we use this to let the CPU talk to the shared memory on the FPGA card. We can create spaces within shared memory for specific purposes, and send the addresses of these memory locations to the FPGA so it knows where to look for our data, and where to store its results.
+So, lets look at how we actually do this. We can use a simple example of passing a small array from the host CPU to the FPGA and then have the FPGA send it back again. Starting with the code for the CPU, you can see from the template above that we need a |world| set up to interact with the FPGA, and we use this to let the CPU talk to the shared memory on the FPGA card. We can create spaces within shared memory for specific purposes, and send the addresses of these memory locations to the FPGA so it knows where to look for our data, and where to store its results.
 
 Sending some data from the host to the FPGA is a three step process – create space in memory for our data, store data in that memory location, and pass the memory location to the FPGA so it knows where to find it. For this example we need to create our test data first, so lets make an array of 10 incrementing values::
 
