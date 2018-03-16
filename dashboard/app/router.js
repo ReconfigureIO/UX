@@ -13,7 +13,11 @@ Router.map(function() {
   this.route('pricing-plan');
   this.route('dashboard');
   this.route('help');
-  this.route('sign-up');
+  this.route('sign-up', function() {
+    this.route('choose-plan');
+    this.route('goal');
+    this.route('installation');
+  });
 });
 
 export default Router;

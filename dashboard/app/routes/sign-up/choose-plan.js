@@ -110,8 +110,7 @@ export default Ember.Route.extend({
         this.set('controller.model.section', 'billingInfo');
       } else {
         that.send('updateUser', 'id');
-        //that.send('updatePlanType');
-        this.set('controller.model.section', 'goals');
+        this.transitionTo('/sign-up/goal');
       }
       Intercom('trackEvent', 'selected Plan', {
         plan: type
@@ -131,11 +130,7 @@ export default Ember.Route.extend({
           plan: that.get('plan')
         });
 
-        // Hide billing form
-        Ember.$('.sign-up__form').fadeOut();
-
-        // Show continue button
-        $('.sign-up__goals').fadeIn();
+        this.transitionTo('sign-up/goal');
       }).catch(function() {
 
       });
@@ -146,10 +141,6 @@ export default Ember.Route.extend({
         data: {
           name: Ember.$('input[name="fullName"]').val(),
           email: Ember.$('input[name="emailAddress"]').val(),
-          main_goal: Ember.$('input[name="main_goal"]').val(),
-          company: Ember.$('input[name="organisation"]').val(),
-          employees: Ember.$('input[name="how_many"]').val(),
-          market_verticals: Ember.$('input[name="market_vertical"]').val(),
         },
         contentType: "application/json"
       }).then(function() {
@@ -158,15 +149,6 @@ export default Ember.Route.extend({
       }).catch(function() {
 
       });
-    },
-    submitUserGoals: function(id) {
-      var that = this;
-      that.send('updateUser', 'id');
-      // Hide billing form
-      Ember.$('.sign-up__goals').fadeOut();
-
-      // Show continue button
-      $('.sign-up__continue').fadeIn();
     },
   }
 });
