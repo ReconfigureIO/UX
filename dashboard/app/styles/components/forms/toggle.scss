@@ -149,7 +149,7 @@
       z-index: 0;
 
       &:hover {
-        /*border-color: $silver-chalice;*/
+        border-color: $silver-chalice;
         z-index: 1;
       }
 
@@ -167,7 +167,7 @@
 
     input[type="radio"]:checked + label {
       background-color: $polar;
-      /*border-color: $fountain-blue;*/
+      border-color: $fountain-blue;
       z-index: 2;
     }
 
@@ -192,52 +192,51 @@
   }
 
   input[type="checkbox"] + label {
+    color: $cod-gray;
     cursor: pointer;
-  }
-
-  input[type="checkbox"]:checked + label {
-    color: $trout;
+    @include transition(0.2s ease-in);
   }
 
   input[type="checkbox"] + label > span {
     display:inline-block;
-    width:20px;
-    height:20px;
-    margin:-2px $base-line-height*0.5 0 0;
+    width:18px;
+    height:18px;
+    margin-right: $base-margin*0.5;
     vertical-align:middle;
     cursor:pointer;
     background-color: transparent;
-    border: 2px solid $trout;
+    border: 2pt solid $alto;
+    @include transition(0.2s ease-in);
   }
 
   input[type="checkbox"] + label:hover > span {
-    border-color: $trout;
+    border-color: $fountain-blue;
+  }
+
+  input[type="checkbox"]:checked + label {
+    @include opacity(1);
   }
 
   input[type="checkbox"]:checked + label > span {
-    border-color: $trout;
+    border-color: $fountain-blue;
   }
 
   input[type="checkbox"] + label > span > span {
     display: block;
-    width:16px;
-    height:16px;
+    width:14px;
+    height:14px;
     margin: 2px;
     border: none;
     background-color: transparent;
+    @include transition(0.2s ease-in);
+  }
+
+  input[type="checkbox"] + label:hover > span > span {
+    background-color: $polar;
   }
 
   input[type="checkbox"]:checked + label > span > span {
-    background-color: $trout;
-  }
-
-  input[type="checkbox"] + label span,
-  input[type="checkbox"] + label:hover > span,
-  input[type="checkbox"]:checked + label span {
-    -webkit-transition:background-color 0.4s linear;
-    -o-transition:background-color 0.4s linear;
-    -moz-transition:background-color 0.4s linear;
-    transition:background-color 0.4s linear;
+    background-color: $fountain-blue;
   }
 }
 

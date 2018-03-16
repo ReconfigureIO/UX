@@ -11,86 +11,67 @@
   <section class="section sign-up__plan">
     <div class="container">
       <h2>Choose your plan</h2>
-      <p>We have retrieved the following information from Github. Is this accurate?</p>
+      <p>We have retrieved the following information from Github. If this is incorrect, please change it.</p>
       <p><strong>Name:</strong> {{form-input questionType="text" name="fullName" value=user.name}}<br>
       <strong>Email:</strong> {{form-input questionType="text" name="emailAddress" value=user.email}}</p>
 
-      <div class="table-wrapper">
-        <table class="table table--credits">
-          <thead>
-            <th></th>
-            <th class="text-center">Open source</th>
-            <th class="text-center">Single user</th>
-          </thead>
+      <div class="pricing-pods">
+          <div class="pricing-pod" {{action "setPlanType" "open-source" "user.id"}}>
+            <div class="pricing-pod__wrapper">
+              <h3 class="pricing-pod__title h3--light">Open-source<sup>*</sup></h3>
+              <div class="pricing-pod__description">
+                <p><strong>20hrs p/m runtime</strong></p>
+              </div>
+              
+              <hr>
+              
+              <h3 class="pricing-pod__price"><strong>Free</strong></h3>
+              
+              <div class="pricing-pod__byline">Each additional hour $2.50</div>
+              
+              <span class="pricing-pod__cta btn">Choose plan</span>
 
-          <tbody>
-            <tr>
-              <td>Access to AWS F1 Cloud-based FPGAs</td>
-              <td class="text-center"><i class="icon-ok green"></i></td>
-              <td class="text-center"><i class="icon-ok green"></i></td>
-            </tr>
-            <tr>
-              <td>Support from the team in the community forum</td>
-              <td class="text-center"><i class="icon-ok green"></i></td>
-              <td class="text-center"><i class="icon-ok green"></i></td>
-            </tr>
-            <tr>
-              <td>Hardware simulation</td>
-              <td class="text-center"><i class="icon-ok green"></i></td>
-              <td class="text-center"><i class="icon-ok green"></i></td>
-            </tr>
-            <tr>
-              <td>Example code library</td>
-              <td class="text-center"><i class="icon-ok green"></i></td>
-              <td class="text-center"><i class="icon-ok green"></i></td>
-            </tr>
-            <tr>
-              <td>Tutorials</td>
-              <td class="text-center"><i class="icon-ok green"></i></td>
-              <td class="text-center"><i class="icon-ok green"></i></td>
-            </tr>
-            <tr>
-              <td title="Open source plans requires uploaded code to contain an open source license.">Support for proprietary code*</td>
-              <td class="text-center"></td>
-              <td class="text-center"><i class="icon-ok green"></i></td>
-            </tr>
-            <tr>
-              <td>Priority chat and email support</td>
-              <td class="text-center"></td>
-              <td class="text-center"><i class="icon-ok green"></i></td>
-            </tr>
-            <tr>
-              <td>60-day free trial</td>
-              <td class="text-center"></td>
-              <td class="text-center"><i class="icon-ok green"></i></td>
-            </tr>
-            <tr>
-              <td>Time included each month</td>
-              <td class="text-center">20 hours</td>
-              <td class="text-center">80 hours</td>
-            </tr>
-            <tr>
-              <td>Price</td>
-              <td class="text-center">Free</td>
-              <td class="text-center">$250/month</td>
-            </tr>
-          </tbody>
+              <div class="pricing-pod__terms">
+                <p class="xs-copy text-center"><em>* all code submitted must have an OSI-approved open source license, and as such may be redistributed by Reconfigure.io under the appropriate terms. Any code without a suitable license may be removed and access restricted at any time.</em></p>
+              </div>
+            </div>
+          </div>
 
-          <tfoot>
-            <td></td>
-            <td>
-              <a href="#" class="btn btn--plan-type btn--open-source" {{action "setPlanType" "open-source" "user.id"}}>
-                <span>Select plan</span>
-              </a>
-            </td>
-            <td>
-              <a href="#" class="btn btn--plan-type btn--single-user" {{action "setPlanType" "single-user" "user.id"}}>
-                <span>Start Free Trial</span>
-              </a>
-            </td>
-          </tfoot>
-        </table>
-      </div>
+          <div class="pricing-pod" {{action "setPlanType" "single-user" "user.id"}}>
+            <div class="pricing-pod__wrapper">
+              <h3 class="pricing-pod__title h3--light">Single-user</h3>
+              <div class="pricing-pod__description">
+                <p><strong>80hrs p/m runtime</strong><br>Priority chat and email support</p>
+              </div>
+              
+              <hr>
+              
+              <h3 class="pricing-pod__price"><strong>$250pm <span class="sm-copy">+ VAT</span></strong></h3>
+              
+              <div class="pricing-pod__byline">Each additional hour $2.50</div>
+              
+              <span class="pricing-pod__cta btn">Choose plan</span>
+            </div>
+          </div>
+
+          <div class="pricing-pod">
+            <a href="mailto:enterprise@reconfigure.io">
+              <div class="pricing-pod__wrapper">
+                <h3 class="pricing-pod__title h3--light">Enterprise</h3>
+                
+                <div class="pricing-pod__description">
+                  <p><strong>Unlimited runtime</strong><br>Phone support</p>
+                </div>
+                
+                <hr>
+                
+                <h3 class="pricing-pod__price"><strong>POA</strong></h3>
+                
+                <span class="pricing-pod__cta btn" target="_blank">Enquire</span>
+              </div>
+            </a>
+          </div>
+        </div>
     </div>
   </section>
   {{/if}}

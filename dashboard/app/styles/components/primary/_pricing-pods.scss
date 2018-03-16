@@ -1,0 +1,155 @@
+/* PRICING POD */
+
+.pricing-pods {
+  display: table;
+  width: 100%;
+  max-width: 1740px;
+  height: 2px;
+  border-spacing: $base-margin*2;
+  border-collapse: separate;
+  margin: 0 auto;
+  text-align: center;
+
+  @include breakpoint($break_tablet_large) {
+    display: block;
+    height: auto;
+  }
+}
+
+.pricing-pod {
+  display: table-cell;
+  width: 33%;
+  height: 100%;
+  background-color: $white;
+  @include margin-trailer(1.75);
+  box-sizing: border-box;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  @include transition(0.2s ease-out);
+
+  @include breakpoint($break_tablet_large) {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    @include margin-trailer(2);
+  }
+
+  @include breakpoint($break_mobile) {
+    max-width: 380px;
+  }
+
+  > a {
+    display: block;
+
+    &:hover {
+      text-decoration: none;
+
+      .btn {
+        background-color: $bermuda;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &:hover {
+    @include box-shadow(0px 0px 16px 0px rgba(0,0,0,0.2));
+  }
+
+  &__wrapper {
+    padding: 0 $base-margin*1.75;
+    @include rhythm-padding(2.5);
+    box-sizing: border-box;
+
+    @include breakpoint($break_container) {
+      padding: 0 $base-margin*1.25;
+      @include rhythm-padding(2.25);
+    }
+
+    @include breakpoint($break_tablet) {
+      padding: 0 $base-margin;
+      @include rhythm-padding(2);
+    }    
+  }
+
+  &__callout {
+    background-color: $trout;
+    color: $white;
+    font-family: $font_primary_bold;
+    @include adjust-font-size-to(0.8125rem);
+    @include adjust-leading-to(1);
+    letter-spacing: 1.86px;
+    padding: 0 $base-margin;
+    @include rhythm-padding(1);
+    box-sizing: border-box;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__description {
+    color: $cod-gray;
+    font-family: $font_primary;
+
+    p {
+      color: $cod-gray;
+      @include adjust-font-size-to(1.25rem);
+      @include adjust-leading-to(2.125);
+
+      @include breakpoint($break_tablet) {
+        @include adjust-font-size-to(1rem);
+        @include adjust-leading-to(1.825);
+      }
+
+      @include breakpoint($break_mobile) {
+        @include adjust-font-size-to(1.0625rem);
+        @include adjust-leading-to(1.5625);
+      }
+    }
+  }
+
+  hr {
+    display: block;
+    margin: 0 auto;
+    max-width: 380px;
+    border: none;
+    background-color: $gallery;
+    @include margin-leader(2);
+    @include margin-trailer(2);
+  }
+
+  &__price {
+    color: $cod-gray !important;
+    @include margin-trailer(0.25);
+  }
+
+  &__byline {
+    color: $cod-gray !important;
+    font-family: $font_primary;
+    @include margin-trailer(0);
+  }
+
+  &__price-description {
+    @include margin-leader(0.75);
+
+    p {
+      color: $cod-gray !important;
+      @include adjust-font-size-to(1.0625rem);
+      @include adjust-leading-to(1.5625);
+    }
+  }
+
+  &__cta {
+    @include margin-leader(2);
+  }
+
+  &__terms {
+    font-family: $font_primary;
+    @include margin-leader(2);
+
+    a {
+      text-decoration: underline;
+    }
+  }
+}
