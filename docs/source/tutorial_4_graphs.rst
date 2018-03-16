@@ -12,9 +12,9 @@ This tutorial is all about optimizing your code by looking at the flow of data. 
 
 Why use graphs?
 ---------------
-Our compiler takes your code through several processes to get it into a suitable format for programming an FPGA. The first step is to convert it to a language called `Teak <http://apt.cs.manchester.ac.uk/projects/teak/>`_.
+Our compiler takes your code through several processes to get it into a suitable format for programming an FPGA. The first step is to convert it to a language called |teak|.
 
-Teak is a hardware description dataflow language, designed to be easily translated into other hardware description languages. What sets Teak apart from other forms is that it is displayed as a graph rather than a sequential list of instructions. In the Teak model, each node in the graph is an independent process operating on data flowing through the `edges <https://en.wikipedia.org/wiki/Graph_theory>`_. What this gives us is a model of computation that is parallel by default, where sequential dependencies are expressed via dataflow. Teak graphs give us a representation of how our Go code will be translated onto the FPGA circuitry. This is very valuable because, at the two ends of the process, the solution looks very different.
+Teak is a hardware description dataflow language, designed to be easily translated into other hardware description languages. What sets Teak apart from other forms is that it is displayed as a graph rather than a sequential list of instructions. In the Teak model, each node in the graph is an independent process operating on data flowing through the |edges|. What this gives us is a model of computation that is parallel by default, where sequential dependencies are expressed via dataflow. Teak graphs give us a representation of how our Go code will be translated onto the FPGA circuitry. This is very valuable because, at the two ends of the process, the solution looks very different.
 
 **So, our goal is to write concurrent Go code to take advantage of the FPGA's parallel hardware, and we can use Teak graphs to identify where this parallelism can be increased by changing the way the original code is structured.**
 
@@ -181,4 +181,16 @@ Analyzing Teak dataflow graphs is complex. For this reason, we suggest that when
 
 Once you have optimized these smaller functions you can embed them back into your wider code to improve the overall parallelism of the program.
 
-For early access users, we have a section on our `forum <https://community.reconfigure.io/c/early-access-feedback/optimization-support>`_ where you can post your own generated graphs to get optimization help from the Reconfigure.io team.
+We have a section on our |support| where you can post your own generated graphs to get optimization help from the Reconfigure.io team.
+
+.. |teak| raw:: html
+
+   <a href="http://apt.cs.manchester.ac.uk/projects/teak/" target="_blank">Teak</a>
+
+.. |edges| raw:: html
+
+   <a href="https://en.wikipedia.org/wiki/Graph_theory" target="_blank">edges</a>
+
+.. |support| raw:: html
+
+   <a href="https://community.reconfigure.io/c/optimization-support" target="_blank">forum</a>

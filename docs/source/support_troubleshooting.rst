@@ -1,22 +1,22 @@
 Support and Troubleshooting
 ============================
-You can contact us directly at our community `forum <https://community.reconfigure.io/>`_. If you need support or are having technical difficulties, head straight to the `help <https://community.reconfigure.io/c/help>`_ section and one of the team will be in touch.
+You can contact us directly at our |forum|. If you need support or are having technical difficulties, head straight to the |help| section and one of the team will be in touch.
 
 Status
 ------
-Check the current status of the service `here <http://status.reconfigure.io/>`_.
+Check the current status of the service |status|.
 
 Feedback
 --------
-Our engineers are on-hand to answer any questions you might have about Reconfigure.io. We also welcome your feedback on the service as it is being developed. If you would like to see what we're working on, and what we have planned for the future, you can view our `roadmap <https://trello.com/b/Gv9qKdED/reconfigureio-roadmap>`_.
+Our engineers are on-hand to answer any questions you might have about Reconfigure.io. We also welcome your feedback on the service as it is being developed. If you would like to see what we're working on, and what we have planned for the future, you can view our |roadmap|.
 
-Throughout the public beta phase you may encounter bugs or rough edges. We will use your experience to consistently improve usability and workflow. If you do find a bug, please report it `here <https://community.reconfigure.io/c/report-a-bug>`_.
+Throughout the public beta phase you may encounter bugs or rough edges. We will use your experience to consistently improve usability and workflow. If you do find a bug, please report it |bug|.
 
 .. _errors:
 
 Compiler Error messages
 --------------
-When simulating and building your code, our compiler provides helpful error messages when things don't go quite right. Each error message is explained below but if at any point you encounter an error message which isn't listed here, please let us `know <https://community.reconfigure.io/c/early-access-feedback/report-a-bug>`_!
+When simulating and building your code, our compiler provides helpful error messages when things don't go quite right. Each error message is explained below but if at any point you encounter an error message which isn't listed here, please let us know |bug|.
 
 +--------+-----------------------------------------------+-------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |  Code  | Error Condition                               | Error Message                                                                                   | Description                                                                                                                                                                                                                                                                                                                        |
@@ -85,3 +85,23 @@ If you receive a timeout error this is an indication that there is an issue with
 ..  .. code-block:: shell
 
 ..       fix .
+
+.. |forum| raw:: html
+
+   <a href="https://community.reconfigure.io/" target="_blank">forum</a>
+
+.. |help| raw:: html
+
+   <a href="https://community.reconfigure.io/c/help" target="_blank">help</a>
+
+.. |status| raw:: html
+
+   <a href="http://status.reconfigure.io/" target="_blank">status</a>
+
+.. |roadmap| raw:: html
+
+   <a href="https://trello.com/b/Gv9qKdED/reconfigureio-roadmap" target="_blank">roadmap</a>
+
+.. |bug| raw:: html
+
+   <a href="https://community.reconfigure.io/c/report-a-bug" target="_blank">here</a>

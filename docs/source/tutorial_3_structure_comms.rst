@@ -145,7 +145,7 @@ We've seen how Reconfigure.io projects consist of host and FPGA code and that da
 
 Host CPU code
 ^^^^^^^^^^^^^
-So, lets look at how we actually do this. We can use a simple example of passing a small array from the host CPU to the FPGA and then have the FPGA send it back again. Starting with the code for the CPU, you can see from the template above that we need a |world| set up to interact with the FPGA, and we use this to let the CPU talk to the shared memory on the FPGA card. We can create spaces within shared memory for specific purposes, and send the addresses of these memory locations to the FPGA so it knows where to look for our data, and where to store its results.
+So, let's look at how we actually do this. We can use a simple example of passing a small array from the host CPU to the FPGA and then have the FPGA send it back again. Starting with the code for the CPU, you can see from the template above that we need a |world| set up to interact with the FPGA, and we use this to let the CPU talk to the shared memory on the FPGA card. We can create spaces within shared memory for specific purposes, and send the addresses of these memory locations to the FPGA so it knows where to look for our data, and where to store its results.
 
 Sending some data from the host to the FPGA is a three step process – create space in memory for our data, store data in that memory location, and pass the memory location to the FPGA so it knows where to find it. For this example we need to create our test data first, so lets make an array of 10 incrementing values::
 
@@ -256,14 +256,14 @@ Let's work on the host CPU code first. Open ``multiply1/cmd/test-multiply1/main.
 
 * We're only passing one integer straight to the control register so we only need to make space in shared memory for the result from the FPGA, not the data we're sending *to* the FPGA.
 * We only need to send two arguments to the FPGA, the integer to be used in the multiplication, and the pointer to where we want the FPGA to store the result.
-* Use the Go `binary <https://golang.org/pkg/encoding/binary/>`_ package to read the result back from shared memory and store it into a variable ready to print.
-* Use the Go `fmt <https://golang.org/pkg/fmt/>`_ package to print your result!
+* Use the Go |binary| package to read the result back from shared memory and store it into a variable ready to print.
+* Use the Go |fmt| package to print your result!
 
 Now, open ``multiply1/main.go`` and edit to create your FPGA code to complete the simple multiplication. Here are some pointers:
 
 * Just two inputs to the FPGA need specifying, the integer to be multiplied and the pointer to where we're going to store the result.
-* As we won't be *reading* anything from shared memory, we can disable this functionality using the `axi protocol <http://godoc.reconfigure.io/v0.12.8/kernel/pkg/axi/protocol/index.html#ReadDisable>`_ package.
-* All that's left is to do the multiplication and then use the `AXI memory <http://godoc.reconfigure.io/v0.12.8/kernel/pkg/axi/memory/index.html>`_ package to write the result to the correct location in shared memory to be picked up by the host.
+* As we won't be *reading* anything from shared memory, we can disable this functionality using the |read_disable| package.
+* All that's left is to do the multiplication and then use the |axi_write| package to write the result to the correct location in shared memory to be picked up by the host.
 
 Once you're happy with your code, let's commit those changes and push them to your ``multiply`` branch on github. First make sure you're in ``examples/multiply1`` and then run::
 
@@ -317,13 +317,13 @@ Open the host code ``multiply-array/cmd/test-multiply-array/main.go`` and edit t
 
 * For this example we need two memory locations, one for the input array, and one for the output.
 * You will need to create the data to send to the FPGA – an array of 10 integers and seed it with incrementing values (0-9).
-* As above you can use the `binary <https://golang.org/pkg/encoding/binary/>`_ package to write your input data to memory.
+* As above you can use the |binary| package to write your input data to memory.
 * Use a for loop to display the results!
 
 Then, open ``multiply-array/main.go`` and edit the FPGA code to follow this example. Here's some pointers.
 
 * This time there are three inputs to the FPGA to specify: pointers to input and output data and the data length
-* Now, we can read the input array into a channel using a `Read Burst <http://godoc.reconfigure.io/v0.12.8/kernel/pkg/axi/memory/index.html#ReadBurstUInt32>`_, first make a channel, call it ``inputChan``, and then use a read burst to populate it with the input data. You can put this inside a goroutine so the reading in can happen at the same time as processing the data.
+* Now, we can read the input array into a channel using a |read_burst|, first make a channel, call it ``inputChan``, and then use a read burst to populate it with the input data. You can put this inside a goroutine so the reading in can happen at the same time as processing the data.
 * Then, create a channel for the transformed data, call it ``transformedChan``, and create a goroutine with a for loop inside to multiply what's in ``inputChan`` by 2 and send it to ``transformedChan``.
 * All that's left to do now is send the contents of ``transformedChan`` back to the results space in memory.
 
@@ -364,3 +364,19 @@ So, we've looked at how to structure your code to work with Reconfigure.io, and 
 .. |axi_write| raw:: html
 
    <a href="http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#WriteUInt32" target="_blank">AXI write</a>
+
+.. |binary| raw:: html
+
+   <a href="https://golang.org/pkg/encoding/binary/" target="_blank">binary</a>
+
+.. |fmt| raw:: html
+
+   <a href="https://golang.org/pkg/fmt/" target="_blank">fmt</a>
+
+.. |read_disable| raw:: html
+
+   <a href="http://godoc.reconfigure.io/v0.12.8/kernel/pkg/axi/protocol/index.html#ReadDisable" target="_blank">AXI protocol</a>
+
+.. |read_burst| raw:: html
+
+   <a href="http://godoc.reconfigure.io/v0.12.8/kernel/pkg/axi/memory/index.html#ReadBurstUInt32" target="_blank">Read Burst</a>

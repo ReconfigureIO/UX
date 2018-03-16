@@ -2,7 +2,7 @@
 
 Getting Started – Let's Deploy Some Code!
 =========================================
-We're going to deploy a build of our MD5 hash example to a cloud FPGA and use it to generate MD5 hashes of strings of your choice. If you would like to look at our code, you can do so `here <https://github.com/ReconfigureIO/web-md5>`_.
+We're going to deploy a build of our MD5 hash example to a cloud FPGA and use it to generate MD5 hashes of strings of your choice. If you would like to look at our code, you can do so |md5_code|.
 
 If you've found your way here without signing up first, please head to our `website <http://reconfigure.io/sign-up>`_.
 
@@ -47,6 +47,10 @@ If you've found your way here without signing up first, please head to our `webs
       reco deploy stop <deployment_ID>
 
 **Now visit your** |dashboard| **to view your account.**
+
+.. |md5_code| raw:: html
+
+   <a href="https://github.com/ReconfigureIO/web-md5" target="_blank">here</a>
 
 .. |dashboard| raw:: html
 

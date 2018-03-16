@@ -22,7 +22,7 @@ Our current standard way of having the FPGA talk to shared memory is using the A
 
 **Our engineers have developed a new protocol – SMI (Scalable Multiprotocol Infrastructure) – which addresses the issue of fine-grained parallelizm, as well as simplifying code and reducing boilerplate for our users.** It's available for testing from Reconfigure.io v0.17.0 onwards and will be fully rolled out as our standard method for accessing memory very soon.
 
-For more information, please see our `blog post <https://medium.com/the-recon/introducing-smi-7a216e2dff45>`_ and you can check out our `examples <https://github.com/ReconfigureIO/examples>`_ – we've included a version of our histogram-array code that uses SMI rather than AXI.
+For more information, please see our |smi_blog| and you can check out our |examples| – we've included a version of our histogram-array code that uses SMI rather than AXI.
 
 Go compilation stages
 ^^^^^^^^^^^^^^^^^^^^^
@@ -30,7 +30,7 @@ Your Reconfigure.io projects will be coded using :ref:`our subset <gosupport>` o
 
 We take your code through several stages to get it ready to program an FPGA:
 
-* **Teak** – first, your Go is translated into `Teak <http://apt.cs.manchester.ac.uk/projects/teak/>`_ , a data-flow language with its roots in research from the University of Manchester. This allows us (and you, using :ref:`graphs <graph>`) to optimize your code for the FPGA architecture.
+* **Teak** – first, your Go is translated into |teak|, a data-flow language with its roots in research from the University of Manchester. This allows us (and you, using :ref:`graphs <graph>`) to optimize your code for the FPGA architecture.
 * **Verilog RTL representation** - this 'register transfer level' description is suitable for taking your code into the traditional FPGA development process.
 * **Verilog netlist** - we then use standard tooling to compile your code into a netlist which relates to the FPGA's logic components.
 * **Place and route** – this is where we decide where on the physical FPGA chip to place the components from the netlist.
@@ -38,7 +38,7 @@ We take your code through several stages to get it ready to program an FPGA:
 
 CPU vs FPGA
 ^^^^^^^^^^^^
-The Go language is designed for writing concurrent programs, which you can read more about `here <https://medium.com/the-recon/why-do-we-use-go-511b34c2aed>`_. Go is normally used to write for traditional CPUs, where the concurrency in programs using goroutines, channels and select statements can take advantage of multi-core CPUs to perform several operations in parallel. But, when we optimize your Go for an FPGA, this potential for parallel processing is drastically increased.
+The Go language is designed for writing concurrent programs, which you can read more about |why_go|. Go is normally used to write for traditional CPUs, where the concurrency in programs using goroutines, channels and select statements can take advantage of multi-core CPUs to perform several operations in parallel. But, when we optimize your Go for an FPGA, this potential for parallel processing is drastically increased.
 
 For example, a goroutine running on a CPU is a tiny light-weight thread running within a bigger thread, with just one big thread per CPU core. There is potential for parallelism here, but only one operation can happen per core per unit of time. On an FPGA, one go routine translates to a small chunk of circuit, continuously running, so you could create a million of them and they can all do their work all the time.
 
@@ -79,7 +79,7 @@ All the code you write will be in Go. You can create Go files in your working di
 
 Go test
 ^^^^^^^
-If you have followed our Go tooling :ref:`setup instructions <gotools>` you can use ``go test`` to run tests against your FPGA code and flag up any semantic or syntactic errors. You can read more about the Go testing framework `here <https://golang.org/doc/code.html#Testing>`_. Your ``main_test.go`` files can just be stored in a program's top directory.
+If you have followed our Go tooling :ref:`setup instructions <gotools>` you can use ``go test`` to run tests against your FPGA code and flag up any semantic or syntactic errors. You can read more about the Go testing framework |go test|. Your ``main_test.go`` files can just be stored in a program's top directory.
 
 Check
 ^^^^^
@@ -124,3 +124,23 @@ Once your build is complete you can deploy the image to an F1 instance. This pro
 
 *  ``reco deploy run <build_ID> <cmd>`` will deploy your build to the FPGA and run your chosen command on the host CPU.
 * If your deployment is designed to run indefinitely, it is important to remember to stop it – live deployments are charged to your account (open-source users get 20 hours/month for free). Run ``reco deployment stop <deployment-ID>`` to stop a deployment. It is also good practice to include a timeout, just in case you forget to stop a deployment. To do this you can run ``reco deployment run <build-ID> timeout 30m <cmd>`` to ensure that the deployment runs for 30 minutes max. You can set whatever timeout you want, using hours ``1h``, minutes ``1m`` and seconds ``1s``.
+
+.. |smi_blog| raw:: html
+
+   <a href="https://medium.com/the-recon/introducing-smi-7a216e2dff45" target="_blank">blog post</a>
+
+.. |examples| raw:: html
+
+   <a href="https://github.com/ReconfigureIO/examples" target="_blank">examples</a>
+
+.. |teak| raw:: html
+
+   <a href="http://apt.cs.manchester.ac.uk/projects/teak/" target="_blank">Teak</a>
+
+.. |why_go| raw:: html
+
+   <a href="https://medium.com/the-recon/why-do-we-use-go-511b34c2aed" target="_blank">here</a>
+
+.. |go_test| raw:: html
+
+   <a href="https://golang.org/doc/code.html#Testing" target="_blank">here</a>
