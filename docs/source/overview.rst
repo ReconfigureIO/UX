@@ -16,6 +16,14 @@ Each FPGA card has 64 GiB dedicated memory (DRAM) which can be used to share dat
 
 .. image:: ReconfigureFPGAarchitecture.png
 
+A note about memory access
+----------------------------
+Our current standard way of having the FPGA talk to shared memory is using the AXI protocol (find more on this in our :ref:`third tutorial <structure>`). AXI is designed to work with multicore CPUs, with several cores accessing memory at the same time. But for us, as we're using Go for FPGAs, the level of parallelizm is so much higher. We're dealing with many, potentially thousands of go routines trying to access memory at the same time. Managing this with AXI is not straightforward.
+
+**Our engineers have developed a new protocol – SMI (Scalable Multiprotocol Infrastructure) – which addresses the issue of fine-grained parallelizm, as well as simplifying code and reducing boilerplate for our users.** It's available for testing from Reconfigure.io v0.17.0 onwards and will be fully rolled out as our standard method for accessing memory very soon.
+
+For more information, please see our `blog post <https://medium.com/the-recon/introducing-smi-7a216e2dff45>`_ and you can check out our `examples <https://github.com/ReconfigureIO/examples>`_ – we've included a version of our histogram-array code that uses SMI rather than AXI.
+
 Go compilation stages
 ^^^^^^^^^^^^^^^^^^^^^
 Your Reconfigure.io projects will be coded using :ref:`our subset <gosupport>` of the standard Go language, using our :ref:`coding style-guide <style>` to help get the most out of the destination hardware.
@@ -71,7 +79,7 @@ All the code you write will be in Go. You can create Go files in your working di
 
 Go test
 ^^^^^^^
-If you have followed our Go tooling :ref:`setup instructions <gotools>` you can use ``go test`` to run tests against your FPGA code and flag up any syntactic errors. You can read more about the Go testing framework `here <https://golang.org/doc/code.html#Testing>`_. Your ``_test.go`` files can just be stored in a program's top directory.
+If you have followed our Go tooling :ref:`setup instructions <gotools>` you can use ``go test`` to run tests against your FPGA code and flag up any semantic or syntactic errors. You can read more about the Go testing framework `here <https://golang.org/doc/code.html#Testing>`_. Your ``main_test.go`` files can just be stored in a program's top directory.
 
 Check
 ^^^^^

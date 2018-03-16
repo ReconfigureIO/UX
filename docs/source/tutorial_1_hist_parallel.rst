@@ -16,7 +16,7 @@ From here, we're assuming you've already set up your account and :ref:`installed
 
 Clone our examples repository
 ----------------------------
-First we need some code to work with. If you already use Go, and have your ``GOPATH``, workspace and tooling set up, and have `git <https://help.github.com/articles/set-up-git/#setting-up-git>`_ set up on your local machine, you can now clone our examples repo into your workspace by following the instructions for your operating system below.
+First we need some code to work with. If you already use Go, and have your ``GOPATH``, workspace and tooling set up, and have |git| set up on your local machine, you can now clone our examples repo into your workspace by following the instructions for your operating system below.
 
 If you are new to Go, please follow our :ref:`quick setup guide <gotools>` first.
 
@@ -70,7 +70,7 @@ For this example, ``main_test.go`` checks that the FPGA will not calculate an in
 
     $ go test
     PASS
-    ok      /<your_path>/examples/histogram-array    0.005s
+    ok      /github.com/ReconfigureIO/examples/histogram-array    0.005s
 
 This shows us that your Go environment is set up correctly and the code passes the conditions set in ``main_test.go``.
 
@@ -81,7 +81,7 @@ Now you can type-check the FPGA code using our command line tool ``reco``. This 
 .. code-block:: shell
 
    $ reco check
-   /<your_path>/examples/histogram-array/main.go checked successfully
+   /github.com/ReconfigureIO/examples/histogram-array/main.go checked successfully
 
 Simulate
 --------
@@ -94,7 +94,7 @@ You can now simulate the program using the ``reco sim`` command. This is a reall
 
 .. admonition:: Getting in the queue
 
-    Simulation should normally only take around 20 seconds but could be up to 10 minutes depending on what else is in the queue.
+    Simulation should normally only take around 5 minutes but could be up to 30 minutes depending on what else is in the queue.
 
 Run ``reco sim run test-histogram`` and you should see:
 
@@ -416,3 +416,7 @@ Next, a test is run to check that the returned data matches what is expected bef
 What's next
 -----------------------------
 So, we've deployed some code to an FPGA, stepped through our workflow and code and looked at introducing some concurrency into programs. Move on to :ref:`tutorial 2 <addition>` where we'll guide you through completing some code for a simple program.
+
+.. |git| raw:: html
+
+   <a href="https://help.github.com/articles/set-up-git/#setting-up-git" target="_blank">git</a>

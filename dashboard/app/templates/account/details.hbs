@@ -16,17 +16,21 @@
         </div>
 
         <div class="col col--8 col--clear">
+          {{form-input questionType="text" label="Email address" name="emailAddress" value=user.email}}
+        </div>
+
+        <div class="col col--8 col--clear">
           {{form-input questionType="text" label="Company" name="company" value=user.company}}
         </div>
 
         <div class="col col--8 col--clear">
-          {{form-input questionType="tel" label="Phone number" name="phone" value=user.phone}}
+          {{form-input questionType="tel" label="Phone number" name="phone" value=user.phone_number}}
         </div>
 
         <div class="form-messages col col--full"></div>
 
         <div class="actions">
-          <button type="submit" class="btn" {{action "updateUser" user.email}}><span>Update Details</span></button>
+          <button type="submit" class="btn" {{action "updateUser" user.id}}><span>Update Details</span></button>
         </div>
       </form>
     </div>
