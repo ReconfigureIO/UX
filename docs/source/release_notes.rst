@@ -7,7 +7,7 @@ Release Notes
 Reconfigure.io v0.17.1
 ======================
 
-This release adds support for increased memory access bandwidth, from 64 bit to 512 bit, when using the new SMI infrastructure. This will provide a performance gain when using read/write burst memory transactions. See our `histogram-SMI example <https://github.com/ReconfigureIO/examples/tree/master/histogram-array-SMI>`_ for more information.
+This release adds support for increased memory access bandwidth, from 64 bit to 512 bit, when using the new SMI infrastructure. This will provide a performance gain when using read/write burst memory transactions. See an example application using SMI `here <https://github.com/ReconfigureIO/examples/tree/master/histogram-array-SMI>`_.
 
 Features
 ~~~~~~~~
