@@ -22,7 +22,13 @@ Our current standard way of having the FPGA talk to shared memory is using the A
 
 **Our engineers have developed a new protocol – SMI (Scalable Multiprotocol Infrastructure) – which addresses the issue of fine-grained parallelizm, as well as simplifying code and reducing boilerplate for our users.** It's available for testing from Reconfigure.io v0.17.0 onwards and will be fully rolled out as our standard method for accessing memory very soon.
 
-For more information, please see our |smi_blog| and you can check out our |examples| – we've included a version of our histogram-array code that uses SMI rather than AXI.
+For more information, please see our |smi_blog| and you can check out our |examples| – we've included a version of our histogram-array code that uses SMI rather than AXI. You will notice that with SMI we have introduce a ``reco.yml`` file per program. This contains some simple settings: Infrastructure (SMI or AXI), the memory access bandwidth (max 512 bit, min 64 bit) and the number of ports you require for your application, so for a program using SMI with one read and one write port, the setting should appear like this:
+
+.. code-block:: shell
+
+    memory_interface: smi
+    memory_width: 512
+    ports: 2
 
 Go compilation stages
 ^^^^^^^^^^^^^^^^^^^^^
