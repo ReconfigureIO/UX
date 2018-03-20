@@ -19,12 +19,7 @@ A draft version of our SMI API docs is now available.
 Features
 ~~~~~~~~
 
-* Set memory read/write bandwidth to 512 bit.
-
-bugfixes
-~~~~~~~~
-
-* ?
+* You can now set memory read/write bandwidth to 512 bit.
 
 Reconfigure.io v0.17.0
 ======================
