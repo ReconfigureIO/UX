@@ -4,9 +4,26 @@
 Release Notes
 =============
 
+Reconfigure.io v0.17.1
+======================
+
+This release adds support for increased memory access bandwidth, from 64 bit to 512 bit, when using the new SMI infrastructure. This will provide a performance gain when using read/write burst memory transactions. See an example application using SMI `here <https://github.com/ReconfigureIO/examples/tree/master/histogram-array-SMI>`_.
+
+API docs
+~~~~~~~~~
+
+A draft version of our SMI API docs is now available.
+
+* `SMI docs <https://godoc.org/github.com/ReconfigureIO/sdaccel/smi>`_
+
+Features
+~~~~~~~~
+
+* You can now set memory read/write bandwidth to 512 bit.
+
 Reconfigure.io v0.17.0
 ======================
- 
+
 This release adds initial support for our new memory infrastructure, called SMI (Scalable Multiprotocol Infrastructure).
 
 SMI

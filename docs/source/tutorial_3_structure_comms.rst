@@ -14,14 +14,14 @@ For more on splitting your code between the CPU and FPGA, see our :ref:`style gu
 
 First we're going to look at the general program structure and then cover the following:
 
-* A detailed look at the basic requirements for the CPU and FPGA code. This is available as a template in ``examples/template``.
+* A detailed look at the basic requirements for the CPU and FPGA code. This is available as a template in ``tutorials/template`` (There is an alternative version of this template using our new SMI protocol in ``tutorials/template-SMI``.
 * Discuss how to share data between the CPU and FPGA.
-* Using our template to create a simple program in which a single integer is passed from host CPU to the FPGA, multiplied by 2, and passed back to the host. (If you would rather just look at the solution, it's here: examples/tutorial-3-examples/multiply1)
-* Using the code above as the basis to create another program where an array of 10 integers is passed from the host to the FPGA, each integer is then multiplied by 2 and the resulting array is passed back to the host. (Again, if you would rather just look at the solution, it's here: examples/tutorial-3-examples/multiply-array)
+* Using our template to create a simple program in which a single integer is passed from host CPU to the FPGA, multiplied by 2, and passed back to the host. (If you would rather just look at the solution, it's here: ``tutorials/multiply1``)
+* Using the code above as the basis to create another program where an array of 10 integers is passed from the host to the FPGA, each integer is then multiplied by 2 and the resulting array is passed back to the host. (Again, if you would rather just look at the solution, it's here: ``tutorials/multiply-array``)
 
 Program Structure
 -----------------
-Reconfigure.io programs all have the same structure, a main.go file for the FPGA and then a ``cmd/test`` directory containing the code for the CPU. You can have several main.go files for the host within the same program. When you come to simulate or run a build you can choose which host command to use by using the name of the 'test' directory it sits within, for examples, to simulate the program below using ``reco`` you would navigate to the the ``my-program`` directory and run ``reco sim run test-my-program``.
+Reconfigure.io programs all have the same structure, a main.go file for the FPGA and then a ``cmd/test`` directory containing the code for the CPU. You can have several main.go files for the host within the same program. When you come to simulate or run a build you can choose which host command to use by using the name of the 'test' directory it sits within, for example, to simulate the program below using ``reco`` you would navigate to the the ``my-program`` directory and run ``reco sim run test-my-program``.
 
 .. image:: ProgramStructure.png
 
@@ -265,7 +265,7 @@ Now, open ``multiply1/main.go`` and edit to create your FPGA code to complete th
 * As we won't be *reading* anything from shared memory, we can disable this functionality using the |read_disable| package.
 * All that's left is to do the multiplication and then use the |axi_write| package to write the result to the correct location in shared memory to be picked up by the host.
 
-Once you're happy with your code, let's commit those changes and push them to your ``multiply`` branch on github. First make sure you're in ``examples/multiply1`` and then run::
+Once you're happy with your code, let's commit those changes and push them to your ``multiply`` branch on github. First make sure you're in ``tutorials/multiply1`` and then run::
 
   git add main.go && cmd/test-addition/main.go
   git commit -m "multiply1 completed"
@@ -278,7 +278,7 @@ We're now going to use ``reco`` to debug and simulate your code, so lets create 
   reco project create multiply1
   reco project set multiply1
 
-First, you can type-check your code for compatibility with our compiler. From the ``examples/multiply1`` directory run ``reco check``, and if everything is ok, you should see::
+First, you can type-check your code for compatibility with our compiler. From the ``tutorials/multiply1`` directory run ``reco check``, and if everything is ok, you should see::
 
   $ reco check
   GOPATH/src/github.com/<your-github-username>/tutorials/multiply1/main.go checked successfully
@@ -289,7 +289,7 @@ Once you've addressed any errors thrown up by ``reco check``, you can simulate h
   (.....)
   2
 
-Once the compiler has run through the simulation, you should see the multiplication result displayed. When you're done, you can compare your code with ours, which you'll find here: ``tutorials/tutorial3_examples/multiply1/``
+Once the compiler has run through the simulation, you should see the multiplication result displayed. When you're done, you can compare your code with ours, which you'll find here: ``tutorials/multiply1/``
 
 More data
 ------------
