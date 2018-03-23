@@ -154,9 +154,9 @@ The improved function is in ``tutorials/good-graph``. Again there's just a singl
 
   package main
 
-  func main() {
-      var array [8]int
-      sum := array[0] + array[1] + array[2] + array[3] + array[4] + array[5] + array[6] + array[7]
+    func sumArray(array [8]int) int {
+  	val := array[0] + array[1] + array[2] + array[3] + array[4] + array[5] + array[6] + array[7]
+  	return val
   }
 
 Navigate to ``tutorials/good-graph`` and generate a new graph by running ``reco graph gen``::
