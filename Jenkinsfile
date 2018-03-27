@@ -23,24 +23,6 @@ node ('master') {
             sh 'docker build -t "reconfigureio/sphinx:latest" docs'
             sh 'docker build -t "reconfigureio/dashboard:latest" dashboard/build'
 
-            stage 'reco'
-            if(env.BRANCH_NAME != "master") {
-
-                dir ('reco/') {
-                    stage 'reco - satisfy dependencies'
-                        sh 'docker-compose run --rm go make clean dependencies'
-
-                    stage 'reco - test'
-                        sh 'docker-compose run --rm go make test benchmark integration'
-
-                    stage 'reco - build'
-                        sh "docker-compose run -e API_SERVER=https://staging-api.reconfigure.io --rm  go ./ci/cross_compile.sh \"${env.BRANCH_NAME}\""
-
-		            stage 'reco - upload'
-                    step([$class: 'S3BucketPublisher', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: "downloads.${zone}/reco", excludedFile: '', flatten: false, gzipFiles: false, keepForever: true, managedArtifacts: false, noUploadOnFailure: true, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: 'dist/*.zip', storageClass: 'STANDARD', uploadFromSlave: true, useServerSideEncryption: false]], profileName: 's3', userMetadata: []])
-                }
-            }
-
             stage 'dashboard - test'
             dir ('dashboard/') {
                 sh 'docker-compose run --rm test'

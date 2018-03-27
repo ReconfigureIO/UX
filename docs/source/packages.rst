@@ -4,7 +4,7 @@ Go Packages
 ========================
 We support the use of vendor packages in your Reconfigure.io projects. Below is a list of our packages, which have all been optimized to work well on FPGAs.
 
-You will need to use `Go's vendor mechanism <https://blog.gopheracademy.com/advent-2015/vendor-folder/>`_ and you can use your favorite Go dependency manager to add a Package and use it in your programs. We recommend `glide <https://glide.readthedocs.io/en/latest/>`_. You can follow their `installation <https://glide.readthedocs.io/en/latest/#installing-glide>`_ instructions and then run the following command to initialize your workspace:
+You will need to use |vendor| and you can use your favorite Go dependency manager to add a Package and use it in your programs. We recommend |glide|. You can follow their |install| instructions and then run the following command to initialize your workspace:
 
 .. code-block:: shell
 
@@ -41,3 +41,15 @@ A library of cryptography algorithms designed to be run on FPGAs:
 .. code-block:: shell
 
     glide get https://github.com/ReconfigureIO/crypto
+
+.. |vendor| raw:: html
+
+   <a href="https://blog.gopheracademy.com/advent-2015/vendor-folder/" target="_blank">Go's vendor mechanism</a>
+
+.. |glide| raw:: html
+
+   <a href="https://glide.readthedocs.io/en/latest/" target="_blank">glide</a>
+
+.. |install| raw:: html
+
+   <a href="https://glide.readthedocs.io/en/latest/#installing-glide" target="_blank">installation</a>

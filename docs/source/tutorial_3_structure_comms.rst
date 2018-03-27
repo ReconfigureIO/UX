@@ -4,7 +4,7 @@ Tutorial 3 – Structure and Communication
 =========================================
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check if your installation is up-to-date. Our current version is |reco_version|. If you need to update, please see our :ref:`install/update instructions <install>`.
+    Run ``reco version`` to check you are running the latest version: |reco_version|. If you need to update, please run ``reco update``, or if your current version is below ``v0.5.0`` see our :ref:`install/update instructions <install>`.
 
 In this tutorial we're going to cover structuring your programs and writing effective Go code for FPGAs. We'll look at our template, which is available for you to use as the basis for new programs, and use it to complete a couple of examples. Along the way we'll learn a bit more about the shared memory available on the FPGA card.
 
@@ -14,14 +14,14 @@ For more on splitting your code between the CPU and FPGA, see our :ref:`style gu
 
 First we're going to look at the general program structure and then cover the following:
 
-* A detailed look at the basic requirements for the CPU and FPGA code. This is available as a template in ``examples/template``.
+* A detailed look at the basic requirements for the CPU and FPGA code. This is available as a template in ``tutorials/template`` (There is an alternative version of this template using our new SMI protocol in ``tutorials/template-SMI``.
 * Discuss how to share data between the CPU and FPGA.
-* Using our template to create a simple program in which a single integer is passed from host CPU to the FPGA, multiplied by 2, and passed back to the host. (If you would rather just look at the solution, it's here: examples/tutorial-3-examples/multiply1)
-* Using the code above as the basis to create another program where an array of 10 integers is passed from the host to the FPGA, each integer is then multiplied by 2 and the resulting array is passed back to the host. (Again, if you would rather just look at the solution, it's here: examples/tutorial-3-examples/multiply-array)
+* Using our template to create a simple program in which a single integer is passed from host CPU to the FPGA, multiplied by 2, and passed back to the host. (If you would rather just look at the solution, it's here: ``tutorials/multiply1``)
+* Using the code above as the basis to create another program where an array of 10 integers is passed from the host to the FPGA, each integer is then multiplied by 2 and the resulting array is passed back to the host. (Again, if you would rather just look at the solution, it's here: ``tutorials/multiply-array``)
 
 Program Structure
 -----------------
-Reconfigure.io programs all have the same structure, a main.go file for the FPGA and then a ``cmd/test`` directory containing the code for the CPU. You can have several main.go files for the host within the same program. When you come to simulate or run a build you can choose which host command to use by using the name of the 'test' directory it sits within, for examples, to simulate the program below using ``reco`` you would navigate to the the ``my-program`` directory and run ``reco sim run test-my-program``.
+Reconfigure.io programs all have the same structure, a main.go file for the FPGA and then a ``cmd/test`` directory containing the code for the CPU. You can have several main.go files for the host within the same program. When you come to simulate or run a build you can choose which host command to use by using the name of the 'test' directory it sits within, for example, to simulate the program below using ``reco`` you would navigate to the the ``my-program`` directory and run ``reco sim run test-my-program``.
 
 .. image:: ProgramStructure.png
 
@@ -35,7 +35,7 @@ The host's job is to create, receive, manage and organize data and send it to th
 
 There are a few elements that need to be included in your host code:
 
-* A ``world`` needs to be set up for managing the FPGA so it can work correctly and clean up when the work is done. For more information on this, see the ``world`` entry in our `FPGA interface docs <http://godoc.reconfigure.io/v0.12.7/host/pkg/xcl/index.html#World>`_.
+* A ``world`` needs to be set up for managing the FPGA so it can work correctly and clean up when the work is done. For more information on this, see the ``world`` entry in our |FPGA|.
 * Set aside some space in shared memory to put data for the FPGA to collect, and to pass results back to the host.
 * Pass data to the FPGA – input data, pointers to input data, a pointer to where you want the results to end up, maybe an expected length if you are passing an array etc.
 * Set the FPGA running.
@@ -145,7 +145,7 @@ We've seen how Reconfigure.io projects consist of host and FPGA code and that da
 
 Host CPU code
 ^^^^^^^^^^^^^
-So, lets look at how we actually do this. We can use a simple example of passing a small array from the host CPU to the FPGA and then have the FPGA send it back again. Starting with the code for the CPU, you can see from the template above that we need a `'world' <https://github.com/ReconfigureIO/sdaccel>`_ set up to interact with the FPGA, and we use this to let the CPU talk to the shared memory on the FPGA card. We can create spaces within shared memory for specific purposes, and send the addresses of these memory locations to the FPGA so it knows where to look for our data, and where to store its results.
+So, lets look at how we actually do this. We can use a simple example of passing a small array from the host CPU to the FPGA and then have the FPGA send it back again. Starting with the code for the CPU, you can see from the template above that we need a |world| set up to interact with the FPGA, and we use this to let the CPU talk to the shared memory on the FPGA card. We can create spaces within shared memory for specific purposes, and send the addresses of these memory locations to the FPGA so it knows where to look for our data, and where to store its results.
 
 Sending some data from the host to the FPGA is a three step process – create space in memory for our data, store data in that memory location, and pass the memory location to the FPGA so it knows where to find it. For this example we need to create our test data first, so lets make an array of 10 incrementing values::
 
@@ -177,9 +177,9 @@ Next, the code snippets for passing our test data to the FPGA look like this (re
 
 FPGA code
 ^^^^^^^^^^
-The FPGA interacts with shared memory using the `AXI memory protocol <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/>`_. In the template above you can see we always set up channels to act as ports for interacting with shared memory within the ``Top`` function in the FPGA code.
+The FPGA interacts with shared memory using the |axi|. In the template above you can see we always set up channels to act as ports for interacting with shared memory within the ``Top`` function in the FPGA code.
 
-So, the FPGA getting hold of the array requires three steps – first, the FPGA must receive the memory location from the host, then create a variable for the data and use an `AXI read <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#ReadUInt32>`_ to read the data into that variable within the on-chip block RAM. Here are the code snippets for these steps:
+So, the FPGA getting hold of the array requires three steps – first, the FPGA must receive the memory location from the host, then create a variable for the data and use an |axi_read| to read the data into that variable within the on-chip block RAM. Here are the code snippets for these steps:
 
 1. Receive the memory locations and data size from the host (the ``0``, ``1`` and ``2`` in ``krnl.SetMemoryArg...`` are translated by our comiler to be the first, second and third inputs to the FPGA)::
 
@@ -196,7 +196,7 @@ So, the FPGA getting hold of the array requires three steps – first, the FPGA 
       aximemory.ReadUInt32(
         memReadAddr, memReadData, false, inputData, data)
 
-Now the FPGA has our array held within ``data``, let's send it back again. The process for getting data from the FPGA's block RAM to the reserved space in shared memory is an `AXI write <http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#WriteUInt32>`_ as follows::
+Now the FPGA has our array held within ``data``, let's send it back again. The process for getting data from the FPGA's block RAM to the reserved space in shared memory is an |axi_write| as follows::
 
   aximemory.WriteUInt32(
     memWriteAddr, memWriteData, memWriteResp, false, outputData, data)
@@ -218,7 +218,7 @@ To explore these methods of passing data around further let's use our template t
     :width: 90%
     :align: center
 
-We can use our template to write the code to perform this multiplication. First, let's check you're using the latest version of our examples – |examples_version|. Open a terminal and navigate to where you cloned your fork of our clones examples and run::
+We can use our template to write the code to perform this multiplication. First, let's check you're using the latest version of our tutorial materials – |tutorials_version|. Open a terminal and navigate to where you cloned your fork of our tutorial materials (probably ``$GOPATH/src/github.com/<your-github-username>/tutorials``) and run::
 
     git describe --tags
 
@@ -228,7 +228,7 @@ If you have a different version, please run
 
     git fetch upstream
     git pull upstream master
-    git checkout |examples_version|
+    git checkout |tutorials_version|
 
 We're going to be editing and adding to our template now so let's make a new branch to work on, call it ``multiply``::
 
@@ -256,16 +256,16 @@ Let's work on the host CPU code first. Open ``multiply1/cmd/test-multiply1/main.
 
 * We're only passing one integer straight to the control register so we only need to make space in shared memory for the result from the FPGA, not the data we're sending *to* the FPGA.
 * We only need to send two arguments to the FPGA, the integer to be used in the multiplication, and the pointer to where we want the FPGA to store the result.
-* Use the Go `binary <https://golang.org/pkg/encoding/binary/>`_ package to read the result back from shared memory and store it into a variable ready to print.
-* Use the Go `fmt <https://golang.org/pkg/fmt/>`_ package to print your result!
+* Use the Go |binary| package to read the result back from shared memory and store it into a variable ready to print.
+* Use the Go |fmt| package to print your result!
 
 Now, open ``multiply1/main.go`` and edit to create your FPGA code to complete the simple multiplication. Here are some pointers:
 
 * Just two inputs to the FPGA need specifying, the integer to be multiplied and the pointer to where we're going to store the result.
-* As we won't be *reading* anything from shared memory, we can disable this functionality using the `axi protocol <http://godoc.reconfigure.io/v0.12.8/kernel/pkg/axi/protocol/index.html#ReadDisable>`_ package.
-* All that's left is to do the multiplication and then use the `AXI memory <http://godoc.reconfigure.io/v0.12.8/kernel/pkg/axi/memory/index.html>`_ package to write the result to the correct location in shared memory to be picked up by the host.
+* As we won't be *reading* anything from shared memory, we can disable this functionality using the |read_disable| package.
+* All that's left is to do the multiplication and then use the |axi_write| package to write the result to the correct location in shared memory to be picked up by the host.
 
-Once you're happy with your code, let's commit those changes and push them to your ``multiply`` branch on github. First make sure you're in ``examples/multiply1`` and then run::
+Once you're happy with your code, let's commit those changes and push them to your ``multiply`` branch on github. First make sure you're in ``tutorials/multiply1`` and then run::
 
   git add main.go && cmd/test-addition/main.go
   git commit -m "multiply1 completed"
@@ -278,10 +278,10 @@ We're now going to use ``reco`` to debug and simulate your code, so lets create 
   reco project create multiply1
   reco project set multiply1
 
-First, you can type-check your code for compatibility with our compiler. From the ``examples/multiply1`` directory run ``reco check``, and if everything is ok, you should see::
+First, you can type-check your code for compatibility with our compiler. From the ``tutorials/multiply1`` directory run ``reco check``, and if everything is ok, you should see::
 
   $ reco check
-  GOPATH/src/github.com/<your-github-username>/examples/multiply1/main.go checked successfully
+  GOPATH/src/github.com/<your-github-username>/tutorials/multiply1/main.go checked successfully
 
 Once you've addressed any errors thrown up by ``reco check``, you can simulate how your code will run on an FPGA::
 
@@ -289,7 +289,7 @@ Once you've addressed any errors thrown up by ``reco check``, you can simulate h
   (.....)
   2
 
-Once the compiler has run through the simulation, you should see the multiplication result displayed. When you're done, you can compare your code with ours, which you'll find here: ``examples/tutorial3_examples/multiply1/``
+Once the compiler has run through the simulation, you should see the multiplication result displayed. When you're done, you can compare your code with ours, which you'll find here: ``tutorials/multiply1/``
 
 More data
 ------------
@@ -317,13 +317,13 @@ Open the host code ``multiply-array/cmd/test-multiply-array/main.go`` and edit t
 
 * For this example we need two memory locations, one for the input array, and one for the output.
 * You will need to create the data to send to the FPGA – an array of 10 integers and seed it with incrementing values (0-9).
-* As above you can use the `binary <https://golang.org/pkg/encoding/binary/>`_ package to write your input data to memory.
+* As above you can use the |binary| package to write your input data to memory.
 * Use a for loop to display the results!
 
 Then, open ``multiply-array/main.go`` and edit the FPGA code to follow this example. Here's some pointers.
 
 * This time there are three inputs to the FPGA to specify: pointers to input and output data and the data length
-* Now, we can read the input array into a channel using a `Read Burst <http://godoc.reconfigure.io/v0.12.8/kernel/pkg/axi/memory/index.html#ReadBurstUInt32>`_, first make a channel, call it ``inputChan``, and then use a read burst to populate it with the input data. You can put this inside a goroutine so the reading in can happen at the same time as processing the data.
+* Now, we can read the input array into a channel using a |read_burst|, first make a channel, call it ``inputChan``, and then use a read burst to populate it with the input data. You can put this inside a goroutine so the reading in can happen at the same time as processing the data.
 * Then, create a channel for the transformed data, call it ``transformedChan``, and create a goroutine with a for loop inside to multiply what's in ``inputChan`` by 2 and send it to ``transformedChan``.
 * All that's left to do now is send the contents of ``transformedChan`` back to the results space in memory.
 
@@ -344,3 +344,39 @@ Once the compiler has run through the simulation, you should see the resulting a
 What have we done
 ------------------
 So, we've looked at how to structure your code to work with Reconfigure.io, and how to use our template as a basis for writing new programs. Also, we've seen how to pass arguments straight from the host to the FPGA using the control register, and pass data from the host to the FPGA via shared memory, and back again. Next, :ref:`tutorial 4 <graphstutorial>` shows you how to use dataflow graphs to optimize your FPGA code.
+
+.. |FPGA| raw:: html
+
+   <a href="http://godoc.reconfigure.io/v0.12.7/host/pkg/xcl/index.html#World" target="_blank">FPGA interface docs</a>
+
+.. |world| raw:: html
+
+   <a href="http://godoc.reconfigure.io/v0.12.7/host/pkg/xcl/index.html#World" target="_blank">'world'</a>
+
+.. |axi| raw:: html
+
+   <a href="http://godoc.reconfigure.io/v0.15.0/kernel/pkg/" target="_blank">AXI memory protocol</a>
+
+.. |axi_read| raw:: html
+
+   <a href="http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#ReadUInt32" target="_blank">AXI read</a>
+
+.. |axi_write| raw:: html
+
+   <a href="http://godoc.reconfigure.io/v0.15.0/kernel/pkg/axi/memory/index.html#WriteUInt32" target="_blank">AXI write</a>
+
+.. |binary| raw:: html
+
+   <a href="https://golang.org/pkg/encoding/binary/" target="_blank">binary</a>
+
+.. |fmt| raw:: html
+
+   <a href="https://golang.org/pkg/fmt/" target="_blank">fmt</a>
+
+.. |read_disable| raw:: html
+
+   <a href="http://godoc.reconfigure.io/v0.12.8/kernel/pkg/axi/protocol/index.html#ReadDisable" target="_blank">AXI protocol</a>
+
+.. |read_burst| raw:: html
+
+   <a href="http://godoc.reconfigure.io/v0.12.8/kernel/pkg/axi/memory/index.html#ReadBurstUInt32" target="_blank">Read Burst</a>
