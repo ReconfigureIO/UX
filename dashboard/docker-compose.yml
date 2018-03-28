@@ -1,0 +1,19 @@
+version: '2'
+services:
+  base:
+    build: build
+  test:
+    extends: base
+    command: bash -c "make test"
+    working_dir: /mnt
+    volumes:
+      - .:/mnt
+  server:
+    command: bash -c "make dependencies && ember server"
+    extends: base
+    working_dir: /mnt
+    volumes:
+      - .:/mnt
+    ports:
+      - "4200:4200"
+    
