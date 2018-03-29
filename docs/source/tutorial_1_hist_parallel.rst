@@ -4,12 +4,11 @@ Tutorial 1 – Setup and workflow
 ===============================================
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check your version. Our current version is |reco_version|. If you need to update, run ``reco update``, or see our :ref:`install/update instructions <install>`.
+    Run ``reco version`` to check your tooling version. Our current version is |reco_version|. If you need to update, run ``reco update``, or see our :ref:`install/update instructions <install>`.
 
 This tutorial is a simple introduction to the Reconfigure.io workflow. It's all pretty straightforward so in a few minutes you will have done a hardware simulation of a project running on an FPGA, and then deployed a build image of that project to an FPGA in the cloud. Then, we'll step through the code and discuss how it was written.
 
 **What we will do**
-
 * Check your Go environment is all set up
 * Clone our examples repo
 * Test our histogram example using ``go test``
