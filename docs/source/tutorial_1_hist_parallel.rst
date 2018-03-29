@@ -10,6 +10,14 @@ This tutorial is a simple introduction to the Reconfigure.io workflow. It's all 
 
 **We will use our parallelized histogram example in this tutorial, in which a block of memory is filled with sample data before an FPGA is put to work classifying the samples into bins. The contents of each bin is then read out, providing the data required to draw a histogram.**
 
+**What we will do**
+
+* Check your Go environment is all set up
+* Clone our examples repo
+* Test our histogram example using ``go test``
+* Run through our tooling workflow using ``reco`` to check, simulate and deploy a build image to a cloud FPGA
+* Step through the code to see how it is structured
+
 From here, we're assuming you've already set up your account and :ref:`installed and authenticated <install>` ``reco`` – if you don't have an account yet, please visit our `website <https://reconfigure.io/sign-up>`_.
 
 .. _examples:
