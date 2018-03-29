@@ -1,4 +1,4 @@
-{{#unless isIndex}}
+{{#unless hideSideBar}}
   <aside class="sidebar">
     {{#if media.isMobile}}
       <div class="sidebar__mobile">
@@ -44,7 +44,7 @@
     </div>
 
     {{#unless hideNav}}
-      <div class="sidebar__secondary {{if showSideBar "show" "hide"}}">
+      <div class="sidebar__secondary {{if showSubNav "show" "hide"}}">
         <nav class="nav nav--secondary">
           {{#link-to "account.details"}}Personal Details{{/link-to}}
           {{#link-to "account.billing"}}Billing Information{{/link-to}}

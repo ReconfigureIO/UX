@@ -1,5 +1,5 @@
-{{sidebar-nav isIndex=isIndex hideNav=hideNav showSideBar=showSideBar}}
+{{sidebar-nav isIndex=isIndex hideNav=hideNav showSubNav=showSubNav hideSideBar=hideSideBar}}
 
-<main id="content" role="main" class="{{if showSideBar "has-sidebar"}}{{if isIndex "no-sidebar"}}">
+<main id="content" role="main" class="{{if showSubNav "has-sidebar"}}{{if isIndex "no-sidebar"}}">
   {{outlet}}
 </main>
