@@ -12,7 +12,7 @@ What we will do
 ------------------------
 * Look at general program structure
 * A detailed look at the basic requirements for the CPU and FPGA code. A template is available in ``tutorials/template`` (There is an alternative version of this template using our new SMI protocol in ``tutorials/template-SMI``.
-* Discuss how to share data between the host CPU and FPGA.
+* Discuss how to share data between the host CPU and FPGA
 * Use our template to create a simple program in which a single integer is passed from host CPU to the FPGA, multiplied by 2, and passed back to the host. (If you would rather just look at the solution, it's here: ``tutorials/multiply1``)
 * Use the code above as the basis to create another program where an array of 10 integers is passed from the host to the FPGA, each integer is then multiplied by 2 and the resulting array is passed back to the host. (Again, if you would rather just look at the solution, it's here: ``tutorials/multiply-array``)
 
