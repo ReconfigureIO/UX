@@ -21,7 +21,12 @@ node ('master') {
 
             stage 'lint'
             sh 'docker build -t "reconfigureio/sphinx:latest" docs'
-            sh 'docker build -t "reconfigureio/dashboard:latest" dashboard'
+            sh 'docker build -t "reconfigureio/dashboard:latest" dashboard/build'
+
+            stage 'dashboard - test'
+            dir ('dashboard/') {
+                sh 'docker-compose run --rm test'
+            }
 
             stage 'build'
             if(env.BRANCH_NAME == "master") {
