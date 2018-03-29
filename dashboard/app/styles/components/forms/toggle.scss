@@ -194,6 +194,7 @@
   input[type="checkbox"] + label {
     color: $cod-gray;
     cursor: pointer;
+    overflow: hidden;
     @include transition(0.2s ease-in);
   }
 
@@ -206,6 +207,7 @@
     cursor:pointer;
     background-color: transparent;
     border: 2pt solid $alto;
+    overflow: hidden;
     @include transition(0.2s ease-in);
   }
 
@@ -228,6 +230,7 @@
     margin: 2px;
     border: none;
     background-color: transparent;
+    overflow: hidden;
     @include transition(0.2s ease-in);
   }
 
@@ -292,6 +295,7 @@
       box-sizing: border-box;
       cursor: pointer;
       word-break: break-word;
+      overflow: hidden;
       @include transition(0.2s ease-out);
     }
   
