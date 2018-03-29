@@ -6,7 +6,7 @@ Tutorial 2 – Filling in the Gaps
 
     Run ``reco version`` to check your installation. Our current version is |reco_version|. If you need to update run ``reco update`` or see our :ref:`install/update instructions <install>`.
 
-We'll look at pretty much the simplest calculation possible – adding two numbers together. First, we will look at the problem, discuss how to design the program, and then, once you've had a go at filling in the gaps in the code. **The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.**
+We are going to look at pretty much the simplest calculation possible – adding two numbers together. First, we will look at the problem, discuss how to design the program, and have a go at filling in the gaps in some incompete code. **The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.**
 
 What we will do
 ----------------
