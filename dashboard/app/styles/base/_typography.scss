@@ -259,3 +259,26 @@ main {
     }
   }
 }
+
+pre {
+  display: block;
+  background-color: $trout;
+  color: $white;
+  font-family: monospace;
+  @include adjust-font-size-to(1.125rem);
+  @include adjust-leading-to(1);
+  padding: 0.6 $base-margin*0.75 0 $base-margin*0.75;
+  @include rhythm-padding(0.75);
+	margin: 0;
+  @include margin-trailer(1.5);
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+code {
+  display: inline;
+  color: $trout;
+  font-family: monospace;
+  @include adjust-font-size-to(1.125rem);
+  @include adjust-leading-to(1.125);
+}
