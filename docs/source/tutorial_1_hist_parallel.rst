@@ -4,11 +4,9 @@ Tutorial 1 – Setup and workflow
 ===============================================
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check you are running the latest version: |reco_version|. If you need to update, please run ``reco update``, or if your current version is below ``v0.5.0`` see our :ref:`install/update instructions <install>`.
+    Run ``reco version`` to check your version. Our current version is |reco_version|. If you need to update, run ``reco update``, or see our :ref:`install/update instructions <install>`.
 
 This tutorial is a simple introduction to the Reconfigure.io workflow. It's all pretty straightforward so in a few minutes you will have done a hardware simulation of a project running on an FPGA, and then deployed a build image of that project to an FPGA in the cloud. Then, we'll step through the code and discuss how it was written.
-
-**We will use our parallelized histogram example in this tutorial, in which a block of memory is filled with sample data before an FPGA is put to work classifying the samples into bins. The contents of each bin is then read out, providing the data required to draw a histogram.**
 
 **What we will do**
 
@@ -17,6 +15,8 @@ This tutorial is a simple introduction to the Reconfigure.io workflow. It's all 
 * Test our histogram example using ``go test``
 * Run through our tooling workflow using ``reco`` to check, simulate and deploy a build image to a cloud FPGA
 * Step through the code to see how it is structured
+
+**We will use our parallelized histogram example in this tutorial, in which a block of memory is filled with sample data before an FPGA is put to work classifying the samples into bins. The contents of each bin is then read out, providing the data required to draw a histogram.**
 
 From here, we're assuming you've already set up your account and :ref:`installed and authenticated <install>` ``reco`` – if you don't have an account yet, please visit our `website <https://reconfigure.io/sign-up>`_.
 
