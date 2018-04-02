@@ -181,7 +181,7 @@ Again, copy the unique graph ID to open the graph::
     :align: center
     :width: 100%
 
-As you can see, it's a lot clearer what's going on here, you can see the first two integers being summed together, and then the next being added to that, and so on. Clarity is usually a good sign that the code is designed well for achieving a high degree of parallelism. In this examples there are clear branches flowing from ``go`` to ``done``.
+As you can see, it's a lot clearer to see what's going on here, you can see the integers being summed together as you look down the graph. Clarity is usually a good sign that the code is designed well for achieving a high degree of parallelism.
 
 Optimizing your own code
 -------------------------

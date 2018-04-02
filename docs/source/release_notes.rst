@@ -4,6 +4,15 @@
 Release Notes
 =============
 
+Reconfigure.io v0.17.2
+======================
+
+This is a bugfix release focussed on graph generation.
+
+Bugfixes
+~~~~~~~~~~~
+* Fixed a bug in our optimization rules which lead to some graphs being incorrectly generated.
+
 Reconfigure.io v0.17.1
 ======================
 
