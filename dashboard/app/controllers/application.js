@@ -2,13 +2,15 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   isIndex: Ember.computed('currentRouteName',function(){
-    if(this.get('currentRouteName') === 'index' || 'sign-up/installation'){
+    if(this.get('currentRouteName') === 'index'){
       return true;
     }
     return false;
   }),
   hideSideBar: Ember.computed('currentRouteName',function(){
-    if(this.get('currentRouteName') === 'index' || 'sign-up/*'){
+    var curPath = this.get('currentRouteName');
+    console.log(curPath);
+    if(curPath === 'index' || curPath === 'sign-up.installation' || curPath === 'sign-up.choose-plan' || curPath === 'sign-up.goal'){
       return true;
     }
     return false;
