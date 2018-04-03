@@ -181,7 +181,7 @@ Again, copy the unique graph ID to open the graph::
     :align: center
     :width: 100%
 
-As you can see, it's a lot clearer to see what's going on here, you can see the integers being summed together as you look down the graph. Clarity is usually a good sign that the code is designed well for achieving a high degree of parallelism.
+As you can see, it's a lot clearer to see what's going on here, you can see the short ``go`` to ``done`` journey on the left, representing the simple function, and the elements of the array clearly being summed together as you look down the right hand side of the graph. Clarity is usually a good sign that the code is designed well for achieving a high degree of parallelism.
 
 Optimizing your own code
 -------------------------
