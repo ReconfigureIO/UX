@@ -154,9 +154,9 @@ The improved function is in ``tutorials/good-graph``. Again there's just a singl
 
   package main
 
-  func main() {
-      var array [8]int
-      sum := array[0] + array[1] + array[2] + array[3] + array[4] + array[5] + array[6] + array[7]
+    func sumArray(array [8]int) int {
+  	val := array[0] + array[1] + array[2] + array[3] + array[4] + array[5] + array[6] + array[7]
+  	return val
   }
 
 Navigate to ``tutorials/good-graph`` and generate a new graph by running ``reco graph gen``::
@@ -181,7 +181,7 @@ Again, copy the unique graph ID to open the graph::
     :align: center
     :width: 100%
 
-As you can see, it's a lot clearer what's going on here, you can see the first two integers being summed together, and then the next being added to that, and so on. Clarity is usually a good sign that the code is designed well for achieving a high degree of parallelism. In this examples there are clear branches flowing from ``go`` to ``done``.
+As you can see, it's a lot clearer what's going on here. There is the short ``go`` to ``done`` journey on the left, representing the simple function, and the elements of the array are clearly being summed together as you look down the right hand side of the graph. Clarity is usually a good sign that the code is designed well for achieving a high degree of parallelism.
 
 Optimizing your own code
 -------------------------
