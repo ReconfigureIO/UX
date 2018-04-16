@@ -72,6 +72,11 @@ Timeouts
 ---------
 If you receive a timeout error this is an indication that there is an issue with your code, such as an infinite loop, or it could be that you just have a very complex runtime - If you need help getting to the bottom of a timeout error please `contact us <https://community.reconfigure.io/c/help>`_.
 
+Proxies
+---------
+If you are running `reco` from behind a proxy you can set the `HTTP_PROXY` environment variable to the URL of your proxy e.g. `http://user:password@hostname:1234`
+
+
 .. Code examples written before vendor support
 .. --------------------------------------------
 .. Next, if you have already written some applications with Reconfigure.io, you will need to run a fix on them. First run:
