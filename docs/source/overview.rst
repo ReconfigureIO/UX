@@ -65,11 +65,11 @@ Reconfigure.io **programs** have a simple structure: code for the FPGA and code 
 
 .. image::  ProgramStructure.png
 
-When using ``reco`` to simulate, build and deploy your programs you will work within a **project**. You can view builds and deployments per project, which is really useful when working on several work-streams at the same time with several builds and deployments for each.
+When using ``reco`` to simulate, build and deploy your programs you will work within a **project**. You can view simulations, builds and deployments per project, which is really useful when working on several work-streams at the same time, each of which might have several builds and deployments.
 
 .. note::
 
-    You must create at least one project but beyond this you can structure your work however you wish. When running ``test``, ``build`` or ``run``, if you do not specify a project, the results will be associated with the currently active project.
+    You should create a new project for each program you work on. If you run a ``sim``, ``build`` or ``deploy`` without creating or setting a project first you will be prompted to do so.
 
 * ``create-project`` is used to create a new project
 * ``projects`` displays a list of all active projects for your account
