@@ -69,7 +69,7 @@ When using ``reco`` to simulate, build and deploy your programs, you will work w
 
 .. note::
 
-    You should create a new project for each program you work on. If you run a ``sim``, ``build`` or ``deploy`` without setting which project to use first, you will be prompted to run ``reco set-project <project name>`` before continuing. If it's a new program you're working on you'll need to run ``reco create-project`` followed by a new project name.
+    You should create a new project for each program you work on. If you run a ``sim``, ``build`` or ``deploy`` without setting which project to use first, you will be prompted to run ``reco set-project <project name>`` before continuing. If it's a new program you are working on you will need to run ``reco create-project`` followed by a new project name.
 
 * ``create-project`` is used to create a new project
 * ``projects`` displays a list of all active projects for your account
