@@ -4,11 +4,19 @@ Tutorial 2 – Filling in the Gaps
 ================================================
 .. admonition:: Make sure you're up to date.
 
-    Run ``reco version`` to check you are running the latest version: |reco_version|. If you need to update, please run ``reco update``, or if your current version is below ``v0.5.0`` see our :ref:`install/update instructions <install>`.
+    Run ``reco version`` to check your installation. Our current version is |reco_version|. If you need to update run ``reco update`` or see our :ref:`install/update instructions <install>`.
 
-In this tutorial you will complete the code for one of our example programs and find any errors in your code using ``go test`` and ``reco check``. You will then simulate the code running on an FPGA using ``reco sim``. The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.
+We are going to look at pretty much the simplest calculation possible – adding two numbers together. First, we will look at the problem, discuss how to design the program, and have a go at filling in the gaps in some incompete code. **The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.**
 
-**We'll look at pretty much the simplest calculation possible – adding two numbers together. First, we will look at the problem, discuss how to design the program, and then, once you've had a go at filling in the gaps in the code, you can check the code for compatibility with our compiler and simulate it how it would run on an FPGA to find any errors. Then, we'll look at our full code solution.**
+What we will do
+----------------
+* Talk through a possible solution for a simple addition problem
+* Fork our tutorial materials repo
+* Have a go at completing an incomplete code example
+* Test your complete code in your Go environment
+* Check the code for compatibility with the Reconfigure.io compiler
+* Simulate running the code on an FPGA
+* Compare your code with ours
 
 This tutorial assumes you have already run through our first tutorial: :ref:`demo`.
 
