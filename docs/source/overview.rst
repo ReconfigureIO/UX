@@ -65,7 +65,7 @@ Reconfigure.io **programs** have a simple structure: code for the FPGA and code 
 
 .. image::  ProgramStructure.png
 
-When using ``reco`` to simulate, build and deploy your programs you will work within a **project**. You can view simulations, builds and deployments per project, which is really useful when working on several work-streams at the same time, each of which might have several builds and deployments.
+When using ``reco`` to simulate, build and deploy your programs, you will work within a **project**. You can then list items per project, which is really useful when you've got several work-streams going at the same time, each with several builds and deployments.
 
 .. note::
 
@@ -73,7 +73,7 @@ When using ``reco`` to simulate, build and deploy your programs you will work wi
 
 * ``create-project`` is used to create a new project
 * ``projects`` displays a list of all active projects for your account
-* ``set-project`` allows you to set a project to associate with future builds
+* ``set-project`` sets a project to use for the program code you're currently working on
 
 .. image::  ProjectsStructure.png
 
