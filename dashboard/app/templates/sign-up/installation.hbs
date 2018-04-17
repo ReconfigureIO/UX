@@ -7,36 +7,42 @@
   </div>
 </section>
 
-<h1 class="signup__title h1--light">Command line installation</h1>
-<p class="signup__description">Now you can install our command line tool <code>reco</code>.</p>
-<p class="signup__description">Choose your operating system and follow the instructions.</p>
+<div class="container">
+  <div class="wrapper">
+    {{!-- <div class="col col--8"> --}}
+      <h1 class="signup__title h1--light">Command line installation</h1>
+      <p class="signup__description">Now you can install our command line tool <code>reco</code>.</p>
+      <p class="signup__description">Choose your operating system and follow the instructions.</p>
 
-<h2>Linux</h2>
-<p class="lg-copy">Run the following from your terminal, you may be asked to enter your password:</p>
+      <h2>Linux</h2>
+      <p class="lg-copy">Run the following from your terminal, you may be asked to enter your password:</p>
 
-<pre>curl -LO https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.3-x86_64-linux.zip \<br>
+      <pre>curl -LO https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.3-x86_64-linux.zip \<br>
 &amp;&amp; unzip reco-v0.3.3-x86_64-linux.zip \<br>
 &amp;&amp; sudo mv reco /usr/local/bin</pre>
 
-<p><code>reco</code> will now be available in new terminal sessions.</p>
+      <p><code>reco</code> will now be available in new terminal sessions.</p>
 
 
-<h2>OSX</h2>
-<p class="lg-copy">Run the following from your terminal, you may be asked to enter your password:</p>
+      <h2>OSX</h2>
+      <p class="lg-copy">Run the following from your terminal, you may be asked to enter your password:</p>
 
-<pre>curl -LO https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.3-x86_64-apple-darwin.zip \<br>
+      <pre>curl -LO https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.3-x86_64-apple-darwin.zip \<br>
 &amp;&amp; unzip reco-v0.3.3-x86_64-apple-darwin.zip \<br>
 &amp;&amp; sudo mv reco /usr/local/bin</pre>
 
-<p><code>reco</code> will now be available in new terminal sessions.</p>
+      <p><code>reco</code> will now be available in new terminal sessions.</p>
 
-<h2>Windows</h2>
-<p class="lg-copy">If you're a Windows user you have two options for installing <code>reco</code>, either download our <a href="https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.1.exe" target="_blank">installer</a> or, if you prefer, launch Powershell as administrator and paste:</p>
+      <h2>Windows</h2>
+      <p class="lg-copy">If you're a Windows user you have two options for installing <code>reco</code>, either download our <a href="https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.1.exe" target="_blank">installer</a> or, if you prefer, launch Powershell as administrator and paste:</p>
 
-<pre>Invoke-WebRequest https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.3-x86_64-pc-windows.zip -OutFile reco-v0.3.3-x86_64-pc-windows.zip;<br>
+      <pre>Invoke-WebRequest https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.3-x86_64-pc-windows.zip -OutFile reco-v0.3.3-x86_64-pc-windows.zip;<br>
 Expand-Archive -Path reco-v0.3.3-x86_64-pc-windows.zip -DestinationPath C:\reco -Force;<br>
 setx PATH "$env:path;C:\reco" -m;</pre>
 
-<p><code>reco</code> will now be available in new terminal/Powershell sessions.</p>
+      <p><code>reco</code> will now be available in new terminal/Powershell sessions.</p>
 
-{{link-to "Continue to dashboard" "dashboard" class="btn"}}
+      {{link-to "Continue to dashboard" "dashboard" class="btn"}}
+    {{!-- </div> --}}
+  </div>
+</div>
