@@ -207,8 +207,8 @@ Now, moving back to the host CPU code, the CPU can collect the output data from 
 
 So, there we go, we've followed an array from the CPU to the FPGA and back again using shared memory.
 
-Start off simple
------------------
+Let's write some code
+----------------------
 To explore these methods of passing data around further let's use our template to write two very simple programs. First, we'll pass one integer to the FPGA from the host. As we're passing a single integer it can go straight to the FPGA's control register. Then, let's tell the FPGA to multiply this integer by 2 and pass it back to the host. **The route back from the FPGA to the CPU is always via the shared memory**. As we have done in previous tutorials, lets first look at a flow diagram for this example:
 
 .. figure:: StructureDiagram1.png
@@ -260,7 +260,7 @@ Now, open ``multiply1/main.go`` and edit to create your FPGA code to complete th
 
 * Just two inputs to the FPGA need specifying, the integer to be multiplied and the pointer to where we're going to store the result.
 * As we won't be *reading* anything from shared memory, we can disable this functionality using the |read_disable| package.
-* All that's left is to do the multiplication and then use the |axi_write| package to write the result to the correct location in shared memory to be picked up by the host.
+* All that's left is to do the multiplication. Create a simple multilply-by-2 function *outside* the ``Top`` function. You can call your Multiply function within ``Top``. This will allow you to test the code in your local Go environment. Then use the |axi_write| package to write the result to the correct location in shared memory to be picked up by the host.
 
 Once you're happy with your code, let's commit those changes and push them to your ``multiply`` branch on github. First make sure you're in ``tutorials/multiply1`` and then run::
 
