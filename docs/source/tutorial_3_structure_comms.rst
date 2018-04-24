@@ -271,14 +271,22 @@ Once you're happy with your code, let's commit those changes and push them to yo
   git commit -m "multiply1 completed"
   git push origin multiply
 
+Test your code
+^^^^^^^^^^^^^^^
+Now you can test your code in your local Go environment. Make sure you're in the top directory of your project ``$GOPATH/src/github.com/<your-github-username>/tutorials/multiply1`` and run ``go test``. If all is well you should see::
+
+  $ go test
+  PASS
+  ok  	github.com/ReconfigureIO/tutorials/multiply1	0.007s
+
 Check and simulate
 ^^^^^^^^^^^^^^^^^^^
-We're now going to use ``reco`` to debug and simulate your code, so lets create a project to work within::
+Now we're going to use ``reco`` to check the code you have written is compatible with the Reconfigure.io compiler, and we'll simulate your code. First, let's create a project to work within::
 
   reco project create multiply1
   reco project set multiply1
 
-First, you can type-check your code for compatibility with our compiler. From the ``tutorials/multiply1`` directory run ``reco check``, and if everything is ok, you should see::
+To type-check your code for compatibility with our compiler, make sure you're in the ``tutorials/multiply1`` directory and run ``reco check``. If everything is ok, you should see::
 
   $ reco check
   GOPATH/src/github.com/<your-github-username>/tutorials/multiply1/main.go checked successfully
