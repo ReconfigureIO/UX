@@ -207,8 +207,8 @@ Now, moving back to the host CPU code, the CPU can collect the output data from 
 
 So, there we go, we've followed an array from the CPU to the FPGA and back again using shared memory.
 
-Start off simple
------------------
+Let's write some code
+----------------------
 To explore these methods of passing data around further let's use our template to write two very simple programs. First, we'll pass one integer to the FPGA from the host. As we're passing a single integer it can go straight to the FPGA's control register. Then, let's tell the FPGA to multiply this integer by 2 and pass it back to the host. **The route back from the FPGA to the CPU is always via the shared memory**. As we have done in previous tutorials, lets first look at a flow diagram for this example:
 
 .. figure:: StructureDiagram1.png
@@ -246,21 +246,24 @@ So now you should have something like this::
     │       └── main.go
     ├── glide.yaml
     ├── main.go
+    ├── main_test.go
     └── vendor
       └── ...
 
-Let's work on the host CPU code first. Open ``multiply1/cmd/test-multiply1/main.go`` in your chosen editor. Have a go at editing the template host code to do what's needed for the single integer multiplication described above. Here are some pointers:
+#. Let's work on the host CPU code first. Open ``multiply1/cmd/test-multiply1/main.go`` in your chosen editor. Have a go at editing the template host code to do what's needed for the single integer multiplication described above. Here are some pointers:
 
 * We're only passing one integer straight to the control register so we only need to make space in shared memory for the result from the FPGA, not the data we're sending *to* the FPGA.
-* We only need to send two arguments to the FPGA, the integer to be used in the multiplication, and the pointer to where we want the FPGA to store the result.
+* We only need to send two arguments to the FPGA: the integer to be used in the multiplication and the pointer to where we want the FPGA to store the result.
 * Use the Go |binary| package to read the result back from shared memory and store it into a variable ready to print.
 * Use the Go |fmt| package to print your result!
 
-Now, open ``multiply1/main.go`` and edit to create your FPGA code to complete the simple multiplication. Here are some pointers:
+#. Now, open ``multiply1/main.go`` and write the FPGA code to complete the simple multiplication. Here are some pointers:
 
 * Just two inputs to the FPGA need specifying, the integer to be multiplied and the pointer to where we're going to store the result.
 * As we won't be *reading* anything from shared memory, we can disable this functionality using the |read_disable| package.
-* All that's left is to do the multiplication and then use the |axi_write| package to write the result to the correct location in shared memory to be picked up by the host.
+* All that's left is to do the multiplication. Create a simple multilply-by-2 function *outside* the ``Top`` function. You can call your multiplication function within ``Top``. This will allow you to test the code in your local Go environment. Then use the |axi_write| package to write the result to the correct location in shared memory so it can be picked up by the host.
+
+#. Next you need to write a test file so you can test the code in your Go environment. There's lots of information on creating a test suite |tests, and a template ``main_test.go`` file is included in the template. You want to edit the template test file to check the multiplication function you wrote in your FPGA code above actually multiplies its input by 2.
 
 Once you're happy with your code, let's commit those changes and push them to your ``multiply`` branch on github. First make sure you're in ``tutorials/multiply1`` and then run::
 
@@ -268,14 +271,22 @@ Once you're happy with your code, let's commit those changes and push them to yo
   git commit -m "multiply1 completed"
   git push origin multiply
 
+Test your code
+^^^^^^^^^^^^^^^
+Now you can test your code in your local Go environment. Make sure you're in the top directory of your project ``$GOPATH/src/github.com/<your-github-username>/tutorials/multiply1`` and run ``go test``. If all is well you should see::
+
+  $ go test
+  PASS
+  ok  	github.com/ReconfigureIO/tutorials/multiply1	0.007s
+
 Check and simulate
 ^^^^^^^^^^^^^^^^^^^
-We're now going to use ``reco`` to debug and simulate your code, so lets create a project to work within::
+Now we're going to use ``reco`` to check the code you have written is compatible with the Reconfigure.io compiler, and we'll simulate your code. First, let's create a project to work within::
 
   reco project create multiply1
   reco project set multiply1
 
-First, you can type-check your code for compatibility with our compiler. From the ``tutorials/multiply1`` directory run ``reco check``, and if everything is ok, you should see::
+To type-check your code for compatibility with our compiler, make sure you're in the ``tutorials/multiply1`` directory and run ``reco check``. If everything is ok, you should see::
 
   $ reco check
   GOPATH/src/github.com/<your-github-username>/tutorials/multiply1/main.go checked successfully
@@ -377,3 +388,7 @@ So, we've looked at how to structure your code to work with Reconfigure.io, and 
 .. |read_burst| raw:: html
 
    <a href="http://godoc.reconfigure.io/v0.12.8/kernel/pkg/axi/memory/index.html#ReadBurstUInt32" target="_blank">Read Burst</a>
+
+.. |tests| raw:: html
+
+  <a href="https://golang.org/pkg/testing/" target="_blank">here</a>
