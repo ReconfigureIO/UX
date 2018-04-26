@@ -315,11 +315,16 @@ You can use the code you created above as the basis for this and just make the c
 
 You should have something like this::
 
-  ├── multiply-array
-      ├── cmd
-      │   └── test-multiply-array
-      │       └── main.go
-      └── main.go
+  multiply-array
+  ├── README.md
+  ├── cmd
+  │   └── test-multiply-array
+  │       └── main.go
+  ├── glide.yaml
+  ├── main.go
+  ├── main_test.go
+  └── vendor
+    └── ...
 
 Open the host code ``multiply-array/cmd/test-multiply-array/main.go`` and edit to follow the new structure described by the flow diagram above. Here's some pointers:
 
@@ -331,9 +336,17 @@ Open the host code ``multiply-array/cmd/test-multiply-array/main.go`` and edit t
 Then, open ``multiply-array/main.go`` and edit the FPGA code to follow this example. Here's some pointers.
 
 * This time there are three inputs to the FPGA to specify: pointers to input and output data and the data length
-* Now, we can read the input array into a channel using a |read_burst|, first make a channel, call it ``inputChan``, and then use a read burst to populate it with the input data. You can put this inside a goroutine so the reading in can happen at the same time as processing the data.
-* Then, create a channel for the transformed data, call it ``transformedChan``, and create a goroutine with a for loop inside to multiply what's in ``inputChan`` by 2 and send it to ``transformedChan``.
+* Now, we can read the input array into a channel using a |read_burst|. First, make a channel, call it ``inputChan``, and then use a read burst to populate it with the input data. You can put this inside a goroutine so the reading in can happen at the same time as processing the data.
+* Then, create a channel for the transformed data, call it ``transformedChan``, and create a goroutine with a for loop inside to multiply what's in ``inputChan`` by 2 and send it to ``transformedChan``. You can use your multiply-by-2 function from the last example for this.
 * All that's left to do now is send the contents of ``transformedChan`` back to the results space in memory.
+
+Test your code
+^^^^^^^^^^^^^^^
+As you have used the same multiplication function, you can use the same test file to run a test on your code too. So let's do that next. Make sure you're in the top directory of your project ``$GOPATH/src/github.com/<your-github-username>/tutorials/multiply-array`` and run ``go test``. If all is well you should see::
+
+  $ go test
+  PASS
+  ok  	github.com/ReconfigureIO/tutorials/multiply-array	0.007s
 
 Check and simulate
 ^^^^^^^^^^^^^^^^^^^
