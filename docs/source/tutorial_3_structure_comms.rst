@@ -263,7 +263,7 @@ Now, open ``multiply1/main.go`` and write the FPGA code to complete the simple m
 * As we won't be *reading* anything from shared memory, we can disable this functionality using the |read_disable| package.
 * All that's left is to do the multiplication. Create a simple multilply-by-2 function *outside* the ``Top`` function. You can call your multiplication function within ``Top``. This will allow you to test the code in your local Go environment. Then use the |axi_write| package to write the result to the correct location in shared memory so it can be picked up by the host.
 
-Next you need to write a test file so you can test the code in your Go environment. There's lots of information on creating a test suite |tests, and a template ``main_test.go`` file is included in the template. You want to edit the template test file to check the multiplication function you wrote in your FPGA code above actually multiplies its input by 2.
+Next you need to write a test file so you can test the code in your Go environment. There's lots of information on creating a test suite |tests|, and a template ``main_test.go`` file is included in the template. You want to edit the template test file to check the multiplication function you wrote in your FPGA code above actually multiplies its input by 2.
 
 Once you're happy with your code, let's commit those changes and push them to your ``multiply`` branch on github. First make sure you're in ``tutorials/multiply1`` and then run::
 
