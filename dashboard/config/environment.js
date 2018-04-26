@@ -8,6 +8,7 @@ module.exports = function(environment) {
     apiURL: '',
     locationType: 'auto',
     EmberENV: {
+      EXTEND_PROTOTYPES: true,
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
