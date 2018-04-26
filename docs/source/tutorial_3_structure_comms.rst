@@ -250,20 +250,20 @@ So now you should have something like this::
     └── vendor
       └── ...
 
-#. Let's work on the host CPU code first. Open ``multiply1/cmd/test-multiply1/main.go`` in your chosen editor. Have a go at editing the template host code to do what's needed for the single integer multiplication described above. Here are some pointers:
+Let's work on the host CPU code first. Open ``multiply1/cmd/test-multiply1/main.go`` in your chosen editor. Have a go at editing the template host code to do what's needed for the single integer multiplication described above. Here are some pointers:
 
 * We're only passing one integer straight to the control register so we only need to make space in shared memory for the result from the FPGA, not the data we're sending *to* the FPGA.
 * We only need to send two arguments to the FPGA: the integer to be used in the multiplication and the pointer to where we want the FPGA to store the result.
 * Use the Go |binary| package to read the result back from shared memory and store it into a variable ready to print.
 * Use the Go |fmt| package to print your result!
 
-#. Now, open ``multiply1/main.go`` and write the FPGA code to complete the simple multiplication. Here are some pointers:
+Now, open ``multiply1/main.go`` and write the FPGA code to complete the simple multiplication. Here are some pointers:
 
 * Just two inputs to the FPGA need specifying, the integer to be multiplied and the pointer to where we're going to store the result.
 * As we won't be *reading* anything from shared memory, we can disable this functionality using the |read_disable| package.
 * All that's left is to do the multiplication. Create a simple multilply-by-2 function *outside* the ``Top`` function. You can call your multiplication function within ``Top``. This will allow you to test the code in your local Go environment. Then use the |axi_write| package to write the result to the correct location in shared memory so it can be picked up by the host.
 
-#. Next you need to write a test file so you can test the code in your Go environment. There's lots of information on creating a test suite |tests, and a template ``main_test.go`` file is included in the template. You want to edit the template test file to check the multiplication function you wrote in your FPGA code above actually multiplies its input by 2.
+Next you need to write a test file so you can test the code in your Go environment. There's lots of information on creating a test suite |tests, and a template ``main_test.go`` file is included in the template. You want to edit the template test file to check the multiplication function you wrote in your FPGA code above actually multiplies its input by 2.
 
 Once you're happy with your code, let's commit those changes and push them to your ``multiply`` branch on github. First make sure you're in ``tutorials/multiply1`` and then run::
 
