@@ -12,15 +12,15 @@ This is a performance focused release that includes some bugfixes related to lar
 Features
 ~~~~~~~~~~~
 
-Reworked multipliers to use fewer pipeline stages, improving performance
-Optimize control flow around some channel operations
-Optimize expressions like n < 0 to just check the sign bit.
+* Reworked multipliers to use fewer pipeline stages, improving performance
+* Optimize control flow around some channel operations
+* Optimize expressions like n < 0 to just check the sign bit.
 
 Bugfixes
 ~~~~~~~~~~~
 
-Fix an issue with some module names being too long for Vivado
-Fix an issue where reco.yml files using Windows line ending were not being parsed correctly
+* Fix an issue with some module names being too long for Vivado
+* Fix an issue where reco.yml files using Windows line ending were not being parsed correctly
 
 Reconfigure.io v0.17.2
 ======================
