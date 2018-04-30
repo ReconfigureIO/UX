@@ -342,7 +342,7 @@ Then, open ``multiply-array/main.go`` and edit the FPGA code to follow this exam
 
 Test your code
 ^^^^^^^^^^^^^^^
-As you have used the same multiplication function, you can use the same test file to run a test on your code too. So let's do that next. Make sure you're in the top directory of your project ``$GOPATH/src/github.com/<your-github-username>/tutorials/multiply-array`` and run ``go test``. If all is well you should see::
+As you have used the same multiplication function as you used for the previous example, you can use the same test file to test your code too. So let's do that next. Make sure you're in the top directory of your project ``$GOPATH/src/github.com/<your-github-username>/tutorials/multiply-array`` and run ``go test``. If all is well you should see::
 
   $ go test
   PASS
