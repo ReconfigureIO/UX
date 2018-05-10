@@ -1,0 +1,36 @@
+<section class="section section--dark">
+  <div class="container">
+    <div class="col col--8">
+      <h1>Sign Up</h1>
+      <p>Run through our getting started guide to check your installation is working correctly</p>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="wrapper">
+      <h1 class="signup__title h1--light">Getting started with Reconfigure.io</h1>
+      <p class="signup__description">We’re going to deploy a build image of our MD5 hash example to a cloud FPGA and use it to generate MD5 hashes of strings of your choice. If you would like to look at our code, you can do so <a href="https://github.com/ReconfigureIO/web-md5" target="_blank">here</a>.</p>
+
+      <p>Open a terminal and enter the command below to deploy a build of our MD5 code example to an FPGA. We’ve set a time limit of 30 minutes for the deployment to avoid using up your available hours if you forget to stop it at the end.</p>
+      <pre>reco deploy run 3e21bae1-5367-419e-9bc2-7e01e7fe9942 timeout 30m run-webserver --wait=http</pre>
+      <p>You should see:</p>
+      <pre>creating deployment
+done. Deployment ID: [deployment_ID]
+you can run "reco deployment log [deployment_ID]" to manually stream logs
+status: SUBMITTED
+Waiting for Spot Instance Request to be created
+status: QUEUED
+Waiting for EC2 instance to be allocated
+Waiting for EC2 instance to be allocated
+status: STARTED
+Waiting for deployment to listen on port 80
+Deployment ready at [deployment_IP]
+[deployment_ID]
+        </pre>
+        <p>Connect to the deployment using the command below, but substituting [deployment_ID] for your unique deployment ID:</p>
+        <pre>reco deploy connect [deployment_ID]</pre>
+
+      {{link-to "Continue to dashboard" "dashboard" class="btn"}}
+  </div>
+</div>

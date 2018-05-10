@@ -267,7 +267,8 @@ pre {
   font-family: monospace;
   @include adjust-font-size-to(1.125rem);
   @include adjust-leading-to(1);
-  padding: 0.6 $base-margin*0.75 0 $base-margin*0.75;
+  /*padding: 0.6 $base-margin*0.75 0 $base-margin*0.75;*/
+  padding-left: 10;
   @include rhythm-padding(0.75);
 	margin: 0;
   @include margin-trailer(1.5);
