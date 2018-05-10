@@ -172,7 +172,8 @@
 
   &__content {
     @include full();
-    @include margin-leader(3.5);
+    /*@include margin-leader(3.5);*/
+    @include margin-leader(1.5);
 
     form {
       overflow: hidden;

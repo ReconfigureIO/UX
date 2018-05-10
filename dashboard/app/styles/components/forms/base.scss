@@ -17,7 +17,8 @@ form,
     position: relative;
     display: table;
     width: 100%;
-    max-width: 444px;
+    /*max-width: 444px;*/
+    max-width: 888px;
     @include margin-trailer(1.5);
     border: none;
     box-sizing: border-box;
