@@ -268,7 +268,7 @@ pre {
   @include adjust-font-size-to(1.125rem);
   @include adjust-leading-to(1);
   /*padding: 0.6 $base-margin*0.75 0 $base-margin*0.75;*/
-  padding-left: 10;
+  padding-left: 8px;
   @include rhythm-padding(0.75);
 	margin: 0;
   @include margin-trailer(1.5);
