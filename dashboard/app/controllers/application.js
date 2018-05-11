@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
   hideSideBar: Ember.computed('currentRouteName',function(){
     var curPath = this.get('currentRouteName');
     console.log(curPath);
-    if(curPath === 'index' || curPath === 'sign-up' || curPath === 'sign-up.installation' || curPath === 'sign-up.choose-plan' || curPath === 'sign-up.goal' ){
+    if(curPath === 'index' || curPath === 'sign-up.installation' || curPath === 'sign-up.choose-plan' || curPath === 'sign-up.goal' || curPath === 'sign-up.getting-started'){
       return true;
     }
     return false;
