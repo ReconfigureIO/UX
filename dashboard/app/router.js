@@ -17,6 +17,7 @@ Router.map(function() {
     this.route('choose-plan');
     this.route('goal');
     this.route('installation');
+    this.route('auth');
     this.route('getting-started');
   });
 });

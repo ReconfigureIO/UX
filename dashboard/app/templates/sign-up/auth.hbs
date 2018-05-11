@@ -1,0 +1,80 @@
+<!--stick blank sidebar over the top to reintroduce logo - looks a bit weird-->
+<aside class="sidebar">
+  {{#if media.isMobile}}
+    <div class="sidebar__mobile">
+      <figure class="logo">
+        {{#link-to "dashboard"}}
+          <img src="assets/images/logo.svg" alt="Reconfigure.io">
+        {{/link-to}}
+      </figure>
+
+      <div class="sidebar__mobile__toggle" {{action "showMainNav"}}>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  {{/if}}
+
+  <div class="sidebar__main">
+    {{#unless media.isMobile}}
+      <div class="sidebar__main__header">
+        <figure class="logo">
+          {{#if hideNav}}
+            <img src="assets/images/logo.svg" alt="Reconfigure.io">
+          {{else}}
+            {{#link-to "dashboard"}}
+              <img src="assets/images/logo.svg" alt="Reconfigure.io">
+            {{/link-to}}
+          {{/if}}
+        </figure>
+      </div>
+    {{/unless}}
+  </div>
+</aside>
+
+<section class="section section--dark">
+  <div class="container">
+    <div class="col col--8">
+      <h1>Sign Up</h1>
+      <p>Authenticate your account, then we'll check it's all working.</p>
+    </div>
+  </div>
+</section>
+
+  <!--section class="section section--grey signup signup--step-5"-->
+  <div class="section sign-up__form">
+    <div class="container">
+      <div class="wrapper">
+        <div class="signup__header">
+          <h2>Authentication</h2>
+          <p class="lg-copy">Copy and paste the command below to connect your installation to your account:</p>
+          <pre>reco auth {{ userData.token }}</pre>
+          {{link-to "Back to installation" "sign-up.installation" class="btn"}}
+          {{link-to "Let's check it's all working" "sign-up.getting-started" class="btn"}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/section-->
+
+  <!--section class="section section--white signup signup--tabs">
+    <div class="container">
+      <div class="wrapper">
+        <div class="signup__content">
+          <div class="signup__tabs nav-tabs">
+            <p class="lg-copy">Copy and paste the command below to connect your installation to your account:</p>
+            <pre>reco auth {{ userData.token }}</pre>
+          </div>
+
+          <form class="form form--actions form--installation" name="signup-installation" action="/sign-up/complete" method="post">
+            <div class="form__content">
+              <div class="actions">
+                  <button type="submit" name="submit" class="btn"><span>Complete</span></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section-->
