@@ -37,7 +37,7 @@
   <div class="container">
     <div class="col col--8">
       <h1>Sign Up</h1>
-      <p>Install our tooling and then we'll check everything is working correctly</p>
+      <p>Install our tooling and then we'll check everything is working.</p>
     </div>
   </div>
 </section>
@@ -52,32 +52,26 @@
       <p>Now you can install our command line tool <code>reco</code>. Choose your operating system and follow the instructions.</p>
     </div>
       <h3>Linux</h3>
-      <p>Run the following from your terminal, you may be asked to enter your password:</p>
+      <p>Run the following from your terminal, you may be asked to enter your password. <code>reco</code> will then be available in new terminal sessions.</p>
 
       <pre>curl -LO https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.3-x86_64-linux.zip \<br>
 &amp;&amp; unzip reco-v0.3.3-x86_64-linux.zip \<br>
 &amp;&amp; sudo mv reco /usr/local/bin</pre>
 
-      <p><code>reco</code> will now be available in new terminal sessions.</p>
-
-
       <h3>OSX</h3>
-      <p>Run the following from your terminal, you may be asked to enter your password:</p>
+      <p>Run the following from your terminal, you may be asked to enter your password. <code>reco</code> will then be available in new terminal sessions.</p>
 
       <pre>curl -LO https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.3-x86_64-apple-darwin.zip \<br>
 &amp;&amp; unzip reco-v0.3.3-x86_64-apple-darwin.zip \<br>
 &amp;&amp; sudo mv reco /usr/local/bin</pre>
 
-      <p><code>reco</code> will now be available in new terminal sessions.</p>
-
       <h3>Windows</h3>
-      <p>If you're a Windows user you have two options for installing <code>reco</code>, either download our <a href="https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.1.exe" target="_blank">installer</a> or, if you prefer, launch Powershell as administrator and paste:</p>
+      <p>If you're a Windows user you have two options for installing <code>reco</code>, either download our <a href="https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.1.exe" target="_blank">installer</a> or, if you prefer, launch Powershell as administrator and paste the following commands. <code>reco</code> will then be available in new terminal/Powershell sessions.</p>
 
       <pre>Invoke-WebRequest https://s3.amazonaws.com/reconfigure.io/reco/releases/reco-v0.3.3-x86_64-pc-windows.zip -OutFile reco-v0.3.3-x86_64-pc-windows.zip;<br>
 Expand-Archive -Path reco-v0.3.3-x86_64-pc-windows.zip -DestinationPath C:\reco -Force;<br>
 setx PATH "$env:path;C:\reco" -m;</pre>
 
-      <p><code>reco</code> will now be available in new terminal/Powershell sessions.</p>
       {{link-to "Back" "sign-up.goal" class="btn"}}
       {{link-to "Check everything's working" "sign-up.getting-started" class="btn"}}
     {{!-- </div> --}}

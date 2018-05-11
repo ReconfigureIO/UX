@@ -42,7 +42,7 @@
   </div>
 </section>
 
-<div class="section sign-up__form">
+<!--div class="section sign-up__form"-->
   {{#if (eq model.section "plan")}}
   <section class="section sign-up__plan">
     <div class="container">
@@ -56,7 +56,7 @@
             <div class="pricing-pod__wrapper">
               <h3 class="pricing-pod__title h3--light">Open-source<sup>*</sup></h3>
               <div class="pricing-pod__description">
-                <p><strong>20hrs p/m runtime</strong></p>
+                <p><strong>20hrs runtime per month</strong></p>
               </div>
 
               <hr>
@@ -67,9 +67,9 @@
 
               <span class="pricing-pod__cta btn">Choose plan</span>
 
-              <div class="pricing-pod__terms">
-                <p class="xs-copy text-center"><em>* all code submitted must have an OSI-approved open source license, and as such may be redistributed by Reconfigure.io under the appropriate terms. Any code without a suitable license may be removed and access restricted at any time.</em></p>
-              </div>
+              <!--div class="pricing-pod__terms">
+                <p class="xs-copy text-center"><em></em></p>
+              </div-->
             </div>
           </div>
 
@@ -77,7 +77,7 @@
             <div class="pricing-pod__wrapper">
               <h3 class="pricing-pod__title h3--light">Single-user</h3>
               <div class="pricing-pod__description">
-                <p><strong>80hrs p/m runtime</strong><br>Priority chat and email support</p>
+                <p><strong>80hrs runtime per month</strong><br>Priority chat support<br>Proprietary code support<br>60 day free trial</p>
               </div>
 
               <hr>
@@ -96,7 +96,7 @@
                 <h3 class="pricing-pod__title h3--light">Enterprise</h3>
 
                 <div class="pricing-pod__description">
-                  <p><strong>Unlimited runtime</strong><br>Phone support</p>
+                  <p><strong>Unlimited runtime</strong><br>Phone support<br>Multiple users</p>
                 </div>
 
                 <hr>
@@ -183,7 +183,11 @@
   {{/if}}
 
   <div class="container">
-    By signing up, you agree to our <a target="_blank" href="http://reconfigure.io/agreement">Customer Agreement</a>, and you can view our <a target="_blank" href="http://reconfigure.io/privacy">Privacy Policy</a>.
+    <p>By signing up, you agree to our <a target="_blank" href="http://reconfigure.io/agreement">Customer Agreement</a>, and you can view our <a target="_blank" href="http://reconfigure.io/privacy">Privacy Policy</a>.<br></p>
   </div>
 
-</div>
+  <div class="container">
+    <p>* all code submitted must have an OSI-approved open source license, and as such may be redistributed by Reconfigure.io under the appropriate terms. Any code without a suitable license may be removed and access restricted at any time.</p>
+  </div>
+
+<!--/div-->
