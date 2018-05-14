@@ -134,6 +134,7 @@
     }
 
     input[type="radio"] + label {
+      background-color: #FFFFFF;
       position: relative;
       color: $cod-gray;
       font-family: $font_primary;
@@ -280,7 +281,7 @@
     input[type="radio"] {
       display:none;
     }
-  
+
     input[type="checkbox"] + label,
     input[type="radio"] + label {
       display: block;
@@ -298,7 +299,7 @@
       overflow: hidden;
       @include transition(0.2s ease-out);
     }
-  
+
     input[type="checkbox"] + label > span,
     input[type="radio"] + label > span {
       display: block;
@@ -308,14 +309,14 @@
     input[type="radio"]:focus + label {
       border-color: $shamrock;
     }
-  
+
     input[type="checkbox"]:checked + label,
     input[type="radio"]:checked + label {
       color: $cod-gray;
       font-family: $font_primary_bold;
       border-color: $shamrock;
     }
-  
+
     input[type="checkbox"] + label:hover,
     input[type="radio"] + label:hover {
       color: $trout;
