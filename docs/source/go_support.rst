@@ -4,7 +4,7 @@ Go support
 ==========
 This is a guide to the features of Go we currently support for using in your FPGA code – the sections match up to the |spec| so you can refer to that if you need more information on a feature. When new features are included they will be highlighted in our :ref:`release_notes`.
 
-**We do not currently support the use of non-FPGA specific packages in your FPGA code. To see a list of the FPGA-targeted packages we currently provide, please see :ref:`packages`.** We currently have several customers working on their own open source packages for use with our service. If you fancy the challenge of making one too, we'll be very happy to promote it to our users.`
+**We do not currently support the use of non-FPGA specific packages in your FPGA code. To see a list of the FPGA-targeted packages we currently provide, please see :ref:`packages`.** We currently have several customers working on their own open source packages for use with our service. If you fancy the challenge of making one too, we'll be very happy to promote it to our users.
 
 Take a look at our `roadmap <https://community.reconfigure.io/t/find-out-what-were-working-on/313>`_ and feel free to make suggestions if there's anything you would like to see us support.
 
