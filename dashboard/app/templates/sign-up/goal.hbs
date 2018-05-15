@@ -1,39 +1,3 @@
-<!--stick blank sidebar over the top to reintroduce logo - looks a bit weird-->
-<aside class="sidebar">
-  {{#if media.isMobile}}
-    <div class="sidebar__mobile">
-      <figure class="logo">
-        {{#link-to "dashboard"}}
-          <img src="assets/images/logo.svg" alt="Reconfigure.io">
-        {{/link-to}}
-      </figure>
-
-      <div class="sidebar__mobile__toggle" {{action "showMainNav"}}>
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-    </div>
-  {{/if}}
-
-  <div class="sidebar__main">
-    {{#unless media.isMobile}}
-      <div class="sidebar__main__header">
-        <figure class="logo">
-          {{#if hideNav}}
-            <img src="assets/images/logo.svg" alt="Reconfigure.io">
-          {{else}}
-            {{#link-to "dashboard"}}
-              <img src="assets/images/logo.svg" alt="Reconfigure.io">
-            {{/link-to}}
-          {{/if}}
-        </figure>
-      </div>
-    {{/unless}}
-  </div>
-</aside>
-
-
 <section class="section section--dark">
   <div class="container">
     <div class="col col--8">
