@@ -4,6 +4,18 @@
 Release Notes
 =============
 
+Reconfigure.io v0.17.4
+======================
+
+This release delivers significant performance improvements through simplifying logic and the way we handle constants. The result is faster and smaller arithmetic and logic operations, improved latch removal, and the ability to have multiple operators per clock cycle.
+
+Features
+~~~~~~~~~~~
+
+* Simplified adjacent constants – two constants that are joined together will now be a single constant.
+* Changes to priorities for latch removal in order to remove more.
+* An entirely new cost system for latch removal based upon FPGA timing delay, along with reworked operators that allow them to complete in partial cycles, allowing simple arithmetic like `(a + 1) < b` to happen in a single cycle.
+
 Reconfigure.io v0.17.3
 ======================
 
