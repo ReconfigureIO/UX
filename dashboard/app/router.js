@@ -1,9 +1,13 @@
 import Ember from 'ember';
 import config from './config/environment';
+import RouterScroll from 'ember-router-scroll';
 
-const Router = Ember.Router.extend({
-  location: config.locationType
-});
+const Router = Ember.Router.extend(
+  RouterScroll,
+  {
+    location: config.locationType
+  }
+);
 
 Router.map(function() {
   this.route('account', function() {
@@ -17,6 +21,7 @@ Router.map(function() {
     this.route('choose-plan');
     this.route('goal');
     this.route('installation');
+    this.route('getting-started');
   });
 });
 
