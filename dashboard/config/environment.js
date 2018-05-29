@@ -6,7 +6,8 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     apiURL: '',
-    locationType: 'auto',
+    locationType: 'router-scroll',
+    historySupportMiddleware: true,
     EmberENV: {
       EXTEND_PROTOTYPES: true,
       FEATURES: {
