@@ -42,6 +42,14 @@ A library of cryptography algorithms designed to be run on FPGAs:
 
     glide get https://github.com/ReconfigureIO/crypto
 
+Math
+^^^^^
+A collection of mathematical functions optimized for FPGAs
+
+.. code-block:: shell
+
+    glide get https://github.com/ReconfigureIO/math
+
 .. |vendor| raw:: html
 
    <a href="https://blog.gopheracademy.com/advent-2015/vendor-folder/" target="_blank">Go's vendor mechanism</a>
