@@ -24,7 +24,7 @@ A library for interacting with SDAccel from Go:
 
 .. code-block:: shell
 
-    glide get https://github.com/ReconfigureIO/sdaccel
+    glide get github.com/ReconfigureIO/sdaccel
 
 Fixed-point
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -32,7 +32,7 @@ A fixed-point arithmetic library optimized for FPGA targets:
 
 .. code-block:: shell
 
-    glide get https://github.com/ReconfigureIO/fixed
+    glide get github.com/ReconfigureIO/fixed
 
 Crypto
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -40,7 +40,7 @@ A library of cryptography algorithms designed to be run on FPGAs:
 
 .. code-block:: shell
 
-    glide get https://github.com/ReconfigureIO/crypto
+    glide get github.com/ReconfigureIO/crypto
 
 Math
 ^^^^^
@@ -48,7 +48,7 @@ A collection of mathematical functions optimized for FPGAs
 
 .. code-block:: shell
 
-    glide get https://github.com/ReconfigureIO/math
+    glide get github.com/ReconfigureIO/math
 
 .. |vendor| raw:: html
 
