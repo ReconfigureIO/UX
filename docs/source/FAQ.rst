@@ -148,8 +148,8 @@ We have a |mapreduce| for creating FPGA code with parallel processing, you can r
 
 .. |mapreduce| raw:: html
 
-  <a href="add link" target="_blank">MapReduce framework</a>
+  <a href="https://github.com/ReconfigureIO/reco-map-reduce" target="_blank">MapReduce framework</a>
 
 .. |mapreduceblog| raw:: html
 
-  <a href="add link" target="_blank">here</a>
+  <a href="https://medium.com/the-recon/scaling-up-your-reconfigure-io-applications-17f2dbc797fc" target="_blank">here</a>
