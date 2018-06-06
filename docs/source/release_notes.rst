@@ -4,6 +4,17 @@
 Release Notes
 =============
 
+Reconfigure.io v0.17.5
+======================
+
+This is a bugfix release focussed on fixing unintended side-effects of some recent compiler optimizations.
+
+Bugfixes
+~~~~~~~~~~~
+
+* Fixed an edge case in our latch scheduling algorithm where many serial Forks would not introduce a latch, causing timing to fail. Thanks to [foolmarks](https://community.reconfigure.io/u/foolmarks/summary) on our forums for reporting the bug!
+* Refined an optimization rule to prevent it from removing necessary control flow.
+
 Reconfigure.io v0.17.4
 ======================
 
