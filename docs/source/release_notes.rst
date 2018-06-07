@@ -4,6 +4,17 @@
 Release Notes
 =============
 
+Reconfigure.io v0.17.5
+======================
+
+This is a bugfix release focussed on fixing unintended side-effects of some recent compiler optimizations.
+
+Bugfixes
+~~~~~~~~~~~
+
+* Fixed an edge case in our latch scheduling algorithm where many serial forks would not introduce a latch, causing timing to fail. Thanks to `foolmarks <https://community.reconfigure.io/u/foolmarks/summary>`_ on our forums for reporting the bug!
+* Refined an optimization rule to prevent it from removing necessary control flow.
+
 Reconfigure.io v0.17.4
 ======================
 
@@ -14,7 +25,7 @@ Features
 
 * Simplified adjacent constants – two constants that are joined together will now be a single constant.
 * Changes to priorities for latch removal in order to remove more.
-* An entirely new cost system for latch removal based upon FPGA timing delay, along with reworked operators that allow them to complete in partial cycles, allowing simple arithmetic like `(a + 1) < b` to happen in a single cycle.
+* An entirely new cost system for latch removal based upon FPGA timing delay, along with reworked operators that allow them to complete in partial cycles, allowing simple arithmetic like ``(a + 1) < b`` to happen in a single cycle.
 
 Reconfigure.io v0.17.3
 ======================
