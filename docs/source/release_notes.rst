@@ -25,7 +25,7 @@ Features
 
 * Simplified adjacent constants – two constants that are joined together will now be a single constant.
 * Changes to priorities for latch removal in order to remove more.
-* An entirely new cost system for latch removal based upon FPGA timing delay, along with reworked operators that allow them to complete in partial cycles, allowing simple arithmetic like `(a + 1) < b` to happen in a single cycle.
+* An entirely new cost system for latch removal based upon FPGA timing delay, along with reworked operators that allow them to complete in partial cycles, allowing simple arithmetic like ``(a + 1) < b`` to happen in a single cycle.
 
 Reconfigure.io v0.17.3
 ======================
