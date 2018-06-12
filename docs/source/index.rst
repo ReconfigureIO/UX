@@ -20,6 +20,7 @@ Welcome to Reconfigure.io's documentation!
    tutorial_4_graphs
    go_concurrency
    style_guide
+   scaling
    setup
    support_troubleshooting
    tool_invocation
