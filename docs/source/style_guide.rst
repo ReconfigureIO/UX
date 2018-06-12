@@ -28,7 +28,6 @@ The FPGA
 
 Break out small functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-
 When using graph generation to inspect performance, it's generally better to break out small functions. This allows you to better reason about their parallel aspects, and then embed them into a larger program. For example, if ``(a * b) + c`` is in an inner loop of your application, breaking it out into the below function will help you see its performance in isolation.
 
 For example:
@@ -42,7 +41,6 @@ For example:
 
 Use goroutines for small scale parallelism
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 The compiler performs dependency analysis, and will parallelize statements that don't have a strict dependency on each other. In some cases, it will enforce an unnecessary sequential dependency. When you find these using the graph generation, you can use goroutines and channels to force parallelism.
 
 .. code-block:: Go
@@ -72,11 +70,9 @@ The compiler performs dependency analysis, and will parallelize statements that 
 
 Unroll loops
 ^^^^^^^^^^^^
-
 For small, often used inner loops, it's best to unroll them to ensure parallel processing. In the below example, the loop version will take an order of magnitude longer to run than the unrolled version.
 
 .. code-block:: Go
-   :linenos:
 
    func Add4Loop(a [4]int) int {
       sum := 0
@@ -86,9 +82,40 @@ For small, often used inner loops, it's best to unroll them to ensure parallel p
       return sum
    }
 
+.. code-block:: Go
+
    func Add4Unrolled(a [4]int) int {
       return (a[0] + a[1]) + (a[2] + a[3])
    }
+
+Pipelining
+^^^^^^^^^^
+In most cases goroutines that process data from an input channel and write the result to an output channel within an infinite loop will transform to a pipeline.
+
+As an example, this code would result in a pipeline that you could stream data through at one element per clock:
+
+.. code-block:: Go
+
+    func foo(a <-chan int, b <-chan int, sum chan<- int, product chan<- int) {
+      for {
+        operandA := <-a
+        operandB := <-b
+        product <- operandA * operandB
+        sum <- operandA + operandB
+      }
+    }
+
+Here's the dataflow graph for this example:
+
+.. todo::
+    insert graph image
+
+  
+The main limitations for this feature are:
+
+* The goroutine must not have any internal state.
+* No control flow structures can be used within the loop.
+* The input and output channels must have a length of at least ``1`` in order to avoid rendezvous synchronisation with the producers and consumers.
 
 .. |FPGA| raw:: html
 
