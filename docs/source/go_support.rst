@@ -72,7 +72,7 @@ Types
 +-------------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | map         | **unsupported**     |                                                                                                                                                                                                                               |
 +-------------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| channel     | **partial support** | Channels must be statically declared. They cannot be placed in an array or struct. They cannot be reassigned, and they do not support specifying a capacity with ``make``, although we are currently working to include this. |
+| channel     | **partial support** | Channels must be statically declared. They cannot be placed in an array or struct. They cannot be reassigned. We recommend channels should be made with a capacity of at least ``1`` for maximum performance                  |
 +-------------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Properties of types and values
@@ -206,7 +206,7 @@ Statements
 +-------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | go          | **supported**       |                                                                                                                                         |
 +-------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| select      | **partial support** | Only receives can happen on a select. For concurrency operations to be preserved, only one select can try to access a channel at a time.|                                                                                                   |
+| select      | **partial support** | Only receives can happen on a select. For concurrency operations to be preserved, only one select can try to access a channel at a time.|
 +-------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | return      | supported**         |                                                                                                                                         |
 +-------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
