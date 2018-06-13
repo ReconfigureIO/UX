@@ -73,6 +73,7 @@ Unroll loops
 For small, often used inner loops, it's best to unroll them to ensure parallel processing. In the below example, the loop version will take an order of magnitude longer to run than the unrolled version.
 
 .. code-block:: Go
+    :width: 45%
 
    func Add4Loop(a [4]int) int {
       sum := 0
@@ -82,7 +83,7 @@ For small, often used inner loops, it's best to unroll them to ensure parallel p
       return sum
    }
 
-|loop| Here is the graph for this function.
+|loop|
 
 .. code-block:: Go
 
@@ -114,7 +115,7 @@ As an example, this code would result in a pipeline that you could stream data t
 
 Here's the dataflow graph for this example:
 
-.. image:: pipeline_example.png
+.. image:: images/pipeline_example.png
 
 The main limitations for this feature are:
 
