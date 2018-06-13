@@ -88,6 +88,11 @@ For small, often used inner loops, it's best to unroll them to ensure parallel p
       return (a[0] + a[1]) + (a[2] + a[3])
    }
 
+It's clearer what's going on here if we look at the graphs of the functions, first the loop:
+
+.. todo::
+    insert complex graph of loop
+
 Pipelining
 ^^^^^^^^^^
 In most cases goroutines that process data from an input channel and write the result to an output channel within an infinite loop will transform to a pipeline.
@@ -110,7 +115,7 @@ Here's the dataflow graph for this example:
 .. todo::
     insert graph image
 
-  
+
 The main limitations for this feature are:
 
 * The goroutine must not have any internal state.
