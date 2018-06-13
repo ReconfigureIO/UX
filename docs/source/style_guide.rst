@@ -82,7 +82,8 @@ For small, often used inner loops, it's best to unroll them to ensure parallel p
       return sum
    }
 
-.. figure:: images/add4loop.png
+.. figure:: images/Add4Loop.png
+    :width: 80%
 
     Graph of Add4Loop function
 
@@ -92,10 +93,11 @@ For small, often used inner loops, it's best to unroll them to ensure parallel p
       return (a[0] + a[1]) + (a[2] + a[3])
    }
 
-.. figure:: Add4Unrolled.png
+.. figure:: images/Add4Unrolled.png
+    :width: 80%
 
     Graph of Add4Unrolled function
-    
+
 Pipelining
 ^^^^^^^^^^
 In most cases goroutines that process data from an input channel and write the result to an output channel within an infinite loop will transform to a pipeline.
@@ -116,12 +118,17 @@ As an example, this code would result in a pipeline that you could stream data t
 Here's the dataflow graph for this example:
 
 .. image:: images/pipeline_example.png
+    :width: 80%
 
 The main limitations for this feature are:
 
 * The goroutine must not have any internal state.
 * No control flow structures can be used within the loop.
 * The input and output channels must have a length of at least ``1`` in order to avoid rendezvous synchronisation with the producers and consumers.
+
+Data size considerations
+^^^^^^^^^^^^^^^^^^^^^^^^
+When passing data to the FPGA the *size* of the data goes some way to determine where on the FPGA it will end up, which in turn affects the speed at which it can be accessed.
 
 .. |FPGA| raw:: html
 
