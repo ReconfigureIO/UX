@@ -104,7 +104,7 @@ Pipelining
 ^^^^^^^^^^
 In most cases goroutines that process data from an input channel and write the result to an output channel within an infinite loop will transform to a pipeline.
 
-As an example, this code would result in a pipeline that you could stream data through at one element per clock:
+As an example, the code below would result in a pipeline that you could stream data through at one element per clock:
 
 .. code-block:: Go
 
@@ -117,7 +117,7 @@ As an example, this code would result in a pipeline that you could stream data t
       }
     }
 
-Here's the dataflow graph for this example:
+Here's the dataflow graph for the code above so you can see the pipelining:
 
 .. image:: images/pipeline_example.png
     :width: 70%
@@ -131,7 +131,9 @@ The main limitations for this feature are:
 
 Data size considerations
 ^^^^^^^^^^^^^^^^^^^^^^^^
-When passing data to the FPGA the *size* of the data goes some way to determine where on the FPGA it will end up, which in turn affects the speed at which it can be accessed.
+When passing data to the FPGA the *size* of the data determines where on the FPGA it will end up, which in turn affects how it will be accessed. Arrays of 512 bits or fewer will be stored in registers but arrays of 513 bits or more will be held in block RAM. Block RAM access is always sequential, whereas registers support parallel reads and writes for operations accessing different parts of the register.
+
+When using ``switch`` statements we suggest using the smallest possible data type because this reduces the amount of logic required to evaluate the switch conditions.
 
 .. |FPGA| raw:: html
 
