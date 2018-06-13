@@ -83,7 +83,8 @@ For small, often used inner loops, it's best to unroll them to ensure parallel p
    }
 
 .. figure:: images/Add4Loop.png
-    :width: 80%
+    :width: 70%
+    :align: center
 
     Graph of Add4Loop function
 
@@ -94,7 +95,8 @@ For small, often used inner loops, it's best to unroll them to ensure parallel p
    }
 
 .. figure:: images/Add4Unrolled.png
-    :width: 80%
+    :width: 70%
+    :align: center
 
     Graph of Add4Unrolled function
 
@@ -118,7 +120,8 @@ As an example, this code would result in a pipeline that you could stream data t
 Here's the dataflow graph for this example:
 
 .. image:: images/pipeline_example.png
-    :width: 80%
+    :width: 70%
+    :align: center
 
 The main limitations for this feature are:
 
