@@ -112,8 +112,7 @@ As an example, this code would result in a pipeline that you could stream data t
 
 Here's the dataflow graph for this example:
 
-.. todo::
-    insert graph image
+As you can see this graph is complex |loop|
 
 
 The main limitations for this feature are:
@@ -129,3 +128,6 @@ The main limitations for this feature are:
 .. |host| raw:: html
 
    <a href="http://godoc.reconfigure.io/v0.15.0/host/pkg" target="_blank">Host CPU docs</a>
+
+.. |loop| image:: images/Add4Loop.png
+           :width: 45%
