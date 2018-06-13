@@ -82,6 +82,8 @@ For small, often used inner loops, it's best to unroll them to ensure parallel p
       return sum
    }
 
+|loop| Here is the graph for this function.
+
 .. code-block:: Go
 
    func Add4Unrolled(a [4]int) int {
@@ -112,8 +114,7 @@ As an example, this code would result in a pipeline that you could stream data t
 
 Here's the dataflow graph for this example:
 
-As you can see this graph is complex |loop|
-
+.. image:: pipeline_example.png
 
 The main limitations for this feature are:
 
@@ -130,4 +131,4 @@ The main limitations for this feature are:
    <a href="http://godoc.reconfigure.io/v0.15.0/host/pkg" target="_blank">Host CPU docs</a>
 
 .. |loop| image:: images/Add4Loop.png
-           :width: 45%
+           :width: 60%
