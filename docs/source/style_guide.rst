@@ -138,7 +138,7 @@ Data size considerations
 
 Block RAM access is always sequential, whereas registers support parallel reads and writes for operations accessing different parts of the register.
 
-**When using ``switch`` statements** we suggest using the smallest possible data type because this reduces the amount of logic required to evaluate the switch conditions.
+**When using** ``switch`` **statements** we suggest using the smallest possible data type because this reduces the amount of logic required to evaluate the switch conditions.
 
 .. |FPGA| raw:: html
 
