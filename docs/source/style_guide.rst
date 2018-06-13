@@ -131,9 +131,14 @@ The main limitations for this feature are:
 
 Data size considerations
 ^^^^^^^^^^^^^^^^^^^^^^^^
-When passing data to the FPGA the *size* of the data determines where on the FPGA it will end up, which in turn affects how it will be accessed. Arrays of 512 bits or fewer will be stored in registers but arrays of 513 bits or more will be held in block RAM. Block RAM access is always sequential, whereas registers support parallel reads and writes for operations accessing different parts of the register.
+**When passing data to the FPGA** the *size* of the data determines where on the FPGA it will end up, which in turn affects how it will be accessed:
 
-When using ``switch`` statements we suggest using the smallest possible data type because this reduces the amount of logic required to evaluate the switch conditions.
+* Arrays of 512 bits or fewer will be stored in registers
+* Arrays of 513 bits or more will be held in block RAM
+
+Block RAM access is always sequential, whereas registers support parallel reads and writes for operations accessing different parts of the register.
+
+**When using ``switch`` statements** we suggest using the smallest possible data type because this reduces the amount of logic required to evaluate the switch conditions.
 
 .. |FPGA| raw:: html
 
