@@ -70,10 +70,9 @@ The compiler performs dependency analysis, and will parallelize statements that 
 
 Unroll loops
 ^^^^^^^^^^^^
-For small, often used inner loops, it's best to unroll them to ensure parallel processing. In the below example, the loop version will take an order of magnitude longer to run than the unrolled version.
+For small, often used inner loops, it's best to unroll them to ensure parallel processing. In the below example, the loop version will take an order of magnitude longer to run than the unrolled version. You can see from the graphs that the loop is a much more complex process than the unrolled version.
 
 .. code-block:: Go
-    :width: 45%
 
    func Add4Loop(a [4]int) int {
       sum := 0
@@ -83,7 +82,9 @@ For small, often used inner loops, it's best to unroll them to ensure parallel p
       return sum
    }
 
-|loop|
+.. figure:: images/add4loop.png
+
+    Graph of Add4Loop function
 
 .. code-block:: Go
 
@@ -91,11 +92,10 @@ For small, often used inner loops, it's best to unroll them to ensure parallel p
       return (a[0] + a[1]) + (a[2] + a[3])
    }
 
-It's clearer what's going on here if we look at the graphs of the functions, first the loop:
+.. figure:: Add4Unrolled.png
 
-.. todo::
-    insert complex graph of loop
-
+    Graph of Add4Unrolled function
+    
 Pipelining
 ^^^^^^^^^^
 In most cases goroutines that process data from an input channel and write the result to an output channel within an infinite loop will transform to a pipeline.
@@ -130,6 +130,3 @@ The main limitations for this feature are:
 .. |host| raw:: html
 
    <a href="http://godoc.reconfigure.io/v0.15.0/host/pkg" target="_blank">Host CPU docs</a>
-
-.. |loop| image:: images/Add4Loop.png
-           :width: 60%
