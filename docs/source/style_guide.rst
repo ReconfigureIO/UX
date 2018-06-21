@@ -11,10 +11,9 @@ We provide a stripped down version of our project code to help you get started c
 
 FPGA interface
 -------------------
-Our FPGA interface documentation details the Go packages required to communicate between the CPU and FPGA, and for using the shared memory available on the FPGA card. The term 'kernel' is used to refer to the code running on the FPGA:
+Our FPGA interface documentation details the Go packages required to communicate between the host CPU and FPGA, and for using the shared memory available on the FPGA card. The term 'kernel' is used to refer to the code running on the FPGA:
 
 * |FPGA|
-* |host|
 
 .. _organization:
 
@@ -142,8 +141,4 @@ Block RAM access is always sequential, whereas registers support parallel reads 
 
 .. |FPGA| raw:: html
 
-   <a href="http://godoc.reconfigure.io/v0.15.0/kernel/pkg" target="_blank">FPGA docs</a>
-
-.. |host| raw:: html
-
-   <a href="http://godoc.reconfigure.io/v0.15.0/host/pkg" target="_blank">Host CPU docs</a>
+   <a href="https://godoc.org/github.com/ReconfigureIO/sdaccel" target="_blank">FPGA interface docs</a>
