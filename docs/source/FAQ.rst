@@ -90,7 +90,7 @@ How do I go about setting up Go on my computer?
 
 Can I use Reconfigure.io to program my own FPGA?
 ------------------------------------------------
-Currently, our service provides access to FPGAs using |f1|. However, we have big plans for the future, so keep an eye on our |roadmap| to see what we'll be developing in the coming months. You can always let us know on the |wishlist| if there's anything you would like us to support.
+Currently, our cloud service provides access to FPGAs using |f1|, and our on-premesis version uses FPGA server instances, for more on this please email: sales@reconfigure.io.
 
 .. _nine:
 
