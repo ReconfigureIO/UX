@@ -1,6 +1,6 @@
 FROM node:6.11.1
 
-RUN npm install -g bower@1.8.0 &&\
+RUN npm install -g bower@1.8.4 &&\
     npm install -g phantomjs@2.1.7 &&\
     npm install -g ember-cli@2.13.3
 

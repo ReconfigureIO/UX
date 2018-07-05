@@ -135,6 +135,8 @@ The main limitations for this feature are:
 * No control flow structures can be used within the loop.
 * The input and output channels must have a length of at least ``1`` in order to avoid rendezvous synchronisation with the producers and consumers.
 
+.. _datasize:
+
 Data size considerations
 ^^^^^^^^^^^^^^^^^^^^^^^^
 **When passing data to the FPGA** the *size* of the data determines where on the FPGA it will end up, which in turn affects how it will be accessed:
