@@ -134,7 +134,7 @@ At the moment we're handling all bug reporting through our |bug|. To report a bu
 
 My graph won't open
 ^^^^^^^^^^^^^^^^^^^
-If you generate a graph and nothing happens if you enter the `reco graph open <graph_ID>` command, it's possible there's an issue with your default PDF viewer. Try the following link in a web browser instead, substituting your graph ID: https://api.reconfigure.io/graphs/<graph_ID>/graph.
+If you generate a graph and nothing happens if you enter the ``reco graph open <graph_ID>`` command, it's possible there's an issue with your default PDF viewer. Try the following link in a web browser instead, substituting your graph ID: https://api.reconfigure.io/graphs/graph_ID/graph.
 
 
 
