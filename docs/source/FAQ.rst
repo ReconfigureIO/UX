@@ -31,12 +31,12 @@ Using Reconfigure.io
 
 :ref:`thirteen`
 
+Having problems?
+----------------
+
 :ref:`fourteen`
 
 :ref:`fifteen`
-
-Having problems?
-----------------
 
 .. _one:
 
@@ -120,7 +120,7 @@ We have a |mapreduce| for creating FPGA code with parallel processing, you can r
 
 How will I know where on the FPGA my data will end up?
 ------------------------------------------------------
-When you make a struct or array, the size determins where on the FPGA it will end up. See our coding style guide for more information: :ref:`datasize`.
+When you make a struct or array, the size determines where on the FPGA it will end up. See our coding style guide for more information: :ref:`datasize`.
 
 .. _fourteen:
 
