@@ -17,10 +17,17 @@ Our FPGA interface documentation details the Go packages required to communicate
 
 .. _organization:
 
-Code Organization
+Code organization
 -----------------
 
 Splitting code between a CPU and FPGA usually involves a separation that is different to what you would expect when using just a CPU. A CPU is flexible and good at sequential things, whereas the FPGA is good for static things that lend themselves to parallelism. The best separation will depend on your application, but dividing based upon the relative strengths of CPUs and FPGAs is generally a great place to start. For instance, for data processing applications, a natural separation would be to do data preprocessing and postprocessing on the CPU, while having the FPGA do a calculation intensive loop.
+
+The host CPU
+------------
+
+Data types
+^^^^^^^^^^
+On the host CPU, ``int`` and ``uint`` are 64 bit, but on the FPGA they are both 32 bit. When using ``int`` and ``uint`` as the parameters to the FPGA, you can get unexpected results so we suggest using ``int32`` and ``uint32`` specifically for FPGA parameters in order to avoid this issue.
 
 The FPGA
 -------

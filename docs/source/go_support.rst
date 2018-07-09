@@ -1,7 +1,7 @@
 .. _gosupport:
 
-Go support
-==========
+Go support – FPGA side
+======================
 This is a guide to the features of Go we currently support for using in your FPGA code – the sections match up to the |spec| so you can refer to that if you need more information on a feature. When new features are included they will be highlighted in our :ref:`release_notes`.
 
 **We do not currently support the use of any non-FPGA specific packages in your FPGA code, which includes standard Go packages. This is because they will include elements of the Go language that we do not support.** To see a list of the FPGA-targeted packages we provide, please see :ref:`packages`. We have several customers working on their own open source packages for use with our service. If you fancy the challenge of making one too, we'll be very happy to promote it to our users.
