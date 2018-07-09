@@ -27,7 +27,7 @@ The host CPU
 
 Data types
 ^^^^^^^^^^
-We suggest you specify 32 bit data types in your host code to avoid issues when data is passed between the host and CPU. On the FPGA an unspecified primitive data type would be 32 bit but on the CPU it would be 64 bit.
+On the host CPU, ``int`` and ``uint`` are 64 bit, but on the FPGA they are both 32 bit. When using ``int`` and ``uint`` as the parameters to the FPGA, you can get unexpected results so we suggest using ``int32`` and ``uint32`` specifically for FPGA parameters in order to avoid this issue.
 
 The FPGA
 -------
