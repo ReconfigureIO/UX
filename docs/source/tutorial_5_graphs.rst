@@ -1,6 +1,6 @@
 .. _graphstutorial:
 
-Tutorial 4 – Using Graphs for Optimization
+Tutorial 5 – Using Graphs for Optimization
 ================================================
 .. admonition:: Make sure you're up to date.
 
