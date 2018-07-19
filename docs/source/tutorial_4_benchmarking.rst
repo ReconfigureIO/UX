@@ -5,11 +5,11 @@ Tutorial 4 – Measuring the performance of your programs
 
     Run ``reco version`` to check your installation. Our current version is |reco_version|. If you need to update run ``reco update`` or see our :ref:`install/update instructions <install>`.
 
-Now you've got the tools you need to start writing your own Reconfigure.io programs, you are most likely interested in a way to see how long it's taking the FPGA to process your data, after all, speed is what it's all about! Luckily, we use Go for everything, so benchmarking is built-in to the testing framework we have on hand. We can use the benchmarking option included in the Go testing framework to create execution benchmarks for our programs to calculate how long it's taking the FPGA to process a data element through the algorithms we've written. This is interesting to us for a couple of reasons, first it can be used to compare speed with using programs written to perform the same data processing on CPU alone or other hardware acceleration platforms. Also, it gives you a means to track the progress and suitability of design iterations during development.
+Now you've got the tools you need to start writing your own Reconfigure.io programs, you are most likely interested in a way to see how long it's taking the FPGA to process your data, after all, speed is what it's all about! Luckily, we use Go for everything, so benchmarking is built-in to the testing framework we have on hand. We can use the benchmarking option included in the Go testing framework to create execution benchmarks for our programs, to calculate how long it's taking the FPGA to process a specified amount of data through the algorithms we've coded. This is interesting to us for a couple of reasons, first it can be used to compare speed with the same data processing on CPU alone or other hardware acceleration platforms, if we have these figures to hand. Also, it gives us a means to track the progress and suitability of design iterations of our Reconfigure.io programs while we're developing them.
 
 What we will do
 ----------------
-* Discuss what we mean by 'execution benchmark' and look at our template structure
+* Discuss what we mean by 'execution benchmark' and look at our template benchmarking structure
 * Look at the structure of getting an execution benchmark for one of the simple examples from the last tutorial - array multiplication.
 * Using one of our scalable examples deploy two versions of the example to see benchmark improvements
 * Use our template benchmark to add a benchmarking command to our simple scalable example, Max.
@@ -23,6 +23,8 @@ We can measure the performance of our Reconfigure.io programs in terms of the sp
 Benchmarking a simple example
 ------------------------------
 Probably the easiest way to see how this works, as usual, is to look at some very simple example code. Let's take the array multiplication example from the last tutorial. Our completed example is |multiply| (you can always have a go at using the same benchmark for your array multiplication code if you completed tutorial 3).
+
+As we've done in previous tutorials, let's look at a flow diagram to see what we want the host and FPGA to do:
 
 .. |multiply| raw:: html
 
