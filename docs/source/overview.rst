@@ -123,7 +123,7 @@ When your program is complete, and tested, it needs to be built. Our compiler wi
    Build times are currently in the region of 4 hours. This is longer than we would like and is partly due to underlying silicon vender tools, which we are currently working to address. Although the build time is relatively long, it is not something you will have to do very often during your program development - you will mostly use our hardware simulator, which takes minutes rather than hours.
 
 *  ``reco build run`` uploads the code from your current directory to the Reconfigure.io service. Building will automatically start once the upload has completed. Your Go code will be compiled and optimized to run on an FPGA. It's a good idea to add a message to your build, just as you would with a git commit, so you can remember what it's for later. To do this, use the ``-m`` or ``--message`` flag followed by your short message: ``reco build run -m "my helpful message"``.
-*  ``reco build list`` lists all builds for the current project along with their statuses. Each build is date-stamped and given a unique ID, an dyou can see any messages you've included so you can always make sure you're using the correct build when working on large and complex projects.
+*  ``reco build list`` lists all builds for the current project along with their statuses. Each build is date-stamped and given a unique ID, and you can see any messages you have included so you can always make sure you're using the correct build when working on large and complex projects.
 
 
 Deploy
