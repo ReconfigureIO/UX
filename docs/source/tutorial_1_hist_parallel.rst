@@ -427,6 +427,6 @@ So, we've deployed some code to an FPGA, stepped through our workflow and code a
 
    <a href="https://help.github.com/articles/set-up-git/#setting-up-git" target="_blank">git</a>
 
-.. |git| raw:: html
+.. |video| raw:: html
 
    <a href="https://youtu.be/yIHToaGI4_M" target="_blank">here</a>
