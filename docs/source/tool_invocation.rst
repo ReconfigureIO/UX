@@ -36,7 +36,7 @@ Here is a full list of available commands:
 +--------------------------------+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 |                                | ``stop <deployment_ID>``    | Stop a deployment                                                                                                                     |
 +--------------------------------+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-|                                | ``connect <deployment_ID>`  | Each deployment is assigned a unique ip address, this command connects you to that ip.                                                |
+|                                | ``connect <deployment_ID>`` | Each deployment is assigned a unique ip address, this command connects you to that ip.                                                |
 +--------------------------------+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 | ``sim``                        | ``list``                    | Simulate how your program will run on an FPGA                                                                                         |
 +--------------------------------+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
@@ -69,6 +69,7 @@ Here is a full list of available commands:
 
     Flags:
       -h, --help            help for reco
+      -m, --message         include a short message with a build - this is only available for builds at this time
       --project string      project to use. If unset, the active project is used
       --public              only display public builds
       -s, --source string   source directory (default is current directory "<your-directory")
