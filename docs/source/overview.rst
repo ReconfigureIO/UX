@@ -8,17 +8,24 @@ If you prefer to just get stuck in, you can jump straight to our :ref:`tutorials
 
 Reconfigure.io is a platform as a service (PaaS), which takes Go code, compiles and optimizes it, and deploys to cloud-based FPGAs. You will code in Go and interact with the service using our simple command-line tool. We use AWS F1 instances for our cloud FPGAs, but all you need to use our service is a Reconfigure.io account and our command-line tool – we take care of the rest.
 
-Workflow
----------
-Let's take a look at the workflow, from coding to deployment:
+Workflow and tooling
+--------------------
+
+The ``reco`` tool
+^^^^^^^^^^^^^^
+All access to the Reconfigure.io service is through our tool – ``reco``. Use ``reco`` to upload and simulate your code, manage builds and deploy to a remote FPGA. If you need to install or update ``reco`` you can find instructions :ref:`here <install>`.
+
+``reco`` is a simple tool with several intuitive commands, we'll look at some of these in the relevant sections below – commands are described in bullet points. For a full list see, :ref:`tool`.
+
+Now, let's take a look at the workflow, from coding to deployment:
 
 Code
 ^^^^^
-All the code you write will be in Go. You can create project in your Go workspace and edit with your favourite editor. A Reconfigure.io project is made up of two Go programs, one for the FPGA and one for the host CPU. We use a :ref:`subset of the Go language <gosupport>` for FPGA-side code and any new additions to the scope will be flagged up in our :ref:`Release_Notes`. Host-side code is written in standard Go.
+All the code you write will be in Go. You can create projects in your Go workspace and edit with your favourite editor. A Reconfigure.io project is made up of two Go programs, one for the FPGA and one for the host CPU. We use a :ref:`subset of the Go language <gosupport>` for FPGA-side code and any new additions to the scope will be flagged up in our :ref:`Release_Notes`. Host-side code is written in standard Go.
 
 Go tooling
 ^^^^^^^^^^^
-Your Reconfigure.io projects are developed in your Go environment so you can use standard Go tooling throughout the process: ``go build`` and ``go test`` can be used to flag up any semantic or syntactic errors and run tests against your FPGA code. You can read more about the Go testing framework |go test|. You can also |benchmark| your designs using the Go testing framework, the benchmark is written into your program and then run during deployment to get an accurate measurement from the process running on hardware.
+Your Reconfigure.io projects are developed in your Go environment so you can use standard Go tooling throughout the process: ``go build`` and ``go test`` can be used to flag up any semantic or syntactic errors and run tests against your FPGA code. You can read more about the Go testing framework |go_test|. You can also |benchmark| your designs using the Go testing framework, the benchmark is written into your program and then run during deployment to get an accurate measurement from the process running on hardware.
 
 Check
 ^^^^^
@@ -39,7 +46,7 @@ Graph
 Our compiler takes your Go code through several stages to get it into a format suitable for programming an FPGA instance. First, it's translated into a language called Teak, then, using the Teak output we can generate dataflow graphs. Using the ``graph`` command you can generate a dataflow graph for your program at any time, allowing you to analyze and optimize its performance.
 
 .. note::
-    The ability to generate graphs is a temporary feature. Due to the complexity of the output we suggest you share your graphs with us on our |forum| so our engineers can assist you in optimizeing your code. We're looking forward to see how you get on!
+    The ability to generate graphs is a temporary feature. Due to the complexity of the output we suggest you share your graphs with us on our |forum| so our engineers can assist you in optimizing your code.
 
 *  ``reco graph gen`` generates a dataflow graph from the program in your current directory.
 *  ``reco graph list`` lists all graphs in your project along with their unique IDs.
@@ -63,17 +70,8 @@ Once your build is complete you can deploy the image to an FPGA instance. This p
 *  ``reco deploy run <build_ID> <cmd>`` will deploy your build to the FPGA and run your chosen command on the host CPU.
 * If your deployment is designed to run indefinitely, it is important to remember to stop it – live deployments are charged to your account (open-source users get 20 hours/month for free). Run ``reco deployment stop <deployment-ID>`` to stop a deployment. It is also good practice to include a timeout, just in case you forget to stop a deployment. To do this you can run ``reco deployment run <build-ID> timeout 30m <cmd>`` to ensure that the deployment runs for 30 minutes max. You can set whatever timeout you want, using hours ``1h``, minutes ``1m`` and seconds ``1s``.
 
-Tooling and project structure
-------------------------------
-
-The ``reco`` tool
-^^^^^^^^^^^^^^
-All access to the Reconfigure.io service is through our tool – ``reco``. Use ``reco`` to upload and simulate your code, manage builds and deploy to a remote FPGA. If you need to install or update ``reco`` you can find instructions :ref:`here <install>`.
-
-``reco`` is a simple tool with several intuitive commands, we'll look at some of these in the relevant sections below – commands are described in bullet points. For a full list see, :ref:`tool`.
-
-Projects and program structure
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Project structure
+------------------
 Reconfigure.io **programs** have a simple structure: code for the FPGA and code for the host CPU. Both are written in Go:
 
 .. image::  ProgramStructure.png
@@ -164,4 +162,4 @@ For example, a goroutine running on a CPU is a tiny light-weight thread running 
 
 .. |forum| raw:: html
 
-   <a href="https://community.reconfigure.io/c/optimization-support" target="_blank">forum<\a>
+   <a href="https://community.reconfigure.io/c/optimization-support" target="_blank">forum</a>
