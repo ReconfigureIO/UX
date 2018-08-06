@@ -2,9 +2,11 @@
 
 How it works
 =============================
-This section gives an overview of our service. We'll start by running through our workflow and tooling and then take a look at our system architecture and the steps we go through to get your code in a format suitable for programming an FPGA instance. If you would prefer to get stuck in you can jump straight to our tutorials, starting here: :ref:`demo`, or watch a video run-through |video|.
+This section gives an overview of our service. We'll start by running through our workflow and tooling, and then take a look at our system architecture and the steps we go through to get your code into a suitable format for programming an FPGA instance.
 
-Reconfigure.io is a platform as a service (PaaS), which takes your Go code, compiles and optimizes it, and deploys to cloud-based FPGAs. You will code in Go and interact with the service using our simple command-line tool. We use AWS F1 instances for our cloud FPGAs, but all you need to use our service is a Reconfigure.io account and our command-line tool – we take care of the rest.
+If you prefer to just get stuck in, you can jump straight to our :ref:`tutorials <demo>`, or watch a video run-through |video|.
+
+Reconfigure.io is a platform as a service (PaaS), which takes Go code, compiles and optimizes it, and deploys to cloud-based FPGAs. You will code in Go and interact with the service using our simple command-line tool. We use AWS F1 instances for our cloud FPGAs, but all you need to use our service is a Reconfigure.io account and our command-line tool – we take care of the rest.
 
 Workflow
 ---------
