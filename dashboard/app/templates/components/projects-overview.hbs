@@ -37,6 +37,8 @@
             <tr class="table__header" data-id="{{index}}" {{action "toggleItem" index "builds"}}>
               <td><strong>{{build.id}}</strong></td>
               <td>{{build.job.events.lastObject.status}}</td>
+              <td>{{build.project.name}}</td>
+              <td>{{build.message}}</td>
               <td class="text-right"><a href="#" class="link link--down">View</a></td>
             </tr>
             <tr class="table__content" data-id="{{index}}">

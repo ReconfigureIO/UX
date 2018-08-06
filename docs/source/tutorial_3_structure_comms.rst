@@ -303,7 +303,7 @@ More data
 ------------
 In that example, as we only needed to pass a single argument from host to FPGA, we sent it straight to the FPGA's control register. This time we're going to pass an array, so we'll send it via the shared memory.
 
-.. figure:: StructureDiagram2.png
+.. figure:: images/StructureDiagram2.png
     :width: 90%
     :align: center
 
