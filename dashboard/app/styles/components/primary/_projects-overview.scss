@@ -127,7 +127,7 @@
               font-family: $font_primary_semi_bold;
               padding-right: $base-margin;
               @include padding-leader(0.2);
-              text-align: right;
+              text-align: center;
             }
 
             &__content {
