@@ -52,7 +52,7 @@
                       </div>
                       <div class="history__item__content">
                         <strong>Status:</strong> {{history.status}}<br>
-                        <strong>Timestamp:</strong> {{history.timestamp}}<br>
+                        <strong>Timestamp:</strong> {{moment history.timestamp 'YYYY-MM-DD HH:mm:ssZ'}}<br>
                       </div>
                     </div>
                   {{/each}}
