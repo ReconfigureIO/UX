@@ -2,7 +2,7 @@ A platform for software defined chips
 =====================================
 Reconfigure.io is a platform for programming hardware accelerators from software. You can use use your existing development tools to write applications in Go, so you can access the acceleration potential provided by FPGA chips – more performance, lower latency, and reduced power and space requirements. We have both cloud and on-premises platform options, so whatever your situation or use case, we have a platform that will work for you. Our software defined chips are fully reprogrammable and our tooling is works in line with modern software development practices – CI&CD, Agile etc. – so you can make changes to your designs in-line with how you currently work.
 
-.. image:: images/platform-options.gif
+.. image:: images/platform-options.png
     :align: center
     :width: 80%
 
@@ -41,6 +41,6 @@ Along the way, you may want to read a little more about a particular aspect of t
 
    <a href="https://community.reconfigure.io/" target="_blank">community forum</a>
 
-.. |dashboard| raw: HistogramSequential
+.. |dashboard| raw: html
 
-   <a href="https://app.reconfigure.io/dashboard">dashboard</a>
+   <a href="https://app.reconfigure.io/dashboard" target="_blank">dashboard</a>
