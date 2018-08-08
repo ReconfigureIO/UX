@@ -4,7 +4,7 @@ Reconfigure.io is a platform for programming hardware accelerators from software
 
 .. image:: images/platform-options.png
     :align: center
-    :width: 80%
+    :width: 100%
 
 FPGA-based hardware acceleration, whilst nothing new, provides significant latency and throughput improvements through carrying out many, many tasks in parallel. Cost reductions are easily achieved because one FPGA can carry out the work of many servers. Up until now, the power of the FPGA has been tricky to harness due to the skills required to take full advantage of their programmability. Reconfigure.io allows you to use the skills and tools you already have to program and reprogram FPGAs to fit your business-specific requirements.
 
