@@ -102,6 +102,12 @@ Each FPGA card has 64 GiB dedicated memory (DRAM) which can be used to share dat
 
 .. image:: ReconfigureFPGAarchitecture.png
 
+CPU vs FPGA
+^^^^^^^^^^^^
+The Go language is designed for writing concurrent programs, which you can read more about |why_go|. Go is normally used to write for traditional CPUs, where the concurrency in programs using goroutines, channels and select statements can take advantage of multi-core CPUs to perform several operations in parallel. But, when we optimize your Go for an FPGA, this potential for parallel processing is drastically increased.
+
+For example, a goroutine running on a CPU is a tiny light-weight thread running within a bigger thread, with just one big thread per CPU core. There is potential for parallelism here, but only one operation can happen per core per unit of time. On an FPGA, one go routine translates to a small chunk of circuit, continuously running, so you could create a million of them and they can all do their work all the time.
+
 A note about memory access – AXI / SMI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Our current standard way of having the FPGA talk to shared memory is using the AXI protocol (find more on this in our :ref:`third tutorial <structure>`). AXI is designed to work with multicore CPUs, with several cores accessing memory at the same time. But for us, as we're using Go for FPGAs, the level of parallelism is so much higher. We're dealing with many, potentially thousands of go routines trying to access memory at the same time. Managing this with AXI is not straightforward.
@@ -129,12 +135,6 @@ We take your code through several stages to get it ready to program an FPGA:
 * **Verilog netlist** - we then use standard tooling to compile your code into a netlist which relates to the FPGA's logic components.
 * **Place and route** – this is where we decide where on the physical FPGA chip to place the components from the netlist.
 * **Bitstream** - the last part of the process is using the place and route output to generate a bitstream capable of programming the FPGA.
-
-CPU vs FPGA
-^^^^^^^^^^^^
-The Go language is designed for writing concurrent programs, which you can read more about |why_go|. Go is normally used to write for traditional CPUs, where the concurrency in programs using goroutines, channels and select statements can take advantage of multi-core CPUs to perform several operations in parallel. But, when we optimize your Go for an FPGA, this potential for parallel processing is drastically increased.
-
-For example, a goroutine running on a CPU is a tiny light-weight thread running within a bigger thread, with just one big thread per CPU core. There is potential for parallelism here, but only one operation can happen per core per unit of time. On an FPGA, one go routine translates to a small chunk of circuit, continuously running, so you could create a million of them and they can all do their work all the time.
 
 .. |smi_blog| raw:: html
 
