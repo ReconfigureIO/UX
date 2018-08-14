@@ -39,6 +39,6 @@ You can access technical support from our engineering team at any time, we're al
 
    <a href="https://community.reconfigure.io/" target="_blank">community forum</a>
 
-.. |dashboard| raw: html
+.. |dashboard| raw:: html
 
    <a href="https://app.reconfigure.io/dashboard" target="_blank">dashboard</a>
