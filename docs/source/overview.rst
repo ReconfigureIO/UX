@@ -89,21 +89,27 @@ Once your build is complete you can deploy the image to an FPGA instance. This p
 
 .. admonition:: Attention cloud users!
 
-    Live deployments are charged to your account (open-source users get 20 hours/month for free) and if you run out of allotted hours any live deployments you have running will be terminated. If your deployment is designed to run indefinitely, it is important to remember to stop it: Run ``reco deployment stop <deployment-ID>`` to stop a deployment. It is also good practice to include a timeout, just in case you forget to stop a deployment. To do this you can run ``reco deployment run <build-ID> timeout 30m <cmd>`` to ensure that the deployment runs for 30 minutes max. You can set whatever timeout you want, using hours ``1h``, minutes ``1m`` and seconds ``1s``.
+    Live deployments are charged to your account (open-source users get 20 hours/month for free) and if you run out of allotted hours any live deployments you have running will be terminated. If your deployment is designed to run indefinitely as a service, it is important to remember to stop it: ``reco deployment stop <deployment-ID>`` to avoid running out of hours. It is good practice to include a timeout for services, in case you forget to stop them. To do this you can run ``reco deployment run <build-ID> timeout 30m <cmd>`` to ensure that the service is active for 30 minutes max. You can set whatever timeout you want, using hours ``1h``, minutes ``1m`` and seconds ``1s``.
 
 .. _project-structure:
 
-Project structure
+Structure
 ------------------
-Reconfigure.io **programs** have a simple structure: code for the FPGA and code for the host CPU. Both are written in Go:
 
-.. image::  ProgramStructure.png
+Programs
+^^^^^^^^
+Reconfigure.io **programs** have a simple structure: code for the FPGA and code for the host CPU, all written in Go:
 
+.. image::  images/my-program-structure.png
+   :width: 70%
+
+You can have multiple host-side commands per program, and once your code is built each host-sode command will be available to run withe the FPGA-side code during deployment. For example, as indicated in the diagram above, you may have one host-side command that just feeds data to the FPGA, receives the output and relays is, and another host-side command that, as well as feeding and recieving data, runs a benchmark (using the Go benchamrking framework) to check the performance of the FPGA code.
+
+Projects
+^^^^^^^^
 When using ``reco`` to simulate, build and deploy your programs, you will work within a **project**. You can list items per project, which is really useful when you've got several work streams going at the same time, each with several builds and deployments.
 
-.. note::
-
-    You should create a new project for each program you work on. If you run a ``sim``, ``build`` or ``deploy`` without setting which project to use first, you will be prompted to run ``reco set-project <project name>`` before continuing. If it's a new program you are working on you will need to run ``reco create-project`` followed by a new project name.
+You should create a new project for each program you work on. If you run a ``sim``, ``build`` or ``deploy`` without setting which project to use first, you will be prompted to run ``reco set-project <project name>`` before continuing. If it's a new program you are working on you will need to run ``reco create-project`` followed by a new project name.
 
 * ``create-project`` is used to create a new project
 * ``projects`` displays a list of all active projects for your account
