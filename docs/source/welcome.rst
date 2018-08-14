@@ -29,7 +29,15 @@ Here's an :ref:`overview <overview>` of our workflow from coding to deployment. 
 
 We have two platform options: on-premises or cloud. Any information in these docs that is specific to a platform will be clearly indicated.
 
-You can access technical support from our engineering team at any time, we're always available on the |forum| if you need us, or start a conversation using our in-app messenger on your |dashboard|.
+Helpful resources
+------------------
+
+**Tech support** – You can access technical support from our engineering team at any time, we're always available either:
+
+* on our |forum|
+* through our in-app messenger on your |dashboard|
+
+**API Docs** – You'll need to use some specific Go packages for talking to memory, and for communication within the FPGA instance. You'll find docs for these |api|.
 
 .. |signup| raw:: html
 
@@ -42,3 +50,7 @@ You can access technical support from our engineering team at any time, we're al
 .. |dashboard| raw:: html
 
    <a href="https://app.reconfigure.io/dashboard" target="_blank">dashboard</a>
+
+.. |api| raw:: html
+
+   <a href="https://godoc.org/github.com/ReconfigureIO/sdaccel" target="_blank">here</a>
