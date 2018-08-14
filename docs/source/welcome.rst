@@ -1,6 +1,6 @@
 A platform for software defined chips
 =====================================
-Reconfigure.io is a platform for programming hardware accelerators from software. You can use your existing development tools to write applications in Go, to access the acceleration potential provided by FPGAs – more performance, lower latency, and reduced power and space requirements. We have both cloud and on-premises platform options, so whatever your situation or use case, we have a platform that will work for you. Our software defined chips are fully reprogrammable and our tooling works in line with modern software development practices – CI&CD, Agile etc. – so you can develop and manipulate accelerator designs along with your current workflow.
+Reconfigure.io is a platform for programming hardware accelerators from software. You can use your existing development tools to write applications in Go, to access the acceleration potential provided by FPGAs – **more performance, lower latency, and reduced power and space requirements**. We have both cloud and on-premises platform options, so whatever your situation or use case, we have a platform that will work for you. Our software defined chips are fully reprogrammable and our tooling works in line with modern software development practices – CI&CD, Agile etc. – so you can develop and manipulate accelerator designs along with your current workflow.
 
 .. image:: images/platform-options.png
     :align: center
@@ -20,9 +20,9 @@ How to use this guide
 ----------------------
 Reconfigure.io provides a comfortable platform for you to use your software development skills to create designs for hardware chips.
 
-Here's an :ref:`overview <overview>` of our workflow from coding to deployment. Also, checkout our :ref:`structure` to see how Reconfigure.io programs are made up. Here's a high-level look at our :ref:`system architecture` too, so you can see how our service fits together with FPGA instances. If tutorials are more your thing:
+Here's an :ref:`overview <overview>` of our workflow from coding to deployment. Also, checkout our :ref:`project-structure` to see how Reconfigure.io programs are made up. To tale a high-level look at our system architecture have a look :ref:`here <architecture>`. If tutorials are more your thing:
 
-* You can start off by running through our :ref:`first tutorial <demo>` to see how powerful the Reconfigure.io service is. You will quickly get to grips with our simple workflow using some of our example code to run through developmenr, checking, simulating, building and finally deploying an image to an FPGA.
+* You can start off by running through our :ref:`first tutorial <demo>` to see how powerful the Reconfigure.io service is. You will quickly get to grips with our simple workflow using some of our example code to run through development, checking, simulating, building and finally deploying an image to an FPGA.
 * Next, our :ref:`second tutorial <addition>` looks at a very simple example and guides you through completing some code for yourself to give you more experience of how our programs are structured.
 * Our :ref:`third tutorial <structure>` looks at program structure in more detail, as well as exploring how data is shared between the various elements of the FPGA instance – this puts you in a good position to start writing your own programs.
 * Our :ref:`fourth tutorial <graphstutorial>` guides you through optimizing your programs for the FPGA architecture using our graph generation feature.
