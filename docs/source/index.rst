@@ -11,7 +11,6 @@ Welcome to Reconfigure.io's documentation!
    :caption: Contents:
 
    welcome
-   features
    overview
    getting_started
    tutorial_1_hist_parallel
