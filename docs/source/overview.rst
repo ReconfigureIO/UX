@@ -21,7 +21,7 @@ Let's take a look at the workflow from coding to deployment:
 
 .. image:: images/workflow.png
     :align: center
-    :width: 80%
+    :width: 100%
 
 Code
 ^^^^^
@@ -128,23 +128,21 @@ When using ``reco`` to simulate, build and deploy your programs, you will work w
 
 System architecture
 --------------------
-The image below describes how Reconfigure.io works. All coding is done locally in Go and you can develop and debug your projects in your Go environment before using our tools to simulate, build and deploy to FPGA instances. FPGA instances include a host CPU with an FPGA connected via PCIe.
+Our software defined chips are based on FPGA instances, each of which is made up of an FPGA, dedicated RAM (we call this shared memory) and a host CPU. For on-prem customers, other high performance IO will be available, 2x 10 gigabit ethernet is standard.
 
-.. image:: ReconfigureArchAWS.png
+Data can be shared between the FPGA chip and host CPU via shared memory; the host can allocate blocks in shared memory and pass pointers to the FPGA, and the FPGA can read and write to and from those pointers. The FPGA also has on-chip block RAM, which it can allocate directly.
 
-Each FPGA card has 64 GiB dedicated memory (DRAM) which can be used to share data between the CPU and FPGA. The host CPU can allocate blocks in shared memory and pass pointers to the FPGA, and the FPGA can read and write to and from those pointers. The FPGA also has on-chip block RAM, which it can allocate directly.
-
-.. image:: ReconfigureFPGAarchitecture.png
+.. image:: images/instanceArchitecture.png
 
 CPU vs FPGA
 ^^^^^^^^^^^^
-The Go language is designed for writing concurrent programs, which you can read more about |why_go|. Go is normally used to write for traditional CPUs, where the concurrency in programs using goroutines, channels and select statements can take advantage of multi-core CPUs to perform several operations in parallel. But, when we optimize your Go for an FPGA, this potential for parallel processing is drastically increased.
+The Go language is designed for writing concurrent programs, which you can read more about |why_go|. Go is normally used to write for traditional CPUs, where concurrent programming can take advantage of multi-core CPUs to perform several operations in parallel. But, when we optimize your Go for an FPGA, this potential for parallel processing is drastically increased.
 
-For example, a goroutine running on a CPU is a tiny light-weight thread running within a bigger thread, with just one big thread per CPU core. There is potential for parallelism here, but only one operation can happen per core per unit of time. On an FPGA, one go routine translates to a small chunk of circuit, continuously running, so you could create a million of them and they can all do their work all the time.
+For example, a goroutine running on a CPU is a tiny light-weight thread running within a bigger thread, with just one big thread per CPU core. There is potential for parallelism here, but only one operation can happen per core per unit of time. On an FPGA, one goroutine translates to a small chunk of circuitry, running continuously, so you *could* create a million of them, and they could all do their work, all the time.
 
 A note about memory access – AXI / SMI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Our current standard way of having the FPGA talk to shared memory is using the AXI protocol (find more on this in our :ref:`third tutorial <structure>`). AXI is designed to work with multicore CPUs, with several cores accessing memory at the same time. But for us, as we're using Go for FPGAs, the level of parallelism is so much higher. We're dealing with many, potentially thousands of go routines trying to access memory at the same time. Managing this with AXI is not straightforward.
+Our current standard way of having the FPGA talk to shared memory is using the AXI protocol (find more on this in our :ref:`third tutorial <structure>`). AXI is designed to work with multicore CPUs, with several cores accessing memory at the same time. But for us, as we're using Go for FPGAs, the level of parallelism is so much higher. We're dealing with many, potentially thousands of go routines, trying to access memory at the same time. Managing this with AXI is not straightforward.
 
 **Our engineers have developed a new protocol – SMI (Scalable Multiprotocol Infrastructure) – which addresses the issue of fine-grained parallelism, as well as simplifying code and reducing boilerplate for our users.** It's available for testing from Reconfigure.io v0.17.0 onwards and will be fully rolled out as our standard method for accessing memory very soon.
 
@@ -160,7 +158,7 @@ You will notice that with SMI we have introduced a ``reco.yml`` file per program
 
 Go compilation stages
 ^^^^^^^^^^^^^^^^^^^^^
-Your Reconfigure.io projects will be coded using :ref:`our subset <gosupport>` of the standard Go language, using our :ref:`coding style-guide <style>` to help get the most out of the destination hardware.
+Your Reconfigure.io applications will be coded using :ref:`our subset <gosupport>` of the standard Go language, and you can use our :ref:`coding style-guide <style>` to get the most out of the destination hardware.
 
 We take your code through several stages to get it ready to program an FPGA:
 
