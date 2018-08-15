@@ -102,14 +102,17 @@ Reconfigure.io **programs** have a simple structure: code for the FPGA and code 
 
 .. image::  images/my-program-structure.png
    :width: 70%
+   :align: center
 
 You can have multiple host-side commands per program, and once your code is built each host-sode command will be available to run withe the FPGA-side code during deployment. For example, as indicated in the diagram above, you may have one host-side command that just feeds data to the FPGA, receives the output and relays is, and another host-side command that, as well as feeding and recieving data, runs a benchmark (using the Go benchamrking framework) to check the performance of the FPGA code.
 
 Projects
-^^^^^^^^
+^^^^^^^
 When using ``reco`` to simulate, build and deploy your programs, you will work within a **project**. You can list items per project, which is really useful when you've got several work streams going at the same time, each with several builds and deployments.
 
-You should create a new project for each program you work on. If you run a ``sim``, ``build`` or ``deploy`` without setting which project to use first, you will be prompted to run ``reco set-project <project name>`` before continuing. If it's a new program you are working on you will need to run ``reco create-project`` followed by a new project name.
+.. note::
+
+    You should create a new project for each program you work on. If you run a ``sim``, ``build`` or ``deploy`` without setting which project to use first, you will be prompted to run ``reco set-project <project name>`` before continuing. If it's a new program you are working on you will need to run ``reco create-project`` followed by a new project name.
 
 * ``create-project`` is used to create a new project
 * ``projects`` displays a list of all active projects for your account
