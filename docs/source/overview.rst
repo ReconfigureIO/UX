@@ -19,6 +19,10 @@ Access to the Reconfigure.io service is through our tool – ``reco``. Use ``rec
 
 Let's take a look at the workflow from coding to deployment:
 
+.. image:: images/workflow.png
+    :align: center
+    :width: 80%
+
 Code
 ^^^^^
 All the code you write will be in Go. You can create projects in your Go workspace and edit with your favourite editor. A Reconfigure.io project is made up of at least two Go programs, one for the FPGA, and at least one for the host CPU, shown below within the ``cmd`` directory (you may have multiple host side commands for benchmarking etc.). We use a :ref:`subset of the Go language <gosupport>` for FPGA-side code and any new additions to the scope will be flagged up in our :ref:`Release_Notes`. Host-side code is written in standard Go.
@@ -104,7 +108,7 @@ Reconfigure.io **programs** have a simple structure: code for the FPGA and code 
    :width: 70%
    :align: center
 
-You can have multiple host-side commands per program, and once your code is built each host-sode command will be available to run withe the FPGA-side code during deployment. For example, as indicated in the diagram above, you may have one host-side command that just feeds data to the FPGA, receives the output and relays is, and another host-side command that, as well as feeding and recieving data, runs a benchmark (using the Go benchamrking framework) to check the performance of the FPGA code.
+You can have multiple host-side commands per program, and once your code is built each host command will be available to run with the FPGA-side code during deployment. For example, as indicated in the diagram above, you may have one host-side command that just feeds data to the FPGA, receives the output and relays is, and another host-side command that, as well as feeding and receiving data, runs a benchmark (using the Go benchmarking framework) to check the performance of the FPGA code.
 
 Projects
 ^^^^^^^
@@ -118,7 +122,7 @@ When using ``reco`` to simulate, build and deploy your programs, you will work w
 * ``projects`` displays a list of all active projects for your account
 * ``set-project`` sets a project to use for the program code you're currently working on
 
-.. image::  ProjectsStructure.png
+.. image::  images/ProjectsStructureNew.png
 
 .. _architecture:
 
@@ -199,4 +203,5 @@ We take your code through several stages to get it ready to program an FPGA:
    <a href="https://community.reconfigure.io/c/optimization-support" target="_blank">forum</a>
 
 .. |sign up| raw:: html
+
    <a href="https://reconfigure.io/sign-up" target="_blank">sign up</a>
