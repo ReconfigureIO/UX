@@ -4,6 +4,10 @@ How it works
 =============================
 This section gives an overview of the Reconfigure.io service. We'll start by running through our workflow and tooling, and then take a look at our system architecture and the steps we go through to get your code into a suitable format for programming an FPGA instance.
 
+.. image:: images/workflow.png
+    :align: center
+    :width: 100%
+
 If you prefer to just get stuck in, you can jump straight to our :ref:`tutorials <demo>`, or watch a video run-through |video|.
 
 Reconfigure.io is a platform as a service (PaaS), which takes Go code, compiles and optimizes it, and deploys to FPGA instances. Depending on which platform you're using, FPGA instances are either cloud-based (AWS F1) or on-premises. Either way, you will code in Go and interact with our service using ``reco``, our simple command-line tool.
@@ -18,10 +22,6 @@ Access to the Reconfigure.io service is through our tool – ``reco``. Use ``rec
 ``reco`` is a simple tool with several intuitive commands, we'll look at some of these in the relevant sections below – commands are described in bullet points. For a full list see, :ref:`tool`.
 
 Let's take a look at the workflow from coding to deployment:
-
-.. image:: images/workflow.png
-    :align: center
-    :width: 100%
 
 Code
 ^^^^^
@@ -133,6 +133,8 @@ Our software defined chips are based on FPGA instances, each of which is made up
 Data can be shared between the FPGA chip and host CPU via shared memory; the host can allocate blocks in shared memory and pass pointers to the FPGA, and the FPGA can read and write to and from those pointers. The FPGA also has on-chip block RAM, which it can allocate directly.
 
 .. image:: images/instanceArchitecture.png
+   :align: center
+   :width: 70%
 
 CPU vs FPGA
 ^^^^^^^^^^^^
