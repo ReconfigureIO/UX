@@ -248,6 +248,7 @@ article ul li li a {
 
 .sphinx-tabs {
     margin-bottom: 2em;
+    background-color: #37ca97;
 }
 
 .sphinx-tabs .sphinx-menu a.item {
@@ -260,7 +261,7 @@ article ul li li a {
 
 .sphinx-tabs .sphinx-menu a.active.item {
     border-color: #37ca97 !important;
-    background-color: #37ca97;
+
 }
 
 .sphinx-tab {
