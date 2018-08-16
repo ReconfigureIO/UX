@@ -16,8 +16,8 @@ If you've found your way here without signing up first, please head to our `webs
 
            reco deploy run |web_md5_uuid| timeout 30m run-webserver --wait=http
 
-
-        And you should see:
+        |
+        |And you should see:
 
         .. code-block:: shell
 
