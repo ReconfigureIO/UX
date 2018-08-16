@@ -30,7 +30,7 @@ Data types
 On the host CPU, ``int`` and ``uint`` are 64 bit, but on the FPGA they are both 32 bit. When using ``int`` and ``uint`` as the parameters to the FPGA, you can get unexpected results so we suggest using ``int32`` and ``uint32`` specifically for FPGA parameters in order to avoid this issue.
 
 The FPGA
--------
+--------
 
 Break out small functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^

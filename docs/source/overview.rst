@@ -12,7 +12,7 @@ Workflow and tooling
 --------------------
 
 The ``reco`` tool
-^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
 All access to the Reconfigure.io service is through our tool – ``reco``. Use ``reco`` to upload and simulate your code, manage builds and deploy to a remote FPGA. If you need to install or update ``reco`` you can find instructions :ref:`here <install>`.
 
 ``reco`` is a simple tool with several intuitive commands, we'll look at some of these in the relevant sections below – commands are described in bullet points. For a full list see, :ref:`tool`.

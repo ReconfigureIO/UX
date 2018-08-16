@@ -10,7 +10,7 @@ To update to the current version of ``reco`` please run ``reco update`` and you 
 .. _install:
 
 Install/Update the command line tool
-------------------------------
+------------------------------------
 You will have been guided through installing our command line tool during the signup process, but here are the installation instructions should you need them again.
 
 **Linux**: Run the following from your terminal, you may be asked to enter your password:

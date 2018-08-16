@@ -24,7 +24,7 @@ Teak is a hardware description dataflow language, designed to be easily translat
 **So, our goal is to write concurrent Go code to take advantage of the FPGA's parallel hardware, and we can use Teak graphs to identify where this parallelism can be increased by changing the way the original code is structured.**
 
 How are the graphs structured?
------------------------
+------------------------------
 Teak graphs can be many pages long, with a page for each function used in your code. The complexity of each page depends on the complexity of the function. Here's an example, it's the graph for the ``axi/memory.WriteUInt32`` function used in our addition example:
 
 .. figure:: graph_addition_writeuint32.png
