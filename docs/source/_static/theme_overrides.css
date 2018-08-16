@@ -67,6 +67,58 @@ a:hover {
   color: #FFFFFF !important;
 }
 
+/* Add CSS for tabs here to see if they override the current formatting */
+
+.sphinx-tabs {
+    margin-bottom: 2em;
+}
+
+.sphinx-tabs .sphinx-menu a.item {
+    color: #858585 !important;
+}
+
+.sphinx-tabs .sphinx-menu {
+    border-bottom-color: #FFFFFF !important;
+}
+
+.sphinx-tabs .sphinx-menu a.active.item {
+    border-color: #37ca97 !important;
+    background-color: #37ca97;
+
+}
+
+.sphinx-tab {
+    border-color: #FFFFFF !important;
+    box-sizing: border-box;
+}
+
+.tab div[class^='highlight']:last-child {
+    margin-bottom: 0;
+}
+
+.tab .wy-plain-list-disc:last-child,
+.rst-content .section ul:last-child,
+.rst-content .toctree-wrapper ul:last-child,
+article ul:last-child {
+    margin-bottom: 0;
+}
+
+/* Code tabs don't need the code-block border */
+.code-tab.tab {
+    padding: 0.4em !important;
+}
+
+.code-tab.tab div[class^='highlight'] {
+    border: none;
+}
+
+/* Semantic UI tabs don't shrink, make font smaller when viewing in mobile devices */
+@media screen and (max-width: 768px) {
+    .sphinx-tabs .sphinx-menu a.item {
+        font-size: 0.9em !important;
+    }
+}
+
 .wy-nav-top {
   background-color: #26272C;
 }
@@ -242,56 +294,4 @@ article ul li li a {
 
 .codeblock,div[class^='highlight'] {
     padding: 0;
-}
-
-/* Add CSS for tabs here to see if they override the current formatting */
-
-.sphinx-tabs {
-    margin-bottom: 2em;
-}
-
-.sphinx-tabs .sphinx-menu a.item {
-    color: #858585 !important;
-}
-
-.sphinx-tabs .sphinx-menu {
-    border-bottom-color: #FFFFFF !important;
-}
-
-.sphinx-tabs .sphinx-menu a.active.item {
-    border-color: #37ca97 !important;
-    background-color: #37ca97;
-
-}
-
-.sphinx-tab {
-    border-color: #FFFFFF !important;
-    box-sizing: border-box;
-}
-
-.tab div[class^='highlight']:last-child {
-    margin-bottom: 0;
-}
-
-.tab .wy-plain-list-disc:last-child,
-.rst-content .section ul:last-child,
-.rst-content .toctree-wrapper ul:last-child,
-article ul:last-child {
-    margin-bottom: 0;
-}
-
-/* Code tabs don't need the code-block border */
-.code-tab.tab {
-    padding: 0.4em !important;
-}
-
-.code-tab.tab div[class^='highlight'] {
-    border: none;
-}
-
-/* Semantic UI tabs don't shrink, make font smaller when viewing in mobile devices */
-@media screen and (max-width: 768px) {
-    .sphinx-tabs .sphinx-menu a.item {
-        font-size: 0.9em !important;
-    }
 }
