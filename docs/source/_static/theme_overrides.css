@@ -251,7 +251,7 @@ article ul li li a {
 }
 
 .sphinx-tabs .sphinx-menu a.item {
-    color: #FFFFFF !important;
+    color: #858585 !important;
 }
 
 .sphinx-tabs .sphinx-menu {
@@ -259,7 +259,7 @@ article ul li li a {
 }
 
 .sphinx-tabs .sphinx-menu a.active.item {
-    border-color: #858585 !important;
+    border-color: #37ca97 !important;
     background-color: #37ca97;
 }
 
