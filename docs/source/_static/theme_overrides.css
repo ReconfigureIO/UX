@@ -251,19 +251,20 @@ article ul li li a {
 }
 
 .sphinx-tabs .sphinx-menu a.item {
-    color: #474b57 !important;
+    color: #FFFFFF !important;
 }
 
 .sphinx-tabs .sphinx-menu {
-    border-bottom-color: #858585 !important;
+    border-bottom-color: #FFFFFF !important;
 }
 
 .sphinx-tabs .sphinx-menu a.active.item {
     border-color: #858585 !important;
+    background-color: #37ca97;
 }
 
 .sphinx-tab {
-    border-color: #858585 !important;
+    border-color: #FFFFFF !important;
     box-sizing: border-box;
 }
 
