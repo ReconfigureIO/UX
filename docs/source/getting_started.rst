@@ -55,7 +55,7 @@ If you've found your way here without signing up first, please head to our `webs
 
    .. tab:: On-premises
 
-      Insert on-prem MD5 deployment instructions when we have them
+      Coming soon ...
 
 .. |md5_code| raw:: html
 
