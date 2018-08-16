@@ -15,7 +15,7 @@ Throughout the public beta phase you may encounter bugs or rough edges. We will 
 .. _errors:
 
 Compiler Error messages
---------------
+-----------------------
 When simulating and building your code, our compiler provides helpful error messages when things don't go quite right. Each error message is explained below but if at any point you encounter an error message which isn't listed here, please let us know |bug|.
 
 +--------+-----------------------------------------------+-------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
