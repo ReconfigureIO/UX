@@ -74,21 +74,19 @@ a:hover {
 }
 
 .sphinx-tabs .sphinx-menu a.item {
-    color: #858585 !important;
+    color: #37ca97 !important;
 }
 
 .sphinx-tabs .sphinx-menu {
-    border-bottom-color: #FFFFFF !important;
+    border-bottom-color: #37ca97 !important;
 }
 
 .sphinx-tabs .sphinx-menu a.active.item {
     border-color: #37ca97 !important;
-    background-color: #37ca97;
-
 }
 
 .sphinx-tab {
-    border-color: #FFFFFF !important;
+    border-color: #37ca97 !important;
     box-sizing: border-box;
 }
 
