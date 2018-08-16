@@ -252,7 +252,6 @@ article ul li li a {
 
 .sphinx-tabs .sphinx-menu a.item {
     color: #858585 !important;
-    background-color: #37ca97;
 }
 
 .sphinx-tabs .sphinx-menu {
@@ -287,4 +286,12 @@ article ul:last-child {
 
 .code-tab.tab div[class^='highlight'] {
     border: none;
+}
+
+/* Semantic UI tabs don't shrink, make font smaller when viewing in mobile devices */
+@media screen and (max-width: 768px) {
+    .sphinx-tabs .sphinx-menu a.item {
+        font-size: 0.9em !important;
+        background-color: #37ca97;
+    }
 }
