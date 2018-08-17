@@ -7,7 +7,7 @@ This style guide sets out some best practices for writing applications for Recon
 
 Template
 --------
-We provide a stripped down version of a project to help you get started creating your own programs. You can find templates included in the tutorial materials you downloaded during our :ref:`second tutorial <tutorials>`, they're located here: ``tutorials/template``. For more information on using the templates, see :ref:`structure`. There are currently two versions, one using the AXI memory interface, and one using the newer :ref:`SMI protocol <smi>`` for talking to shared memory.
+We provide a stripped down version of a project to help you get started creating your own programs. You can find templates included in the tutorial materials you downloaded during our :ref:`second tutorial <tutorials>`, they're located here: ``tutorials/template`` and ``tutorials/template-SMI``. For more information on using the templates, see :ref:`structure`. There are currently two versions, one using the AXI memory interface, and one using the newer :ref:`SMI protocol <smi>`` for communicating with shared memory.
 
 FPGA interface
 -------------------
