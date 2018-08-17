@@ -2,40 +2,62 @@
 
 How it works
 =============================
-This section gives an overview of our service. We'll start by running through our workflow and tooling, and then take a look at our system architecture and the steps we go through to get your code into a suitable format for programming an FPGA instance.
+This section gives an overview of the Reconfigure.io service. We'll start by running through our workflow and tooling, and then take a look at our system architecture and the steps we go through to get your code into a suitable format for programming an FPGA instance.
+
+.. image:: images/workflow.png
+    :align: center
+    :width: 100%
 
 If you prefer to just get stuck in, you can jump straight to our :ref:`tutorials <demo>`, or watch a video run-through |video|.
 
-Reconfigure.io is a platform as a service (PaaS), which takes Go code, compiles and optimizes it, and deploys to cloud-based FPGAs. You will code in Go and interact with the service using our simple command-line tool. We use AWS F1 instances for our cloud FPGAs, but all you need to use our service is a Reconfigure.io account and our command-line tool – we take care of the rest.
+Reconfigure.io is a platform as a service (PaaS), which takes Go code, compiles and optimizes it, and deploys to FPGA instances. Depending on which platform you're using, FPGA instances are either cloud-based (AWS F1) or on-premises. Either way, you will code in Go and interact with our service using ``reco``, our simple command-line tool.
 
 Workflow and tooling
 --------------------
 
 The ``reco`` tool
-^^^^^^^^^^^^^^
-All access to the Reconfigure.io service is through our tool – ``reco``. Use ``reco`` to upload and simulate your code, manage builds and deploy to a remote FPGA. If you need to install or update ``reco`` you can find instructions :ref:`here <install>`.
+^^^^^^^^^^^^^^^^^
+Access to the Reconfigure.io service is through our tool – ``reco``. Use ``reco`` to check, upload and simulate your code, manage builds and deploy to an FPGA instance. You will be guided to install ``reco`` when you |sign up| but if you need guidance on updating and installing head :ref:`here <install>`.
 
 ``reco`` is a simple tool with several intuitive commands, we'll look at some of these in the relevant sections below – commands are described in bullet points. For a full list see, :ref:`tool`.
 
-Now, let's take a look at the workflow, from coding to deployment:
+Let's take a look at the workflow from coding to deployment:
 
 Code
 ^^^^^
-All the code you write will be in Go. You can create projects in your Go workspace and edit with your favourite editor. A Reconfigure.io project is made up of two Go programs, one for the FPGA and one for the host CPU. We use a :ref:`subset of the Go language <gosupport>` for FPGA-side code and any new additions to the scope will be flagged up in our :ref:`Release_Notes`. Host-side code is written in standard Go.
+All the code you write will be in Go. You can create projects in your Go workspace and edit with your favourite editor. A Reconfigure.io project is made up of at least two Go programs, one for the FPGA, and at least one for the host CPU, shown below within the ``cmd`` directory (you may have multiple host side commands for benchmarking etc.). We use a :ref:`subset of the Go language <gosupport>` for FPGA-side code and any new additions to the scope will be flagged up in our :ref:`Release_Notes`. Host-side code is written in standard Go.
+
+.. code-block:: shell
+
+    ├── cmd
+    │   └── test-my-project
+    │       └── main.go
+    ├── main.go
+
 
 Go tooling
 ^^^^^^^^^^^
 Your Reconfigure.io projects are developed in your Go environment so you can use standard Go tooling throughout the process: ``go build`` and ``go test`` can be used to flag up any semantic or syntactic errors and run tests against your FPGA code. You can read more about the Go testing framework |go_test|. You can also |benchmark| your designs using the Go testing framework, the benchmark is written into your program and then run during deployment to get an accurate measurement from the process running on hardware.
 
+.. code-block:: shell
+
+    ├── cmd
+    │   └── test-my-project
+    │       └── main.go
+    │   └── bench-my-project
+    │       └── main.go
+    ├── main.go
+    ├── main_test.go
+
 Check
 ^^^^^
-Once you are happy with your code you can perform a quick-check to make sure it's compatible with our compiler. If your code contains any errors, or you've used elements of Go that are out of scope for FPGA-side code, that will be flagged up during this check.
+Once you are happy with your code you can perform a quick-check to make sure it is compatible with our compiler. If your code contains any errors, or you've used elements of Go that are out of scope for FPGA-side code, these will be flagged up during this check.
 
 * ``reco check`` locally type checks your FPGA code.
 
 Simulate
 ^^^^^^^^^
-Next you can simulate how your program will run on hardware. Any errors will be highlighted here and it's considerably quicker than creating a build, minutes rather than hours, so will save you time during the development process. Simulations will :ref:`timeout <timeout>` if they don't complete within one hour.
+Next, you can simulate how your program will run on hardware. Any errors will be highlighted here and it is considerably quicker than creating a build – minutes rather than hours – so will save you time during the development process. Simulations will :ref:`timeout <timeout>` if they don't complete within one hour.
 
 *  ``reco sim run <my_cmd>`` simulates how your program would run on an FPGA.
 
@@ -43,7 +65,7 @@ Next you can simulate how your program will run on hardware. Any errors will be 
 
 Graph
 ^^^^^
-Our compiler takes your Go code through several stages to get it into a format suitable for programming an FPGA instance. First, it's translated into a language called Teak, then, using the Teak output we can generate dataflow graphs. Using the ``graph`` command you can generate a dataflow graph for your program at any time, allowing you to analyze and optimize its performance.
+Our compiler takes your Go code through several stages to get it into a suitable format for programming an FPGA instance. First, your code is translated into a language called Teak, then, using the Teak output we can generate dataflow graphs. Using the ``graph`` command you can generate a dataflow graph for your program at any time, allowing you to analyze and optimize its performance.
 
 .. note::
     The ability to generate graphs is a temporary feature. Due to the complexity of the output we suggest you share your graphs with us on our |forum| so our engineers can assist you in optimizing your code.
@@ -65,19 +87,31 @@ Next, you can build your project. Our compiler will check compatibility and conv
 
 Deploy
 ^^^^^^
-Once your build is complete you can deploy the image to an FPGA instance. This programs the FPGA with your compiled and optimized code and runs your chosen host-side command on the CPU.
+Once your build is complete you can deploy the image to an FPGA instance. This process programs the FPGA with your compiled and optimized code and runs your chosen host-side command on the CPU.
 
 * ``reco deploy run <build_ID> <cmd>`` will deploy your build to the FPGA and run your chosen command on the host CPU.
-* Live deployments are charged to your account (open-source users get 20 hours/month for free) and if you run out of allotted hours any live deployments you have running will be terminated. If your deployment is designed to run indefinitely, it is important to remember to stop it: Run ``reco deployment stop <deployment-ID>`` to stop a deployment. It is also good practice to include a timeout, just in case you forget to stop a deployment. To do this you can run ``reco deployment run <build-ID> timeout 30m <cmd>`` to ensure that the deployment runs for 30 minutes max. You can set whatever timeout you want, using hours ``1h``, minutes ``1m`` and seconds ``1s``.
+
+.. admonition:: Attention cloud users!
+
+    Live deployments are charged to your account (open-source users get 20 hours/month for free) and if you run out of allotted hours any live deployments you have running will be terminated. If your deployment is designed to run indefinitely as a service, it is important to remember to stop it: ``reco deployment stop <deployment-ID>`` to avoid running out of hours. It is good practice to include a timeout for services, in case you forget to stop them. To do this you can run ``reco deployment run <build-ID> timeout 30m <cmd>`` to ensure that the service is active for 30 minutes max. You can set whatever timeout you want, using hours ``1h``, minutes ``1m`` and seconds ``1s``.
 
 .. _project-structure:
 
-Project structure
+Structure
 ------------------
-Reconfigure.io **programs** have a simple structure: code for the FPGA and code for the host CPU. Both are written in Go:
 
-.. image::  ProgramStructure.png
+Programs
+^^^^^^^^
+Reconfigure.io **programs** have a simple structure: code for the FPGA and code for the host CPU, all written in Go:
 
+.. image::  images/my-program-structure.png
+   :width: 70%
+   :align: center
+
+You can have multiple host-side commands per program, and once your code is built each host command will be available to run with the FPGA-side code during deployment. For example, as indicated in the diagram above, you may have one host-side command that just feeds data to the FPGA, receives the output and relays is, and another host-side command that, as well as feeding and receiving data, runs a benchmark (using the Go benchmarking framework) to check the performance of the FPGA code.
+
+Projects
+^^^^^^^
 When using ``reco`` to simulate, build and deploy your programs, you will work within a **project**. You can list items per project, which is really useful when you've got several work streams going at the same time, each with several builds and deployments.
 
 .. note::
@@ -88,29 +122,29 @@ When using ``reco`` to simulate, build and deploy your programs, you will work w
 * ``projects`` displays a list of all active projects for your account
 * ``set-project`` sets a project to use for the program code you're currently working on
 
-.. image::  ProjectsStructure.png
+.. image::  images/ProjectsStructureNew.png
 
 .. _architecture:
 
 System architecture
 --------------------
-The image below describes how Reconfigure.io works. All coding is done locally in Go and you can develop and debug your projects in your Go environment before using our tools to simulate, build and deploy to FPGAs in the cloud. F1 instances include a host CPU with an FPGA connected via PCIe.
+Our software defined chips are based on FPGA instances, each of which is made up of an FPGA, dedicated RAM (we call this shared memory) and a host CPU. For on-prem customers, other high performance IO will be available, 2x 10 gigabit ethernet is standard.
 
-.. image:: ReconfigureArchAWS.png
+Data can be shared between the FPGA chip and host CPU via shared memory; the host can allocate blocks in shared memory and pass pointers to the FPGA, and the FPGA can read and write to and from those pointers. The FPGA also has on-chip block RAM, which it can allocate directly.
 
-Each FPGA card has 64 GiB dedicated memory (DRAM) which can be used to share data between the CPU and FPGA. The host CPU can allocate blocks in shared memory and pass pointers to the FPGA, and the FPGA can read and write to and from those pointers. The FPGA also has on-chip block RAM, which it can allocate directly.
-
-.. image:: ReconfigureFPGAarchitecture.png
+.. image:: images/instanceArchitecture.png
+   :align: center
+   :width: 70%
 
 CPU vs FPGA
 ^^^^^^^^^^^^
-The Go language is designed for writing concurrent programs, which you can read more about |why_go|. Go is normally used to write for traditional CPUs, where the concurrency in programs using goroutines, channels and select statements can take advantage of multi-core CPUs to perform several operations in parallel. But, when we optimize your Go for an FPGA, this potential for parallel processing is drastically increased.
+The Go language is designed for writing concurrent programs, which you can read more about |why_go|. Go is normally used to write for traditional CPUs, where concurrent programming can take advantage of multi-core CPUs to perform several operations in parallel. But, when we optimize your Go for an FPGA, this potential for parallel processing is drastically increased.
 
-For example, a goroutine running on a CPU is a tiny light-weight thread running within a bigger thread, with just one big thread per CPU core. There is potential for parallelism here, but only one operation can happen per core per unit of time. On an FPGA, one go routine translates to a small chunk of circuit, continuously running, so you could create a million of them and they can all do their work all the time.
+For example, a goroutine running on a CPU is a tiny light-weight thread running within a bigger thread, with just one big thread per CPU core. There is potential for parallelism here, but only one operation can happen per core per unit of time. On an FPGA, one goroutine translates to a small chunk of circuitry, running continuously, so you *could* create a million of them, and they could all do their work, all the time.
 
 A note about memory access – AXI / SMI
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Our current standard way of having the FPGA talk to shared memory is using the AXI protocol (find more on this in our :ref:`third tutorial <structure>`). AXI is designed to work with multicore CPUs, with several cores accessing memory at the same time. But for us, as we're using Go for FPGAs, the level of parallelism is so much higher. We're dealing with many, potentially thousands of go routines trying to access memory at the same time. Managing this with AXI is not straightforward.
+Our current standard way of having the FPGA talk to shared memory is using the AXI protocol (find more on this in our :ref:`third tutorial <structure>`). AXI is designed to work with multicore CPUs, with several cores accessing memory at the same time. But for us, as we're using Go for FPGAs, the level of parallelism is so much higher. We're dealing with many, potentially thousands of go routines, trying to access memory at the same time. Managing this with AXI is not straightforward.
 
 **Our engineers have developed a new protocol – SMI (Scalable Multiprotocol Infrastructure) – which addresses the issue of fine-grained parallelism, as well as simplifying code and reducing boilerplate for our users.** It's available for testing from Reconfigure.io v0.17.0 onwards and will be fully rolled out as our standard method for accessing memory very soon.
 
@@ -126,7 +160,7 @@ You will notice that with SMI we have introduced a ``reco.yml`` file per program
 
 Go compilation stages
 ^^^^^^^^^^^^^^^^^^^^^
-Your Reconfigure.io projects will be coded using :ref:`our subset <gosupport>` of the standard Go language, using our :ref:`coding style-guide <style>` to help get the most out of the destination hardware.
+Your Reconfigure.io applications will be coded using :ref:`our subset <gosupport>` of the standard Go language, and you can use our :ref:`coding style-guide <style>` to get the most out of the destination hardware.
 
 We take your code through several stages to get it ready to program an FPGA:
 
@@ -167,3 +201,7 @@ We take your code through several stages to get it ready to program an FPGA:
 .. |forum| raw:: html
 
    <a href="https://community.reconfigure.io/c/optimization-support" target="_blank">forum</a>
+
+.. |sign up| raw:: html
+
+   <a href="https://reconfigure.io/sign-up" target="_blank">sign up</a>
