@@ -42,13 +42,14 @@ Each node has **ports** for connectivity. Input ports are at the top and output 
 
 Node types
 ^^^^^^^^^^
+.. |image1| image:: images/operator.png
+   :width: 100%
+   :align: center
+
 +----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | |image1| | **Operator** – The most fundamental node type is the operator. As you might expect, it's responsible for operating on data. Anywhere you would use an arithmetic or logical operator in Go, you can expect it to be represented as an operator node in Teak. |
 +----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-.. |image1| image:: images/operator.png
-   :width: 100%
-   :align: center
 
 **Latch** – A latch is inserted in the Teak model to break up operations into manageable chunks for the FPGA circuitry. A latch introduces a 1 clock delay into the system. Latches hold data, allowing operators to pass data between each other.
 
