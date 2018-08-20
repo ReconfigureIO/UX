@@ -1,7 +1,7 @@
 .. _gosupport:
 
-Go support
-==========
+Go support – FPGA side
+======================
 This is a guide to the features of Go we currently support for using in your FPGA code – the sections match up to the |spec| so you can refer to that if you need more information on a feature. When new features are included they will be highlighted in our :ref:`release_notes`.
 
 **We do not currently support the use of any non-FPGA specific packages in your FPGA code, which includes standard Go packages. This is because they will include elements of the Go language that we do not support.** To see a list of the FPGA-targeted packages we provide, please see :ref:`packages`. We have several customers working on their own open source packages for use with our service. If you fancy the challenge of making one too, we'll be very happy to promote it to our users.
@@ -72,7 +72,7 @@ Types
 +-------------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | map         | **unsupported**     |                                                                                                                                                                                                                               |
 +-------------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| channel     | **partial support** | Channels must be statically declared. They cannot be placed in an array or struct. They cannot be reassigned. We recommend channels should be made with a capacity of at least ``1`` for maximum performance.                 |
+| channel     | **partial support** | Channels must be statically declared, they cannot be placed in an array or struct, and they cannot be reassigned. We recommend channels should be made with a capacity of at least ``1`` for maximum performance.             |
 +-------------+---------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Properties of types and values
@@ -172,7 +172,7 @@ Expressions
 +-------------------------------------+---------------------+----------------------------------------------------------------------------------------------------------------------------+
 | conversions                         | **supported**       |                                                                                                                            |
 +-------------------------------------+---------------------+----------------------------------------------------------------------------------------------------------------------------+
-| constant expressions                | **partial support** | builtin calls are currently not supported.                                                                                 |
+| constant expressions                | **partial support** | Builtin calls are currently not supported.                                                                                 |
 +-------------------------------------+---------------------+----------------------------------------------------------------------------------------------------------------------------+
 | order of evaluation                 | **unsupported**     |                                                                                                                            |
 +-------------------------------------+---------------------+----------------------------------------------------------------------------------------------------------------------------+
@@ -208,7 +208,7 @@ Statements
 +-------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | select      | **partial support** | Only receives can happen on a select. For concurrency operations to be preserved, only one select can try to access a channel at a time.|
 +-------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| return      | supported**         |                                                                                                                                         |
+| return      | **supported**       |                                                                                                                                         |
 +-------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------+
 | break       | **unsupported**     |                                                                                                                                         |
 +-------------+---------------------+-----------------------------------------------------------------------------------------------------------------------------------------+

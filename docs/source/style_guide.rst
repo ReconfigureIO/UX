@@ -3,24 +3,31 @@
 Coding Style Guide
 ==================
 
-This style guide sets out some best practices for writing programs to be used with Reconfigure.io.
+This style guide sets out some best practices for writing applications for Reconfigure.io.
 
 Template
 --------
-We provide a stripped down version of our project code to help you get started creating your own projects. You can find the template included in the examples you downloaded during our :ref:`first tutorial <examples>`. They're located here: ``examples/template``. For more information on using the template, see :ref:`structure`.
+We provide a stripped down version of a project to help you get started creating your own programs. You can find templates included in the tutorial materials you downloaded during our :ref:`second tutorial <tutorials>`, they're located here: ``tutorials/template`` and ``tutorials/template-SMI``. For more information on using the templates, see :ref:`structure`. There are currently two versions, one using the AXI memory interface, and one using the newer :ref:`SMI protocol <smi>` for communicating with shared memory.
 
 FPGA interface
 -------------------
-Our FPGA interface documentation details the Go packages required to communicate between the host CPU and FPGA, and for using the shared memory available on the FPGA card. The term 'kernel' is used to refer to the code running on the FPGA:
+Our FPGA interface documentation details the Go packages required to communicate between the host CPU and the FPGA, and for using the shared memory available on the FPGA card. The term 'kernel' is used to refer to the code running on the FPGA:
 
 * |FPGA|
 
 .. _organization:
 
-Code Organization
+Code organization
 -----------------
 
 Splitting code between a CPU and FPGA usually involves a separation that is different to what you would expect when using just a CPU. A CPU is flexible and good at sequential things, whereas the FPGA is good for static things that lend themselves to parallelism. The best separation will depend on your application, but dividing based upon the relative strengths of CPUs and FPGAs is generally a great place to start. For instance, for data processing applications, a natural separation would be to do data preprocessing and postprocessing on the CPU, while having the FPGA do a calculation intensive loop.
+
+The host CPU
+------------
+
+Data types
+^^^^^^^^^^
+On the host CPU, ``int`` and ``uint`` are 64 bit, but on the FPGA they are both 32 bit. When using ``int`` and ``uint`` as the parameters to the FPGA, you can get unexpected results so we suggest using ``int32`` and ``uint32`` specifically for FPGA parameters in order to avoid this issue.
 
 The FPGA
 -------
@@ -127,6 +134,8 @@ The main limitations for this feature are:
 * The goroutine must not have any internal state.
 * No control flow structures can be used within the loop.
 * The input and output channels must have a length of at least ``1`` in order to avoid rendezvous synchronisation with the producers and consumers.
+
+.. _datasize:
 
 Data size considerations
 ^^^^^^^^^^^^^^^^^^^^^^^^
