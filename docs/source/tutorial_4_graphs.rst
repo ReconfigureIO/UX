@@ -48,6 +48,7 @@ Node types
 
 |image1|
 |image2|
+|image3|
 
 +----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | |image1| | **Operator** – The most fundamental node type is the operator. As you might expect, it's responsible for operating on data. Anywhere you would use an arithmetic or logical operator in Go, you can expect it to be represented as an operator node in Teak. |
@@ -61,9 +62,9 @@ Node types
 
 **Fork** – A fork indicates a split in the circuit. Forks are important for concurrency, because they can pass data to two or more nodes at the same time.
 
-.. figure:: Fork.png
+.. |image3| image:: Fork.png
    :align: center
-   :width: 40%
+   :width: 100%
 
 **Join** – A join shows where data/control paths are synchronized and concatenated.
 
