@@ -74,7 +74,21 @@ If you receive a timeout error this is an indication that there is an issue with
 
 Proxies
 ---------
-If you are running `reco` from behind a proxy you can set the `HTTP_PROXY` environment variable to the URL of your proxy e.g. `http://user:password@hostname:1234`
+If you are running ``reco`` from behind a proxy you can set the ```HTTP_PROXY``` environment variable to the URL of your proxy e.g. `http://user:password@hostname:1234`. For guidance on doing this choose your operating system below, substituting your proxy URL for ``<your_proxy_URL>``:
+
+MacOSX/Linux
+^^^^^^^^^^^^
+.. code-block:: shell
+
+   export HTTP_PROXY=<your_proxy_URL>
+
+Windows 10
+^^^^^^^^^^
+.. code-block:: shell
+
+   $env:HTTP_PROXY="<my_proxy_URL>"
+
+
 
 
 .. Code examples written before vendor support
