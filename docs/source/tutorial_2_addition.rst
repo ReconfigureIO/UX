@@ -32,6 +32,8 @@ Let's break this process down. There are just two operands involved so the host 
 
    Addition flow diagram
 
+.. _tutorials:
+
 Fork our tutorials repository
 ---------------------------------
 We're now going to start using our tutorial materials repo, which contains an incomplete example for you to work on. So, as we're going to be making changes to the code, let's fork the repo. You'll find it |tutorials|.
