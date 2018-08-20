@@ -2,7 +2,7 @@
 
 Tutorial 1 – Setup and workflow
 ===============================================
-.. admonition:: Make sure you're up to date.
+.. topic:: Make sure you're up to date.
 
     Run ``reco version`` to check your installation. Our current version is |reco_version|. If you need to update run ``reco update`` or see our :ref:`install/update instructions <install>`.
 
