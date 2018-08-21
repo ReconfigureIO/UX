@@ -1,5 +1,8 @@
+Optimizing your projects
+=========================
+
 Build reports
-=============
+-------------
 Once a build image is complete you can access a build report to find out how much of the FPGA's available resources your design is using. In this section we'll cover the following:
 
 * How to view reports
@@ -8,7 +11,7 @@ Once a build image is complete you can access a build report to find out how muc
 * Pointers to using these reports for code optimization
 
 View a build reports
----------------------
+^^^^^^^^^^^^^^^^^^^^
 Build reports are generated when a build image completes successfully. The information included in build reports is broken down into the various elements that make up the FPGA: Configurable logic blocks (LUTs and Registers), DSP blocks, and RAM.
 
 To view a build report, find the build ID you're interested in, either by checking your recent activity on your |Dashboard| or by viewing the build list for your project: prom the project location on your local machine enter::
@@ -20,7 +23,7 @@ Then to view a report, copy a build ID and run::
   reco build report <build_ID>
 
 Report structure
------------------
+^^^^^^^^^^^^^^^^
 Here's an example report from our Histogram-array example:
 
 .. code-block::
@@ -112,9 +115,7 @@ Here's an example report from our Histogram-array example:
 We advise optimizing your designs for low overall utilization. Keeping your designs compact meant they build faster, and there's more scope to scale them up in future. When thinking about optimizing in this way, the **Weighted Average** score at the bottom of the list is the most useful at first glance. You can see this design is small, which you would expect as it's simple, and is using up only 0.44% of the FPGA's available resources.
 
 FPGA structure
---------------
-
-So, t
+^^^^^^^^^^^^^^
 
 
 .. |Dashboard| :: raw html

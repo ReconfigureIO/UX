@@ -13,6 +13,7 @@ Welcome to Reconfigure.io's documentation!
    welcome
    overview
    getting_started
+   optimize
    tutorial_1_hist_parallel
    tutorial_2_addition
    tutorial_3_structure_comms
