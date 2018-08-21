@@ -27,7 +27,8 @@ Report structure
 Here's an example report from our Histogram-array example:
 
 .. code-block::
-   :highlight: 76, 77, 78, 79, 80
+    :linenos:
+    :emphasize-lines: 76, 77, 78, 79, 80
 
       Build Report: {
         "partName": "xcvu9p-flgb2104-2-i",
@@ -118,6 +119,6 @@ FPGA structure
 ^^^^^^^^^^^^^^
 
 
-.. |Dashboard| :: raw html
+.. |Dashboard| raw:: html
 
    <a href="https://app.reconfigure.io/dashboard" target="_blank">dashboard</a>
