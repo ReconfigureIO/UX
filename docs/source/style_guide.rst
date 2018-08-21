@@ -3,15 +3,15 @@
 Coding Style Guide
 ==================
 
-This style guide sets out some best practices for writing programs to be used with Reconfigure.io.
+This style guide sets out some best practices for writing applications for Reconfigure.io.
 
 Template
 --------
-We provide a stripped down version of our project code to help you get started creating your own projects. You can find the template included in the examples you downloaded during our :ref:`first tutorial <examples>`. They're located here: ``examples/template``. For more information on using the template, see :ref:`structure`.
+We provide a stripped down version of a project to help you get started creating your own programs. You can find templates included in the tutorial materials you downloaded during our :ref:`second tutorial <tutorials>`, they're located here: ``tutorials/template`` and ``tutorials/template-SMI``. For more information on using the templates, see :ref:`structure`. There are currently two versions, one using the AXI memory interface, and one using the newer :ref:`SMI protocol <smi>` for communicating with shared memory.
 
 FPGA interface
 -------------------
-Our FPGA interface documentation details the Go packages required to communicate between the host CPU and FPGA, and for using the shared memory available on the FPGA card. The term 'kernel' is used to refer to the code running on the FPGA:
+Our FPGA interface documentation details the Go packages required to communicate between the host CPU and the FPGA, and for using the shared memory available on the FPGA card. The term 'kernel' is used to refer to the code running on the FPGA:
 
 * |FPGA|
 
