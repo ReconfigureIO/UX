@@ -2,9 +2,9 @@
 
 Tutorial 3 – Structure and Communication
 =========================================
-.. sidebar:: Make sure you're up to date.
+.. sidebar:: Keeping up-to-date...
 
-    Run ``reco update`` to check your installation of our command line tool, reco. The current version is |reco_version|.
+    Run ``reco update`` to check which version of our command line tool you have installed. Current version: |reco_version|.
 
 In this tutorial we're going to cover structuring your programs and writing effective Go code for FPGAs. We'll look at our template, which is available for you to use as the basis for new programs, and use it to complete a couple of examples. Along the way we'll learn a bit more about the shared memory available on the FPGA card. **There are some elements that need to be present in your code to keep our compiler happy, and there are some areas where you're free to move and process data however you want. Also, we're not just dealing with an FPGA in isolation, Reconfigure.io programs include code for a host CPU as well as the FPGA, so you need to consider how best to split up the work between the two, and how to pass data around effectively, for more on this see our** :ref:`style guide <organization>`.
 

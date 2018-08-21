@@ -2,9 +2,9 @@
 
 Tutorial 2 – Filling in the Gaps
 ================================================
-.. sidebar:: Make sure you're up to date.
+.. sidebar:: Keeping up-to-date...
 
-    Run ``reco update`` to check your installation of our command line tool, reco. The current version is |reco_version|.
+    Run ``reco update`` to check which version of our command line tool you have installed. Current version: |reco_version|.
 
 We are going to look at pretty much the simplest calculation possible – adding two numbers together. First, we will look at the problem, discuss how to design the program, and have a go at filling in the gaps in some incompete code. **The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.**
 

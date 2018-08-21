@@ -2,9 +2,9 @@
 
 Tutorial 4 – Using Graphs for Optimization
 ================================================
-.. sidebar:: Make sure you're up to date.
+.. sidebar:: Keeping up-to-date...
 
-    Run ``reco update`` to check your installation of our command line tool, reco. The current version is |reco_version|.
+    Run ``reco update`` to check which version of our command line tool you have installed. Current version: |reco_version|.
 
 This tutorial is all about optimizing your code by looking at the flow of data. We do this by generating and analyzing graphs. When you start creating your own programs you'll probably want to start introducing more concurrency to make better use of the parallel processing capabilities of the FPGA. **The use of dataflow graphs for code optimization is an experimental feature. It’s quite a complex process but gives an interesting insight into how Reconfigure.io works. We're currently working on automating this optimization stage, at which point, graph generation will no longer be part of our workflow.**
 
