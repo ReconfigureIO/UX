@@ -22,11 +22,11 @@ This tutorial assumes you have already run through our first tutorial: :ref:`dem
 
 What's the problem?
 -------------------
-We want the FPGA to take two integers, 1 and 2, add them together and send the result back to us. As you saw in our first example, there's a host CPU which works with the FPGA, with communication happening across a control interface. So, the first thing we need to do is decide what each element needs to do, and when. Then we can write some Go code to tell the host CPU how to communicate with the FPGA, as well as some Go code to program the FPGA to carry out the required tasks.
+We want the FPGA to take two integers, 1 and 2, add them together and send the result back to us. As you saw in our first example, we're programming an FPGA instance, which is made up of an FPGA card, which includes some shared memory, connected to a host CPU. So, the first thing we need to do is decide what works the FPGA and the host need to do. Then, we can write some Go code to tell the host CPU how to communicate with the FPGA, as well as some Go code to program the FPGA to carry out the required tasks.
 
-Let's break this process down. There are just two operands involved so the host can pass them straight to the FPGA along with an address at which to store the result. Then, the FPGA can add the numbers together and write the result back. The host can read the result and print it for us to see. A flow diagram could look like this:
+Let's break this process down. There are just two operands involved, so the host can pass them straight to the FPGA along with an address at which to store the result. Then, the FPGA can add the operands together and write the result back to the specified address. The host can read the result and print it for us to see. A flow diagram could look like this:
 
-.. figure:: AdditionDiagram.png
+.. figure:: images/AdditionDiagram.png
    :width: 90%
    :align: center
 
@@ -36,7 +36,7 @@ Let's break this process down. There are just two operands involved so the host 
 
 Fork our tutorials repository
 ---------------------------------
-We're now going to start using our tutorial materials repo, which contains an incomplete example for you to work on. So, as we're going to be making changes to the code, let's fork the repo. You'll find it |tutorials|.
+We're going to start using our tutorial materials repo, which contains an incomplete example for you to work on. So, as we're going to be making changes to the code, let's fork the repo. You'll find it |tutorials|.
 
 First, click the **fork** button towards the top right of the screen.
 
@@ -93,11 +93,11 @@ Here's what needs completing:
 
 * Pass operands and results pointer to the FPGA (**lines 28, 30 and 32**)
 * Print the result from the FPGA (**line 48**)
-* Create an ``if`` statement to exit if the result from the FPGA does not equal 3 (**lines 51-53**)
+* Create an ``if`` statement to exit if the result from the FPGA does not equal what we expect (**lines 51-53**)
 
 Once you have completed this, move on to the incomplete code for the FPGA, located at ``your-github-username/examples/addition-gaps/main.go``, and complete the following sections:
 
-* Specify the operands and result pointer (**lines 24-26**)
+* Specify the operands and result pointer from the host (**lines 24-26**)
 * Perform the addition (**line 40**)
 
 Once you've made your changes you can stage and commit them to your ``fill-gaps`` branch::
@@ -131,7 +131,7 @@ Now the code is complete and we know it conforms to the Go language, let's check
   $ reco check
   $GOPATH/github.com/your-github-username/tutorials/addition-gaps/main.go checked successfully
 
-Next, once you have dealt with any errors, use our hardware simulator to test how your code will run on the FPGA. First, create a project to work within and set it to be active::
+Next, once you have dealt with any errors that might have come up, use our hardware simulator to test how your code will run on the FPGA. First, create a project to work within and set it to be active::
 
   reco project create addition
   reco project set addition
@@ -246,9 +246,8 @@ And here's the FPGA code:
     //  Import the entire framework for interracting with SDAccel from Go (including bundled verilog)
     _ "github.com/ReconfigureIO/sdaccel"
 
-    // Use the new AXI protocol package for interracting with memory
-    aximemory "github.com/ReconfigureIO/sdaccel/axi/memory"
-    axiprotocol "github.com/ReconfigureIO/sdaccel/axi/protocol"
+    // Use the SMI protocol package
+	  "github.com/ReconfigureIO/sdaccel/smi"
     )
 
     // function to add two uint32s
@@ -267,23 +266,16 @@ And here's the FPGA code:
     b uint32,
     addr uintptr,
 
-    // Set up channels for interacting with the shared memory
-    memReadAddr chan<- axiprotocol.Addr,
-    memReadData <-chan axiprotocol.ReadData,
-
-    memWriteAddr chan<- axiprotocol.Addr,
-    memWriteData chan<- axiprotocol.WriteData,
-    memWriteResp <-chan axiprotocol.WriteResp) {
-
-    // Since we're not reading anything from memory, disable those reads
-    go axiprotocol.ReadDisable(memReadAddr, memReadData)
+    // Set up channel to write result to shared memory
+  	writeReq chan<- smi.Flit64,
+  	writeResp <-chan smi.Flit64) {
 
     // Add the two input integers together
     val := Add(a, b)
 
     // Write the result of the addition to the shared memory address provided by the host
-    aximemory.WriteUInt32(
-      memWriteAddr, memWriteData, memWriteResp, false, addr, val)
+    smi.WriteUInt32(
+		writeReq, writeResp, addr, smi.DefaultOptions, val)
     }
 
 What's next?

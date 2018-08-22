@@ -99,7 +99,7 @@ Our tooling requires that you work within a project, so, before we start anythin
 
 You can now simulate the program using the ``reco sim`` command. This is a really useful stage in our workflow as it allows you to see how the program will run on the FPGA before the more time-intensive build step.
 
-.. sidebar:: Getting in the queue
+.. admonition:: Getting in the queue
 
     Simulation should normally only take around 5 minutes but could be up to 30 minutes depending on what else is in the queue.
 
@@ -234,13 +234,13 @@ There are several challenges that come with concurrent programming. Firstly, if 
 * **Channels** are directional constructs which allow you to introduce communication and synchronization by sending and receiving data to and from goroutines.
 * **Select** statements allow you to control when concurrent operations can run by switching between channels. When we're thinking about a parallel system, select statements effectively give you control over when processes need to run sequentially, rather than concurrently, to meet your design requirements.
 
-For a more in-depth look, see our |blog post| of why we use Go.
+For a more in-depth look, see our |blog post| on why we use Go.
 
 Parallelizing the histogram
 ----------------------------
 We can use the histogram as an example of how a sequential design can be changed to take advantage of the parallel architecture provided by the FPGA. Histogram generation done sequentially, rather than in parallel, could work as follows:
 
-.. figure:: HistogramSequential.png
+.. figure:: images/HistogramSequential.png
   :align: center
   :width: 80%
 
@@ -248,7 +248,7 @@ We can use the histogram as an example of how a sequential design can be changed
 
 And a pipeline diagram could look like this:
 
-.. figure:: Hist_Sequential_pipeline.png
+.. figure:: images/Hist_Sequential_pipeline.png
   :width: 80%
   :align: center
 
@@ -258,9 +258,9 @@ By far the slowest part of this design is reading from and writing to memory. So
 
 We can read the sample data from the shared memory using a read burst, then place it into a channel from where it can be sorted and placed into an array. The array data can then be easily loaded onto another channel and then written back to shared memory using a write burst. Here's a pipeline diagram for this scenario:
 
-.. figure:: Hist_Array_Pipeline.png
-    :width: 80%
-    :align: center
+.. figure:: images/Hist_Array_Pipeline.png
+  :width: 80%
+  :align: center
 
   Array histogram pipeline diagram
 
@@ -268,9 +268,9 @@ Quite a significant performance increase!
 
 Next, let's look at a flow diagram for this parallelized histogram. You can see where the concurrent parts clearly on the FPGA side: the sample data is read and put into a channel, and at the same time the channel data is shifted and sorted into bins and held in an array. Then, the array data is placed into another channel, and at the same time this channel data is written to the shared memory so the host CPU can access it.
 
-.. figure:: HistogramArray.png
-    :align: center
-    :width: 90%
+.. figure:: images/HistogramArray.png
+  :align: center
+  :width: 90%
 
   Parallel histogram flow diagram
 
@@ -395,7 +395,6 @@ Now the histogram array is complete, the data is put into a channel so it can be
      // Write the results to shared memory
      smi.WriteBurstUInt32(
        writeReq, writeResp, outputData, smi.DefaultOptions, 512, data)
-  }
 
 **Now we're back to the host code** to bring the data back from the FPGA::
 
@@ -403,28 +402,28 @@ Now the histogram array is complete, the data is put into a channel so it can be
      err := binary.Read(outputBuff.Reader(), binary.LittleEndian, &output)
      if err != nil {
        log.Fatal("binary.Read failed:", err)
- }
+    }
 
 Next, a test is run to check that the returned data matches what is expected before the histogram data is printed so you can see the results::
 
-     // Calculate the same values locally to check the FPGA got it right
-     var expected [HISTOGRAM_WIDTH]uint32
-     for _, val := range input {
-       expected[val>>(MAX_BIT_WIDTH-HISTOGRAM_BIT_WIDTH)] += 1
-     }
+    // Calculate the same values locally to check the FPGA got it right
+    var expected [HISTOGRAM_WIDTH]uint32
+    for _, val := range input {
+     expected[val>>(MAX_BIT_WIDTH-HISTOGRAM_BIT_WIDTH)] += 1
+    }
 
-     // Return an error if the local and FPGA calculations do not give the same result
-     if !reflect.DeepEqual(expected, output) {
-       log.Fatalf("%v != %v\n", output, expected)
-     }
+    // Return an error if the local and FPGA calculations do not give the same result
+    if !reflect.DeepEqual(expected, output) {
+     log.Fatalf("%v != %v\n", output, expected)
+    }
 
-     log.Println()
-     log.Printf("We programmed the FPGA to sort 20 integers into bins, and these are the results we got: \n")
+    log.Println()
+    log.Printf("We programmed the FPGA to sort 20 integers into bins, and these are the results we got: \n")
 
-     	// Print out each bin and coresponding value
-     	for i, val := range output {
-     		fmt.Printf("%d: %d\n", i<<(MAX_BIT_WIDTH-HISTOGRAM_BIT_WIDTH), val)
-     }
+    // Print out each bin and coresponding value
+    for i, val := range output {
+    	fmt.Printf("%d: %d\n", i<<(MAX_BIT_WIDTH-HISTOGRAM_BIT_WIDTH), val)
+    }
 
 What's next
 -----------------------------
