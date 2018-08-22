@@ -56,7 +56,7 @@ Run a test
 ----------
 Now we've got everything set up and in the right place, we can check it's all working by running a test on the histogram-array code using ``go test``.
 
-If you look inside ``examples/histogram-array`` you'll see several elements: the two main.go files that make up the program, a test ``main_test.go`` for checking that the program operates correctly and a vendor folder containing our package for interacting with SDAccel using Go (The contents of the vendor folder aren't displayed in this tree diagram because there's a lot in there and we don't need to look at it now).
+If you look inside ``examples/histogram-array`` you'll see several elements: the two main.go files that make up the program, a ``reco.yml`` file, which contains basic memory interface settings including the number of ports required for this program between the FPGA and shared memory. There's also a test file – ``main_test.go`` – for checking that the program operates correctly, and a vendor folder containing our package for interacting with SDAccel using Go, including all the components that allow the host CPU to talk to the FPGA card, and the FPGA chip itself to talk the the shared memory situated on the FPGA card. The contents of the vendor folder, and the glide files associated with vendoring aren't displayed here because there's a lot in there and we don't need to look at it now:
 
 .. code-block:: shell
 
@@ -67,6 +67,7 @@ If you look inside ``examples/histogram-array`` you'll see several elements: the
     │       └── main.go
     ├── main.go
     ├── main_test.go
+    ├── reco.yml
     └── vendor
       └── ...
 
@@ -96,9 +97,9 @@ Our tooling requires that you work within a project, so, before we start anythin
   reco project create histogram
   reco project set histogram
 
-You can now simulate the program using the ``reco sim`` command. This is a really useful stage in our workflow as it allows you to see how the program will run on the FPGA before the more time-intensive build stage.
+You can now simulate the program using the ``reco sim`` command. This is a really useful stage in our workflow as it allows you to see how the program will run on the FPGA before the more time-intensive build step.
 
-.. admonition:: Getting in the queue
+.. sidebar:: Getting in the queue
 
     Simulation should normally only take around 5 minutes but could be up to 30 minutes depending on what else is in the queue.
 
@@ -151,13 +152,13 @@ Run ``reco sim run test-histogram`` and you should see:
 
 Build
 ------------------
-After running a successful simulation, the next step is to build the program. Running a build takes the program code and creates an image suitable for programming the FPGA/host instance. Our build process currently takes in the region of 4 hours. This is longer than we would like and is partly due to underlying silicon vender tools, which we are currently working to address. For this reason, we're not going to start a build now - we don't want you to have to wait that long to move on! So, we have a pre-built image ready for you to deploy in the next section.
+After running a successful simulation, the next step is to build the program. Running a build takes the program code and creates an image suitable for programming the FPGA instance. Our build process currently takes in the region of 4 hours. This is longer than we would like and is partly due to underlying silicon vender tools, which we are currently working to address. For this reason, we're not going to start a build now - we don't want you to have to wait that long to move on! So, we have a pre-built image ready for you to deploy in the next section.
 
-As we're running though the workflow, it's still worth looking at how we would run a build, so here goes: running ``reco build run`` will take the program code in your current location and compile, optimize and translate it into a deployable image:
+As we're running though the workflow, it's still worth looking at how we would run a build, so here goes: running ``reco build run`` will take the program code in your current location, and compile, optimize and translate it into a deployable image. It's a good idea to add a message too so you can recall what the build was for later:
 
 .. code-block:: shell
 
-     $ reco build run
+     $ reco build run - "something to help me recall what the build was for"
      INFO: [XOCC 60-629] Linking for hardware target
      INFO: [XOCC 60-423]   Target device: xilinx:adm-pcie-ku3:2ddr-xpr:3.2
      INFO: [XOCC 60-251]   Hardware accelerator integration...
@@ -172,23 +173,23 @@ The build ID referenced above will be a long string of characters, unique to eac
 .. code-block:: shell
 
    $ reco build list
-   id                                      started                 status
-   5434e2c1-cafc-44ca-ab2d-969a2f33895d    2016-12-08T21:08:00Z    PROCESS STARTING
-   0b15ec5c-f3ba-11e6-9f75-127f5e3af928    2016-12-08T17:01:00Z    COMPLETED
-   cdb339dd-8fb5-457c-9439-3f40267678e8    2016-12-08T18:31:58Z    COMPLETED WITH ERROR
+   id                                      started                 status                 Message
+   5434e2c1-cafc-44ca-ab2d-969a2f33895d    2016-12-08T21:08:00Z    PROCESS STARTING       something to help me recall what the build is for
+   0b15ec5c-f3ba-11e6-9f75-127f5e3af928    2016-12-08T17:01:00Z    COMPLETED              something to help me recall what the build is for
+   cdb339dd-8fb5-457c-9439-3f40267678e8    2016-12-08T18:31:58Z    COMPLETED WITH ERROR   something to help me recall what the build is for
 
 .. note::
-   When you come to work on your own projects, you might create many different builds for the same code. The build list's date-stamping and status reports help to identify the build you want to run.
+   When you come to work on your own projects, you might create many different builds for the same code. The build list's date-stamping, status and associated messages help to identify the build you want to run.
 
 Deploy an image
 -----------------
-Let's deploy our pre-built image for this example. Running a deployment will program the FPGA with the compiled and optimized Go and deploy the host Go to the host CPU. Please copy and paste the following command and run it in a terminal:
+Let's deploy our pre-built image for this example. Running a deployment will program the FPGA with the logic derived from the compiled and optimized Go code, and te specified host-side command will be run on the host CPU. Please copy and run the following command to start the deployment:
 
 .. subst-code-block::
 
     reco deploy run 31b835ac-5575-4ebc-b8c8-0007d629bd8f test-histogram
 
-Once the deployment is complete you should see the histogram readout:
+Once the deployment is complete you should see the histogram readout (we've cut it down here as it's quite long):
 
 .. code-block:: shell
 
@@ -219,7 +220,7 @@ Now let's look at how the histogram program was written and examine the code for
 
 To create a histogram we need to take some data samples and place each one into a bin – think of the bins as the histogram bars. Samples need to be placed into the correct bin, dependent on sample value and the ranges set for each bin. Bin ranges can be set in a convenient way so that huge numbers can be bit-shifted down and placed by just looking at their most significant bits – ``123`` rather than ``123,456``, for example.
 
-Because the FPGA hardware is inherently parallel, we have the option to perform many operations at the same time, massively speeding the process up. To take advantage of this we need to use Go's concurrency primitives to structure our code so it translates well onto the parallel hardware.
+Because the FPGA hardware is effectively a blank canvas, we have the option to perform many operations at the same time by configuring the FPGA into separate sections of circuitry for each of these processes that we want to run in parallel. This will massively speed up the throughput of our sample data. To take advantage of this we need to use Go's concurrency primitives to structure our code so it translates well onto the parallel hardware.
 
 Introducing parallelism
 -----------------------
@@ -233,7 +234,7 @@ There are several challenges that come with concurrent programming. Firstly, if 
 * **Channels** are directional constructs which allow you to introduce communication and synchronization by sending and receiving data to and from goroutines.
 * **Select** statements allow you to control when concurrent operations can run by switching between channels. When we're thinking about a parallel system, select statements effectively give you control over when processes need to run sequentially, rather than concurrently, to meet your design requirements.
 
-For a more in-depth look, see :ref:`concurrency`.
+For a more in-depth look, see our |blog post| of why we use Go.
 
 Parallelizing the histogram
 ----------------------------
@@ -258,18 +259,18 @@ By far the slowest part of this design is reading from and writing to memory. So
 We can read the sample data from the shared memory using a read burst, then place it into a channel from where it can be sorted and placed into an array. The array data can then be easily loaded onto another channel and then written back to shared memory using a write burst. Here's a pipeline diagram for this scenario:
 
 .. figure:: Hist_Array_Pipeline.png
-  :width: 80%
-  :align: center
+    :width: 80%
+    :align: center
 
   Array histogram pipeline diagram
 
 Quite a significant performance increase!
 
-Next let's look at a flow diagram for this parallelized histogram. You can see where the concurrent parts are – on the FPGA side, the sample data is read and put into a channel, and at the same time the channel data is shifted and sorted into bins and held in an array. Then the array data is placed into another channel, and at the same time this channel data is written to the shared memory so the host CPU can access it.
+Next, let's look at a flow diagram for this parallelized histogram. You can see where the concurrent parts clearly on the FPGA side: the sample data is read and put into a channel, and at the same time the channel data is shifted and sorted into bins and held in an array. Then, the array data is placed into another channel, and at the same time this channel data is written to the shared memory so the host CPU can access it.
 
 .. figure:: HistogramArray.png
-  :align: center
-  :width: 90%
+    :align: center
+    :width: 90%
 
   Parallel histogram flow diagram
 
@@ -280,13 +281,18 @@ Next let's look at a flow diagram for this parallelized histogram. You can see w
 
 Now, let's take a look at the code...
 -------------------------------------
-If you look at the example code, you'll see there are two main.go files in there: ``examples/histogram-array/main.go`` is the code for the FPGA and ``examples/histogram-array/cmd/main.go`` is for the host CPU. The CPU and FPGA work together to carry out the required tasks.
+If you look at the example code, you'll see there are two main.go files in there:
+
+* ``examples/histogram-array/main.go`` is the code for the FPGA
+* ``examples/histogram-array/cmd/main.go`` is for the host CPU
+
+The CPU and FPGA work together to carry out the required tasks.
 
 In this example, the host code allocates a block of memory, fills it with samples, then tells the FPGA where the samples are and where to put the results once it's finished its work.
 
 **First, open** ``examples/histogram-array/cmd/test-histogram/main.go`` **in an editor and we'll look at the key sections.**
 
-The first job for the host is to define the sample data that will be sent to the FPGA and used to generate the histogram. In this example an array of 20 unsigned 32 bit integers (uint32) is used, then the length of this sample data is calculated in bytes and a space in shared memory (DRAM on the same card as the FPGA) is allocated to store it::
+The first job for the host is to define the sample data that will be sent to the FPGA for generating the histogram. In this example, an array of 20 unsigned 32 bit integers (uint32) is used, then the length of this sample data is calculated in bytes and a space in shared memory (DRAM on the same card as the FPGA) is allocated to store it::
 
  // Define a new array for the data we'll send to the FPGA for processing
  input := make([]uint32, 20)
@@ -334,21 +340,20 @@ Next, we start the FPGA running::
 
 First, some local variables are set up to take the input and output buffers and expected input length, which were sent over from the host::
 
- // Three operands from the host. Pointers to the input data and the space for the result in shared
- // memory and the length of the input data so the FPGA knows what to expect.
- inputData uintptr,
- outputData uintptr,
- length uint32,
+   // Three operands from the host. Pointers to the input data and the space for the result in shared
+   // memory and the length of the input data so the FPGA knows what to expect.
+   inputData uintptr,
+   outputData uintptr,
+   length uint32,
 
-Next, we set up channels for data I/O between the FPGA and shared memory. This is done using the ARM AXI protocol which is the standard way for accessing raw memory::
+Next, we set up ports for data IO between the FPGA and shared memory. For this example we need one read port so the FPGA can read the sample data in from shared memory, and one write port so the FPGA can transfer it's results to shared memory. This is done using our |smi| protocol::
 
- // Set up channels for interacting with the shared memory
- memReadAddr chan<- axiprotocol.Addr,
- memReadData <-chan axiprotocol.ReadData,
+   // Set up ports for interacting with the shared memory
+    readReq chan<- smi.Flit64,
+  	readResp <-chan smi.Flit64,
 
- memWriteAddr chan<- axiprotocol.Addr,
- memWriteData chan<- axiprotocol.WriteData,
- memWriteResp <-chan axiprotocol.WriteResp) {
+  	writeReq chan<- smi.Flit64,
+  	writeResp <-chan smi.Flit64){
 
 An array is then declared to hold the histogram data as it is sorted::
 
@@ -357,67 +362,69 @@ An array is then declared to hold the histogram data as it is sorted::
 
 Next, the sample data is read from shared memory and put into a channel. In parallel with this, the data is sorted, one sample at a time – each sample is bit-shifted down and the relevant bin in the array is incremented. You will notice the read burst is in a goroutine so it can happen concurrently with the ``for`` loop below::
 
- // Read all of the input data into a channel
- inputChan := make(chan uint32)
- go aximemory.ReadBurstUInt32(
-   memReadAddr, memReadData, true, inputData, length, inputChan)
+    // Read all of the input data into a channel
+     inputChan := make(chan uint32)
+     go smi.ReadBurstUInt32(readReq, readResp, inputData, smi.DefaultOptions, length, inputChan)
 
- // A for loop to calculate the histogram data. The host provides the length we should read
- for ; length > 0; length-- {
-   // First we'll pull off each sample from the channel
-   sample := <-inputChan
+     // The host needs to provide the length we should read
+     for ; length > 0; length-- {
+       // First we'll pull of each sample from the channel
+       sample := <-inputChan
 
-   // And increment the value in the correct bin using the calculation function
-   histogram[CalculateIndex(sample)] += 1
- }
+       // And increment the value in the correct bin using the calculation function
+       histogram[CalculateIndex(sample)] += 1
+     }
 
 You will notice the function ``CalculateIndex`` is called to calculate the correct bin, the code for this is above the ``Top`` function::
 
- // function to calculate the bin for each sample
- func CalculateIndex(sample uint32) uint16 {
-   return uint16(sample) >> (16 - 9)
- }
+   // function to calculate the bin for each sample
+   func CalculateIndex(sample uint32) uint16 {
+     return uint16(sample) >> (16 - 9)
+   }
 
 Now the histogram array is complete, the data is put into a channel so it can be written back to shared memory for the host CPU to access. Again, a goroutine is used to send the data to the output channel so it can happen concurrently with the data being taken from the channel and written to shared memory ::
 
- // Write the results to a new channel
- data := make(chan uint32)
- go func() {
-   for i := 0; i < 512; i++ {
-     data <- histogram[i]
-   }
- }()
+    // Write the results to a new channel
+     data := make(chan uint32)
+     go func() {
+       for i := 0; i < 512; i++ {
+         data <- histogram[i]
+       }
+     }()
 
- // Write the results to shared memory
- aximemory.WriteBurstUInt32(
-   memWriteAddr, memWriteData, memWriteResp, true, outputData, 512, data)
- }
+     // Write the results to shared memory
+     smi.WriteBurstUInt32(
+       writeReq, writeResp, outputData, smi.DefaultOptions, 512, data)
+  }
 
 **Now we're back to the host code** to bring the data back from the FPGA::
 
- // Read the result from shared memory. If it is zero return an error
- err := binary.Read(outputBuff.Reader(), binary.LittleEndian, &output)
- if err != nil {
-   log.Fatal("binary.Read failed:", err)
+    // Read the result from shared memory. If it is zero return an error
+     err := binary.Read(outputBuff.Reader(), binary.LittleEndian, &output)
+     if err != nil {
+       log.Fatal("binary.Read failed:", err)
  }
 
 Next, a test is run to check that the returned data matches what is expected before the histogram data is printed so you can see the results::
 
- // Calculate the same values locally to check the FPGA got it right
- var expected [HISTOGRAM_WIDTH]uint32
- for _, val := range input {
-   expected[val>>(MAX_BIT_WIDTH-HISTOGRAM_BIT_WIDTH)] += 1
- }
+     // Calculate the same values locally to check the FPGA got it right
+     var expected [HISTOGRAM_WIDTH]uint32
+     for _, val := range input {
+       expected[val>>(MAX_BIT_WIDTH-HISTOGRAM_BIT_WIDTH)] += 1
+     }
 
- // Return an error if the local and FPGA calculations do not give the same result
- if !reflect.DeepEqual(expected, output) {
-   log.Fatalf("%v != %v\n", output, expected)
- }
+     // Return an error if the local and FPGA calculations do not give the same result
+     if !reflect.DeepEqual(expected, output) {
+       log.Fatalf("%v != %v\n", output, expected)
+     }
 
- // Print out each bin and coresponding value
- for i, val := range output {
-   fmt.Printf("%d: %d\n", i<<(MAX_BIT_WIDTH-HISTOGRAM_BIT_WIDTH), val)
- }
+     log.Println()
+     log.Printf("We programmed the FPGA to sort 20 integers into bins, and these are the results we got: \n")
+
+     	// Print out each bin and coresponding value
+     	for i, val := range output {
+     		fmt.Printf("%d: %d\n", i<<(MAX_BIT_WIDTH-HISTOGRAM_BIT_WIDTH), val)
+     }
 
 What's next
 -----------------------------
@@ -430,3 +437,11 @@ So, we've deployed some code to an FPGA, stepped through our workflow and code a
 .. |video| raw:: html
 
    <a href="https://youtu.be/yIHToaGI4_M" target="_blank">here</a>
+
+.. |blog post| raw:: html
+
+   <a href="https://medium.com/the-recon/why-do-we-use-go-511b34c2aed" target="_blank">blog post</a>
+
+.. |smi| raw:: html
+
+    <a href="https://godoc.org/github.com/ReconfigureIO/sdaccel/smi" target="_blank">SMI</a>
