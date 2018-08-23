@@ -240,7 +240,7 @@ Parallelizing the histogram
 ----------------------------
 We can use the histogram as an example of how a sequential design can be changed to take advantage of the parallel architecture provided by the FPGA. Histogram generation done sequentially, rather than in parallel, could work as follows:
 
-.. figure:: images/HistogramSequential.png
+.. figure:: images/HistogramSequential.svg
   :align: center
   :width: 80%
 
@@ -248,7 +248,7 @@ We can use the histogram as an example of how a sequential design can be changed
 
 And a pipeline diagram could look like this:
 
-.. figure:: images/Hist_Sequential_pipeline.png
+.. figure:: images/Hist_Sequential_pipeline.svg
   :width: 80%
   :align: center
 
@@ -258,7 +258,7 @@ By far the slowest part of this design is reading from and writing to memory. So
 
 We can read the sample data from the shared memory using a read burst, then place it into a channel from where it can be sorted and placed into an array. The array data can then be easily loaded onto another channel and then written back to shared memory using a write burst. Here's a pipeline diagram for this scenario:
 
-.. figure:: images/Hist_Array_Pipeline.png
+.. figure:: images/Hist_Array_Pipeline.svg
   :width: 80%
   :align: center
 
