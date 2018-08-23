@@ -137,16 +137,20 @@ Here's a template::
       writeReq, writeResp, <address_to_write_to>, smi.DefaultOptions, <data_to_write>)
   }
 
-
 Passing data around
 --------------------
-We've seen how Reconfigure.io projects consist of host and FPGA code and that data can be shared between them using shared memory situated on the FPGA card. Some arguments can be passed directly to the FPGA using its control register, this is most commonly used for passing memory addresses and data lengths. Small amounts of data can be passed this way but the usefulness of this is really limited – there isn't much space and it's slow to access. In most situations the CPU should place data into shared memory, and then pass a pointer to the location of that data to the FPGA.
+Reconfigure.io projects consist of host and FPGA code and that data can be shared between them using shared memory situated on the FPGA card. Some arguments can be passed directly to the FPGA via its control register: This is most useful for passing memory addresses and data lengths. Small amounts of data can be passed this way but the usefulness is really limited – there isn't much space and it's slow to access. In most situations the host should place data into shared memory, and then pass a pointer to the location of that data to the FPGA.
 
 Host CPU code
 ^^^^^^^^^^^^^
-So, lets look at how we actually do this. We can use a simple example of passing a small array from the host CPU to the FPGA and then have the FPGA send it back again. Starting with the code for the CPU, you can see from the template above that we need a |world| set up to interact with the FPGA, and we use this to let the CPU talk to the shared memory on the FPGA card. We can create spaces within shared memory for specific purposes, and send the addresses of these memory locations to the FPGA so it knows where to look for our data, and where to store its results.
+We can use a simple example of passing a small array from the host CPU to the FPGA and then have the FPGA send it back again. Starting with the code for the CPU, we need a |world| to interact with the FPGA and talk to the shared memory on the FPGA card. We can create space within shared memory for specific purposes and send pointers to these memory locations to the FPGA so it knows where to look for our data, and where to store its results.
 
-Sending some data from the host to the FPGA is a three step process – create space in memory for our data, store data in that memory location, and pass the memory location to the FPGA so it knows where to find it. For this simple back and forth example we need to create our test data first, so let's make an array of 10 incrementing values::
+Sending data from the host to the FPGA is a three step process:
+1. Create space in memory for our data
+2. Store data in that memory location
+3. Pass the memory location to the FPGA so it knows where to find it
+
+For this simple back and forth example we need to create our test data first, so let's make an array of 10 incrementing values, we'l call it ``input``::
 
       input := make([]uint32, 10)
 
@@ -154,7 +158,7 @@ Sending some data from the host to the FPGA is a three step process – create s
     		input[i] = uint32(i)
     	}
 
-Next, the code snippets for passing our test data to the FPGA look like this (remember these are out of context, please refer to the template above for the bigger picture):
+The code snippets for passing our test data to the FPGA look like this (remember these are out of context, please refer to the template above for the bigger picture):
 
 1. Create space in memory of the right size for our data, we need space to hold the data on its way to the FPGA and on its way back::
 
@@ -178,7 +182,12 @@ FPGA code
 ^^^^^^^^^^
 The FPGA interacts with shared memory using the |smi| protocol. In the template above you can see we set up SMI ports for interacting with shared memory within the ``Top`` function in the FPGA code.
 
-So, the FPGA getting hold of the array requires three steps – first, the FPGA must receive the memory location from the host, then create a variable for the data and use an |smi_read| to read the data into that variable within the on-chip block RAM. Here are the code snippets for these steps:
+There are three steps to the FPGA getting hold of the sample array:
+* Receive the memory location from the host
+* Create a variable for the data
+* Use an |smi read| to read the data into that variable (at which point it will be located within the on-chip block RAM)
+
+Here are the code snippets for these steps:
 
 1. Receive the memory locations and data size from the host (the ``0``, ``1`` and ``2`` in ``krnl.SetMemoryArg...`` are translated by our comiler to be the first, second and third inputs to the FPGA)::
 
@@ -211,7 +220,7 @@ We have just followed an array from the CPU to the FPGA and back again using sha
 
 Let's write some code
 ----------------------
-To explore these methods of passing data around further, let's use our template to write two very simple programs. First, we'll pass one integer to the FPGA from the host and tell the FPGA to multiply this integer by 2 and pass it back to the host. **As we're passing a single integer, the host can pass this straight to the FPGA's control register but the route back from the FPGA to the CPU is always via the shared memory**. As we have done in previous tutorials, lets first look at a flow diagram for this example:
+To explore these methods of passing data around further, let's use our template to write a very simple program to pass one integer to the FPGA from the host and tell the FPGA to multiply this integer by 2 and pass it back to the host. **As we're passing a single integer, the host can pass this straight to the FPGA's control register but the route back from the FPGA to the CPU is always via the shared memory**. As we have done in previous tutorials, lets first look at a flow diagram for this example:
 
 .. figure:: images/StructureDiagram1.png
     :width: 90%
@@ -394,7 +403,7 @@ In this tutorial we have looked at how to structure your code to work with Recon
 
 .. |world| raw:: html
 
-   <a href="http://godoc.reconfigure.io/v0.12.7/host/pkg/xcl/index.html#World" target="_blank">'world'</a>
+   <a href="http://godoc.reconfigure.io/v0.12.7/host/pkg/xcl/index.html#World" target="_blank">World</a>
 
 .. |smi| raw:: html
 
