@@ -11,6 +11,7 @@ This is a bugfix release focussed on enabling some in-house product tests.
 
 bugfixes
 ^^^^^^^^
+* If a vendored version of SDAccel is provided, this is now given priority over our host-side code.
 
 Reconfigure.io v0.17.5
 ======================
