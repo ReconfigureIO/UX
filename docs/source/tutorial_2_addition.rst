@@ -26,7 +26,7 @@ We want the FPGA to take two integers, 1 and 2, add them together and send the r
 
 Let's break this process down. There are just two operands involved, so the host can pass them straight to the FPGA along with an address at which to store the result. Then, the FPGA can add the operands together and write the result back to the specified address. The host can read the result and print it for us to see. A flow diagram could look like this:
 
-.. figure:: images/AdditionDiagram.png
+.. figure:: images/AdditionDiagram.svg
    :width: 90%
    :align: center
 
