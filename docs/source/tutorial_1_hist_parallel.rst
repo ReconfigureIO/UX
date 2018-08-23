@@ -268,7 +268,7 @@ Quite a significant performance increase!
 
 Next, let's look at a flow diagram for this parallelized histogram. You can see where the concurrent parts clearly on the FPGA side: the sample data is read and put into a channel, and at the same time the channel data is shifted and sorted into bins and held in an array. Then, the array data is placed into another channel, and at the same time this channel data is written to the shared memory so the host CPU can access it.
 
-.. figure:: images/HistogramArray.png
+.. figure:: images/HistogramArray.svg
   :align: center
   :width: 90%
 
