@@ -146,6 +146,7 @@ Host CPU code
 We can use a simple example of passing a small array from the host CPU to the FPGA and then have the FPGA send it back again. Starting with the code for the CPU, we need a |world| to interact with the FPGA and talk to the shared memory on the FPGA card. We can create space within shared memory for specific purposes and send pointers to these memory locations to the FPGA so it knows where to look for our data, and where to store its results.
 
 Sending data from the host to the FPGA is a three step process:
+
 1. Create space in memory for our data
 2. Store data in that memory location
 3. Pass the memory location to the FPGA so it knows where to find it
@@ -183,9 +184,10 @@ FPGA code
 The FPGA interacts with shared memory using the |smi| protocol. In the template above you can see we set up SMI ports for interacting with shared memory within the ``Top`` function in the FPGA code.
 
 There are three steps to the FPGA getting hold of the sample array:
-* Receive the memory location from the host
-* Create a variable for the data
-* Use an |smi read| to read the data into that variable (at which point it will be located within the on-chip block RAM)
+
+1. Receive the memory location from the host
+2. Create a variable for the data
+3. Use an |smi read| to read the data into that variable (at which point it will be located within the on-chip block RAM)
 
 Here are the code snippets for these steps:
 
@@ -432,3 +434,7 @@ In this tutorial we have looked at how to structure your code to work with Recon
 .. |smi write| raw:: html
 
     <a href="https://godoc.org/github.com/ReconfigureIO/sdaccel/smi#WriteUInt32" target="_blank">SMI write</a>
+
+.. |smi read| raw:: html
+
+   <a href="https://godoc.org/github.com/ReconfigureIO/sdaccel/smi#ReadUInt32" target="_blank">SMI read</a>
