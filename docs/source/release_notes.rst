@@ -11,7 +11,7 @@ This is a bugfix release focussed on enabling some in-house product tests.
 
 bugfixes
 ^^^^^^^^
-* If a vendored version of our `xcl <https://godoc.org/github.com/ReconfigureIO/sdaccel/xcl>`_ is provided, this is now given priority over our host-side code.
+* If a vendored version of our `xcl <https://godoc.org/github.com/ReconfigureIO/sdaccel/xcl>`_ library is provided, this is now given priority over our host-side code.
 * The default `xcl <https://godoc.org/github.com/ReconfigureIO/sdaccel/xcl>`_ library has been updated to include fixes for a segfault and to allow memory proceed to run while a kernel is running.
 
 Reconfigure.io v0.17.5
