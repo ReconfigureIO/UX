@@ -4,6 +4,14 @@
 Release Notes
 =============
 
+Reconfigure.io v0.17.6
+======================
+
+This is a bugfix release focussed on enabling some in-house product tests.
+
+bugfixes
+^^^^^^^^
+
 Reconfigure.io v0.17.5
 ======================
 
