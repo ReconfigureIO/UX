@@ -221,11 +221,11 @@ View a build reports
 ^^^^^^^^^^^^^^^^^^^^
 Build reports are generated when a build image completes successfully. The information included in build reports is broken down into the various elements that make up the FPGA: Configurable logic blocks (LUTs and Registers), DSP blocks, and RAM.
 
-To view a build report, find the build ID you're interested in, either by checking your recent activity on your |Dashboard| or by viewing the build list for your project: prom the project location on your local machine enter::
+To view a build report, find the build ID you're interested in, either by checking your recent activity on your |Dashboard| or by viewing the build list for your project: from the project location on your local machine enter::
 
   reco build list
 
-Then to view a report, copy a build ID and run::
+Then, to view a report, copy a build ID and run::
 
   reco build report <build_ID>
 
@@ -320,7 +320,9 @@ Here's an example report from our Histogram-array example:
     }
   }
 
-We advise optimizing your designs for low overall utilization. Keeping your designs compact means they build faster, and there's more scope to scale them up in future. When thinking about optimizing in this way, the **Weighted Average** score highlighted at the bottom of the report is the most useful at first glance. You can see this design is small, which you would expect as it's simple, and is using up only 0.44% of the FPGA's available resources.
+We advise optimizing your designs for low overall utilization. Keeping your designs compact means they build faster, and there's more scope to scale them up in future. When thinking about optimizing in this way, the **Weighted Average** score highlighted at the bottom of the report is the most useful at first glance. You can see this design is small, which you would expect as it's simple, and is using up only 0.44% of the FPGA's available resources. Viewing the weighted average across several design iterations is a good use of this feature.
+
+As an example of scaling, if you were using our |mapreduce|, you could use build reports to take a view on how far you could scale a design, whether you could double the number of mappers and reducers, for example.
 
 FPGA structure
 ^^^^^^^^^^^^^^
@@ -338,3 +340,7 @@ When looking at build reports for ideas on how to optimise your code, it's usefu
 .. |Dashboard| raw:: html
 
    <a href="https://app.reconfigure.io/dashboard" target="_blank">dashboard</a>
+
+.. |map reduce| raw:: html
+
+   <a href="https://medium.com/the-recon/scaling-up-your-reconfigure-io-applications-17f2dbc797fc" target="_blank">MapReduce framework</a>
