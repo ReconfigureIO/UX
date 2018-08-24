@@ -364,7 +364,7 @@ Once the compiler has run through the simulation, you should see the resulting a
 
 What have we done
 ------------------
-So, we've looked at how to structure your code to work with Reconfigure.io, and how to use our template as a basis for writing new programs. Also, we've seen how to pass arguments straight from the host to the FPGA using the control register, and pass data from the host to the FPGA via shared memory, and back again. Next, :ref:`tutorial 4 <graphstutorial>` shows you how to use dataflow graphs to optimize your FPGA code.
+So, we've looked at how to structure your code to work with Reconfigure.io, and how to use our template as a basis for writing new programs. Also, we've seen how to pass arguments straight from the host to the FPGA using the control register, and pass data from the host to the FPGA via shared memory, and back again. Next, :ref:`our optimization <optimize>` section shows you how to use dataflow graphs and build reports to optimize your FPGA code.
 
 .. |FPGA| raw:: html
 
