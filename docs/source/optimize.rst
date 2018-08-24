@@ -1,9 +1,9 @@
 .. _optimize:
 
-Optimizing your projects
-=========================
+Optimizing your projects ...
+============================
 
-Using dataflow graphs to optimize your code
+... using dataflow graphs
 -------------------------------------------
 We're going to look at how to optimize your code by analyzing dataflow graphs. When you start creating your own programs you'll probably want to start introducing more concurrency to make better use of the parallel processing capabilities of the FPGA. **Using dataflow graphs for code optimization is an experimental feature. It’s quite a complex process but gives an interesting insight into how Reconfigure.io works. We're currently working on automating this optimization stage, at which point, graph generation will no longer be part of our workflow.** Here's what we'll do:
 
@@ -209,8 +209,8 @@ We have a section on our |support| where you can post your own generated graphs 
 
    <a href="https://community.reconfigure.io/c/optimization-support" target="_blank">forum</a>
 
-Build reports
--------------
+... using build reports
+-----------------------
 Once a build image is complete you can access a build report to find out how much of the FPGA's available resources your design is using. In this section we'll cover the following:
 
 * How to view reports
@@ -329,11 +329,11 @@ When looking at build reports for ideas on how to optimise your code, it's usefu
 * **CLBs (configurable logic blocks)** are the basic building blocks of the FPGA. They contain:
 
   * **LUTs (look up tables)**, which implement the logic required by your design
-  * Registers, which can be configured as latches or flipflops to store data
+  * **Registers**, which can be configured as latches or flipflops to store data
 
 * **Block RAM** components are used for on-chip data storage. Arrays that exceed 512 bits are stored in block RAM, whereas under that figure, registers are used.
 * **DSP blocks** provide various often-used functions, and can be used instead of recreating that functionality with CLBs to reduce area usage, latency and power requirements. You don't need to worry about this, our service optimises your code to use DSP blocks when appropriate.
-* Ultra RAM may be used for very large channel/RAM capacities required by your projects.
+* **Ultra RAM** may be used for very large channel/RAM capacities required by your projects.
 
 .. |Dashboard| raw:: html
 
