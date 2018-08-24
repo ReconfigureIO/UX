@@ -248,7 +248,7 @@ We can use the histogram as an example of how a sequential design can be changed
 
 And a pipeline diagram could look like this:
 
-.. figure:: images/Hist_Sequential_pipeline.svg
+.. figure:: images/Hist_Sequential_pipeline.png
   :width: 80%
   :align: center
 
@@ -258,7 +258,7 @@ By far the slowest part of this design is reading from and writing to memory. So
 
 We can read the sample data from the shared memory using a read burst, then place it into a channel from where it can be sorted and placed into an array. The array data can then be easily loaded onto another channel and then written back to shared memory using a write burst. Here's a pipeline diagram for this scenario:
 
-.. figure:: images/Hist_Array_Pipeline.svg
+.. figure:: images/Hist_Array_Pipeline.png
   :width: 80%
   :align: center
 
