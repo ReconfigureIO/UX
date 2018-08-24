@@ -341,6 +341,6 @@ When looking at build reports for ideas on how to optimise your code, it's usefu
 
    <a href="https://app.reconfigure.io/dashboard" target="_blank">dashboard</a>
 
-.. |map reduce| raw:: html
+.. |mapreduce| raw:: html
 
    <a href="https://medium.com/the-recon/scaling-up-your-reconfigure-io-applications-17f2dbc797fc" target="_blank">MapReduce framework</a>
