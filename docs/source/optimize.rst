@@ -7,8 +7,7 @@ Once a build image is complete you can access a build report to find out how muc
 
 * How to view reports
 * The structure of reports – highlighting key useful elements
-* A look at what each component of the FPGA does and how your code translates to those resources
-* Pointers to using these reports for code optimization
+* A look at what each component of the FPGA is for
 
 View a build reports
 ^^^^^^^^^^^^^^^^^^^^
@@ -113,11 +112,18 @@ Here's an example report from our Histogram-array example:
     }
   }
 
-We advise optimizing your designs for low overall utilization. Keeping your designs compact meant they build faster, and there's more scope to scale them up in future. When thinking about optimizing in this way, the **Weighted Average** score at the bottom of the list is the most useful at first glance. You can see this design is small, which you would expect as it's simple, and is using up only 0.44% of the FPGA's available resources.
+We advise optimizing your designs for low overall utilization. Keeping your designs compact means they build faster, and there's more scope to scale them up in future. When thinking about optimizing in this way, the **Weighted Average** score highlighted at the bottom of the report is the most useful at first glance. You can see this design is small, which you would expect as it's simple, and is using up only 0.44% of the FPGA's available resources.
 
 FPGA structure
 ^^^^^^^^^^^^^^
+When looking at build reports for ideas on how to optimise your code, it's useful to have a high level overview of how the FPGA chip is made up.
 
+* **CLBs (configurable logic blocks)** are the basic building blocks of the FPGA. They contain:
+  * **LUTs (look up tables)**, which implement the logic required by your design
+  * Registers, which can be configured as latches or flipflops to store data
+* Block RAM components are used for on-chip data storage. Arrays that exceed 512 bits are stored in block RAM, whereas under that figure, registers are used.
+* DSP blocks provide various often-used functions, and can be used instead of recreating that functionality with CLBs to reduce area usage, latency and power requirements. You don't need to worry about this, our service optimises your code to use DSP blocks when appropriate.
+* Ultra RAM may be used for very large channel/RAM capacities required by your projects.
 
 .. |Dashboard| raw:: html
 

@@ -233,7 +233,7 @@ There are several challenges that come with concurrent programming. Firstly, if 
 * **Channels** are directional constructs which allow you to introduce communication and synchronization by sending and receiving data to and from goroutines.
 * **Select** statements allow you to control when concurrent operations can run by switching between channels. When we're thinking about a parallel system, select statements effectively give you control over when processes need to run sequentially, rather than concurrently, to meet your design requirements.
 
-For a more in-depth look, see :ref:`concurrency`.
+For a more in-depth look, see |concurrency|.
 
 Parallelizing the histogram
 ----------------------------
@@ -430,3 +430,7 @@ So, we've deployed some code to an FPGA, stepped through our workflow and code a
 .. |video| raw:: html
 
    <a href="https://youtu.be/yIHToaGI4_M" target="_blank">here</a>
+
+.. |concurrency| raw:: html
+
+   <a href="https://medium.com/the-recon/why-do-we-use-go-511b34c2aed" target="_blank">our blog post</a>
