@@ -42,23 +42,31 @@ Each node has **ports** for connectivity. Input ports are at the top and output 
 
 Node types
 ^^^^^^^^^^
-**Operator** – The most fundamental node type is the operator. As you might expect, it's responsible for operating on data. Anywhere you would use an arithmetic or logical operator in Go, you can expect it to be represented as an operator node in Teak.
-
-.. figure:: operator.png
+.. |image1| image:: ../images/operator.png
+   :width: 100%
    :align: center
-   :width: 40%
 
-**Latch** – A latch is inserted in the Teak model to break up operations into manageable chunks for the FPGA circuitry. A latch introduces a 1 clock delay into the system. Latches hold data, allowing operators to pass data between each other.
+|image1|
+|image2|
+|image3|
 
-.. figure:: Latch.png
-   :align: center
-   :width: 40%
++----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| |image1| | **Operator** – The most fundamental node type is the operator. As you might expect, it's responsible for operating on data. Anywhere you would use an arithmetic or logical operator in Go, you can expect it to be represented as an operator node in Teak. |
++----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| |latch|  | **Latch** – A latch is inserted in the Teak model to break up operations into manageable chunks for the FPGA circuitry. A latch introduces a 1 clock delay into the system. Latches hold data, allowing operators to pass data between each other.           |
++----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| |image3| | **Latch** – A latch is inserted in the Teak model to break up operations into manageable chunks for the FPGA circuitry. A latch introduces a 1 clock delay into the system. Latches hold data, allowing operators to pass data between each other.           |
++----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+.. |latch| image:: images/Latch.png
+  :scale: 100%
+  :align: center
 
 **Fork** – A fork indicates a split in the circuit. Forks are important for concurrency, because they can pass data to two or more nodes at the same time.
 
-.. figure:: Fork.png
+.. |image3| image:: Fork.png
    :align: center
-   :width: 40%
+   :width: 20%
 
 **Join** – A join shows where data/control paths are synchronized and concatenated.
 
