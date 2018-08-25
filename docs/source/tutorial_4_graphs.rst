@@ -57,8 +57,8 @@ Node types
 +----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. |image2| image:: images/Latch.png
-    :scale: 100%
-    :align: center
+  :scale: 100%
+  :align: center
 
 **Fork** – A fork indicates a split in the circuit. Forks are important for concurrency, because they can pass data to two or more nodes at the same time.
 
