@@ -47,9 +47,10 @@ Node types
 ~~~~~~~~~~
 |operator|
 
-+------------+----------------------------------------------------------------+
-| |operator| | **Operator** – The most fundamental node type is the operator. |
-+------------+----------------------------------------------------------------+
++------------------+----------------------------------------------------------------+
+|    |operator|    | **Operator** – The most fundamental node                       |
+|                  | type is the operator.                                          |
++------------------+----------------------------------------------------------------+
 
 +------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | |operator| | **Operator** – The most fundamental node type is the operator. As you might expect, it's responsible for operating on data. Anywhere you would use an arithmetic or logical operator in Go, you can expect it to be represented as an operator node in Teak. |
