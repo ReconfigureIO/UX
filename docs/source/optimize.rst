@@ -47,13 +47,19 @@ Node types
 ~~~~~~~~~~
 
 +------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|                         |operator|                         | **Operator** – The most fundamental node type is the operator. As you might expect, it's responsible for operating on data. Anywhere you would use an arithmetic or logical operator in Go, you can expect it to be represented as an operator node in Teak. |
+|                         |operator|                         | **Operator** – The most fundamental node type is the operator. As you might expect, it's responsible for operating on data. Anywhere you use an arithmetic or logical operator in Go, you can expect it to be represented as an operator node in Teak.       |
 +------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                          |latch|                           | **Latch** – A latch is inserted in the Teak model to break up operations into manageable chunks for the FPGA circuitry. A latch introduces a 1 clock delay into the system. Latches hold data, allowing operators to pass data between each other.           |
 +------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                           |fork|                           | **Fork** – A fork indicates a split in the circuit. Forks are important for concurrency, because they can pass data to two or more nodes at the same time.                                                                                                   |
 +------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                           |join|                           | **Join** – A join shows where data/control paths are synchronized and concatenated.                                                                                                                                                                          |
++------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                           |steer|                          | **Steer** – A steer takes a single input and sends to multiple outputs, choosing outputs is based on the input control value assigned to the data. They act as data-dependent de-multiplexers.                                                               |
++------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                           |merge|                          | **Merge** – A merge multiplexes multiple, concurrent input data or control streams on a first-come-first-served basis.                                                                                                                                       |
++------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                         |arbitrate|                        | **Arbitrate** – An arbiter uses a scheduling algorithm to decide the order it passes on its independent inputs.                                                                                                                                              |
 +------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. |operator| image:: images/operator.png
@@ -68,29 +74,14 @@ Node types
 .. |join| image:: images/Join.png
     :width: 120px
 
+.. |steer| image:: images/Steer.png
+    :width: 120px
 
+.. |merge| image:: images/Merge.png
+    :width: 120px
 
-.. figure:: Join.png
-   :align: center
-   :width: 40%
-
-**Steer** – A steer takes a single input and sends to multiple outputs, choosing outputs is based on the input control value assigned to the data. They act as data-dependent de-multiplexers.
-
-.. figure:: Steer.png
-   :align: center
-   :width: 40%
-
-**Merge** – A merge multiplexes multiple, concurrent input data or control streams on a first-come-first-served basis.
-
-.. figure:: Merge.png
-   :align: center
-   :width: 40%
-
-**Arbitrate** – An arbiter uses a scheduling algorithm to decide the order it passes on its independent inputs.
-
-.. figure:: Arbitrate.png
-   :align: center
-   :width: 40%
+.. |arbitrate| image:: images/Arbitrate.png
+    :width: 120px
 
 Let's get started
 ^^^^^^^^^^^^^^^^^
