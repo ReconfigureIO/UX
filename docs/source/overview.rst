@@ -87,8 +87,9 @@ Next, you can build your project. Our compiler will check compatibility and conv
 
    Build times are currently in the region of 4 hours. This is longer than we would like and is partly due to underlying silicon vender tools, which we are currently working to address. Although the build time is relatively long, it is not something you will have to do very often during your program development - you will mostly use our hardware simulator, which takes minutes rather than hours.
 
-*  ``reco build run`` uploads the code from your current directory to the Reconfigure.io service. Building will automatically start once the upload has completed. Your Go code will be compiled and optimized to run on an FPGA instance. It's a good idea to add a message to your build, just as you would with a git commit, so you can remember what it's for later. To do this, use the ``-m`` or ``--message`` flag followed by your short message, like this: ``reco build run -m "my helpful message"``.
-*  ``reco build list`` lists all builds for the current project along with their statuses. Each build is date-stamped and given a unique ID, and you can see any messages you have included so you can always make sure you're using the correct build when working on large and complex projects.
+* ``reco build run`` uploads the code from your current directory to the Reconfigure.io service. Building will automatically start once the upload has completed. Your Go code will be compiled and optimized to run on an FPGA instance. It's a good idea to add a message to your build, just as you would with a git commit, so you can remember what it's for later. To do this, use the ``-m`` or ``--message`` flag followed by your short message, like this: ``reco build run -m "my helpful message"``.
+* ``reco build list`` lists all builds for the current project along with their statuses. Each build is date-stamped and given a unique ID, and you can see any messages you have included so you can always make sure you're using the correct build when working on large and complex projects.
+* ``reco build report <build_ID>`` will bring up stats for how much of the FPGA's resources your design uses.
 
 Deploy
 ^^^^^^
@@ -153,7 +154,7 @@ Your Reconfigure.io applications will be coded using :ref:`our subset <gosupport
 
 We take your code through several stages to get it ready to program an FPGA:
 
-* **Teak** – first, your Go is translated into |teak|, a data-flow language with its roots in research from the University of Manchester. This allows us (and you, using :ref:`graphs <graph>`) to optimize your code for the FPGA architecture.
+* **Teak** – first, your Go is translated into |teak|, a data-flow language with its roots in research from the University of Manchester. This allows us (and you, using :ref:`graphs <graphs>`) to optimize your code for the FPGA architecture.
 * **Verilog RTL representation** - this 'register transfer level' description is suitable for taking your code into the traditional FPGA development process.
 * **Verilog netlist** - we then use standard tooling to compile your code into a netlist which relates to the FPGA's logic components.
 * **Place and route** – this is where we decide where on the physical FPGA chip to place the components from the netlist.
