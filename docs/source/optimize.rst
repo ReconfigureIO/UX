@@ -46,21 +46,21 @@ Each node has **ports** for connectivity. Input ports are at the top and output 
 Node types
 ~~~~~~~~~~
 
-+------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|                         |operator|                         | **Operator** – The most fundamental node type is the operator. As you might expect, it's responsible for operating on data. Anywhere you use an arithmetic or logical operator in Go, you can expect it to be represented as an operator node in Teak.       |
-+------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|                          |latch|                           | **Latch** – A latch is inserted in the Teak model to break up operations into manageable chunks for the FPGA circuitry. A latch introduces a 1 clock delay into the system. Latches hold data, allowing operators to pass data between each other.           |
-+------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|                           |fork|                           | **Fork** – A fork indicates a split in the circuit. Forks are important for concurrency, because they can pass data to two or more nodes at the same time.                                                                                                   |
-+------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|                           |join|                           | **Join** – A join shows where data/control paths are synchronized and concatenated.                                                                                                                                                                          |
-+------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|                           |steer|                          | **Steer** – A steer takes a single input and sends to multiple outputs, choosing outputs is based on the input control value assigned to the data. They act as data-dependent de-multiplexers.                                                               |
-+------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|                           |merge|                          | **Merge** – A merge multiplexes multiple, concurrent input data or control streams on a first-come-first-served basis.                                                                                                                                       |
-+------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|                         |arbitrate|                        | **Arbitrate** – An arbiter uses a scheduling algorithm to decide the order it passes on its independent inputs.                                                                                                                                              |
-+------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                            |operator|                            | **Operator** – The most fundamental node type is the operator. As you might expect, it's responsible for operating on data. Anywhere you use an arithmetic or logical operator in Go, you can expect it to be represented as an operator node in Teak.       |
++------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                             |latch|                              | **Latch** – A latch is inserted in the Teak model to break up operations into manageable chunks for the FPGA circuitry. A latch introduces a 1 clock delay into the system. Latches hold data, allowing operators to pass data between each other.           |
++------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                              |fork|                              | **Fork** – A fork indicates a split in the circuit. Forks are important for concurrency, because they can pass data to two or more nodes at the same time.                                                                                                   |
++------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                              |join|                              | **Join** – A join shows where data/control paths are synchronized and concatenated.                                                                                                                                                                          |
++------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                              |steer|                             | **Steer** – A steer takes a single input and sends to multiple outputs, choosing outputs is based on the input control value assigned to the data. They act as data-dependent de-multiplexers.                                                               |
++------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                              |merge|                             | **Merge** – A merge multiplexes multiple, concurrent input data or control streams on a first-come-first-served basis.                                                                                                                                       |
++------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                            |arbitrate|                           | **Arbitrate** – An arbiter uses a scheduling algorithm to decide the order it passes on its independent inputs.                                                                                                                                              |
++------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 .. |operator| image:: images/operator.png
     :width: 120px
@@ -83,7 +83,7 @@ Node types
 .. |arbitrate| image:: images/Arbitrate.png
     :width: 120px
 
-Let's get started
+Generating graphs
 ^^^^^^^^^^^^^^^^^
 First, let's check you're using the latest version of our tutorial materials. Open a terminal and navigate to where you cloned your fork – ``$GOPATH/src/github.com/<your-github-username>/tutorials`` and run::
 
@@ -109,8 +109,6 @@ So, we're going to start with a simple example that could do with some optimizat
       }
   }
 
-Generate a graph
-^^^^^^^^^^^^^^^^
 We can use ``reco`` to generate a graph for this function, but first we need to set a project to work within - all ``reco`` simulations, builds, deployments and graphs are associated with a project so you can easily find, list and view the various elements later. Open a terminal and navigate to ``tutorials/bad-graph``. Create and set a project called ``graphs`` by running the following::
 
   reco project create graphs
