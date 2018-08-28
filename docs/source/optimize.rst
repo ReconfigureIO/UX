@@ -2,6 +2,12 @@
 
 Optimizing your projects ...
 ============================
+In this section we're going to look at optimizing your projects. Select an option below to jump to a section:
+
+* :ref:`graphs`
+* :ref:`reports`
+
+.. _graphs:
 
 ... using dataflow graphs
 -------------------------------------------
@@ -208,6 +214,8 @@ We have a section on our |support| where you can post your own generated graphs 
 .. |support| raw:: html
 
    <a href="https://community.reconfigure.io/c/optimization-support" target="_blank">forum</a>
+
+.. _reports:
 
 ... using build reports
 -----------------------

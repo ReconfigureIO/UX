@@ -20,12 +20,11 @@ How to use this guide
 ----------------------
 Reconfigure.io provides a comfortable platform for you to use your software development skills to create hardware designs.
 
-For an overview of our workflow from coding to deployment, head :ref:`here <overview>`. Also, checkout our :ref:`project-structure` to see how Reconfigure.io programs are made up. To take a high-level look at our system architecture have a look :ref:`here <architecture>`. Or, if tutorials are more your thing:
+For an overview of our workflow from coding to deployment, head :ref:`here <overview>`. Also, checkout our :ref:`project-structure` to see how Reconfigure.io programs are made up, and :ref:`here <optimize>` for information on the various ways of optimizing your programs for the FPGA hardware. To take a high-level look at our system architecture have a look :ref:`here <architecture>`. Or, if tutorials are more your thing:
 
 * You can start off by running through our :ref:`first tutorial <demo>` to see how powerful the Reconfigure.io service is. You will quickly get to grips with our simple workflow using some of our example code to run through development, checking, simulating, building and finally deploying a build image to an FPGA instance.
 * Next, our :ref:`second tutorial <addition>` looks at a very simple example and guides you through completing some code for yourself to give you more experience of how our applications are structured.
 * Our :ref:`third tutorial <structure>` looks at program structure in more detail, as well as exploring how data is shared between the various elements of the FPGA instance – this puts you in a good position to start writing your own programs.
-* Our :ref:`fourth tutorial <graphstutorial>` guides you through optimizing your programs for the FPGA architecture using our graph generation feature.
 
 We have two platform options: on-premises or cloud. Any information in these docs that is specific to a platform will be clearly indicated.
 

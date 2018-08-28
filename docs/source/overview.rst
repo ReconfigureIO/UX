@@ -154,7 +154,7 @@ Your Reconfigure.io applications will be coded using :ref:`our subset <gosupport
 
 We take your code through several stages to get it ready to program an FPGA:
 
-* **Teak** – first, your Go is translated into |teak|, a data-flow language with its roots in research from the University of Manchester. This allows us (and you, using :ref:`graphs <graph>`) to optimize your code for the FPGA architecture.
+* **Teak** – first, your Go is translated into |teak|, a data-flow language with its roots in research from the University of Manchester. This allows us (and you, using :ref:`graphs <graphs>`) to optimize your code for the FPGA architecture.
 * **Verilog RTL representation** - this 'register transfer level' description is suitable for taking your code into the traditional FPGA development process.
 * **Verilog netlist** - we then use standard tooling to compile your code into a netlist which relates to the FPGA's logic components.
 * **Place and route** – this is where we decide where on the physical FPGA chip to place the components from the netlist.
