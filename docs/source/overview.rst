@@ -33,6 +33,11 @@ All the code you write will be in Go. You can create projects in your Go workspa
     │   └── test-my-project
     │       └── main.go
     ├── main.go
+    ├── reco.yml
+
+You will use our Go SDAccel package for both FPGA and host-side code. We provide a subpackage within that called ``XCL`` to allow the host to talk to the FPGA card, and subpackage called ``SMI`` for the FPGA to talk to the shared memory situated on the FPGA card.
+
+The |smi_blog| protocol is our standard way of having the FPGA talk to shared memory (find more on this in our :ref:`third tutorial <structure>`), and is designed specifically for working with FPGAs, where the potential for fine-grained parallelism is high, with many, potentially thousands of go routines, trying to access memory at the same time.
 
 
 Go tooling
@@ -143,24 +148,6 @@ The Go language is designed for writing concurrent programs, which you can read 
 
 For example, a goroutine running on a CPU is a tiny light-weight thread running within a bigger thread, with just one big thread per CPU core. There is potential for parallelism here, but only one operation can happen per core per unit of time. On an FPGA, one goroutine translates to a small chunk of circuitry, running continuously, so you *could* create a million of them, and they could all do their work, all the time.
 
-.. _smi:
-
-A note about memory access – AXI / SMI
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Our current standard way of having the FPGA talk to shared memory is using the AXI protocol (find more on this in our :ref:`third tutorial <structure>`). AXI is designed to work with multicore CPUs, with several cores accessing memory at the same time. But for us, as we're using Go for FPGAs, the level of parallelism is so much higher. We're dealing with many, potentially thousands of go routines, trying to access memory at the same time. Managing this with AXI is not straightforward.
-
-**Our engineers have developed a new protocol – SMI (Scalable Multiprotocol Infrastructure) – which addresses the issue of fine-grained parallelism, as well as simplifying code and reducing boilerplate for our users.** It's available for testing from Reconfigure.io v0.17.0 onwards and will be fully rolled out as our standard method for accessing memory very soon.
-
-For more information, please see our |smi_blog| and you can check out our |examples| – we've included a version of our histogram-array code that uses SMI rather than AXI. We've also included an SMI-ready version of our `template <https://github.com/ReconfigureIO/tutorials/tree/master/template-SMI>`_ so you can start playing around with your own applications.
-
-You will notice that with SMI we have introduced a ``reco.yml`` file per program. This contains some simple settings: Infrastructure (SMI or AXI), the memory access bandwidth (max 512 bit, min 64 bit) and the number of ports you require for your application. So, for a program using SMI, with one read and one write port, the settings should appear like this:
-
-.. code-block:: shell
-
-    memory_interface: smi
-    memory_width: 512
-    ports: 2
-
 Go compilation stages
 ^^^^^^^^^^^^^^^^^^^^^
 Your Reconfigure.io applications will be coded using :ref:`our subset <gosupport>` of the standard Go language, and you can use our :ref:`coding style-guide <style>` to get the most out of the destination hardware.
@@ -175,7 +162,7 @@ We take your code through several stages to get it ready to program an FPGA:
 
 .. |smi_blog| raw:: html
 
-   <a href="https://medium.com/the-recon/introducing-smi-7a216e2dff45" target="_blank">blog post</a>
+   <a href="https://medium.com/the-recon/introducing-smi-7a216e2dff45" target="_blank">SMI</a>
 
 .. |examples| raw:: html
 

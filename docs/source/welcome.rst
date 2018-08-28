@@ -32,12 +32,16 @@ We have two platform options: on-premises or cloud. Any information in these doc
 Helpful resources
 ------------------
 
-**Tech support** – You can access technical support from our engineering team at any time, we're always available either:
+Tech support
+^^^^^^^^^^^^
+You can access technical support from our engineering team at any time, we're always available either:
 
 * on our |forum|
 * through our in-app messenger on your |dashboard|
 
-**API Docs** – You'll need to use some specific Go packages for talking to memory, and for communication within the FPGA instance. You'll find docs for these |api|.
+API docs
+^^^^^^^^
+You will need to use some specific Go packages for talking to memory, and for communication within the FPGA instance. You'll find docs for these |api|.
 
 .. |signup| raw:: html
 
