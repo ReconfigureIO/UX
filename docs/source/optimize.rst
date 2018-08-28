@@ -1,19 +1,11 @@
 .. _optimize:
 
-<<<<<<< HEAD:docs/source/tutorial_4_graphs.rst
-Tutorial 4 – Using Graphs for Optimization
-================================================
-.. sidebar:: Keeping up-to-date...
-
-    Run ``reco update`` to check if there's an update available. The current version of our command line tool is |reco_version|.
-=======
 Optimizing your projects
 ============================
 In this section we're going to look at optimizing your projects. Select an option below to jump to a section:
 
 * :ref:`graphs`
 * :ref:`reports`
->>>>>>> master:docs/source/optimize.rst
 
 .. _graphs:
 
