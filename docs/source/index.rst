@@ -16,8 +16,7 @@ Welcome to Reconfigure.io's documentation!
    tutorial_1_hist_parallel
    tutorial_2_addition
    tutorial_3_structure_comms
-   tutorial_4_graphs
-   go_concurrency
+   optimize
    style_guide
    setup
    support_troubleshooting
