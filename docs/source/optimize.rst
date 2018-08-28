@@ -1,6 +1,6 @@
 .. _optimize:
 
-Optimizing your projects ...
+Optimizing your projects
 ============================
 In this section we're going to look at optimizing your projects. Select an option below to jump to a section:
 
@@ -9,7 +9,7 @@ In this section we're going to look at optimizing your projects. Select an optio
 
 .. _graphs:
 
-... using dataflow graphs
+Dataflow graphs
 -------------------------------------------
 We're going to look at how to optimize your code by analyzing dataflow graphs. When you start creating your own programs you'll probably want to start introducing more concurrency to make better use of the parallel processing capabilities of the FPGA. **Using dataflow graphs for code optimization is an experimental feature. It’s quite a complex process but gives an interesting insight into how Reconfigure.io works. We're currently working on automating this optimization stage, at which point, graph generation will no longer be part of our workflow.** Here's what we'll do:
 
@@ -217,7 +217,7 @@ We have a section on our |support| where you can post your own generated graphs 
 
 .. _reports:
 
-... using build reports
+Build reports
 -----------------------
 Once a build image is complete you can access a build report to find out how much of the FPGA's available resources your design is using. In this section we'll cover the following:
 
