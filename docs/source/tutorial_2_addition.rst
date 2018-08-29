@@ -40,7 +40,7 @@ We're going to start using our tutorial materials repo, which contains an incomp
 
 First, click the **fork** button towards the top right of the screen.
 
-.. image:: fork_button.png
+.. image:: images/fork_button.png
    :align: center
 
 You will be asked to authorize the fork being placed into your account. Then, using the instructions for your operating system below, clone your fork to your local machine:
