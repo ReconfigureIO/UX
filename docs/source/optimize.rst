@@ -179,7 +179,7 @@ Again, copy the unique graph ID to open the graph::
 
   reco graph open <graph_ID>
 
-.. figure:: better_example.png
+.. figure:: images/better_example.png
     :align: center
     :width: 100%
 
