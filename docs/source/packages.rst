@@ -1,6 +1,6 @@
 .. _packages:
 
-Go Packages
+Go Packages for FPGAs
 ========================
 We support the use of vendor packages in your Reconfigure.io projects. Below is a list of our packages, which have all been optimized to work well on FPGAs.
 
