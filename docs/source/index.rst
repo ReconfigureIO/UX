@@ -11,15 +11,14 @@ Welcome to Reconfigure.io's documentation!
    :caption: Contents:
 
    welcome
-   features
    overview
    getting_started
    tutorial_1_hist_parallel
    tutorial_2_addition
    tutorial_3_structure_comms
    tutorial_4_benchmarking
-   tutorial_5_graphs
    go_concurrency
+   optimize
    style_guide
    setup
    support_troubleshooting

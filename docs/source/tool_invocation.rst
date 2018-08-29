@@ -1,7 +1,7 @@
 .. _tool:
 
-Tool Usage Reference
-=====================
+Reco – Tool Usage Reference
+===========================
 
 Use our tool, ``reco``, to simulate, build and deploy your code in the cloud.
 
@@ -20,6 +20,8 @@ Here is a full list of available commands:
 +--------------------------------+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 |                                | ``stop <build_ID>``         | Stop a build                                                                                                                          |
 +--------------------------------+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
+|                                | ``report <build_ID>``       | View a a build report to see FPGA resource usage stats                                                                                |
++--------------------------------+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 | ``check``                      | –                           | Check code for compatibility with our compiler                                                                                        |
 +--------------------------------+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 | ``graph``                      | ``gen``                     | Generate a dataflow graph for the program at your current location                                                                    |
@@ -36,7 +38,7 @@ Here is a full list of available commands:
 +--------------------------------+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 |                                | ``stop <deployment_ID>``    | Stop a deployment                                                                                                                     |
 +--------------------------------+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
-|                                | ``connect <deployment_ID>`  | Each deployment is assigned a unique ip address, this command connects you to that ip.                                                |
+|                                | ``connect <deployment_ID>`` | Each deployment is assigned a unique ip address, this command connects you to that ip.                                                |
 +--------------------------------+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 | ``sim``                        | ``list``                    | Simulate how your program will run on an FPGA                                                                                         |
 +--------------------------------+-----------------------------+---------------------------------------------------------------------------------------------------------------------------------------+
@@ -69,6 +71,7 @@ Here is a full list of available commands:
 
     Flags:
       -h, --help            help for reco
+      -m, --message         include a short message with a build - this is only available for builds at this time
       --project string      project to use. If unset, the active project is used
       --public              only display public builds
       -s, --source string   source directory (default is current directory "<your-directory")
