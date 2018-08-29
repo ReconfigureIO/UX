@@ -1,11 +1,10 @@
 Tutorial 4 – Measuring the performance of your programs
 ======================================================
+.. sidebar:: Keeping up-to-date...
 
-.. admonition:: Make sure you're up to date.
+    Run ``reco update`` to check your version and update if required. The current version of our command line tool is |reco_version|.
 
-    Run ``reco version`` to check your installation. Our current version is |reco_version|. If you need to update run ``reco update`` or see our :ref:`install/update instructions <install>`.
-
-Now you've got the tools you need to start writing your own Reconfigure.io programs, you are most likely interested in a way to see how long it's taking the FPGA to process your data, after all, speed is what it's all about! Luckily, we use Go for everything, so benchmarking is built-in to the testing framework we have on hand. We can use the benchmarking option included in the Go testing framework to create execution benchmarks for our programs, to calculate how long it's taking the FPGA to process a specified amount of data through the algorithms we've coded. This is interesting to us for a couple of reasons, first it can be used to compare speed with the same data processing on CPU alone or other hardware acceleration platforms, if we have these figures to hand. Also, it gives us a means to track the progress and suitability of design iterations of our Reconfigure.io programs while we're developing them.
+Now you've got the tools you need to start writing your own Reconfigure.io programs, you are most likely interested in a way to see how long it's taking the FPGA to process your data, after all, speed is what it's all about! Luckily, we use Go for everything, so benchmarking is built-in to the testing framework we have on hand. We can use the benchmarking option included in the Go testing framework to create execution benchmarks for our programs, to calculate how long it's taking the FPGA to process a specified amount of data through the logic representations of algorithms we've coded. This is interesting to us for a couple of reasons, first it can be used to compare speed with the same data processing on CPU alone or other hardware acceleration platforms, if we have these figures to hand. Also, it gives us a means to track the progress and suitability of design iterations of our Reconfigure.io programs while we're developing them.
 
 What we will do
 ----------------
