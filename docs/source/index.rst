@@ -17,7 +17,6 @@ Welcome to Reconfigure.io's documentation!
    tutorial_2_addition
    tutorial_3_structure_comms
    tutorial_4_benchmarking
-   go_concurrency
    optimize
    style_guide
    setup

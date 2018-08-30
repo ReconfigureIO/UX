@@ -20,12 +20,13 @@ Reconfigure.io programs contain code for a whole FPGA instance, a Go program for
 
 We can measure the performance of our Reconfigure.io programs in terms of the speed at which they can process data by using Go's benchmarking framework. **Go benchmarking is designed to run through a defined loop of code a number of times until it can report a stable benchmark for the process**, so using various methods we can decide at which point we want to start and stop the timer running, which means we have a good degree of control over what we're actually measuring.
 
-In standard Go, benchmarking is part of the testing framework, so the benchmark would be defined within ``main_test.go`` and you would run it as you do ``go test`` with an added ``-bench=.`` parameter. **When benchmarking Reconfigure.io programs you will be using our command line tool `reco` rather than `go test -bench=.`, and rather than including the benchmarking code itself in the `main_test.go` file, you’ll write a whole new host-side command so you can run the benchmark during deployment.**
+In standard Go, benchmarking is part of the testing framework, so the benchmark would be defined within ``main_test.go`` and you would run it as you do ``go test`` with an added ``-bench=.`` parameter. **When benchmarking Reconfigure.io programs you will be using our command line tool ``reco`` rather than ``go test -bench=.``, and rather than including the benchmarking code itself in the ``main_test.go`` file, you’ll write a whole new host-side command so you can run the benchmark during deployment.**
 
 We've included the basics for two different benchmarks in our template, so let's look at those now:
 
 FPGA-side benchmark
 ^^^^^^^^^^^^^^^^^^^
+The Go testing framework runs through a loop repeatedly, increasing the number of repeats (b.N) until it lasts long enough to be timed reliably. If we want to just time the FPGA-side code, we need to pass this changing value, b.N, to the FPGA, as the size of the sample data, so that the processing loop on the FPGA size runs b.N times to give us an accurate result.
 
 Full system benchmark
 ^^^^^^^^^^^^^^^^^^^^^
