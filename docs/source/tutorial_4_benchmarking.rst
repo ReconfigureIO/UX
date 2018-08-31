@@ -1,4 +1,4 @@
-Tutorial 4 – Measuring the performance of your programs
+Tutorial 4 – Benchmarking your projects
 ======================================================
 .. sidebar:: Keeping up-to-date...
 
@@ -218,12 +218,15 @@ We can use Go's benchmarking framework to measure how long it takes for our full
       log.Printf("Output: %v ", s.output)
     }
 
-
 Benchmarking a simple example
 ------------------------------
 Probably the easiest way to see how this works, as usual, is to look at some very simple example code. Let's take the array multiplication example from the last tutorial. Our completed example is |multiply| (you can always have a go at using the same benchmark for your array multiplication code if you completed tutorial 3).
 
 As we've done in previous tutorials, let's look at a flow diagram to see what we want the host and FPGA to do:
+
+.. figure:: images/BenchmarkMultiply_FPGA.svg
+
+   Flow diagram showing benchmarking the FPGA
 
 .. |multiply| raw:: html
 
