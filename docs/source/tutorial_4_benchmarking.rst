@@ -220,13 +220,29 @@ We can use Go's benchmarking framework to measure how long it takes for our full
 
 Benchmarking a simple example
 ------------------------------
-Probably the easiest way to see how this works, as usual, is to look at some very simple example code. Let's take the array multiplication example from the last tutorial. Our completed example is |multiply| (you can always have a go at using the same benchmark for your array multiplication code if you completed tutorial 3).
+Probably the easiest way to see how this works, as usual, is to look at some very simple example code. Let's take the array multiplication example from the last tutorial. Our completed example is |multiply|, which includes benchmark commands for the host, but if you completed the last tutorial the following steps will guide you through adding this benchmark to your version.
 
 As we've done in previous tutorials, let's look at a flow diagram to see what we want the host and FPGA to do:
 
 .. figure:: images/BenchmarkMultiply_FPGA.svg
 
    Flow diagram showing benchmarking the FPGA
+
+From this we can see that by resetting and stopping the benchmarking timer, we will end up with a benchmark figure for once round the FPGA processing loop.
+
+Now let's check you've got the latest version of our tutorial materials – |tutorials_version|. Open a terminal and navigate to where you cloned your fork of our tutorial materials (probably ``$GOPATH/src/github.com/<your-github-username>/tutorials``) and run::
+
+    git describe --tags
+
+If you have a different version, please run
+
+.. subst-code-block::
+
+    git fetch upstream
+    git pull upstream master
+    git checkout |tutorials_version|
+
+In tutorial 3 you created your multiply array example within a branch called `multiply`, so let's check that out
 
 .. |multiply| raw:: html
 
