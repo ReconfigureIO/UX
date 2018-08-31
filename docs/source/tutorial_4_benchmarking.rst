@@ -101,13 +101,7 @@ The Go testing framework runs through a loop of code over and over again, increa
 
 Full system benchmark
 ^^^^^^^^^^^^^^^^^^^^^
-We can use Go's benchmarking framework to measure how long it takes for our full sample dataset to be processed, in this case, the loop we want to run through ``b.N`` iterations is from the host writing the sample data to memory, then passing the input and results pointers to the FPGA, the FPGA processing the sample data and passing it back to shared memory, and then the host fetching the results data and printing it out for us to see. Here's a flow diagram of how this can work:
-
-.. figure:: images/BenchmarkMultiply.svg
-
-   Flow diagram of a full system benchmark
-
-And our template code for a full system benchmark looks like this:
+We can use Go's benchmarking framework to measure how long it takes for our full sample dataset to be processed, in this case, the loop we want to run through ``b.N`` iterations is from the host writing the sample data to memory, then passing the input and results pointers to the FPGA, the FPGA processing the sample data and passing it back to shared memory, and then the host fetching the results data and printing it out for us to see. Our template code for a full system benchmark looks like this:
 
 
 Benchmarking a simple example
