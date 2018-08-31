@@ -4,13 +4,13 @@ Tutorial 4 – Benchmarking your projects
 
     Run ``reco update`` to check your version and update if required. The current version of our command line tool is |reco_version|.
 
-Now you've got the tools you need to start writing your own Reconfigure.io programs, you are most likely interested in a way to see how long it's taking the FPGA instance to process your data, after all, performance is what it's all about! Luckily, we use Go for everything, so benchmarking is built-in to the testing framework we have on hand. We can use the benchmarking option included in the Go testing framework to create benchmarks for our programs. **In this tutorial we'll consider a range of different benchmark options, from measuring how long it takes the FPGA to process a data element, to measuring the full system benchmark of the host and FPGA combined. Benchmarks are useful for several reasons: We could use benchmarks to compare speed with the same data processing being done on a CPU alone or other hardware acceleration platforms, also, benchmarks give us a means to track progress between design iterations as we make changes to optimize our Reconfigure.io programs while**.
+Now you've got the tools you need to start writing your own Reconfigure.io programs, you are most likely interested in a way to see how long it's taking the FPGA instance to process your data, after all, performance is what it's all about! Luckily, we use Go for everything, so benchmarking is built-in to the testing framework we have on hand. We can use the benchmarking option included in the Go testing framework to create benchmarks for our programs. **In this tutorial we'll consider two benchmark options, first measuring how long it takes the FPGA to process a data element, and then getting a full system benchmark for the host and FPGA combined. Benchmarks are useful for several reasons: We could use benchmarks to compare performance with the same data processing being done on just a CPU, or other hardware acceleration platforms, also, benchmarks give us a means to track progress between design iterations as we make changes to optimize our Reconfigure.io programs**.
 
 What we will do
 ----------------
 * Discuss our various benchmark options and look at our template benchmarking structure.
-* Look at the structure for getting a full system benchmark for the multiply array example from tutorial 3.
-* Look at the structure of our FPGA-side benchmark and apply this to our simple example.
+* Look at the structure for getting an FPGA-side benchmark for the multiply array example from tutorial 3.
+* Look at the structure of a full system benchmark and apply this to our simple example.
 * Using our scalable monte carlo example deploy two versions to see improvements in the benchmark.
 * Use our benchmark template to add a benchmarking command to a simple scalable example.
 
@@ -230,7 +230,7 @@ As we've done in previous tutorials, let's look at a flow diagram to see what we
 
 From this we can see that by resetting and stopping the benchmarking timer, we will end up with a benchmark figure for once round the FPGA processing loop.
 
-Now let's check you've got the latest version of our tutorial materials – |tutorials_version|. Open a terminal and navigate to where you cloned your fork of our tutorial materials (probably ``$GOPATH/src/github.com/<your-github-username>/tutorials``) and run::
+Now let's check you've got the latest version of our tutorial materials – |tutorials_version|. Open a terminal and navigate to where you cloned your fork (probably ``$GOPATH/src/github.com/<your-github-username>/tutorials``) and run::
 
     git describe --tags
 
@@ -244,9 +244,20 @@ If you have a different version, please run
 
 In tutorial 3 you created your multiply array example within a branch called `multiply`, so let's check that out
 
+.. subst-code-block::
+
+    git checkout multiply
+
+Now head to your version of the multiply-array example – it's probably here: ``$GOPATH/src/github.com/<your-github-username>/tutorials/multiply-array`` – and we'll copy our two benchmarking templates across to this example:
+
+.. code-block: shell
+
+   cd multiply-array/cmd
+   cp -r template/cmd/bench
+
 .. |multiply| raw:: html
 
-   <a href="https://godoc.org/github.com/ReconfigureIO/sdaccel" target="_blank">here</a>
+   <a href="https://github.com/ReconfigureIO/tutorials/tree/master/multiply-array" target="_blank">here</a>
 
 .. |reset| raw:: html
 
