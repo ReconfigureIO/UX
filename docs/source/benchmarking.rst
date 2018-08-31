@@ -25,7 +25,7 @@ FPGA-side benchmark
 The Go testing framework runs through a loop of code over and over again, increasing the number of repeats (``b.N``) until it lasts long enough to be timed reliably. While developing our programs we're most interested in the speed at which the FPGA gets through our data, so a benchmark to measure just that is really useful. We'll look at a full system benchmark a bit later, which is also useful, but will include the slowest parts of the process in its results – writing to and reading from memory – so with that benchmark we wouldn't really be able to get a clear idea of how fast the FPGA itself is working, which we need when optimizing our code. If we want to benchmark just the FPGA-side code we need to pass this changing value, ``b.N``, *to* the FPGA, to be used to set the size of the sample data, if we do this, we know ``b.N`` iterations of the FPGA processing loop will be run, so we can get an accurate result. Then we can |reset| just before starting the FPGA running so we just measure the FPGA runtime and not the time it takes to transfer data to and from memory. Here's how this looks in our template:
 
 .. code-block:: Go
-
+    :linenos:
     package main
 
     import (
@@ -100,7 +100,7 @@ Full system benchmark
 We can use Go's benchmarking framework to measure how long it takes for our full sample dataset to be processed, in this case, the loop we want to run through ``b.N`` iterations is from the host writing the sample data to memory, then passing the input and results pointers to the FPGA, the FPGA processing the sample data and passing it back to shared memory, and then the host fetching the results data and printing it out for us to see. Our template code for a full system benchmark looks like this:
 
 .. code-block:: Go
-
+    :linenos:
     package main
 
     import (
@@ -216,11 +216,38 @@ We can use Go's benchmarking framework to measure how long it takes for our full
 
 Quickstart
 -----------
-To add FPGA-side and full system benchmarks to an existing example you can copy the template benchmarks from
+FPGA-side benchmark
+^^^^^^^^^^^^^^^^^^^
+To add an FPGA-side benchmark to an existing example you can copy the template benchmark from [HERE] (or here: if you've forked our tutorial materials) and place them into your project's `cmd` directory. You can then run the benchmarks during deployment once the example is built.
+
+You will need to change the input data section of the benchmark to be correct for your project, it just needs to be the size of our incrementing value ``b.N`` so the benchmarking framework can ramp up the number of times the processing loop is run to get an accurate result.
+
+.. admonition:: Benchmarks during simulation
+   It is possible to run benchmark commands during a hardware simulation, but the results you will see will not give a good representation of how the program will perform on hardware.
+
+.. todo::
+   Add links to benchmark templates once they are released
+
+Full system benchmark
+^^^^^^^^^^^^^^^^^^^^^
+To add a full system benchmark to an existing example just copy the template from [HERE] (or here: if you've forked our tutorial materials) and place them into your project's `cmd` directory. You can then run the benchmarks during deployment once the example is built.
+
+You will need to change the section where the input data is created to match your specific project. You will supply a data size using a command-line argument when you come to deployment.
+
+When your project is built and you want to run the benchmark during deployment, you will need to run:
+
+.. code-block::
+
+    reco deploy run <deployment_ID> bench-full <size of input>
+
+.. TODO::
+   fill in all missing steps - every page is page one etc.
+
 
 How to ...
 ----------
-
+Scale up a design and see benchmark improvements
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Change a the FPGA-side benchmark to measure different parts of the process
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Probably the easiest way to see how this works, as usual, is to look at some very simple example code. Let's take the array multiplication example from the last tutorial. Our completed example is |multiply|, which includes benchmark commands for the host, but if you completed the last tutorial the following steps will guide you through adding this benchmark to your version.
