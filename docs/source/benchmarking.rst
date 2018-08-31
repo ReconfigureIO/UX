@@ -1,24 +1,20 @@
-Tutorial 4 – Benchmarking your projects
+Benchmarking your projects
 ======================================================
-.. sidebar:: Keeping up-to-date...
-
-    Run ``reco update`` to check your version and update if required. The current version of our command line tool is |reco_version|.
-
 Now you've got the tools you need to start writing your own Reconfigure.io programs, you are most likely interested in a way to see how long it's taking the FPGA instance to process your data, after all, performance is what it's all about! Luckily, we use Go for everything, so benchmarking is built-in to the testing framework we have on hand. We can use the benchmarking option included in the Go testing framework to create benchmarks for our programs. **In this tutorial we'll consider two benchmark options, first measuring how long it takes the FPGA to process a data element, and then getting a full system benchmark for the host and FPGA combined. Benchmarks are useful for several reasons: We could use benchmarks to compare performance with the same data processing being done on just a CPU, or other hardware acceleration platforms, also, benchmarks give us a means to track progress between design iterations as we make changes to optimize our Reconfigure.io programs**.
 
 What we will do
 ----------------
 * Discuss our various benchmark options and look at our template benchmarking structure.
-* Look at the structure for getting an FPGA-side benchmark for the multiply array example from tutorial 3.
-* Look at the structure of a full system benchmark and apply this to our simple example.
-* Using our scalable monte carlo example deploy two versions to see improvements in the benchmark.
-* Use our benchmark template to add a benchmarking command to a simple scalable example.
+* Look at the structure of an FPGA-side benchmark.
+* Look at the structure of a full system benchmark.
+* See how to quickly add a benchmark to an example using our template.
+* Try out running some benchmarks at deployment
 
-What do we want to know?
+Overview
 ------------------------
-Reconfigure.io programs contain code for a whole FPGA instance, a Go program for the FPGA and another for the host CPU. The host CPU is responsible for collecting/defining sample data, creating the required space in shared memory, passing pointers to the FPGA and starting the FPGA running. So, there's a certain amount of set up and tear down work required in our programs on either side of the main work of the FPGA.
+Reconfigure.io programs contain code for a whole FPGA instance: a Go program for the FPGA and another for the host CPU. The host CPU is responsible for collecting/defining sample data, creating the required space in shared memory, passing pointers to the FPGA and starting the FPGA running. So, there's a certain amount of set up and tear down work required in our programs on either side of the main work of the FPGA.
 
-We can measure the performance of our Reconfigure.io programs in terms of the speed at which they can process data by using Go's benchmarking framework. **Go benchmarking is designed to run through a defined loop of code a number of times until it can report a stable benchmark for the process**, so using various methods we can decide at which point we want to start and stop the timer running, which means we have a good degree of control over what we're actually measuring.
+We can measure the performance of our Reconfigure.io programs in terms of the speed at which they can process data using Go's benchmarking framework. **Go benchmarking is designed to run through a defined loop of code a number of times until it can report a stable benchmark for the process**, so using various methods we can decide at which point we want to start and stop the timer running, which means we have a good degree of control over what we're actually measuring.
 
 In standard Go, benchmarking is part of the testing framework, so the benchmark would be defined within ``main_test.go`` and you would run it as you do ``go test`` with an added ``-bench=.`` parameter. **When benchmarking Reconfigure.io programs you will be using our command line tool** ``reco`` **rather than** ``go test -bench=.`` **, and rather than including the benchmarking code itself in the** ``main_test.go`` **file, you’ll write a whole new host-side command so you can run the benchmark during deployment.**
 
@@ -218,8 +214,15 @@ We can use Go's benchmarking framework to measure how long it takes for our full
       log.Printf("Output: %v ", s.output)
     }
 
-Benchmarking a simple example
-------------------------------
+Quickstart
+-----------
+To add FPGA-side and full system benchmarks to an existing example you can copy the template benchmarks from
+
+How to ...
+----------
+
+Change a the FPGA-side benchmark to measure different parts of the process
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Probably the easiest way to see how this works, as usual, is to look at some very simple example code. Let's take the array multiplication example from the last tutorial. Our completed example is |multiply|, which includes benchmark commands for the host, but if you completed the last tutorial the following steps will guide you through adding this benchmark to your version.
 
 As we've done in previous tutorials, let's look at a flow diagram to see what we want the host and FPGA to do:
