@@ -26,7 +26,7 @@ We've included the basics for two different benchmarks in our template, so let's
 
 FPGA-side benchmark
 ^^^^^^^^^^^^^^^^^^^
-The Go testing framework runs through a loop of code over and over again, increasing the number of repeats (``b.N``) until it lasts long enough to be timed reliably. If we want to benchmark just the FPGA-side code we need to pass this changing value, ``b.N``, *to* the FPGA, to be used to set the size of the sample data, so that the ``b.N`` iterations of the FPGA processing loop are run so we can get an accurate result. Then we can |reset| just before starting the FPGA running so we just measure the FPGA runtime and not the time it takes the host to transfer data to and from memory. Here's how this looks in our template:
+The Go testing framework runs through a loop of code over and over again, increasing the number of repeats (``b.N``) until it lasts long enough to be timed reliably. While developing our programs we're most interested in the speed at which the FPGA gets through our data, so a benchmark to measure just that is really useful. We'll look at a full system benchmark a bit later, which is also useful, but will include the slowest parts of the process in its results – writing to and reading from memory – so with that benchmark we wouldn't really be able to get a clear idea of how fast the FPGA itself is working, which we need when optimizing our code. If we want to benchmark just the FPGA-side code we need to pass this changing value, ``b.N``, *to* the FPGA, to be used to set the size of the sample data, if we do this, we know ``b.N`` iterations of the FPGA processing loop will be run, so we can get an accurate result. Then we can |reset| just before starting the FPGA running so we just measure the FPGA runtime and not the time it takes to transfer data to and from memory. Here's how this looks in our template:
 
 .. code-block:: Go
 
@@ -41,66 +41,74 @@ The Go testing framework runs through a loop of code over and over again, increa
     )
 
     func BenchmarkKernel(world xcl.World, b *testing.B) {
-    // Get our program
-    program := world.Import("kernel_test")
-    defer program.Release()
+      // Get our program
+      program := world.Import("kernel_test")
+      defer program.Release()
 
-    // Get our kernel
-    krnl := program.GetKernel("reconfigure_io_sdaccel_builder_stub_0_1")
-    defer krnl.Release()
+      // Get our kernel
+      krnl := program.GetKernel("reconfigure_io_sdaccel_builder_stub_0_1")
+      defer krnl.Release()
 
-    // We need to create an input the size of B.N, so that the kernel
-    // iterates B.N times
-    input := make([]uint32, b.N)
+      // We need to create an input the size of B.N, so that the kernel
+      // iterates B.N times
+      input := make([]uint32, b.N)
 
-    // create some sample input data, as an example here we're just filling the
-    // input variable with incrementing uint32s
-    for i, _ := range input {
-     input[i] = uint32(i)
-    }
+      // create some sample input data, as an example here we're just filling the
+      // input variable with incrementing uint32s
+      for i, _ := range input {
+       input[i] = uint32(i)
+      }
 
-    // Create input buffer
-    inputBuff := world.Malloc(xcl.ReadOnly, uint(binary.Size(input)))
-    defer inputBuff.Free()
+      // Create input buffer
+      inputBuff := world.Malloc(xcl.ReadOnly, uint(binary.Size(input)))
+      defer inputBuff.Free()
 
-    // Create variable and buffer for the result from the FPGA, in this template
-    // we're assuming the result is the same size as the input
-    result := make([]byte, b.N)
-    outputBuff := world.Malloc(xcl.ReadWrite, uint(binary.Size(result)))
-    defer outputBuff.Free()
+      // Create variable and buffer for the result from the FPGA, in this template
+      // we're assuming the result is the same size as the input
+      result := make([]byte, b.N)
+      outputBuff := world.Malloc(xcl.ReadWrite, uint(binary.Size(result)))
+      defer outputBuff.Free()
 
-    // Write input buffer
-    binary.Write(inputBuff.Writer(), binary.LittleEndian, &input)
+      // Write input buffer
+      binary.Write(inputBuff.Writer(), binary.LittleEndian, &input)
 
-    // Set arguments – input buffer, output buffer and data length
-    krnl.SetMemoryArg(0, inputBuff)
-    krnl.SetMemoryArg(1, outputBuff)
-    krnl.SetArg(2, uint32(len(input)))
+      // Set arguments – input buffer, output buffer and data length
+      krnl.SetMemoryArg(0, inputBuff)
+      krnl.SetMemoryArg(1, outputBuff)
+      krnl.SetArg(2, uint32(len(input)))
 
-    // Reset the timer so that we only benchmark the runtime of the FPGA
-    b.ResetTimer()
-    krnl.Run(1, 1, 1)
+      // Reset the timer so that we only benchmark the runtime of the FPGA
+      b.ResetTimer()
+      krnl.Run(1, 1, 1)
     }
 
     func main() {
-    // Create the world
-    world := xcl.NewWorld()
-    defer world.Release()
+      // Create the world
+      world := xcl.NewWorld()
+      defer world.Release()
 
-    // Create a function that the benchmarking machinery can call
-    f := func(b *testing.B) {
-     BenchmarkKernel(world, b)
-    }
+      // Create a function that the benchmarking machinery can call
+      f := func(b *testing.B) {
+       BenchmarkKernel(world, b)
+      }
 
-    // Benchmark it
-    result := testing.Benchmark(f)
+      // Benchmark it
+      result := testing.Benchmark(f)
 
-    // Print the benchmark result
-    fmt.Printf("%s\n", result.String())
+      // Print the benchmark result
+      fmt.Printf("%s\n", result.String())
     }
 
 Full system benchmark
 ^^^^^^^^^^^^^^^^^^^^^
+We can use Go's benchmarking framework to measure how long it takes for our full sample dataset to be processed, in this case, the loop we want to run through ``b.N`` iterations is from the host writing the sample data to memory, then passing the input and results pointers to the FPGA, the FPGA processing the sample data and passing it back to shared memory, and then the host fetching the results data and printing it out for us to see. Here's a flow diagram of how this can work:
+
+.. figure:: images/BenchmarkMultiply.svg
+
+   Flow diagram of a full system benchmark
+
+And our template code for a full system benchmark looks like this:
+
 
 Benchmarking a simple example
 ------------------------------
