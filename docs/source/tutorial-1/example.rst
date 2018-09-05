@@ -54,7 +54,7 @@ Next, let's look at a flow diagram for this parallelized histogram. You can see 
 
 .. figure:: ../images/HistogramArray.svg
   :align: center
-  :width: 90%
+  :width: 80%
 
   Parallel histogram flow diagram
 
