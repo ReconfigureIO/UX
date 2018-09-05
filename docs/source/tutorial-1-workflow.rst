@@ -10,6 +10,7 @@ Tutorial 1 – Setup and workflow
    :hidden:
 
    tutorial-1/clone-examples.rst
+   tutorial-1/gotest.rst
 
 .. sidebar:: Keeping up-to-date...
 
