@@ -11,6 +11,7 @@ Tutorial 1 – Setup and workflow
 
    tutorial-1/clone-examples.rst
    tutorial-1/gotest.rst
+   tutorial-1/reco-check.rst
 
 .. sidebar:: Keeping up-to-date...
 
