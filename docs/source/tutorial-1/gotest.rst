@@ -2,13 +2,6 @@
 
 Run a test
 ----------
-
-.. toctree::
-   :maxdepth: 3
-   :hidden:
-
-   reco-check.rst
-
 Now we've got everything set up and in the right place, we can check it's all working by running a test on the histogram-array code using ``go test``.
 
 If you look inside ``examples/histogram-array`` you'll see several elements: the two main.go files that make up the program, a ``reco.yml`` file, which contains basic memory interface settings including the number of ports required for this program between the FPGA and shared memory. There's also a test file – ``main_test.go`` – for checking that the program operates correctly, and a vendor folder containing our package for interacting with SDAccel using Go, including all the components that allow the host CPU to talk to the FPGA card, and the FPGA chip itself to talk the the shared memory situated on the FPGA card. The contents of the vendor folder, and the glide files associated with vendoring aren't displayed here because there's a lot in there and we don't need to look at it now:

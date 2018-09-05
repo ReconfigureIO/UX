@@ -11,6 +11,12 @@ Tutorial 1 – Setup and workflow
 
    tutorial-1/clone-examples.rst
    tutorial-1/gotest.rst
+   tutorial-1/reco-check.rst
+   tutorial-1/simulate.rst
+   tutorial-1/build.rst
+   tutorial-1/deploy.rst
+   tutorial-1/example.rst
+
 
 .. sidebar:: Keeping up-to-date...
 
