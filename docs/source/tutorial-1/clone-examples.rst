@@ -2,6 +2,13 @@
 
 Clone our examples repository
 ----------------------------
+
+.. toctree::
+   :maxdepth: 3
+   :hidden:
+
+   tutorial-1/gotest.rst
+
 First we need some code to work with. If you already use Go, and have your ``GOPATH``, workspace and tooling set up, and have |git| set up on your local machine, you can now clone our examples repo into your workspace by following the instructions for your operating system below.
 
 If you are new to Go, please follow our :ref:`quick setup guide <gotools>` first.
