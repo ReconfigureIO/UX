@@ -66,9 +66,9 @@ To read more about our reworked compiler, see our |blog|.
 The latest version of our command line tool, ``reco``, includes some new features to help you track your builds and optimize your code:
 
 * A message can be added to a build, like a ``git commit`` message, as follows: ``reco build run -m "helpful message"``. This message is then displayed in your dashboard build list, and the per project build list accessible by running ``reco build list``. This is to help with build management, when you're working on several iterations of a design.
-* Build reports are now available by running ``reco build <build_ID> report. These reports include information on utilization of FPGA resources for your projects, to help with scaling up and streamlining designs.
+* :ref:`Build reports <reports>` are now available by running ``reco build <build_ID> report``. These reports include information on utilization of FPGA resources for your projects, to help with scaling up and streamlining designs.
 
-You can view our release notes in full :ref:`here <release_notes>`.
+**You can view our release notes in full** :ref:`here <release_notes>`**.**
 
 .. |blog| raw:: html
 
