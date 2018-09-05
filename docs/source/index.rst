@@ -14,7 +14,7 @@ Welcome to Reconfigure.io's documentation!
    welcome
    overview
    getting_started
-   tutorial_1_hist_parallel
+   tutorial-1-workflow
    tutorial_2_addition
    tutorial_3_structure_comms
    optimize

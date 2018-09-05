@@ -8,8 +8,9 @@ Tutorial 1 – Setup and workflow
 .. toctree::
    :maxdepth: 2
    :hidden:
-   
-   tutorial1/tutorial1-section2.rst
+
+   tutorial-1/clone-examples.rst
+   tutorial-1/gotest.rst
 
 .. sidebar:: Keeping up-to-date...
 
