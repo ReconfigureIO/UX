@@ -1,12 +1,16 @@
 .. _demo:
 
-.. toctree::
-   :maxdepth: 2
-   
-   tutorial1/tutorial1-section2.rst
+
 
 Tutorial 1 – Setup and workflow
 ===============================================
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   
+   tutorial1/tutorial1-section2.rst
+
 .. sidebar:: Keeping up-to-date...
 
     Run ``reco update`` to check your version and update if required. The current version of our command line tool is |reco_version|.
