@@ -42,6 +42,30 @@ API docs
 ^^^^^^^^
 You will need to use some specific Go packages for talking to memory, and for communication within the FPGA instance. You'll find docs for these |api|.
 
+What's new?
+-----------
+Here's a rundown of the latest improvements to Reconfigure.io
+
+September 2018
+^^^^^^^^^^^^^
+6th September
+~~~~~~~~~~~~~
+A beta release of our new compiler, rio, is released. To activate the new compiler for your projects you just need to include the following line in your project's ``reco.yml`` file:
+
+.. code-block:: shell
+    :emphasise-lines: 4
+
+    memory_interface: smi
+    memory_width: 64
+    ports: 1
+    compiler: rio
+
+To read more about our reworked compiler, see our
+
+August 2018
+^^^^^^^^^^^
+
+
 .. |signup| raw:: html
 
    <a href="https://reconfigure.io/sign-up" target="_blank">sign up</a>
