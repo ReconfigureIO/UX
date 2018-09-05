@@ -2,6 +2,11 @@
 
 How it works
 =============================
+
+.. admonition:: Our new compiler is in beta, and you can try it out now!
+
+    To use the beta version of our new compiler, simply add the line ``compiler: rio`` to your project's ``reco.yml`` file. To read more about why and how the compiler is changing, check out our |blog|. Remember to let us know if you encounter any bugs or issues |bugs|.
+
 This section gives an overview of the Reconfigure.io service. We'll start by running through our workflow and tooling, and then take a look at our system architecture and the steps we go through to get your code into a suitable format for programming an FPGA instance.
 
 .. image:: images/workflow.png
@@ -195,3 +200,11 @@ We take your code through several stages to get it ready to program an FPGA:
 .. |sign up| raw:: html
 
    <a href="https://reconfigure.io/sign-up" target="_blank">sign up</a>
+
+.. |blog| raw:: html
+
+   <a href="https://medium.com/the-recon/reconfigure-io-move-to-llvm-for-major-performance-and-usability-improvements-1f9c36ca424" target="_blank">blog post</a>
+
+.. |bugs| raw:: html
+
+   <a href="https://community.reconfigure.io/c/report-a-bug" target="_blank">on our forum</a>

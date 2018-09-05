@@ -48,10 +48,10 @@ Here's a rundown of our latests improvements and new feature releases.
 
 6th September
 ^^^^^^^^^^^^^
-A beta release of our new compiler, rio, is released. To activate the new compiler for your projects you just need to include the following line in your project's ``reco.yml`` file:
+A beta release of our new compiler, rio, is released. To use the new compiler version for a project, just include the line shown highlighted below in your project's ``reco.yml`` file:
 
 .. code-block:: shell
-    :emphasise-lines: 4
+   :emphasise-lines: 4
 
     memory_interface: smi
     memory_width: 64
@@ -64,7 +64,7 @@ To read more about our reworked compiler, see our |blog|.
 ^^^^^^^^^^^
 The latest version of our command line tool, ``reco``, includes some new features to help you track your builds and optimize your code:
 
-* A message can be added to a build, like a ``git commit`` message, as follows: ``reco build run -m "helpful message". This message is then displayed in your dashboard build list, and the per project build list accessible by running ``reco build list``. This is to help with build management, when you're working on several iterations of a design.
+* A message can be added to a build, like a ``git commit`` message, as follows: ``reco build run -m "helpful message"``. This message is then displayed in your dashboard build list, and the per project build list accessible by running ``reco build list``. This is to help with build management, when you're working on several iterations of a design.
 * Build reports are now available by running ``reco build <build_ID> report. These reports include information on utilization of FPGA resources for your projects, to help with scaling up and streamlining designs.
 
 You can view our release notes in full :ref:`here <release_notes>`.
