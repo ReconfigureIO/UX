@@ -44,12 +44,10 @@ You will need to use some specific Go packages for talking to memory, and for co
 
 What's new?
 -----------
-Here's a rundown of the latest improvements to Reconfigure.io
+Here's a rundown of our latests improvements and new feature releases.
 
-September 2018
-^^^^^^^^^^^^^
 6th September
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 A beta release of our new compiler, rio, is released. To activate the new compiler for your projects you just need to include the following line in your project's ``reco.yml`` file:
 
 .. code-block:: shell
@@ -60,12 +58,20 @@ A beta release of our new compiler, rio, is released. To activate the new compil
     ports: 1
     compiler: rio
 
-To read more about our reworked compiler, see our
+To read more about our reworked compiler, see our |blog|.
 
-August 2018
+28th August
 ^^^^^^^^^^^
+The latest version of our command line tool, ``reco``, includes some new features to help you track your builds and optimize your code:
 
+* A message can be added to a build, like a ``git commit`` message, as follows: ``reco build run -m "helpful message". This message is then displayed in your dashboard build list, and the per project build list accessible by running ``reco build list``. This is to help with build management, when you're working on several iterations of a design.
+* Build reports are now available by running ``reco build <build_ID> report. These reports include information on utilization of FPGA resources for your projects, to help with scaling up and streamlining designs.
 
+You can view our release notes in full :ref:`here <release_notes>`.
+
+.. |blog| raw:: html
+
+   <a href="https://medium.com/the-recon/reconfigure-io-move-to-llvm-for-major-performance-and-usability-improvements-1f9c36ca424" target="_blank">blog post</a>
 .. |signup| raw:: html
 
    <a href="https://reconfigure.io/sign-up" target="_blank">sign up</a>
