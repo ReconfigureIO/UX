@@ -7,7 +7,7 @@ Run a test
    :maxdepth: 3
    :hidden:
 
-   tutorial-1/reco-check.rst
+   reco-check.rst
 
 Now we've got everything set up and in the right place, we can check it's all working by running a test on the histogram-array code using ``go test``.
 
