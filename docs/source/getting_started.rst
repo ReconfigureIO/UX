@@ -37,7 +37,7 @@ If you've found your way here without signing up first, please head to our `webs
 
    The MD5 generator will open in your default browser. You can enter some text in the box on the left hand side and click GENERATE to see the MD5 hash straight from the FPGA!
 
-   .. image:: MD5_mockup.png
+   .. image:: images/MD5_mockup.png
       :align: center
 
 4. Remember to stop your deployment by running the following command using your unique deployment ID:

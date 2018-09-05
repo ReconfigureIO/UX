@@ -30,7 +30,7 @@ How are the graphs structured?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Teak graphs can be many pages long, with a page for each function used in your code. The complexity of each page depends on the complexity of the function. Here's an example, it's the graph for the ``axi/memory.WriteUInt32`` function used in our addition example:
 
-.. figure:: graph_addition_writeuint32.png
+.. figure:: images/graph_addition_writeuint32.png
     :align: center
     :width: 100%
 
@@ -134,7 +134,7 @@ Copy the unique graph ID to open the graph in your default PDF viewer::
 
 It should look like this:
 
-..  figure:: bad_example.png
+..  figure:: images/bad_example.png
     :align: center
     :width: 100%
 
@@ -142,7 +142,7 @@ Looking at the graph, you can see it's pretty complex, there's a lot going on. B
 
 A sign of good parallelism is when a graph is wide, with multiple unconnected operations appearing horizontally. So, in this example, the only really parallel bit is in the middle, which corresponds to where the array is accessed in the code:
 
-.. figure:: bad_parallel_example.png
+.. figure:: images/bad_parallel_example.png
    :align: center
    :width: 80%
 
@@ -179,7 +179,7 @@ Again, copy the unique graph ID to open the graph::
 
   reco graph open <graph_ID>
 
-.. figure:: better_example.png
+.. figure:: images/better_example.png
     :align: center
     :width: 100%
 
