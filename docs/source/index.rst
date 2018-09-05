@@ -9,6 +9,7 @@ Welcome to Reconfigure.io's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
+   :titlesonly:
 
    welcome
    overview
