@@ -6,7 +6,7 @@ Tutorial 1 – Setup and workflow
 ===============================================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :hidden:
 
    tutorial-1/clone-examples.rst
