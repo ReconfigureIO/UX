@@ -5,6 +5,11 @@ Coding Style Guide
 
 This style guide sets out some best practices for writing applications for Reconfigure.io.
 
+**We have released a beta version of our new compiler, Rio (see :ref:`more here<llvm>`).** If you are using Rio in your projects it is worth noting that some of the information in this style guide is no longer correct. When using Rio:
+
+* Loop unrolling is now automatic.
+* Pipelining is no longer automatic but can be achieved using goroutines.
+
 Template
 --------
 We provide a stripped down version of a project to help you get started creating your own programs. You can find a template included in the tutorial materials you downloaded during our :ref:`second tutorial <tutorials>`, located here: ``tutorials/template``. For more information on using the templates, see :ref:`structure`.

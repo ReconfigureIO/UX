@@ -46,17 +46,18 @@ What's new?
 -----------
 Here's a rundown of our latests improvements and new feature releases.
 
+.. _llvm:
 6th September
 ^^^^^^^^^^^^^
 A beta release of our new compiler, rio, is released. To use the new compiler version for a project, just include the line shown highlighted below in your project's ``reco.yml`` file:
 
 .. code-block:: shell
-   :emphasise-lines: 4
+  :emphasise-lines: 4
 
-    memory_interface: smi
-    memory_width: 64
-    ports: 1
-    compiler: rio
+  memory_interface: smi
+  memory_width: 64
+  ports: 1
+  compiler: rio
 
 To read more about our reworked compiler, see our |blog|.
 
