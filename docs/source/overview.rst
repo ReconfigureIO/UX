@@ -28,6 +28,7 @@ Access to the Reconfigure.io service is through our tool – ``reco``. Use ``rec
 
 Let's take a look at the workflow from coding to deployment:
 
+.. _code::
 Code
 ^^^^^
 All the code you write will be in Go. You can create projects in your Go workspace and edit with your favourite editor. A Reconfigure.io project is made up of at least two Go programs, one for the FPGA, and at least one for the host CPU, shown below within the ``cmd`` directory (you may have multiple host side commands for benchmarking etc.). We use a :ref:`subset of the Go language <gosupport>` for FPGA-side code and any new additions to the scope will be flagged up in our :ref:`Release_Notes`. Host-side code is written in standard Go.
@@ -40,10 +41,19 @@ All the code you write will be in Go. You can create projects in your Go workspa
     ├── main.go
     ├── reco.yml
 
-You will use our Go SDAccel package for both FPGA and host-side code. We provide a subpackage within that called ``XCL`` to allow the host to talk to the FPGA card, and subpackage called ``SMI`` for the FPGA to talk to the shared memory situated on the FPGA card.
+You will use our |sdaccel| for both FPGA and host-side code. We provide a subpackage within that called ``XCL`` to allow the host to talk to the FPGA card, and subpackage called ``SMI`` for the FPGA to talk to the shared memory situated on the FPGA card.
 
 The |smi_blog| protocol is our standard way of having the FPGA talk to shared memory (find more on this in our :ref:`third tutorial <structure>`), and is designed specifically for working with FPGAs, where the potential for fine-grained parallelism is high, with many, potentially thousands of go routines, trying to access memory at the same time.
 
+Each project's `reco.yml` file contains some simple settings, here's an example for a project which requires 2 SMI ports (one read, and one write port) - Also included here is a line to choose to use our new compiler, rio, which is currently in beta:
+
+.. code-block:: shell
+   :emphasize-lines: 4
+
+    memory_interface: smi
+    memory_width: 64
+    ports: 2
+    compiler: rio
 
 Go tooling
 ^^^^^^^^^^^
@@ -208,3 +218,7 @@ We take your code through several stages to get it ready to program an FPGA:
 .. |bugs| raw:: html
 
    <a href="https://community.reconfigure.io/c/report-a-bug" target="_blank">on our forum</a>
+
+.. |sdaccel| raw:: html
+
+   <a href="https://godoc.org/github.com/ReconfigureIO/sdaccel" target="_blank">Go-SDAccel package</a>
