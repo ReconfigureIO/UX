@@ -24,7 +24,7 @@ FPGA-side benchmark
 ^^^^^^^^^^^^^^^^^^^
 The Go testing framework runs through a loop of code over and over again, increasing the number of repeats – ``b.N`` – until it lasts long enough to be timed reliably. While developing our programs we're most interested in the speed at which the FPGA gets through our data, so a benchmark targeting just that is really useful. We'll also look at a full system benchmark later, which will include the slowest parts of the process in its results – writing to and reading from memory. If we want to benchmark just the FPGA-side code we need to pass this incrementing value, ``b.N``, *to* the FPGA, to be used to set the size of the sample data. if we do this, we know ``b.N`` iterations of the FPGA processing loop will be run, so we can get an accurate result. We can |reset| just before starting the FPGA running so we just measure the FPGA runtime and not the time it takes to transfer data to and from memory. Here's how this looks in a flow diagram:
 
-.. figure:: images/BenchmarkMultiply_FPGA.svg
+.. figure:: images/BenchmarkTemplate_FPGA.svg
   :align: center
   :width: 90%
 
@@ -115,7 +115,7 @@ We can also use Go's benchmarking framework to measure how long it takes for our
 
 In this scenario there's some setup and teardown that we don't want to include in the benchmark. Here's a flow diagram to show how this can work:
 
-.. figure:: images/BenchmarkMultiply.svg
+.. figure:: images/BenchmarkTemplate.svg
   :align: center
   :width: 90%
 
