@@ -7,10 +7,10 @@ This style guide sets out some best practices for writing applications for Recon
 
 .. admonition:: New compiler in beta now!
 
-    **We have released a beta version of our new compiler,** :ref:`Rio <llvm>` **.** If you are using Rio in your projects it is worth noting that some of the information in this style guide is no longer correct and will be updated with the full rollout of the new compiler soon. When using Rio:
+    **We have released a beta version of our new compiler,** :ref:`Rio <llvm>` **.** If you are using Rio in your projects it is worth noting that some of the information in this style guide is no longer correct and will be updated with the full rollout of the new compiler soon. Please not that when using Rio:
 
-* Loop unrolling is now automatic.
-* Pipelining is no longer automatic but can be achieved using goroutines.
+      * Loop unrolling is now automatic.
+      * Pipelining is no longer automatic but can be achieved using goroutines.
 
 Template
 --------
