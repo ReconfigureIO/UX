@@ -16,7 +16,7 @@ Reconfigure.io programs contain code for a whole FPGA instance: a Go program for
 
 We can use Go's benchmarking framework to measure the performance of our Reconfigure.io programs in terms of the speed at which they can process data. **Go benchmarking is designed to run through a defined loop of code a number of times until it can report a stable benchmark for the process**. The framework uses a timer which can be started, reset and stopped, so we can decide at which bits of our data processing we want to measure using these controls.
 
-In standard Go, benchmarking is part of the testing framework, so the benchmark would be defined within the project's ``main_test.go`` and you would run the benchmark with ``go test`` with an added ``-bench=.`` parameter. **When benchmarking Reconfigure.io programs you will be using our command line tool** ``reco`` **rather than** ``go test -bench=.`` **, and rather than including the benchmarking code itself in the** ``main_test.go`` **file, you’ll write a whole new host-side command so you can run the benchmark during deployment to get accurate results from the actual hardware.**
+In standard Go, benchmarking is part of the testing framework, so the benchmark would be defined within the project's ``main_test.go`` and you would run the benchmark with ``go test -bench=.``. **When benchmarking Reconfigure.io programs you will be using our command line tool** ``reco`` **rather than** ``go test -bench=.`` **, and rather than including the benchmarking code itself in the** ``main_test.go`` **file, you’ll write a whole new host-side command so you can run the benchmark during deployment to get accurate results from the actual hardware.**
 
 We've included the basics for two different benchmarks in our template, so let's look at those now:
 
@@ -238,13 +238,27 @@ Here's our template for a full system benchmark, note that we're taking the inpu
       log.Printf("Output: %v ", s.output)
     }
 
-Quickstart
+Get started
 -----------
 FPGA-side benchmark
 ^^^^^^^^^^^^^^^^^^^
-To add an FPGA-side benchmark to an existing example, copy the template benchmark from [HERE] (or here: if you've forked our tutorial materials) and place them into your project's `cmd` directory.
+To add an FPGA-side benchmark to an existing example, copy the template benchmark from [HERE] (or here: if you've forked our tutorial materials) and place it into your project's `cmd` directory. It should look like this::
 
-You will need to change the input data section of the benchmark to be correct for your project, it just needs to be the size of our incrementing value ``b.N`` so the benchmarking framework can ramp up the number of times the processing loop is run to get an accurate result. You can then run the benchmarks during deployment once the example is built.
+.. code-block:: shell
+
+    ├── cmd
+    │   └── test-my-project
+    │       └── main.go
+    │   └── bench-my-project
+    │       └── main.go
+    ├── main.go
+    ├── main_test.go
+
+You will need to change the input data section of the benchmark to be correct for your project, it just needs to be the size of our incrementing value ``b.N`` so the benchmarking framework can ramp up the number of times the processing loop is run to get an accurate result. The template uses an array of ``uint32s`` of size ``b.N`` as sample data. If that works for your project you can leave it how it is
+
+You can then run the benchmarks during deployment once the example is built.
+
+
 
 .. admonition:: Benchmarks during simulation
    It is possible to run benchmark commands during a hardware simulation, but the results you will see will not give a good representation of how the program will perform on hardware.
