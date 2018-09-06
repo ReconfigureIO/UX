@@ -1,6 +1,6 @@
 Benchmarking your projects
 ======================================================
-Now you've got the tools you need to start writing your own Reconfigure.io programs, you are most likely interested in a way to see how long it's taking the FPGA instance to process your data, after all, performance is what it's all about! Luckily, we use Go for everything, so benchmarking is built-in to the testing framework we have on hand. We can use the benchmarking option included in the Go testing framework to create benchmarks for our programs. **In this tutorial we'll consider two benchmark options, first measuring how long it takes the FPGA to process a data element, and then getting a full system benchmark for the host and FPGA combined. Benchmarks are useful for several reasons: We could use benchmarks to compare performance with the same data processing being done on just a CPU, or other hardware acceleration platforms, also, benchmarks give us a means to track progress between design iterations as we make changes to optimize our Reconfigure.io programs**.
+Now you've got the tools you need to start writing your own Reconfigure.io programs, you are most likely interested in a way to see how long it's taking the FPGA instance to process your data, after all, performance is what it's all about! Luckily, we use Go for everything, so benchmarking is built-in to the testing framework we have on hand. **In this tutorial we'll consider two benchmark options: first, measuring how long it takes the FPGA to process some data, and second, getting a full system benchmark for the host and FPGA combined. Benchmarks are useful for several reasons: to compare performance with the same data processing being done on just a CPU, or other hardware acceleration platforms, and also benchmarks give us a means to track progress between design iterations as we make changes to optimize our programs**.
 
 What we will do
 ----------------
@@ -12,9 +12,9 @@ What we will do
 
 Overview
 ------------------------
-Reconfigure.io programs contain code for a whole FPGA instance: a Go program for the FPGA and another for the host CPU. The host CPU is responsible for collecting/defining sample data, creating the required space in shared memory, passing pointers to the FPGA and starting the FPGA running. So, there's a certain amount of set up and tear down work required in our programs on either side of the main work of the FPGA.
+Reconfigure.io programs contain code for a whole FPGA instance: a Go program for the FPGA and at least one other to be run on the host CPU. The host is responsible for collecting/defining sample data, creating the required space in shared memory, passing pointers to the FPGA and starting the FPGA running. So, there's a certain amount of set up and tear down work required in our programs on either side of the main work of the FPGA.
 
-We can measure the performance of our Reconfigure.io programs in terms of the speed at which they can process data using Go's benchmarking framework. **Go benchmarking is designed to run through a defined loop of code a number of times until it can report a stable benchmark for the process**, so using various methods we can decide at which point we want to start and stop the timer running, which means we have a good degree of control over what we're actually measuring.
+We can use Go's benchmarking framework to measure the performance of our Reconfigure.io programs in terms of the speed at which they can process data. **Go benchmarking is designed to run through a defined loop of code a number of times until it can report a stable benchmark for the process**. The framework uses a timer which can be started, reset and stopped, so we can decide at which bits of our data processing we want to measure using these controls.
 
 In standard Go, benchmarking is part of the testing framework, so the benchmark would be defined within the project's ``main_test.go`` and you would run the benchmark with ``go test`` with an added ``-bench=.`` parameter. **When benchmarking Reconfigure.io programs you will be using our command line tool** ``reco`` **rather than** ``go test -bench=.`` **, and rather than including the benchmarking code itself in the** ``main_test.go`` **file, you’ll write a whole new host-side command so you can run the benchmark during deployment to get accurate results from the actual hardware.**
 
@@ -22,7 +22,15 @@ We've included the basics for two different benchmarks in our template, so let's
 
 FPGA-side benchmark
 ^^^^^^^^^^^^^^^^^^^
-The Go testing framework runs through a loop of code over and over again, increasing the number of repeats – ``b.N`` – until it lasts long enough to be timed reliably. While developing our programs we're most interested in the speed at which the FPGA gets through our data, so a benchmark targeting just that is really useful. We'll also look at a full system benchmark, which is also useful, but will include the slowest parts of the process in its results – writing to and reading from memory. If we want to benchmark just the FPGA-side code we need to pass this incrementing value, ``b.N``, *to* the FPGA, to be used to set the size of the sample data. if we do this, we know ``b.N`` iterations of the FPGA processing loop will be run, so we can get an accurate result. Then we can |reset| just before starting the FPGA running so we just measure the FPGA runtime and not the time it takes to transfer data to and from memory. Here's how this looks in our template:
+The Go testing framework runs through a loop of code over and over again, increasing the number of repeats – ``b.N`` – until it lasts long enough to be timed reliably. While developing our programs we're most interested in the speed at which the FPGA gets through our data, so a benchmark targeting just that is really useful. We'll also look at a full system benchmark later, which will include the slowest parts of the process in its results – writing to and reading from memory. If we want to benchmark just the FPGA-side code we need to pass this incrementing value, ``b.N``, *to* the FPGA, to be used to set the size of the sample data. if we do this, we know ``b.N`` iterations of the FPGA processing loop will be run, so we can get an accurate result. We can |reset| just before starting the FPGA running so we just measure the FPGA runtime and not the time it takes to transfer data to and from memory. Here's how this looks in a flow diagram:
+
+.. figure:: images/BenchmarkMultiply_FPGA.svg
+  :align: center
+  :width: 90%
+
+  Flow diagram showing benchmarking the FPGA runtime
+
+And here is our template code for an FPGA benchmark:
 
 .. code-block:: Go
   :linenos:
@@ -95,20 +103,25 @@ The Go testing framework runs through a loop of code over and over again, increa
     fmt.Printf("%s\n", result.String())
   }
 
-.. todo::
-   add simple flow diagram to illustrate what's going on here
-
 Full system benchmark
 ^^^^^^^^^^^^^^^^^^^^^
-We can also use Go's benchmarking framework to measure how long it takes for our full sample dataset to be processed, in this case, the loop we want to run through ``b.N`` iterations is as followds:
+We can also use Go's benchmarking framework to measure how long it takes for our full sample dataset to be processed, in this case, the loop we want to run through ``b.N`` iterations is as follows:
 
 * the host writes sample data to memory
 * then passes the input and results pointers to the FPGA
 * the FPGA processes the sample data
 * and passes it back to shared memory
-* then the host fetches the results and printing them out for us to see
+* then the host fetches the results
 
-Our template code for a full system benchmark looks like this:
+In this scenario there's some setup and teardown that we don't want to include in the benchmark. Here's a flow diagram to show how this can work:
+
+.. figure:: images/BenchmarkMultiply.svg
+  :align: center
+  :width: 90%
+
+  Flow diagram showing benchmarking the full system
+
+Here's our template for a full system benchmark, note that we're taking the input data size as a command line argument so you can run multiple benchmarks for different data widths:
 
 .. code-block:: Go
     :linenos:
@@ -224,9 +237,6 @@ Our template code for a full system benchmark looks like this:
       log.Printf("Input: %v ", s.input)
       log.Printf("Output: %v ", s.output)
     }
-
-.. todo::
-   Add flow diagram to illustrate what's going on
 
 Quickstart
 -----------
