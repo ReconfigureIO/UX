@@ -51,7 +51,7 @@ Each project's `reco.yml` file contains some simple settings, here's an example 
    :emphasize-lines: 4
 
     memory_interface: smi
-    memory_width: 64
+    memory_width: 512
     ports: 2
     compiler: rio
 

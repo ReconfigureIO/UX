@@ -55,7 +55,7 @@ A beta release of our new compiler, rio, is released. To use the new compiler ve
    :emphasize-lines: 4
 
     memory_interface: smi
-    memory_width: 64
+    memory_width: 512
     ports: 1
     compiler: rio
 
