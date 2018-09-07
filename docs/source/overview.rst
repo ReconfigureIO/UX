@@ -28,7 +28,8 @@ Access to the Reconfigure.io service is through our tool – ``reco``. Use ``rec
 
 Let's take a look at the workflow from coding to deployment:
 
-.. _code::
+.. _code:
+
 Code
 ^^^^^
 All the code you write will be in Go. You can create projects in your Go workspace and edit with your favourite editor. A Reconfigure.io project is made up of at least two Go programs, one for the FPGA, and at least one for the host CPU, shown below within the ``cmd`` directory (you may have multiple host side commands for benchmarking etc.). We use a :ref:`subset of the Go language <gosupport>` for FPGA-side code and any new additions to the scope will be flagged up in our :ref:`Release_Notes`. Host-side code is written in standard Go.
