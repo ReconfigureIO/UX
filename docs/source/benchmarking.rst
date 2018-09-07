@@ -34,6 +34,7 @@ And here is our template code for an FPGA benchmark:
 
 .. code-block:: Go
   :linenos:
+
   package main
 
   import (
@@ -124,128 +125,129 @@ In this scenario there's some setup and teardown that we don't want to include i
 Here's our template for a full system benchmark, note that we're taking the input data size as a command line argument so you can run multiple benchmarks for different data widths:
 
 .. code-block:: Go
-    :linenos:
-    package main
+  :linenos:
 
-    import (
-    "encoding/binary"
-    "fmt"
-    "log"
-    "os"
-    "strconv"
-    "testing"
+  package main
 
-    "github.com/ReconfigureIO/sdaccel/xcl"
-    )
+  import (
+  "encoding/binary"
+  "fmt"
+  "log"
+  "os"
+  "strconv"
+  "testing"
 
-    func main() {
-      // take the first command line argument and use as the data size for the benchmark
-      input := os.Args[1]
+  "github.com/ReconfigureIO/sdaccel/xcl"
+  )
 
-      // convert the string argument to an int
-      nInputs, err := strconv.Atoi(input)
-      if err != nil {
-       // handle error
-       fmt.Println(err)
-       os.Exit(2)
-      }
+  func main() {
+    // take the first command line argument and use as the data size for the benchmark
+    input := os.Args[1]
 
-      // initialise a new state using our specified input size and warm up
-      state := NewState(nInputs)
-      defer state.Release()
-
-      // run the benchmark
-      log.Println()
-      log.Println()
-      log.Printf("Time taken to pass, process and collect an array of %v integers: \n", nInputs)
-      log.Println()
-
-      result := testing.Benchmark(state.Run)
-      fmt.Println(result)
+    // convert the string argument to an int
+    nInputs, err := strconv.Atoi(input)
+    if err != nil {
+     // handle error
+     fmt.Println(err)
+     os.Exit(2)
     }
 
-    type State struct {
-      // Everything that needs setting up - kernel, input buffer, output buffer, input var, result var.
-      world      xcl.World
-      program    *xcl.Program
-      krnl       *xcl.Kernel
-      inputBuff  *xcl.Memory
-      outputBuff *xcl.Memory
-      input      []uint32
-      output     []uint32
+    // initialise a new state using our specified input size and warm up
+    state := NewState(nInputs)
+    defer state.Release()
+
+    // run the benchmark
+    log.Println()
+    log.Println()
+    log.Printf("Time taken to pass, process and collect an array of %v integers: \n", nInputs)
+    log.Println()
+
+    result := testing.Benchmark(state.Run)
+    fmt.Println(result)
+  }
+
+  type State struct {
+    // Everything that needs setting up - kernel, input buffer, output buffer, input var, result var.
+    world      xcl.World
+    program    *xcl.Program
+    krnl       *xcl.Kernel
+    inputBuff  *xcl.Memory
+    outputBuff *xcl.Memory
+    input      []uint32
+    output     []uint32
+  }
+
+  func NewState(nInputs int) *State {
+    w := xcl.NewWorld()          // variable for new World
+    p := w.Import("kernel_test") // variable to import our kernel
+    size := uint(nInputs) * 4    // number of bytes needed to hold the input and output data
+
+    s := &State{
+     world:      w,                                                      // allocate a new world for interacting with the FPGA
+     program:    p,                                                      // Import the compiled code that will be loaded onto the FPGA (referred to here as a kernel)
+     krnl:       p.GetKernel("reconfigure_io_sdaccel_builder_stub_0_1"), // Right now these two identifiers are hard coded as an output from the build process
+     inputBuff:  w.Malloc(xcl.ReadOnly, size),                           // constructed an input buffer as a function of nInputs
+     outputBuff: w.Malloc(xcl.ReadWrite, size),                          // In this example our output will be the same size as our input
+     input:      make([]uint32, nInputs),                                // make a variable to store our input data
+     output:     make([]uint32, nInputs),                                // make a variable to store our results data
     }
 
-    func NewState(nInputs int) *State {
-      w := xcl.NewWorld()          // variable for new World
-      p := w.Import("kernel_test") // variable to import our kernel
-      size := uint(nInputs) * 4    // number of bytes needed to hold the input and output data
-
-      s := &State{
-       world:      w,                                                      // allocate a new world for interacting with the FPGA
-       program:    p,                                                      // Import the compiled code that will be loaded onto the FPGA (referred to here as a kernel)
-       krnl:       p.GetKernel("reconfigure_io_sdaccel_builder_stub_0_1"), // Right now these two identifiers are hard coded as an output from the build process
-       inputBuff:  w.Malloc(xcl.ReadOnly, size),                           // constructed an input buffer as a function of nInputs
-       outputBuff: w.Malloc(xcl.ReadWrite, size),                          // In this example our output will be the same size as our input
-       input:      make([]uint32, nInputs),                                // make a variable to store our input data
-       output:     make([]uint32, nInputs),                                // make a variable to store our results data
-      }
-
-      // Seed the input array with incrementing values
-      for i, _ := range s.input {
-       s.input[i] = uint32(i)
-      }
-
-      //To avoid measuring warmup cost of the first few calls (especially in sim)
-      const warmup = 2
-      for i := 0; i < warmup; i++ {
-       s.feedFPGA()
-      }
-
-      return s
+    // Seed the input array with incrementing values
+    for i, _ := range s.input {
+     s.input[i] = uint32(i)
     }
 
-    // This function will calculate the benchmark, it will run repeatedly until it achieves a reliable result
-    func (s *State) Run(b *testing.B) {
-      for i := 0; i < b.N; i++ {
-       s.feedFPGA()
-      }
+    //To avoid measuring warmup cost of the first few calls (especially in sim)
+    const warmup = 2
+    for i := 0; i < warmup; i++ {
+     s.feedFPGA()
     }
 
-    // This function frees up buffers and released the World an program used to interact with the FPGA
-    func (s *State) Release() {
-      s.inputBuff.Free()
-      s.outputBuff.Free()
-      s.program.Release()
-      s.world.Release()
+    return s
+  }
+
+  // This function will calculate the benchmark, it will run repeatedly until it achieves a reliable result
+  func (s *State) Run(b *testing.B) {
+    for i := 0; i < b.N; i++ {
+     s.feedFPGA()
     }
+  }
 
-    // This function writes our sample data to memory, tells the FPGA where it is, and where to put the result and starts the FPGA runnings
-    func (s *State) feedFPGA() {
-      // write input to memory
-      binary.Write(s.inputBuff.Writer(), binary.LittleEndian, &s.input)
+  // This function frees up buffers and released the World an program used to interact with the FPGA
+  func (s *State) Release() {
+    s.inputBuff.Free()
+    s.outputBuff.Free()
+    s.program.Release()
+    s.world.Release()
+  }
 
-      s.krnl.SetMemoryArg(0, s.inputBuff)    // Send the location of the input data as the first argument
-      s.krnl.SetMemoryArg(1, s.outputBuff)   // Send the location the FPGA should put the result as the second argument
-      s.krnl.SetArg(2, uint32(len(s.input))) // Send the length of the input array as the third argument, so the FPGA knows what to expect
+  // This function writes our sample data to memory, tells the FPGA where it is, and where to put the result and starts the FPGA runnings
+  func (s *State) feedFPGA() {
+    // write input to memory
+    binary.Write(s.inputBuff.Writer(), binary.LittleEndian, &s.input)
 
-      // start the FPGA running
-      s.krnl.Run(1, 1, 1)
+    s.krnl.SetMemoryArg(0, s.inputBuff)    // Send the location of the input data as the first argument
+    s.krnl.SetMemoryArg(1, s.outputBuff)   // Send the location the FPGA should put the result as the second argument
+    s.krnl.SetArg(2, uint32(len(s.input))) // Send the length of the input array as the third argument, so the FPGA knows what to expect
 
-      // Read the results into our output variable
-      binary.Read(s.outputBuff.Reader(), binary.LittleEndian, &s.output)
+    // start the FPGA running
+    s.krnl.Run(1, 1, 1)
 
-      log.Printf("Input: %v ", s.input)
-      log.Printf("Output: %v ", s.output)
-    }
+    // Read the results into our output variable
+    binary.Read(s.outputBuff.Reader(), binary.LittleEndian, &s.output)
+
+    log.Printf("Input: %v ", s.input)
+    log.Printf("Output: %v ", s.output)
+  }
 
 Get started
 -----------
 FPGA-side benchmark
 ^^^^^^^^^^^^^^^^^^^
-To add an FPGA-side benchmark to an existing example, copy the template benchmark from [HERE] (or here: if you've forked our tutorial materials) and place it into your project's `cmd` directory. It should look like this::
+To add an FPGA-side benchmark to an existing example:
+1. Copy the template benchmark from [HERE] (or here: if you've forked our tutorial materials) and place it into your project's `cmd` directory. It should look like this:
 
 .. code-block:: shell
-
     ├── cmd
     │   └── test-my-project
     │       └── main.go
@@ -254,15 +256,17 @@ To add an FPGA-side benchmark to an existing example, copy the template benchmar
     ├── main.go
     ├── main_test.go
 
-Then , open ``cmd/bench-FPGA/main.go and make sure the input data section of the benchmark to be correct for your project, you can make changes to the sample data here, but the size needs to be set to our incrementing value ``b.N`` so the benchmarking framework can ramp up the number of times the processing loop of the FPGA side is run to get an accurate result. Our template uses an array of ``uint32s`` of size ``b.N``. If that works for your project you can leave it how it is.
+2. Open ``cmd/bench-FPGA/main.go`` and make sure the input data section of the benchmark to be correct for your project, you can make changes to the sample data here, but the size needs to be set to our incrementing value ``b.N`` so the benchmarking framework can ramp up the number of times the processing loop of the FPGA side is run to get an accurate result. Our template uses an array of ``uint32s`` of size ``b.N``. If that works for your project you can leave it how it is.
 
-You can then run the benchmarks during deployment once the example is built. To do this, create a build by running (you can enter whatever helpful message you want):
+3. Create a build image for your program by running the following (you can enter whatever helpful message you want):
 
 .. code-block:: shell
 
    reco build run -m "benchmark the FPGA run time"
 
-Then you can check your |dashboard| to see when the build is complete. To run the benchmark, first copy your build ID, with from your dashboard or by viewing the build list for your project, by running ``reco build list``, and then run the benchmark during a deployment:
+You can check your |dashboard| to see when the build is complete.
+
+4. To run the benchmark, first copy your build ID, from dashboard or by viewing the build list for your project, by running ``reco build list``, and then run the benchmark during a deployment:
 
 .. code-block:: shell
 
@@ -276,7 +280,8 @@ Then you can check your |dashboard| to see when the build is complete. To run th
 
 Full system benchmark
 ^^^^^^^^^^^^^^^^^^^^^
-To add a full system benchmark to an existing example just copy the template from [HERE] (or here: if you've forked our tutorial materials) and place them into your project's `cmd` directory. It should look like this::
+To add a full system benchmark to an existing example:
+1. Copy the template from [HERE] (or here: if you've forked our tutorial materials) and place them into your project's `cmd` directory. It should look like this::
 
 .. code-block:: shell
 
@@ -288,15 +293,17 @@ To add a full system benchmark to an existing example just copy the template fro
     ├── main.go
     ├── main_test.go
 
-Then , open ``cmd/bench-full/main.go and make sure the data being sent to the FPGA is correct for your project: uur template uses an array of incrementing``uint32s`` of size set by the value provided from the command line when a deployment is run. If that works for your project you can leave it how it is. To compare with the FPGA-side benchmark described above, this time, the incrememnting value ``b.N`` ramping up the number of times the function ``feedFPGA`` is run, until it's gets accurate timing for the whole process.
+2. Open ``cmd/bench-full/main.go and make sure the data being sent to the FPGA is correct for your project: if your template uses an array of incrementing``uint32s`` of size set by the value provided from the command line when a deployment is run. If that works for your project you can leave it how it is. To compare with the FPGA-side benchmark described above, this time, the incrementing value ``b.N`` ramping up the number of times the function ``feedFPGA`` is run, until it's gets accurate timing for the whole process.
 
-You can then run the benchmark during deployment once the example is built. To do this, create a build by running (you can enter whatever helpful message you want):
+3. Create a build image for your program by running the following (you can enter whatever helpful message you want):
 
 .. code-block:: shell
 
    reco build run -m "benchmark the full system"
 
-Then you can check your |dashboard| to see when the build is complete. To run the benchmark, first copy your build ID, with from your dashboard or by viewing the build list for your project, by running ``reco build list``, and then run the benchmark during a deployment, replacing <build_ID> for the build ID you just copied, and <input_size> for whatever input array size you want to benchmark:
+You can check your |dashboard| to see when the build is complete.
+
+4. To run the benchmark, first copy your build ID, with from dashboard or by viewing the build list for your project, by running ``reco build list``, and then run the benchmark during a deployment, replacing <build_ID> for the build ID you just copied, and <input_size> for whatever input array size you want to benchmark:
 
 .. code-block:: shell
 
@@ -307,51 +314,6 @@ Then you can check your |dashboard| to see when the build is complete. To run th
 
 .. todo::
    Add links to benchmark templates once they are released
-
-
-How to ...
-----------
-Benchmark a simple example
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-Let's have a go at benchmarking our multiply-array example from :ref:`tutorial 3 <struture>`.
-Scale up a design and see benchmark improvements
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Change a the FPGA-side benchmark to measure different parts of the process
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Probably the easiest way to see how this works, as usual, is to look at some very simple example code. Let's take the array multiplication example from the last tutorial. Our completed example is |multiply|, which includes benchmark commands for the host, but if you completed the last tutorial the following steps will guide you through adding this benchmark to your version.
-
-As we've done in previous tutorials, let's look at a flow diagram to see what we want the host and FPGA to do:
-
-.. figure:: images/BenchmarkMultiply_FPGA.svg
-
-   Flow diagram showing benchmarking the FPGA
-
-From this we can see that by resetting and stopping the benchmarking timer, we will end up with a benchmark figure for once round the FPGA processing loop.
-
-Now let's check you've got the latest version of our tutorial materials – |tutorials_version|. Open a terminal and navigate to where you cloned your fork (probably ``$GOPATH/src/github.com/<your-github-username>/tutorials``) and run::
-
-    git describe --tags
-
-If you have a different version, please run
-
-.. subst-code-block::
-
-    git fetch upstream
-    git pull upstream master
-    git checkout |tutorials_version|
-
-In tutorial 3 you created your multiply array example within a branch called `multiply`, so let's check that out
-
-.. subst-code-block::
-
-    git checkout multiply
-
-Now head to your version of the multiply-array example – it's probably here: ``$GOPATH/src/github.com/<your-github-username>/tutorials/multiply-array`` – and we'll copy our two benchmarking templates across to this example:
-
-.. code-block: shell
-
-   cd multiply-array/cmd
-   cp -r template/cmd/bench
 
 .. |multiply| raw:: html
 
