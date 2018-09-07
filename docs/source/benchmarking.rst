@@ -252,7 +252,7 @@ To add an FPGA-side benchmark to an existing example:
     ├── main.go
     ├── main_test.go
 
-2. Open ``cmd/bench-FPGA/main.go`` and make sure the data being sent to the FPGA is going to work for your project, you can make changes to the sample data, but the size needs to be set to our incrementing value ``b.N`` so the benchmarking framework can ramp up the number of times the processing loop of the FPGA side is run to get an accurate result. Our template uses an array of ``uint32s`` of size ``b.N``. If that works for your project you can leave it how it is.
+2. Open ``cmd/bench-FPGA/main.go`` and make sure the data being sent to the FPGA is going to work for your project, you can make changes to the sample data, but the size needs to be set to our incrementing value ``b.N`` so the benchmarking framework can ramp up the number of times the processing loop of the FPGA side is run to get an accurate result. Our template uses an array of ``uint32`` of size ``b.N``. If that works for your project you can leave it how it is.
 
 3. Create a build image for your program by running the following (you can enter whatever helpful message you want):
 
@@ -285,7 +285,7 @@ Getting started: full system benchmark
 --------------------------------------
 To add a full system benchmark to an existing example:
 
-1. Copy the template from [HERE] (or here: if you've forked our tutorial materials) and place them into your project's `cmd` directory. Your project should now look like this:
+1. Copy the template from [HERE] (or here: if you've forked our tutorial materials) and place them into your project's ``cmd`` directory. Your project should now look like this:
 
 .. code-block:: shell
 
@@ -297,7 +297,7 @@ To add a full system benchmark to an existing example:
     ├── main.go
     ├── main_test.go
 
-2. Open ``cmd/bench-full/main.go`` and make sure the data being sent to the FPGA is going to work for your project: if your template uses an array of incrementing``uint32s`` of size set by the value provided from the command line when a deployment is run. If that works for your project you can leave it how it is. To compare with the FPGA-side benchmark described above, this time, the incrementing value ``b.N`` ramping up the number of times the function ``feedFPGA`` is run, until it's gets accurate timing for the whole process.
+2. Open ``cmd/bench-full/main.go`` and make sure the data being sent to the FPGA is going to work for your project: our template uses an array of incrementing ``uint32`` of size set by the value provided from the command line when a deployment is run. If that works for your project you can leave it how it is. To compare with the FPGA-side benchmark described above, this time, the incrementing value ``b.N`` ramps up the number of times the function ``feedFPGA`` is called, until we get an accurate figure for the whole process.
 
 3. Create a build image for your program by running the following (you can enter whatever helpful message you want):
 
