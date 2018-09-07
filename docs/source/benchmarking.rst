@@ -1,14 +1,16 @@
 Benchmarking your projects
 ======================================================
-Now you've got the tools you need to start writing your own Reconfigure.io programs, you are most likely interested in a way to see how long it's taking the FPGA instance to process your data, after all, performance is what it's all about! Luckily, we use Go for everything, so benchmarking is built-in to the testing framework we have on hand. **In this guide we'll take a look at how to benchmark Reconfigure.io programs and look at the two benchmark options we provide in our template: first, measuring how long it takes the FPGA to process some data, and second, getting a full system benchmark for the host and FPGA combined. These can be used as starting points for you to generate the benchmarks you need.** Benchmarks are useful for several reasons: to compare performance with the same data processing being done on just a CPU, or other hardware acceleration platforms, and also benchmarks give us a means to track progress between design iterations as we make changes to optimize our programs.
+Now you've got the tools you need to start writing your own Reconfigure.io programs, you are most likely interested in a way to see how long it's taking the FPGA instance to process your data, after all, performance is what it's all about! Luckily, we use Go for everything, so benchmarking is built-in to the testing framework we have on hand.
+
+**In this guide we'll take a look at how to benchmark Reconfigure.io programs and look at the two benchmark options we provide in our template: first, measuring how long it takes the FPGA to process some data, and second, getting a full system benchmark for the host and FPGA combined. These can be used as starting points for you to generate the benchmarks you need.**
+
+Benchmarks are useful for several reasons: to compare performance with the same data processing being done on just a CPU, or other hardware acceleration platforms, and also benchmarks give us a means to track progress between design iterations as we make changes to optimize our programs.
 
 What we will do
 ----------------
-* Discuss our various benchmark options and look at our template benchmarking structure.
-* Look at the structure of an FPGA-side benchmark.
-* Look at the structure of a full system benchmark.
-* See how to quickly add a benchmark to an example using our template.
-* Try out running some benchmarks at deployment
+* An overview of benchmarking for Reconfigure.io.
+* Look at our two benchmark options included in our template - FPGA-side and full system.
+* Quick getting started guide to how to use our benchmark templates.
 
 Overview
 ------------------------
@@ -240,11 +242,10 @@ Here's our template for a full system benchmark, note that we're taking the inpu
     log.Printf("Output: %v ", s.output)
   }
 
-Get started
------------
-FPGA-side benchmark
-^^^^^^^^^^^^^^^^^^^
+Get started: FPGA-side benchmark
+---------------------------------
 To add an FPGA-side benchmark to an existing example:
+
 1. Copy the template benchmark from [HERE] (or here: if you've forked our tutorial materials) and place it into your project's `cmd` directory. It should look like this:
 
 .. code-block:: shell
@@ -278,9 +279,10 @@ You can check your |dashboard| to see when the build is complete.
 .. todo::
    Add links to benchmark templates once they are released
 
-Full system benchmark
-^^^^^^^^^^^^^^^^^^^^^
+Get started: FPGA-side benchmark
+---------------------------------
 To add a full system benchmark to an existing example:
+
 1. Copy the template from [HERE] (or here: if you've forked our tutorial materials) and place them into your project's `cmd` directory. It should look like this::
 
 .. code-block:: shell
