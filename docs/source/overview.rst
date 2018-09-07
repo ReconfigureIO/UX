@@ -46,7 +46,7 @@ You will use our |sdaccel| for both FPGA and host-side code. We provide a subpac
 
 The |smi_blog| protocol is our standard way of having the FPGA talk to shared memory (find more on this in our :ref:`third tutorial <structure>`), and is designed specifically for working with FPGAs, where the potential for fine-grained parallelism is high, with many, potentially thousands of go routines, trying to access memory at the same time.
 
-Each project's `reco.yml` file contains some simple settings, here's an example for a project which requires 2 SMI ports (one read, and one write port) - Also included here is a line to choose to use our new compiler, rio, which is currently in beta:
+Each project's ``reco.yml`` file contains some simple settings, here's an example for a project that requires two SMI ports (one read, and one write port) - Also included here is a line to choose to use our new compiler, rio, which is currently in beta:
 
 .. code-block:: shell
    :emphasize-lines: 4
@@ -55,6 +55,9 @@ Each project's `reco.yml` file contains some simple settings, here's an example 
     memory_width: 512
     ports: 2
     compiler: rio
+
+.. note::
+   When using rio, loop unrolling is now automatic so you don't need to do this in your code, and pipelining is no longer automatic but can be achieved using goroutines. Also, BRAM generation is not yet supported so if your project uses arrays of more than 512 bits you should remain using the current compiler model for now. Support for this and more features is set for the coming weeks.
 
 Go tooling
 ^^^^^^^^^^^

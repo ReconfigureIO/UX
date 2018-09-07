@@ -5,7 +5,7 @@ Optimizing your projects
 
 .. admonition:: Rio compiler - Beta
 
-   If you're using our new reworked compiler version, which is currently in beta, graphs are going to look very different to how they are described here. This is because we're packing so many more operations into a single clock now. More on this when we move fully over to the new compiler version.
+   If you're using our new reworked compiler, :ref:`rio <code>` which is currently in beta, graphs are going to look very different to how they are described here. This is because we're packing so many more operations into a single clock now. More on this when we move fully over to the new compiler version.
 
 In this section we're going to look at optimizing your projects. Select an option below to jump to a section:
 
