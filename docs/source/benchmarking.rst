@@ -311,6 +311,9 @@ Then you can check your |dashboard| to see when the build is complete. To run th
 
 How to ...
 ----------
+Benchmark a simple example
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+Let's have a go at benchmarking our multiply-array example from :ref:`tutorial 3 <struture>`.
 Scale up a design and see benchmark improvements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Change a the FPGA-side benchmark to measure different parts of the process
