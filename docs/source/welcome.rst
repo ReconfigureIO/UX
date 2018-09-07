@@ -42,6 +42,40 @@ API docs
 ^^^^^^^^
 You will need to use some specific Go packages for talking to memory, and for communication within the FPGA instance. You'll find docs for these |api|.
 
+What's new?
+-----------
+Here's a rundown of our latests improvements and new feature releases.
+
+.. _llvm:
+6th September
+^^^^^^^^^^^^^
+A beta release of our new compiler, rio, is released. To use the new compiler version for a project, just include the line shown highlighted below in your project's ``reco.yml`` file:
+
+.. code-block:: shell
+   :emphasize-lines: 4
+
+    memory_interface: smi
+    memory_width: 512
+    ports: 1
+    compiler: rio
+
+.. note::
+   When using rio, loop unrolling is now automatic so you don't need to do this in your code, and pipelining is no longer automatic but can be achieved using goroutines. Also, BRAM generation is not yet supported so if your project uses arrays of more than 512 bits you should remain using the current compiler model for now. Support for this and more features is set for the coming weeks.
+
+To read more about our reworked compiler, see our |blog|.
+
+28th August
+^^^^^^^^^^^
+The latest version of our command line tool, ``reco``, includes some new features to help you track your builds and optimize your code:
+
+* A message can be added to a build, like a ``git commit`` message, as follows: ``reco build run -m "helpful message"``. This message is then displayed in your dashboard build list, and the per project build list accessible by running ``reco build list``. This is to help with build management, when you're working on several iterations of a design.
+* :ref:`Build reports <reports>` are now available by running ``reco build <build_ID> report``. These reports include information on utilization of FPGA resources for your projects, to help with scaling up and streamlining designs.
+
+**You can view our release notes in full** :ref:`here <release_notes>` **.**
+
+.. |blog| raw:: html
+
+   <a href="https://medium.com/the-recon/reconfigure-io-move-to-llvm-for-major-performance-and-usability-improvements-1f9c36ca424" target="_blank">blog post</a>
 .. |signup| raw:: html
 
    <a href="https://reconfigure.io/sign-up" target="_blank">sign up</a>

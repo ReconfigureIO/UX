@@ -4,6 +4,12 @@
 Release Notes
 =============
 
+Reconfigure.io v0.18.0
+======================
+
+This release presents a beta version of our new reworked compiler based on the LLVM infrastructure. The new compiler delivers significant performance and usablity improvements: around 30% lower latency, 30% lower utilization and closer alignment between our modelling and the Go language. To use the beta version of Rio for your projects have a look at the guidance :ref:`here <code>`.
+
+
 Reconfigure.io v0.17.6
 ======================
 
