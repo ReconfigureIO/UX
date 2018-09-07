@@ -236,7 +236,7 @@ Here's our template for a full system benchmark, note that we're taking the inpu
     log.Printf("Output: %v ", s.output)
   }
 
-Get started: FPGA-side benchmark
+Getting started: FPGA-side benchmark
 ---------------------------------
 To add an FPGA-side benchmark to an existing example:
 
@@ -281,8 +281,8 @@ You can check your |dashboard| to see when the build is complete.
 .. todo::
    Add links to benchmark templates once they are released
 
-Get started: FPGA-side benchmark
----------------------------------
+Getting started: full system benchmark
+--------------------------------------
 To add a full system benchmark to an existing example:
 
 1. Copy the template from [HERE] (or here: if you've forked our tutorial materials) and place them into your project's `cmd` directory. Your project should now look like this:
@@ -297,7 +297,7 @@ To add a full system benchmark to an existing example:
     ├── main.go
     ├── main_test.go
 
-2. Open ``cmd/bench-full/main.go and make sure the data being sent to the FPGA is going to work for your project: if your template uses an array of incrementing``uint32s`` of size set by the value provided from the command line when a deployment is run. If that works for your project you can leave it how it is. To compare with the FPGA-side benchmark described above, this time, the incrementing value ``b.N`` ramping up the number of times the function ``feedFPGA`` is run, until it's gets accurate timing for the whole process.
+2. Open ``cmd/bench-full/main.go`` and make sure the data being sent to the FPGA is going to work for your project: if your template uses an array of incrementing``uint32s`` of size set by the value provided from the command line when a deployment is run. If that works for your project you can leave it how it is. To compare with the FPGA-side benchmark described above, this time, the incrementing value ``b.N`` ramping up the number of times the function ``feedFPGA`` is run, until it's gets accurate timing for the whole process.
 
 3. Create a build image for your program by running the following (you can enter whatever helpful message you want):
 
@@ -313,11 +313,11 @@ You can check your |dashboard| to see when the build is complete.
 
     reco build list
 
-5. Copy the build ID and then run a deployment to get your benchmark:
+5. Copy the build ID and then run a deployment to get your benchmark, you will also need to supply a data size from the commandline (e.g. 100):
 
 .. code-block:: shell
 
-   reco deploy run <build_ID> bench-FPGA
+   reco deploy run <build_ID> bench-full <data_size>
 
 .. admonition:: Benchmarks during simulation
 
