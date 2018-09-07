@@ -1,6 +1,6 @@
 Benchmarking your projects
 ======================================================
-Now you've got the tools you need to start writing your own Reconfigure.io programs, you are most likely interested in a way to see how long it's taking the FPGA instance to process your data, after all, performance is what it's all about! Luckily, we use Go for everything, so benchmarking is built-in to the testing framework we have on hand. **In this tutorial we'll consider two benchmark options: first, measuring how long it takes the FPGA to process some data, and second, getting a full system benchmark for the host and FPGA combined. Benchmarks are useful for several reasons: to compare performance with the same data processing being done on just a CPU, or other hardware acceleration platforms, and also benchmarks give us a means to track progress between design iterations as we make changes to optimize our programs**.
+Now you've got the tools you need to start writing your own Reconfigure.io programs, you are most likely interested in a way to see how long it's taking the FPGA instance to process your data, after all, performance is what it's all about! Luckily, we use Go for everything, so benchmarking is built-in to the testing framework we have on hand. **In this guide we'll take a look at how to benchmark Reconfigure.io programs and look at the two benchmark options we provide in our template: first, measuring how long it takes the FPGA to process some data, and second, getting a full system benchmark for the host and FPGA combined. These can be used as starting points for you to generate the benchmarks you need.** Benchmarks are useful for several reasons: to compare performance with the same data processing being done on just a CPU, or other hardware acceleration platforms, and also benchmarks give us a means to track progress between design iterations as we make changes to optimize our programs.
 
 What we will do
 ----------------
@@ -249,16 +249,24 @@ To add an FPGA-side benchmark to an existing example, copy the template benchmar
     ├── cmd
     │   └── test-my-project
     │       └── main.go
-    │   └── bench-my-project
+    │   └── bench-FPGA
     │       └── main.go
     ├── main.go
     ├── main_test.go
 
-You will need to change the input data section of the benchmark to be correct for your project, it just needs to be the size of our incrementing value ``b.N`` so the benchmarking framework can ramp up the number of times the processing loop is run to get an accurate result. The template uses an array of ``uint32s`` of size ``b.N`` as sample data. If that works for your project you can leave it how it is
+Then , open ``cmd/bench-FPGA/main.go and make sure the input data section of the benchmark to be correct for your project, you can make changes to the sample data here, but the size needs to be set to our incrementing value ``b.N`` so the benchmarking framework can ramp up the number of times the processing loop of the FPGA side is run to get an accurate result. Our template uses an array of ``uint32s`` of size ``b.N``. If that works for your project you can leave it how it is.
 
-You can then run the benchmarks during deployment once the example is built.
+You can then run the benchmarks during deployment once the example is built. To do this, create a build by running (you can enter whatever helpful message you want):
 
+.. code-block:: shell
 
+   reco build run -m "benchmark the FPGA run time"
+
+Then you can check your |dashboard| to see when the build is complete. To run the benchmark, first copy your build ID, with from your dashboard or by viewing the build list for your project, by running ``reco build list``, and then run the benchmark during a deployment:
+
+.. code-block:: shell
+
+   reco deploy run <build_ID> bench-FPGA
 
 .. admonition:: Benchmarks during simulation
    It is possible to run benchmark commands during a hardware simulation, but the results you will see will not give a good representation of how the program will perform on hardware.
@@ -268,18 +276,37 @@ You can then run the benchmarks during deployment once the example is built.
 
 Full system benchmark
 ^^^^^^^^^^^^^^^^^^^^^
-To add a full system benchmark to an existing example just copy the template from [HERE] (or here: if you've forked our tutorial materials) and place them into your project's `cmd` directory. You can then run the benchmarks during deployment once the example is built.
+To add a full system benchmark to an existing example just copy the template from [HERE] (or here: if you've forked our tutorial materials) and place them into your project's `cmd` directory. It should look like this::
 
-You will need to change the section where the input data is created to match your specific project. You will supply a data size using a command-line argument when you come to deployment.
+.. code-block:: shell
 
-When your project is built and you want to run the benchmark during deployment, you will need to run:
+    ├── cmd
+    │   └── test-my-project
+    │       └── main.go
+    │   └── bench-full
+    │       └── main.go
+    ├── main.go
+    ├── main_test.go
 
-.. code-block::
+Then , open ``cmd/bench-full/main.go and make sure the data being sent to the FPGA is correct for your project: uur template uses an array of incrementing``uint32s`` of size set by the value provided from the command line when a deployment is run. If that works for your project you can leave it how it is. To compare with the FPGA-side benchmark described above, this time, the incrememnting value ``b.N`` ramping up the number of times the function ``feedFPGA`` is run, until it's gets accurate timing for the whole process.
 
-    reco deploy run <deployment_ID> bench-full <size of input>
+You can then run the benchmark during deployment once the example is built. To do this, create a build by running (you can enter whatever helpful message you want):
+
+.. code-block:: shell
+
+   reco build run -m "benchmark the full system"
+
+Then you can check your |dashboard| to see when the build is complete. To run the benchmark, first copy your build ID, with from your dashboard or by viewing the build list for your project, by running ``reco build list``, and then run the benchmark during a deployment, replacing <build_ID> for the build ID you just copied, and <input_size> for whatever input array size you want to benchmark:
+
+.. code-block:: shell
+
+   reco deploy run <build_ID> bench-FPGA <input_size>
+
+.. admonition:: Benchmarks during simulation
+   It is possible to run benchmark commands during a hardware simulation, but the results you will see will not give a good representation of how the program will perform on hardware.
 
 .. todo::
-   fill in all missing steps - every page is page one etc.
+   Add links to benchmark templates once they are released
 
 
 How to ...
@@ -330,3 +357,7 @@ Now head to your version of the multiply-array example – it's probably here: `
 .. |reset| raw:: html
 
    <a href="https://golang.org/pkg/testing/#B.ResetTimer" target="_blank">reset the benchmarking timer</a>
+
+.. |dashboard| raw:: html
+
+   <a href="https://app.reconfigure.io/dashboard" target="_blank">dashboard</a>
