@@ -17,6 +17,7 @@ Welcome to Reconfigure.io's documentation!
    tutorial-1-workflow
    tutorial_2_addition
    tutorial_3_structure_comms
+   benchmarking
    optimize
    style_guide
    setup

@@ -2,6 +2,11 @@
 
 How it works
 =============================
+
+.. admonition:: Our new compiler is in beta, and you can try it out now!
+
+    To use the beta version of our new compiler, simply add the line ``compiler: rio`` to your project's ``reco.yml`` file. To read more about why and how the compiler is changing, check out our |blog|. Remember to let us know if you encounter any bugs or issues |bugs|.
+
 This section gives an overview of the Reconfigure.io service. We'll start by running through our workflow and tooling, and then take a look at our system architecture and the steps we go through to get your code into a suitable format for programming an FPGA instance.
 
 .. image:: images/workflow.png
@@ -23,6 +28,8 @@ Access to the Reconfigure.io service is through our tool – ``reco``. Use ``rec
 
 Let's take a look at the workflow from coding to deployment:
 
+.. _code:
+
 Code
 ^^^^^
 All the code you write will be in Go. You can create projects in your Go workspace and edit with your favourite editor. A Reconfigure.io project is made up of at least two Go programs, one for the FPGA, and at least one for the host CPU, shown below within the ``cmd`` directory (you may have multiple host side commands for benchmarking etc.). We use a :ref:`subset of the Go language <gosupport>` for FPGA-side code and any new additions to the scope will be flagged up in our :ref:`Release_Notes`. Host-side code is written in standard Go.
@@ -35,10 +42,22 @@ All the code you write will be in Go. You can create projects in your Go workspa
     ├── main.go
     ├── reco.yml
 
-You will use our Go SDAccel package for both FPGA and host-side code. We provide a subpackage within that called ``XCL`` to allow the host to talk to the FPGA card, and subpackage called ``SMI`` for the FPGA to talk to the shared memory situated on the FPGA card.
+You will use our |sdaccel| for both FPGA and host-side code. We provide a subpackage within that called ``XCL`` to allow the host to talk to the FPGA card, and subpackage called ``SMI`` for the FPGA to talk to the shared memory situated on the FPGA card.
 
 The |smi_blog| protocol is our standard way of having the FPGA talk to shared memory (find more on this in our :ref:`third tutorial <structure>`), and is designed specifically for working with FPGAs, where the potential for fine-grained parallelism is high, with many, potentially thousands of go routines, trying to access memory at the same time.
 
+Each project's ``reco.yml`` file contains some simple settings, here's an example for a project that requires two SMI ports (one read, and one write port) - Also included here is a line to choose to use our new compiler, rio, which is currently in beta:
+
+.. code-block:: shell
+   :emphasize-lines: 4
+
+    memory_interface: smi
+    memory_width: 512
+    ports: 2
+    compiler: rio
+
+.. note::
+   When using rio, loop unrolling is now automatic so you don't need to do this in your code, and pipelining is no longer automatic but can be achieved using goroutines. Also, BRAM generation is not yet supported so if your project uses arrays of more than 512 bits you should remain using the current compiler model for now. Support for this and more features is set for the coming weeks.
 
 Go tooling
 ^^^^^^^^^^^
@@ -195,3 +214,15 @@ We take your code through several stages to get it ready to program an FPGA:
 .. |sign up| raw:: html
 
    <a href="https://reconfigure.io/sign-up" target="_blank">sign up</a>
+
+.. |blog| raw:: html
+
+   <a href="https://medium.com/the-recon/reconfigure-io-move-to-llvm-for-major-performance-and-usability-improvements-1f9c36ca424" target="_blank">blog post</a>
+
+.. |bugs| raw:: html
+
+   <a href="https://community.reconfigure.io/c/report-a-bug" target="_blank">on our forum</a>
+
+.. |sdaccel| raw:: html
+
+   <a href="https://godoc.org/github.com/ReconfigureIO/sdaccel" target="_blank">Go-SDAccel package</a>

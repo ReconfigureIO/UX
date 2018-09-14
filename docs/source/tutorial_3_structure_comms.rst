@@ -13,8 +13,8 @@ What we will do
 * Look at our program structure
 * Look at the basic requirements for the CPU and FPGA code. A template is available in ``tutorials/template``
 * Discuss how to share data between the host CPU and FPGA
-* Use our template to create a simple program in which a single integer is passed from host CPU to the FPGA, multiplied by 2, and passed back to the host. (Solution here: ``tutorials/multiply1``)
-* Use the code above as the basis to create another program where an array of 10 integers is passed from the host to the FPGA, each integer is then multiplied by 2 and the resulting array is passed back to the host. (Solution here: ``tutorials/multiply-array``)
+* Use our template to create a simple program in which a single integer is passed from host CPU to the FPGA, multiplied by 2, and passed back to the host. (Solution here: ``tutorials/multiply1-complete``)
+* Use the code above as the basis to create another program where an array of 10 integers is passed from the host to the FPGA, each integer is then multiplied by 2 and the resulting array is passed back to the host. (Solution here: ``tutorials/multiply-array-complete``)
 
 Program Structure
 -----------------
