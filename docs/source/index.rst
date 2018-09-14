@@ -27,62 +27,62 @@ Welcome to Reconfigure.io's documentation!
    FAQ
    release_notes
 
-   A platform for software defined chips
-   =====================================
-   Reconfigure.io is a platform for programming hardware accelerators from software. You can use your existing development tools to write applications in Go, to access the benefits of hardware acceleration – **more performance, lower latency, reduced power and space requirements**. We have both cloud and on-premises platform options, so whatever your situation or use case, we have a platform that will work for you. Our software defined chips are fully reprogrammable and our tooling works in line with modern software development practices – CI&CD, Agile etc. – so you can develop and manipulate accelerator designs along with your current workflow.
+A platform for software defined chips
+=====================================
+Reconfigure.io is a platform for programming hardware accelerators from software. You can use your existing development tools to write applications in Go, to access the benefits of hardware acceleration – **more performance, lower latency, reduced power and space requirements**. We have both cloud and on-premises platform options, so whatever your situation or use case, we have a platform that will work for you. Our software defined chips are fully reprogrammable and our tooling works in line with modern software development practices – CI&CD, Agile etc. – so you can develop and manipulate accelerator designs along with your current workflow.
 
-   .. image:: images/platform-options.png
-       :align: center
-       :width: 100%
+.. image:: images/platform-options.png
+   :align: center
+   :width: 100%
 
-   Our current platforms are based on FPGAs (field programmable gate arrays), which provide significant latency and throughput improvements when compared to using CPUs alone, by carrying out many, many tasks in parallel. Cost reductions are easily achieved because one FPGA can carry out the work of many servers. Up until now, the power of the FPGA has been tricky to harness due to the skills required to take full advantage of their programmability. Reconfigure.io allows you to use the skills and tools you already have to program and reprogram these chips to create accelerators that fit your business-specific requirements.
+Our current platforms are based on FPGAs (field programmable gate arrays), which provide significant latency and throughput improvements when compared to using CPUs alone, by carrying out many, many tasks in parallel. Cost reductions are easily achieved because one FPGA can carry out the work of many servers. Up until now, the power of the FPGA has been tricky to harness due to the skills required to take full advantage of their programmability. Reconfigure.io allows you to use the skills and tools you already have to program and reprogram these chips to create accelerators that fit your business-specific requirements.
 
-   .. image:: images/speed-animation.gif
-       :align: center
-       :width: 70%
+.. image:: images/speed-animation.gif
+   :align: center
+   :width: 70%
 
-   Where do I sign up?
-   -------------------
-   If you're new to Reconfigure.io and would like to try out our cloud platform for free, please |signup| using your Github account. It'll just take a few minutes and we'll guide you through downloading and :ref:`installing <install>` our command line tool. If you want to know more about our on-premises platform, please contact us at sales@reconfigure.io.
+Where do I sign up?
+-------------------
+If you're new to Reconfigure.io and would like to try out our cloud platform for free, please |signup| using your Github account. It'll just take a few minutes and we'll guide you through downloading and :ref:`installing <install>` our command line tool. If you want to know more about our on-premises platform, please contact us at sales@reconfigure.io.
 
-   How to use this guide
-   ----------------------
-   Reconfigure.io provides a comfortable platform for you to use your software development skills to create hardware designs.
+How to use this guide
+----------------------
+Reconfigure.io provides a comfortable platform for you to use your software development skills to create hardware designs.
 
-   For an overview of our workflow from coding to deployment, head :ref:`here <overview>`. Also, checkout our :ref:`project-structure` to see how Reconfigure.io programs are made up, and :ref:`here <optimize>` for information on the various ways of optimizing your programs for the FPGA hardware. To take a high-level look at our system architecture have a look :ref:`here <architecture>`. Or, if tutorials are more your thing:
+For an overview of our workflow from coding to deployment, head :ref:`here <overview>`. Also, checkout our :ref:`project-structure` to see how Reconfigure.io programs are made up, and :ref:`here <optimize>` for information on the various ways of optimizing your programs for the FPGA hardware. To take a high-level look at our system architecture have a look :ref:`here <architecture>`. Or, if tutorials are more your thing:
 
-   * You can start off by running through our :ref:`first tutorial <demo>` to see how powerful the Reconfigure.io service is. You will quickly get to grips with our simple workflow using some of our example code to run through development, checking, simulating, building and finally deploying a build image to an FPGA instance.
-   * Next, our :ref:`second tutorial <addition>` looks at a very simple example and guides you through completing some code for yourself to give you more experience of how our applications are structured.
-   * Our :ref:`third tutorial <structure>` looks at program structure in more detail, as well as exploring how data is shared between the various elements of the FPGA instance – this puts you in a good position to start writing your own programs.
+* You can start off by running through our :ref:`first tutorial <demo>` to see how powerful the Reconfigure.io service is. You will quickly get to grips with our simple workflow using some of our example code to run through development, checking, simulating, building and finally deploying a build image to an FPGA instance.
+* Next, our :ref:`second tutorial <addition>` looks at a very simple example and guides you through completing some code for yourself to give you more experience of how our applications are structured.
+* Our :ref:`third tutorial <structure>` looks at program structure in more detail, as well as exploring how data is shared between the various elements of the FPGA instance – this puts you in a good position to start writing your own programs.
 
-   We have two platform options: on-premises or cloud. Any information in these docs that is specific to a platform will be clearly indicated.
+We have two platform options: on-premises or cloud. Any information in these docs that is specific to a platform will be clearly indicated.
 
-   Helpful resources
-   ------------------
+Helpful resources
+------------------
 
-   Tech support
-   ^^^^^^^^^^^^
-   You can access technical support from our engineering team at any time, we're always available either:
+Tech support
+^^^^^^^^^^^^
+You can access technical support from our engineering team at any time, we're always available either:
 
-   * on our |forum|
-   * through our in-app messenger on your |dashboard|
+* on our |forum|
+* through our in-app messenger on your |dashboard|
 
-   API docs
-   ^^^^^^^^
-   You will need to use some specific Go packages for talking to memory, and for communication within the FPGA instance. You'll find docs for these |api|.
+API docs
+^^^^^^^^
+You will need to use some specific Go packages for talking to memory, and for communication within the FPGA instance. You'll find docs for these |api|.
 
-   .. |signup| raw:: html
+.. |signup| raw:: html
 
-      <a href="https://reconfigure.io/sign-up" target="_blank">sign up</a>
+  <a href="https://reconfigure.io/sign-up" target="_blank">sign up</a>
 
-   .. |forum| raw:: html
+.. |forum| raw:: html
 
-      <a href="https://community.reconfigure.io/" target="_blank">community forum</a>
+  <a href="https://community.reconfigure.io/" target="_blank">community forum</a>
 
-   .. |dashboard| raw:: html
+.. |dashboard| raw:: html
 
-      <a href="https://app.reconfigure.io/dashboard" target="_blank">dashboard</a>
+  <a href="https://app.reconfigure.io/dashboard" target="_blank">dashboard</a>
 
-   .. |api| raw:: html
+.. |api| raw:: html
 
-      <a href="https://godoc.org/github.com/ReconfigureIO/sdaccel" target="_blank">here</a>
+  <a href="https://godoc.org/github.com/ReconfigureIO/sdaccel" target="_blank">here</a>
