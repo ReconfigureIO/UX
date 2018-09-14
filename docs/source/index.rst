@@ -16,6 +16,7 @@ Welcome to Reconfigure.io's documentation!
    tutorial_1_hist_parallel
    tutorial_2_addition
    tutorial_3_structure_comms
+   benchmarking
    optimize
    style_guide
    setup
