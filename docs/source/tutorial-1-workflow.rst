@@ -1,7 +1,5 @@
 .. _demo:
 
-
-
 Tutorial 1 – Setup and workflow
 ===============================================
 
@@ -16,7 +14,6 @@ Tutorial 1 – Setup and workflow
    tutorial-1/build.rst
    tutorial-1/deploy.rst
    tutorial-1/example.rst
-
 
 .. sidebar:: Keeping up-to-date...
 
