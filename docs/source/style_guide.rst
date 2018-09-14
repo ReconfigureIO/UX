@@ -8,7 +8,7 @@ This style guide sets out some best practices for writing applications for Recon
 .. _rio:
 .. admonition:: New compiler in beta now!
 
-    **We have released a beta version of our new compiler,** :ref:`rio <code>` **.** If you are using rio in your projects it is worth noting that some of the information in this style guide is no longer correct and will be updated with the full rollout of the new compiler soon. Please note some significant changes: when using rio, loop unrolling is now automatic so you don't need to do this in your code, and pipelining is no longer automatic but can be achieved using goroutines. Also, BRAM generation is not yet supported so if your project uses arrays of more than 512 bits you should remain using the current compiler model for now. Support for this and more features is set for the coming weeks.
+    **We have released a beta version of our new compiler,** :ref:`rio <code>` **.** If you are using rio in your projects it is worth noting that some of the information in this style guide is no longer correct and will be updated with the full rollout of the new compiler soon. Please note some significant changes: when using rio, loop unrolling is now automatic so you don't need to do this in your code, and pipelining is no longer automatic but can be achieved using goroutines.
 
 Template
 --------

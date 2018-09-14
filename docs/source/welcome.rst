@@ -60,7 +60,7 @@ A beta release of our new compiler, rio, is released. To use the new compiler ve
     compiler: rio
 
 .. note::
-   When using rio, loop unrolling is now automatic so you don't need to do this in your code, and pipelining is no longer automatic but can be achieved using goroutines. Also, BRAM generation is not yet supported so if your project uses arrays of more than 512 bits you should remain using the current compiler model for now. Support for this and more features is set for the coming weeks.
+   When using rio, loop unrolling is now automatic so you don't need to do this in your code, and pipelining is no longer automatic but can be achieved using goroutines.
 
 To read more about our reworked compiler, see our |blog|.
 
