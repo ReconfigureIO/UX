@@ -49,7 +49,7 @@ Here's a rundown of our latests improvements and new feature releases.
 .. _llvm:
 6th September
 ^^^^^^^^^^^^^
-A beta release of our new compiler, rio, is released. To use the new compiler version for a project, just include the line shown highlighted below in your project's ``reco.yml`` file:
+A beta release of our new compiler, Rio, is released. To use the new compiler version for a project, just include the line shown highlighted below in your project's ``reco.yml`` file:
 
 .. code-block:: shell
    :emphasize-lines: 4
@@ -60,7 +60,7 @@ A beta release of our new compiler, rio, is released. To use the new compiler ve
     compiler: rio
 
 .. note::
-   When using rio, loop unrolling is now automatic so you don't need to do this in your code, and pipelining is no longer automatic but can be achieved using goroutines.
+   When using Rio, loop unrolling is now automatic so you don't need to do this in your code. Loop unrolling is done within the new compiler on a cost basis – more complex loops, and those with more iterations are less likely to be unrolled. Also, pipelining is no longer automatic but can be achieved using goroutines.
 
 To read more about our reworked compiler, see our |blog|.
 

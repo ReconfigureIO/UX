@@ -7,7 +7,7 @@ Release Notes
 Reconfigure.io v0.18.1
 ======================
 
-In this release register-based scheduling is introduced to allow more parallel behaviour and we've enabled blockRAM generation for designs using the new compiler, rio.
+In this release, register-based scheduling is introduced to allow more parallel behaviour, and we've enabled blockRAM generation for designs using the new compiler, rio.
 
 Features
 ^^^^^^^^
