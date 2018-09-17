@@ -7,12 +7,12 @@ Tutorial 2 – Filling in the Gaps
    :maxdepth: 4
    :hidden:
 
-   tutorial-1/problem.rst
-   tutorial-1/fork-tutorials.rst
-   tutorial-1/fill-gaps.rst
-   tutorial-1/test.rst
-   tutorial-1/check-sim.rst
-   tutorial-1/solution.rst
+   tutorial-2/problem.rst
+   tutorial-2/fork-tutorials.rst
+   tutorial-2/fill-gaps.rst
+   tutorial-2/test.rst
+   tutorial-2/check-sim.rst
+   tutorial-2/solution.rst
 
 .. sidebar:: Keeping up-to-date...
 
