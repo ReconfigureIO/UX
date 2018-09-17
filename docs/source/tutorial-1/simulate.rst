@@ -1,5 +1,5 @@
-Simulate
---------
+4 – Simulate
+------------
 Our tooling requires that you work within a project, so, before we start anything else, let's define a project – call it ``histogram``, and set that project to be active::
 
   reco project create histogram

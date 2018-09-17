@@ -1,4 +1,4 @@
-Fork our tutorials repository
+2 – Fork our tutorials repository
 ---------------------------------
 We're going to start using our tutorial materials repo, which contains an incomplete example for you to work on. So, as we're going to be making changes to the code, let's fork the repo. You'll find it |tutorials|.
 
@@ -44,3 +44,7 @@ Then copy and paste the following:
     git remote add upstream git://github.com/ReconfigureIO/tutorials.git
     git fetch upstream
     git checkout v0.1.0
+
+.. |tutorials| raw:: html
+
+   <a href="https://github.com/ReconfigureIO/tutorials" target="_blank">here</a>

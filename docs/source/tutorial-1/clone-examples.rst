@@ -1,6 +1,6 @@
 .. _examples:
 
-Clone our examples repository
+1 – Clone our examples repository
 ----------------------------
 
 First we need some code to work with. If you already use Go, and have your ``GOPATH``, workspace and tooling set up, and have |git| set up on your local machine, you can now clone our examples repo into your workspace by following the instructions for your operating system below.

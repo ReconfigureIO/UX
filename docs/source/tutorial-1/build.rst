@@ -1,4 +1,4 @@
-Build
+5 – Build
 ------------------
 After running a successful simulation, the next step is to build the program. Running a build takes the program code and creates an image suitable for programming the FPGA instance. Our build process currently takes in the region of 4 hours. This is longer than we would like and is partly due to underlying silicon vender tools, which we are currently working to address. For this reason, we're not going to start a build now - we don't want you to have to wait that long to move on! So, we have a pre-built image ready for you to deploy in the next section.
 

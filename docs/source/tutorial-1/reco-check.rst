@@ -1,4 +1,4 @@
-Check for compatibility
+3 – Check for compatibility
 -------------------------------------------
 Now you can type-check the FPGA code using our command line tool ``reco``. This tells us whether the code is compatible with the Reconfigure.io compiler and will point out any syntactic errors. To do this run ``reco check`` and you should see:
 

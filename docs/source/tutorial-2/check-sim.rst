@@ -1,5 +1,5 @@
-Check and then simulate your code
-----------------------------------
+5 – Check and then simulate your code
+-------------------------------------
 Now the code is complete and we know it conforms to the Go language, let's check your FPGA code is compatible with the Reconfigure.io compiler. Make sure you are back in ``tutorials/addition-gaps`` and run ``reco check``. Any syntax errors will be flagged up here. All being well you should see::
 
   $ reco check

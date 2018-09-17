@@ -1,5 +1,5 @@
-Deploy an image
------------------
+6 – Deploy an image
+-------------------
 Let's deploy our pre-built image for this example. Running a deployment will program the FPGA with the logic derived from the compiled and optimized Go code, and te specified host-side command will be run on the host CPU. Please copy and run the following command to start the deployment:
 
 .. subst-code-block::

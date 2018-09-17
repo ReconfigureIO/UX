@@ -1,5 +1,5 @@
-The histogram example
----------------------
+7 – The histogram example
+--------------------------
 Now let's look at how the histogram program was written and examine the code for both the host CPU and the FPGA.
 
 To create a histogram we need to take some data samples and place each one into a bin – think of the bins as the histogram bars. Samples need to be placed into the correct bin, dependent on sample value and the ranges set for each bin. Bin ranges can be set in a convenient way so that huge numbers can be bit-shifted down and placed by just looking at their most significant bits – ``123`` rather than ``123,456``, for example.
