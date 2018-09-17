@@ -117,5 +117,5 @@ And here's the FPGA code:
     }
 
 What's next?
--------------
+^^^^^^^^^^^^
 Now you've had a go at writing some code for yourself, let's move on to :ref:`structure` to look in more detail at how we share data between the host CPU and FPGA, and we'll build on a project template to create another simple program.

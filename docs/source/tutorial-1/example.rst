@@ -7,7 +7,7 @@ To create a histogram we need to take some data samples and place each one into 
 Because the FPGA hardware is effectively a blank canvas, we have the option to perform many operations at the same time by configuring the FPGA into separate sections of circuitry for each of these processes that we want to run in parallel. This will massively speed up the throughput of our sample data. To take advantage of this we need to use Go's concurrency primitives to structure our code so it translates well onto the parallel hardware.
 
 Introducing parallelism
------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 Designing a concurrent program basically means writing some well structured code that breaks a problem down into processes that can be executed independently. Concurrent programs can work well on parallel hardware, such as an FPGA, because these independently executable processes, which are already contained and well structured, can be efficiently mapped to run in parallel.
 
 If you code efficiently for multi-core CPUs, you are already writing concurrent programs — you will be familiar with making sure all processor cores are kept busy. A non-concurrent program running on a multi-core CPU could see one core doing all the work while the others are left idle.
@@ -21,7 +21,7 @@ There are several challenges that come with concurrent programming. Firstly, if 
 For a more in-depth look, see our |blog post| on why we use Go.
 
 Parallelizing the histogram
-----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 We can use the histogram as an example of how a sequential design can be changed to take advantage of the parallel architecture provided by the FPGA. Histogram generation done sequentially, rather than in parallel, could work as follows:
 
 .. figure:: ../images/HistogramSequential.svg
@@ -64,7 +64,7 @@ Next, let's look at a flow diagram for this parallelized histogram. You can see 
      Create a diagram to show channels used to share data
 
 Now, let's take a look at the code...
--------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you look at the example code, you'll see there are two main.go files in there:
 
 * ``examples/histogram-array/main.go`` is the code for the FPGA
@@ -210,7 +210,7 @@ Next, a test is run to check that the returned data matches what is expected bef
     }
 
 What's next
------------------------------
+^^^^^^^^^^^^^^^^
 So, we've deployed some code to an FPGA, stepped through our workflow and code and looked at introducing some concurrency into programs. Move on to :ref:`tutorial 2 <addition>` where we'll guide you through completing some code for a simple program.
 
 .. |blog post| raw:: html
