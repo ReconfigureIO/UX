@@ -4,6 +4,17 @@
 Release Notes
 =============
 
+Reconfigure.io v0.18.1
+======================
+
+In this release, register-based scheduling is introduced to allow more parallel behaviour, and we've enabled blockRAM generation for designs using the new compiler, rio.
+
+Features
+^^^^^^^^
+* Register-based scheduling has been introduced in the compiler, which increases parallel behaviour by allowing independent, non-combinatorial components to be scheduled in parallel.
+* BlockRAMs are now generated when designs feature arrays larger than 512 bits.
+
+
 Reconfigure.io v0.18.0
 ======================
 
