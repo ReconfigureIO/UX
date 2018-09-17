@@ -1,6 +1,6 @@
 .. _addition:
 
-Tutorial 2 – Filling in the Gaps
+Tutorial – Filling in the Gaps
 ================================================
 
 .. toctree::
@@ -18,7 +18,7 @@ Tutorial 2 – Filling in the Gaps
 
     Run ``reco update`` to check your version and update if required. The current version of our command line tool is |reco_version|.
 
-We are going to look at pretty much the simplest calculation possible – adding two numbers together. First, we will look at the problem, discuss how to design the program, and have a go at filling in the gaps in some incompete code. **The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.**
+We are going to look at pretty much the simplest calculation possible – adding two numbers together. First, we will look at the problem, discuss how to design the program, and have a go at filling in the gaps in some incomplete code. **The last tutorial was all about workflow, so now we're taking the first step towards writing and debugging your own programs.**
 
 What we will do
 ----------------

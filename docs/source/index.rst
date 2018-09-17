@@ -16,7 +16,7 @@ Welcome to Reconfigure.io's documentation!
    getting_started
    tutorial-1-workflow
    tutorial-2-gaps
-   tutorial_3_structure_comms
+   tutorial-3-structure-comms
    benchmarking
    optimize
    style_guide
