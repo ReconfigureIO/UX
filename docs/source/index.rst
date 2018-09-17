@@ -15,7 +15,7 @@ Welcome to Reconfigure.io's documentation!
    overview
    getting_started
    tutorial-1-workflow
-   tutorial_2_addition
+   tutorial-2-gaps
    tutorial_3_structure_comms
    benchmarking
    optimize
