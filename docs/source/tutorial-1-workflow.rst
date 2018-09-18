@@ -1,6 +1,6 @@
 .. _demo:
 
-📖 Tutorial – Setup and workflow
+|chalk| Tutorial – Setup and workflow
 ===============================================
 
 .. toctree::
@@ -34,3 +34,6 @@ From here, we're assuming you've already set up your account and :ref:`installed
 .. |video| raw:: html
 
    <a href="https://youtu.be/yIHToaGI4_M" target="_blank">here</a>
+
+.. |chalk| image:: images/chalkboard-teacher-solid.svg
+    :width: 120px
