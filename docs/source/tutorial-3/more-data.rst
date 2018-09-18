@@ -1,8 +1,8 @@
-6 – More data
---------------
+8 – An example with more data
+-----------------------------
 In that last example, as we only needed to pass a single argument from host to FPGA, we sent it straight to the FPGA's control register. This time, we're going to pass an array, so we'll send it via shared memory.
 
-.. figure:: images/StructureDiagram2.svg
+.. figure:: ../images/StructureDiagram2.svg
     :width: 90%
     :align: center
 
@@ -47,40 +47,6 @@ Once you're happy with your code, let's commit those changes and push them to yo
   git add main.go && cmd/test-multiply-array/main.go
   git commit -m "multiply array completed"
   git push origin multiply
-
-Test your code
-^^^^^^^^^^^^^^^
-As you have used the same multiplication function as you used for the previous example, you can use the same test file to test your code too. So let's do that next. Make sure you're in the top directory of your project ``$GOPATH/src/github.com/<your-github-username>/tutorials/multiply-array`` and run ``go test``. If all is well you should see::
-
-  $ go test
-  PASS
-  ok  	github.com/ReconfigureIO/tutorials/multiply-array	0.007s
-
-Next head to the host-side code (``tutorials/multiply-array/cmd/test-multiply-array``) and check the code with the Go compiler by running ``go build``.
-
-Check and simulate
-^^^^^^^^^^^^^^^^^^^
-Now we're moving over to the Reconfigure.io tooling we need to create a project for this example, let's call it ``multiplyArray``::
-
-  reco project create multiplyArray
-  reco project set multiplyArray
-
-You can now type-check your code for compatibility with our compiler. From the ``multiply-array`` directory enter ``reco check``, and hopefully you'll see::
-
-  $ reco check
-  GOPATH/src/github.com/<your-github-username>/tutorials/multiply1/main.go checked successfully
-
-Once you've addressed any errors here you can simulate how your code will run on an FPGA::
-
-  $ reco sim run test-multiply-array
-  (.....)
-  The result from the FPGA is: 024681012141618
-
-Once the simulation is complete, you should see the contents of the result array. Once you're done, you can compare your code with ours, which you'll find here: ``tutorials/multiply-array/``.
-
-What have we done
-^^^^^^^^^^^^^^^^^
-In this tutorial we have looked at how to structure your code to work with Reconfigure.io, and how to use our template as a basis for writing new programs. Also, we've seen how to pass arguments straight from the host to the FPGA using the control register, and pass data from the host to the FPGA via shared memory, and back again. Next, we'll look at a few ways to :ref:`optimize <optimize>` your Reconfigure.io programs.
 
 .. |FPGA| raw:: html
 

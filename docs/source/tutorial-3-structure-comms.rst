@@ -12,7 +12,12 @@ Tutorial – Structure and Communication
    tutorial-3/fpga.rst
    tutorial-3/passing-data.rst
    tutorial-3/code.rst
-   tutorial-3/solution.rst
+   tutorial-3/test-simple.rst
+   tutorial-3/check-sim-simple.rst
+   tutorial-3/more-data.rst
+   tutorial-3/test-more-data.rst
+   tutorial-3/check-sim-more-data.rst
+   tutorial-3/conclusion.rst
 
 .. sidebar:: Keeping up-to-date...
 

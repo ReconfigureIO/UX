@@ -1,8 +1,8 @@
-5 – Let's write some code
---------------------------
+5 – A simple multiplication example
+------------------------------------
 To further explore these methods of passing data around, let's use our template to write a very simple program to pass one integer to the FPGA from the host and tell the FPGA to multiply this integer by 2 and pass it back to the host. **As we're passing a single integer, the host can pass this straight to the FPGA's control register but the route back from the FPGA to the CPU is always via the shared memory**. As we have done in previous tutorials, lets first look at a flow diagram for this example:
 
-.. figure:: images/StructureDiagram1.svg
+.. figure:: ../images/StructureDiagram1.svg
     :width: 90%
     :align: center
 
@@ -62,36 +62,6 @@ Once you're happy with your code, let's commit those changes and push them to yo
   git add main.go && cmd/test-multiply1/main.go
   git commit -m "multiply1 completed"
   git push origin multiply
-
-Test your code
-^^^^^^^^^^^^^^^
-Now you can test your code in your local Go environment. Make sure you're in the top directory of your project ``$GOPATH/src/github.com/<your-github-username>/tutorials/multiply1`` and run ``go test``. If all is well with your FPGA-side code you should see::
-
-  $ go test
-  PASS
-  ok  	github.com/ReconfigureIO/tutorials/multiply1	0.007s
-
-Next you can head over to your host code (``$GOPATH/src/github.com/<your-github-username>/tutorials/multiply1/cmd/test-multiply1/main.go``) and check it builds with the Go compiler by running ``go build``.
-
-Check and simulate
-^^^^^^^^^^^^^^^^^^^
-Now we're going to use ``reco`` to check the code you have written is compatible with the Reconfigure.io compiler, and then we'll simulate your code. First, let's create a project to work within::
-
-  reco project create multiply1
-  reco project set multiply1
-
-To type-check your code for compatibility with our compiler, make sure you're in the ``tutorials/multiply1`` directory and run ``reco check``. If everything is ok, you should see::
-
-  $ reco check
-  GOPATH/src/github.com/<your-github-username>/tutorials/multiply1/main.go checked successfully
-
-Once you've addressed any errors here, you can simulate how your code will run on an FPGA::
-
-  $ reco sim run test-multiply1
-  (.....)
-  The result from the FPGA is: 2
-
-Once the simulation is complete, you should see the multiplication result displayed. When you're done, you can compare your code with ours, which you'll find here: ``tutorials/multiply1/``.
 
 .. |binary| raw:: html
 
