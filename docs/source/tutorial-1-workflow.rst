@@ -1,6 +1,6 @@
 .. _demo:
 
-Tutorial – Setup and workflow
+📖 Tutorial – Setup and workflow
 ===============================================
 
 .. toctree::

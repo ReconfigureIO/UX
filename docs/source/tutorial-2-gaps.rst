@@ -1,6 +1,6 @@
 .. _addition:
 
-Tutorial – Filling in the Gaps
+📖 Tutorial – Filling in the Gaps
 ================================================
 
 .. toctree::

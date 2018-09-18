@@ -1,6 +1,6 @@
 7 – Let's write the code
 -------------------------
-Let's work on the host CPU code first. Open ``multiply1/cmd/test-multiply1/main.go`` in your chosen editor. Have a go at editing the template host code to do what's needed for the single integer multiplication described above. Here are some pointers:
+Let's work on the host CPU code first. Open ``multiply1/cmd/test-multiply1/main.go`` in your chosen editor. Have a go at editing the template host code to do what's needed for the single integer multiplication we just looked at. Here are some pointers:
 
 * We're only passing one integer straight to the FPGA's control register so we only need to make space in shared memory for the result from the FPGA, not the data we're sending *to* the FPGA.
 * We only need to send two arguments to the FPGA: the integer to be used in the multiplication and the pointer to where we want the FPGA to store the result.
