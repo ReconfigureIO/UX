@@ -1,4 +1,4 @@
-7 – Check and simulate
+9 – Check and simulate
 -----------------------
 Now we're going to use ``reco`` to check the code you have written is compatible with the Reconfigure.io compiler, and then we'll simulate your code. First, let's create a project to work within::
 

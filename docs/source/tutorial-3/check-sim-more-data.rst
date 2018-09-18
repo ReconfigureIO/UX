@@ -1,4 +1,4 @@
-11 – Check and simulate
+13 – Check and simulate
 -----------------------
 Now we're moving over to the Reconfigure.io tooling we need to create a project for this example, let's call it ``multiplyArray``::
 

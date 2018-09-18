@@ -1,4 +1,4 @@
-6 – Test your code
+8 – Test your code
 ------------------
 Now you can test your code in your local Go environment. Make sure you're in the top directory of your project ``$GOPATH/src/github.com/<your-github-username>/tutorials/multiply1`` and run ``go test``. If all is well with your FPGA-side code you should see::
 
