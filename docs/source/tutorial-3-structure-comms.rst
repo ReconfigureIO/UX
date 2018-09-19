@@ -1,6 +1,6 @@
 .. _structure:
 
-📖 Tutorial – Structure and Communication
+* Tutorial – Structure and Communication
 =========================================
 
 .. toctree::
