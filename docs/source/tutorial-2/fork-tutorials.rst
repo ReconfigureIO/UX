@@ -45,7 +45,7 @@ Then copy and paste the following:
     cd $Env:GOPATH/src/github.com/$env:GithubUsername/tutorials
     git remote add upstream git://github.com/ReconfigureIO/tutorials.git
     git fetch upstream
-    git checkout v0.1.0
+    git checkout |tutorials_version|
 
 .. |tutorials| raw:: html
 
