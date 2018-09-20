@@ -1,3 +1,5 @@
+.. _solution:
+
 6 – See how we did it
 ----------------------
 Now you can take a look at our full example to see if there are any differences between our code and yours, you can find it in the ``examples`` repo you cloned in the previous tutorial. It's always a good idea to check you have the most up-to-date version of our examples, so, first, open a terminal and navigate to ``$GOPATH/src/github.com/Reconfigureio/examples`` and run::
@@ -118,4 +120,4 @@ And here's the FPGA code:
 
 What's next?
 ^^^^^^^^^^^^
-Now you've had a go at writing some code for yourself, let's move on to :ref:`structure` to look in more detail at how we share data between the host CPU and FPGA, and we'll build on a project template to create another simple program.
+Now you've had a go at writing some code for yourself, let's move on to :ref:`our third tutorial <structure>` to look in more detail at how we share data between the host CPU and FPGA, and we'll build on a project template to create another simple program.

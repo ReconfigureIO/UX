@@ -1,3 +1,5 @@
+.. _sharing:
+
 4 – Passing data around
 ------------------------
 Data is shared between the host and FPGA using shared memory. Some arguments can be passed directly to the FPGA via its control register: This is most useful for passing memory addresses and data lengths. Small amounts of data can be passed this way but the usefulness is really limited – there isn't much space and it's slow to access. In most situations the host should place data into shared memory, and then pass a pointer to the location of that data to the FPGA.

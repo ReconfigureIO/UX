@@ -42,10 +42,6 @@ Once you're happy with your code, let's commit those changes and push them to yo
 
    <a href="https://golang.org/pkg/log/" target="_blank">log</a>
 
-.. |tests| raw:: html
-
-  <a href="https://golang.org/pkg/testing/" target="_blank">here</a>
-
 .. |smi read burst| raw:: html
 
    <a href="https://godoc.org/github.com/ReconfigureIO/sdaccel/smi#ReadBurstUInt32" target="_blank">SMI read burst</a>
@@ -53,10 +49,6 @@ Once you're happy with your code, let's commit those changes and push them to yo
 .. |smi write burst| raw:: html
 
     <a href="https://godoc.org/github.com/ReconfigureIO/sdaccel/smi#WriteBurstUInt32" target="_blank">SMI write burst</a>
-
-.. |smi write| raw:: html
-
-    <a href="https://godoc.org/github.com/ReconfigureIO/sdaccel/smi#WriteUInt32" target="_blank">SMI write</a>
 
 .. |smi read| raw:: html
 

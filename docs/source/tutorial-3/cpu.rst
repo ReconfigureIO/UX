@@ -1,3 +1,5 @@
+.. _requirements:
+
 2 – The CPU
 ------------
 The host code can be really flexible and is written in standard Go. The host's jobs include creating, receiving, managing and organizing data for the FPGA to process. The host also starts the FPGA running.

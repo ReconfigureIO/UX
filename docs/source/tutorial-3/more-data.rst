@@ -1,3 +1,5 @@
+.. _more-data:
+
 10 – An example with more data
 -----------------------------
 In that last example, as we only needed to pass a single argument from host to FPGA, we sent it straight to the FPGA's control register. This time, we're going to pass an array, so we'll send it via shared memory.

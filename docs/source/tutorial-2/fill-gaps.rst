@@ -1,6 +1,8 @@
+.. _gaps:
+
 3 – Filling in the gaps
 -----------------------
-Now navigate to ``your-github-username/tutorials/addition-gaps/cmd/test-addition/main.go`` to look at the incomplete code for the host CPU. You will notice some of the code is missing. Using the information given in the comments, along with the flowchart above, you can have a go at filling in the missing sections.
+Now navigate to ``your-github-username/tutorials/addition-gaps/cmd/test-addition/main.go`` to look at the incomplete code for the host CPU. You will notice some of the code is missing. Using the information given in the comments, have a go at filling in the missing sections.
 
 First, as we're going to be editing existing code, let's make a new branch to work on, call it ``fill-gaps``::
 

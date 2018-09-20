@@ -1,3 +1,5 @@
+.. _fork:
+
 2 – Fork our tutorials repository
 ---------------------------------
 We're going to start using our tutorial materials repo, which contains an incomplete example for you to work on. So, as we're going to be making changes to the code, let's fork the repo. You'll find it |tutorials|.

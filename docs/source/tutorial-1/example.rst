@@ -213,7 +213,7 @@ Next, a test is run to check that the returned data matches what is expected bef
 
 What's next
 ^^^^^^^^^^^^^^^^
-So, we've deployed some code to an FPGA, stepped through our workflow and code and looked at introducing some concurrency into programs. Move on to :ref:`tutorial 2 <addition>` where we'll guide you through completing some code for a simple program.
+So, we've deployed some code to an FPGA, stepped through our workflow and code and looked at introducing some concurrency into programs. Move on to :ref:`our second tutorial <addition>` where we'll guide you through completing some code for a simple program.
 
 .. |blog post| raw:: html
 

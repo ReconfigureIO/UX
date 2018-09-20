@@ -22,12 +22,11 @@ We are going to look at pretty much the simplest calculation possible – adding
 
 What we will do
 ----------------
-* Talk through a possible solution for a simple addition problem
-* Fork our tutorial materials repo
-* Have a go at completing an incomplete code example
-* Test your complete code in your Go environment
-* Check the code for compatibility with the Reconfigure.io compiler
-* Simulate running the code on an FPGA
-* Compare your code with ours
+* :ref:`Look <problem>` at a possible solution for a simple addition problem
+* :ref:`Fork <fork>` our tutorial materials repo
+* :ref:`Fill <gaps>` in the gaps in our incomplete code example
+* :ref:`Test <test-addiiton>` your complete code in your Go environment
+* :ref:`Check <check-addition>` the code for compatibility with the Reconfigure.io compiler and simulate running the code on an FPGA
+* :ref:`Compare <solution>` your code with ours
 
 This tutorial assumes you have already run through our first tutorial: :ref:`demo`.
