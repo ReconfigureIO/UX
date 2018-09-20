@@ -1,6 +1,6 @@
 4 – Simulate
 ------------
-Our tooling requires that you work within a project, so, before we start anything else, let's define a project – call it ``histogram``, and set that project to be active::
+The check that we just ran runs on your loca machine. From this next step onwards you will be uploading code to our cloud service so our tooling requires that you work within a project, so, before we start anything else, let's define a project – call it ``histogram``, and set that project to be active::
 
   reco project create histogram
   reco project set histogram
@@ -57,3 +57,5 @@ Run ``reco sim run test-histogram`` and you should see:
     65152: 1
     65280: 1
     57216: 0
+
+We've shortened the logs and output here as it's pretty long, but you can see the histogram data generated at the end there, bins on the left and data counts of the right.

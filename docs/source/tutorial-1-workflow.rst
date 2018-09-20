@@ -23,11 +23,10 @@ This tutorial is a simple introduction to the Reconfigure.io workflow. We will u
 
 What we will do
 ----------------
-* Check your Go environment is all set up
-* Clone our examples repo
-* Test our histogram example using ``go test``
-* Run through our tooling workflow using ``reco`` to check, simulate and deploy a build image to a cloud FPGA
-* Step through the code to see how it is structured
+* :ref:`Clone <examples>` our examples repo
+* :ref:`Check <test>` your Go environment is all set up and test our histogram example using ``go test``
+* :ref:`Run <check>` through our tooling workflow using ``reco`` to check, simulate and deploy a build image to a cloud FPGA
+* :ref:`Step <step>` through the code to see how it is structured
 
 From here, we're assuming you've already set up your account and :ref:`installed and authenticated <install>` ``reco`` – if you don't have an account yet, please visit our `website <https://reconfigure.io/sign-up>`_.
 

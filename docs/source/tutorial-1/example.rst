@@ -1,3 +1,5 @@
+.. _step:
+
 7 – The histogram example
 --------------------------
 Now let's look at how the histogram program was written and examine the code for both the host CPU and the FPGA.

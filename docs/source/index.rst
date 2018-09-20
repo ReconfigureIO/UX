@@ -33,14 +33,14 @@ A platform for software defined chips
 Reconfigure.io is a platform for programming hardware accelerators from software. You can use your existing development tools to write applications in Go, to access the benefits of hardware acceleration – **more performance, lower latency, reduced power and space requirements**. We have both cloud and on-premises platform options, so whatever your situation or use case, we have a platform that will work for you. Our software defined chips are fully reprogrammable and our tooling works in line with modern software development practices – CI&CD, Agile etc. – so you can develop and manipulate accelerator designs along with your current workflow.
 
 .. image:: images/platform-options.png
-   :align: center
-   :width: 100%
+    :align: center
+    :width: 100%
 
 Our current platforms are based on FPGAs (field programmable gate arrays), which provide significant latency and throughput improvements when compared to using CPUs alone, by carrying out many, many tasks in parallel. Cost reductions are easily achieved because one FPGA can carry out the work of many servers. Up until now, the power of the FPGA has been tricky to harness due to the skills required to take full advantage of their programmability. Reconfigure.io allows you to use the skills and tools you already have to program and reprogram these chips to create accelerators that fit your business-specific requirements.
 
 .. image:: images/speed-animation.gif
-   :align: center
-   :width: 70%
+    :align: center
+    :width: 70%
 
 Where do I sign up?
 -------------------
@@ -72,18 +72,52 @@ API docs
 ^^^^^^^^
 You will need to use some specific Go packages for talking to memory, and for communication within the FPGA instance. You'll find docs for these |api|.
 
+What's new?
+-----------
+Here's a rundown of our latests improvements and new feature releases.
+
+.. _llvm:
+6th September
+^^^^^^^^^^^^^
+A beta release of our new compiler, Rio, is released. To use the new compiler version for a project, just include the line shown highlighted below in your project's ``reco.yml`` file:
+
+.. code-block:: shell
+   :emphasize-lines: 4
+
+    memory_interface: smi
+    memory_width: 512
+    ports: 1
+    compiler: rio
+
+.. note::
+   When using Rio, loop unrolling is now automatic so you don't need to do this in your code. Loop unrolling is done within the new compiler on a cost basis – more complex loops, and those with more iterations are less likely to be unrolled. Also, pipelining is no longer automatic but can be achieved using goroutines.
+
+To read more about our reworked compiler, see our |blog|.
+
+28th August
+^^^^^^^^^^^
+The latest version of our command line tool, ``reco``, includes some new features to help you track your builds and optimize your code:
+
+* A message can be added to a build, like a ``git commit`` message, as follows: ``reco build run -m "helpful message"``. This message is then displayed in your dashboard build list, and the per project build list accessible by running ``reco build list``. This is to help with build management, when you're working on several iterations of a design.
+* :ref:`Build reports <reports>` are now available by running ``reco build <build_ID> report``. These reports include information on utilization of FPGA resources for your projects, to help with scaling up and streamlining designs.
+
+**You can view our release notes in full** :ref:`here <release_notes>` **.**
+
+.. |blog| raw:: html
+
+   <a href="https://medium.com/the-recon/reconfigure-io-move-to-llvm-for-major-performance-and-usability-improvements-1f9c36ca424" target="_blank">blog post</a>
 .. |signup| raw:: html
 
-  <a href="https://reconfigure.io/sign-up" target="_blank">sign up</a>
+   <a href="https://reconfigure.io/sign-up" target="_blank">sign up</a>
 
 .. |forum| raw:: html
 
-  <a href="https://community.reconfigure.io/" target="_blank">community forum</a>
+   <a href="https://community.reconfigure.io/" target="_blank">community forum</a>
 
 .. |dashboard| raw:: html
 
-  <a href="https://app.reconfigure.io/dashboard" target="_blank">dashboard</a>
+   <a href="https://app.reconfigure.io/dashboard" target="_blank">dashboard</a>
 
 .. |api| raw:: html
 
-  <a href="https://godoc.org/github.com/ReconfigureIO/sdaccel" target="_blank">here</a>
+   <a href="https://godoc.org/github.com/ReconfigureIO/sdaccel" target="_blank">here</a>

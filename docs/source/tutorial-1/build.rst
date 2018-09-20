@@ -16,7 +16,7 @@ As we're running though the workflow, it's still worth looking at how we would r
 
      <build_ID>
 
-The build ID referenced above will be a long string of characters, unique to each build. You will use the build ID to deploy the image, and you can inspect a list of your builds by running ``reco build list``:
+The build ID referenced above will be a long string of characters, unique to each build. You will use the build ID to deploy the image. To retrieve a build ID you can either look at your recent activity on your |dashboard| or you can inspect a list of your builds by running ``reco build list``:
 
 .. code-block:: shell
 
@@ -27,4 +27,8 @@ The build ID referenced above will be a long string of characters, unique to eac
    cdb339dd-8fb5-457c-9439-3f40267678e8    2016-12-08T18:31:58Z    COMPLETED WITH ERROR   something to help me recall what the build is for
 
 .. note::
-   When you come to work on your own projects, you might create many different builds for the same code. The build list's date-stamping, status and associated messages help to identify the build you want to run.
+   When you come to work on your own projects, you might create many different builds for the same code. The build list's date-stamping, status and associated messages help to identify the build you want to run. This information is also displayed on your |dashboard|.
+
+.. |dashboard| raw:: html
+
+    <a href="https://app.reconfigure.io/dashboard" target="_blank">dashboard</a>
