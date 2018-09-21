@@ -1,221 +1,7 @@
-.. _demo:
+.. _step:
 
-Tutorial 1 – Setup and workflow
-===============================================
-.. sidebar:: Keeping up-to-date...
-
-    Run ``reco update`` to check your version and update if required. The current version of our command line tool is |reco_version|.
-
-This tutorial is a simple introduction to the Reconfigure.io workflow. We will use our parallelized histogram example, in which a block of memory is filled with sample data before an FPGA is put to work classifying the samples into bins. The contents of each bin is then read out, providing the data required to draw a histogram. **It's all pretty straightforward so in a few minutes you will have done a hardware simulation of a project running on an FPGA, and then deployed a build image of that project to an FPGA in the cloud.** If you would rather watch a video runthrough of the main points in this tutorial, you can do so |video|.
-
-What we will do
-----------------
-* Check your Go environment is all set up
-* Clone our examples repo
-* Test our histogram example using ``go test``
-* Run through our tooling workflow using ``reco`` to check, simulate and deploy a build image to a cloud FPGA
-* Step through the code to see how it is structured
-
-From here, we're assuming you've already set up your account and :ref:`installed and authenticated <install>` ``reco`` – if you don't have an account yet, please visit our `website <https://reconfigure.io/sign-up>`_.
-
-.. _examples:
-
-Clone our examples repository
-----------------------------
-First we need some code to work with. If you already use Go, and have your ``GOPATH``, workspace and tooling set up, and have |git| set up on your local machine, you can now clone our examples repo into your workspace by following the instructions for your operating system below.
-
-If you are new to Go, please follow our :ref:`quick setup guide <gotools>` first.
-
-.. _examples-linux:
-
-Linux/MacOSX
-^^^^^^^^^^^^
-From a terminal copy and paste the following:
-
-.. subst-code-block:: shell
-
-    git clone https://github.com/Reconfigureio/examples.git $GOPATH/src/github.com/Reconfigureio/examples
-    cd $GOPATH/src/github.com/Reconfigureio/examples
-    git checkout |examples_version|
-
-.. _examples-win:
-
-Windows 10
-^^^^^^^^^^
-From a Powershell terminal copy and paste the following:
-
-.. subst-code-block:: shell
-
-    git clone https://github.com/Reconfigureio/examples.git $Env:GOPATH/src/github.com/Reconfigureio/examples
-    cd $Env:GOPATH/src/github.com/Reconfigureio/examples
-    git checkout |examples_version|
-
-.. _test:
-
-Run a test
-----------
-Now we've got everything set up and in the right place, we can check it's all working by running a test on the histogram-array code using ``go test``.
-
-If you look inside ``examples/histogram-array`` you'll see several elements: the two main.go files that make up the program, a ``reco.yml`` file, which contains basic memory interface settings including the number of ports required for this program between the FPGA and shared memory. There's also a test file – ``main_test.go`` – for checking that the program operates correctly, and a vendor folder containing our package for interacting with SDAccel using Go, including all the components that allow the host CPU to talk to the FPGA card, and the FPGA chip itself to talk the the shared memory situated on the FPGA card. The contents of the vendor folder, and the glide files associated with vendoring aren't displayed here because there's a lot in there and we don't need to look at it now:
-
-.. code-block:: shell
-
-    .
-    ├── README.md
-    ├── cmd
-    │   └── test-histogram
-    │       └── main.go
-    ├── main.go
-    ├── main_test.go
-    ├── reco.yml
-    └── vendor
-      └── ...
-
-For this example, ``main_test.go`` checks that the FPGA will not calculate an invalid bin when sorting data samples. Run ``go test`` now and you should see:
-
-.. code-block:: shell
-
-    $ go test
-    PASS
-    ok      /github.com/ReconfigureIO/examples/histogram-array    0.005s
-
-This shows us that your Go environment is set up correctly and the code passes the conditions set in ``main_test.go``.
-
-Check for compatibility
--------------------------------------------
-Now you can type-check the FPGA code using our command line tool ``reco``. This tells us whether the code is compatible with the Reconfigure.io compiler and will point out any syntactic errors. To do this run ``reco check`` and you should see:
-
-.. code-block:: shell
-
-   $ reco check
-   /github.com/ReconfigureIO/examples/histogram-array/main.go checked successfully
-
-Simulate
---------
-Our tooling requires that you work within a project, so, before we start anything else, let's define a project – call it ``histogram``, and set that project to be active::
-
-  reco project create histogram
-  reco project set histogram
-
-You can now simulate the program using the ``reco sim`` command. This is a really useful stage in our workflow as it allows you to see how the program will run on the FPGA before the more time-intensive build step.
-
-.. admonition:: Getting in the queue
-
-    Simulation should normally only take around 5 minutes but could be up to 30 minutes depending on what else is in the queue.
-
-Run ``reco sim run test-histogram`` and you should see:
-
-.. code-block:: shell
-
-    $ reco test run test-histogram
-    preparing simulation
-    done
-    archiving
-    done
-    uploading
-    done
-    running simulation
-    status: QUEUED
-    Waiting for Batch job to start
-    status: STARTED
-    ...
-    INFO: [XOCC 60-629] Linking for hardware emulation target
-    INFO: [XOCC 60-895]    Target platform: /opt/Xilinx/SDx/2017.1.op/platforms/xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0/xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.xpfm
-    INFO: [XOCC 60-423]   Target device: xilinx:aws-vu9p-f1:4ddr-xpr-2pr:4.0
-    INFO: [XOCC 60-251]   Hardware accelerator integration...
-    INFO: [XOCC 60-244] Generating system estimate report...
-    INFO: [XOCC 60-677] Generated system_estimate.xtxt
-    INFO: [XOCC 60-586] Created /mnt/.reco-work/sdaccel/dist/xclbin/kernel_test.hw_emu.xilinx_aws-vu9p-f1_4ddr-xpr-2pr_4_0.xclbin
-    INFO: [XOCC 60-791] Total elapsed time: 0h 1m 54s
-    INFO: [SDx-EM 01] Hardware emulation runs detailed simulation underneath. It may take long time for large data set. Please use a small dataset for faster execution. You can still get performance trend for your kernel with smaller dataset.
-    ...
-    0: 0
-    128: 0
-    256: 0
-    384: 0
-    512: 0
-    640: 0
-    768: 0
-    896: 0
-    1024: 1
-    ...
-    64256: 0
-    64384: 0
-    64512: 0
-    64640: 0
-    64768: 0
-    64896: 0
-    65024: 0
-    65152: 1
-    65280: 1
-    57216: 0
-
-Build
-------------------
-After running a successful simulation, the next step is to build the program. Running a build takes the program code and creates an image suitable for programming the FPGA instance. Our build process currently takes in the region of 4 hours. This is longer than we would like and is partly due to underlying silicon vender tools, which we are currently working to address. For this reason, we're not going to start a build now - we don't want you to have to wait that long to move on! So, we have a pre-built image ready for you to deploy in the next section.
-
-As we're running though the workflow, it's still worth looking at how we would run a build, so here goes: running ``reco build run`` will take the program code in your current location, and compile, optimize and translate it into a deployable image. It's a good idea to add a message too so you can recall what the build was for later:
-
-.. code-block:: shell
-
-     $ reco build run - "something to help me recall what the build was for"
-     INFO: [XOCC 60-629] Linking for hardware target
-     INFO: [XOCC 60-423]   Target device: xilinx:adm-pcie-ku3:2ddr-xpr:3.2
-     INFO: [XOCC 60-251]   Hardware accelerator integration...
-     INFO: [XOCC 60-244] Generating system estimate report...
-     INFO: [XOCC 60-677] Generated system_estimate.xtxt
-     INFO: [XOCC 60-586] Created /data/job/<build_ID>/.reco-work/sdaccel/dist/xclbin/kernel_test.hw.xilinx_adm-pcie-ku3_2ddr-xpr_3_2.xclbin
-
-     <build_ID>
-
-The build ID referenced above will be a long string of characters, unique to each build. You will use the build ID to deploy the image, and you can inspect a list of your builds by running ``reco build list``:
-
-.. code-block:: shell
-
-   $ reco build list
-   id                                      started                 status                 Message
-   5434e2c1-cafc-44ca-ab2d-969a2f33895d    2016-12-08T21:08:00Z    PROCESS STARTING       something to help me recall what the build is for
-   0b15ec5c-f3ba-11e6-9f75-127f5e3af928    2016-12-08T17:01:00Z    COMPLETED              something to help me recall what the build is for
-   cdb339dd-8fb5-457c-9439-3f40267678e8    2016-12-08T18:31:58Z    COMPLETED WITH ERROR   something to help me recall what the build is for
-
-.. note::
-   When you come to work on your own projects, you might create many different builds for the same code. The build list's date-stamping, status and associated messages help to identify the build you want to run.
-
-Deploy an image
------------------
-Let's deploy our pre-built image for this example. Running a deployment will program the FPGA with the logic derived from the compiled and optimized Go code, and te specified host-side command will be run on the host CPU. Please copy and run the following command to start the deployment:
-
-.. subst-code-block::
-
-    reco deploy run 31b835ac-5575-4ebc-b8c8-0007d629bd8f test-histogram
-
-Once the deployment is complete you should see the histogram readout (we've cut it down here as it's quite long):
-
-.. code-block:: shell
-
-     0: 0
-     128: 0
-     256: 0
-     384: 0
-     512: 0
-     640: 0
-     768: 0
-     896: 0
-     1024: 1
-     ...
-     64256: 0
-     64384: 0
-     64512: 0
-     64640: 0
-     64768: 0
-     64896: 0
-     65024: 0
-     65152: 1
-     65280: 1
-     57216: 0
-
-The histogram example
----------------------
+7 – The histogram example
+--------------------------
 Now let's look at how the histogram program was written and examine the code for both the host CPU and the FPGA.
 
 To create a histogram we need to take some data samples and place each one into a bin – think of the bins as the histogram bars. Samples need to be placed into the correct bin, dependent on sample value and the ranges set for each bin. Bin ranges can be set in a convenient way so that huge numbers can be bit-shifted down and placed by just looking at their most significant bits – ``123`` rather than ``123,456``, for example.
@@ -223,7 +9,7 @@ To create a histogram we need to take some data samples and place each one into 
 Because the FPGA hardware is effectively a blank canvas, we have the option to perform many operations at the same time by configuring the FPGA into separate sections of circuitry for each of these processes that we want to run in parallel. This will massively speed up the throughput of our sample data. To take advantage of this we need to use Go's concurrency primitives to structure our code so it translates well onto the parallel hardware.
 
 Introducing parallelism
------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 Designing a concurrent program basically means writing some well structured code that breaks a problem down into processes that can be executed independently. Concurrent programs can work well on parallel hardware, such as an FPGA, because these independently executable processes, which are already contained and well structured, can be efficiently mapped to run in parallel.
 
 If you code efficiently for multi-core CPUs, you are already writing concurrent programs — you will be familiar with making sure all processor cores are kept busy. A non-concurrent program running on a multi-core CPU could see one core doing all the work while the others are left idle.
@@ -237,10 +23,10 @@ There are several challenges that come with concurrent programming. Firstly, if 
 For a more in-depth look, see our |blog post| on why we use Go.
 
 Parallelizing the histogram
-----------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 We can use the histogram as an example of how a sequential design can be changed to take advantage of the parallel architecture provided by the FPGA. Histogram generation done sequentially, rather than in parallel, could work as follows:
 
-.. figure:: images/HistogramSequential.svg
+.. figure:: ../images/HistogramSequential.svg
   :align: center
   :width: 80%
 
@@ -248,7 +34,7 @@ We can use the histogram as an example of how a sequential design can be changed
 
 And a pipeline diagram could look like this:
 
-.. figure:: images/Hist_Sequential_pipeline.png
+.. figure:: ../images/Hist_Sequential_pipeline.png
   :width: 80%
   :align: center
 
@@ -258,7 +44,7 @@ By far the slowest part of this design is reading from and writing to memory. So
 
 We can read the sample data from the shared memory using a read burst, then place it into a channel from where it can be sorted and placed into an array. The array data can then be easily loaded onto another channel and then written back to shared memory using a write burst. Here's a pipeline diagram for this scenario:
 
-.. figure:: images/Hist_Array_Pipeline.png
+.. figure:: ../images/Hist_Array_Pipeline.png
   :width: 80%
   :align: center
 
@@ -268,9 +54,9 @@ Quite a significant performance increase!
 
 Next, let's look at a flow diagram for this parallelized histogram. You can see where the concurrent parts clearly on the FPGA side: the sample data is read and put into a channel, and at the same time the channel data is shifted and sorted into bins and held in an array. Then, the array data is placed into another channel, and at the same time this channel data is written to the shared memory so the host CPU can access it.
 
-.. figure:: images/HistogramArray.svg
+.. figure:: ../images/HistogramArray.svg
   :align: center
-  :width: 90%
+  :width: 80%
 
   Parallel histogram flow diagram
 
@@ -280,7 +66,7 @@ Next, let's look at a flow diagram for this parallelized histogram. You can see 
      Create a diagram to show channels used to share data
 
 Now, let's take a look at the code...
--------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 If you look at the example code, you'll see there are two main.go files in there:
 
 * ``examples/histogram-array/main.go`` is the code for the FPGA
@@ -426,16 +212,8 @@ Next, a test is run to check that the returned data matches what is expected bef
     }
 
 What's next
------------------------------
-So, we've deployed some code to an FPGA, stepped through our workflow and code and looked at introducing some concurrency into programs. Move on to :ref:`tutorial 2 <addition>` where we'll guide you through completing some code for a simple program.
-
-.. |git| raw:: html
-
-   <a href="https://help.github.com/articles/set-up-git/#setting-up-git" target="_blank">git</a>
-
-.. |video| raw:: html
-
-   <a href="https://youtu.be/yIHToaGI4_M" target="_blank">here</a>
+^^^^^^^^^^^^^^^^
+So, we've deployed some code to an FPGA, stepped through our workflow and code and looked at introducing some concurrency into programs. Move on to :ref:`our second tutorial <addition>` where we'll guide you through completing some code for a simple program.
 
 .. |blog post| raw:: html
 

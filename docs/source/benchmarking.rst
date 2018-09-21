@@ -1,3 +1,5 @@
+.. _benchmark:
+
 Benchmarking your projects
 ======================================================
 Now you've got the tools you need to start writing your own Reconfigure.io programs, you are most likely interested in a way to see how long it's taking the FPGA instance to process your data, after all, performance is what it's all about! Luckily, we use Go for everything, so benchmarking is built-in to the testing framework we have on hand.
