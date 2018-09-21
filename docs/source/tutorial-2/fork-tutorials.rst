@@ -39,7 +39,7 @@ From a Powershell terminal create an environment variable for your github userna
 
 Then copy and paste the following:
 
-.. code-block:: shell
+.. subst-code-block:: shell
 
     git clone https://github.com/$env:GithubUsername/tutorials.git $Env:GOPATH/src/github.com/$env:GithubUsername/tutorials
     cd $Env:GOPATH/src/github.com/$env:GithubUsername/tutorials

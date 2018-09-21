@@ -46,9 +46,9 @@ If you've found your way here without signing up first, please head to our `webs
 
       reco deploy stop <deployment_ID>
 
-You have just deployed your first design, created in Go, to an FPGA in the cloud!
+You have just deployed your first project to an FPGA in the cloud!
 
-**Next, visit your** |dashboard| **to view recent activity, helpful links and account information. Then, move on to our :ref:`tutorials <demo>` to learn our simple workflow and start creating your own designs.**
+**Next, visit your** |dashboard| **to view recent activity, helpful links and account information. Then, move on to our** :ref:`tutorials <demo>` **to learn our simple workflow and start creating your own designs.**
 
 .. |md5_code| raw:: html
 
