@@ -8,6 +8,13 @@
  */
 
 return array(
+  
+  /**
+	 * Whether Craft should sanitize uploaded SVG files and strip out potential malicious looking content.
+	 * Should definitely be enabled if you are accepting SVG uploads from untrusted sources.
+	 */
+	'sanitizeSvgUploads' => false,
+
 
   '*' => array(
     'omitScriptNameInUrls' => true,
