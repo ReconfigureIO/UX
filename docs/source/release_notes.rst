@@ -14,7 +14,7 @@ Features
 
 * Moved over to use the new compiler, Rio, for a subset of our internal test suite.
 * Added operating clock frequency to the reports generated during the build and sim processes. Now, when viewing reports, you will see both FPGA resource usage stats **and** the operating frequency of the final design.
-* Made some fixes to our |SDAccel| to ensure it's functionality with out new compiler design. The package functionality remains unchanged but you will need to use the most recent version if you are trying out the beta compiler.
+* Made some fixes to our |SDAccel| to ensure its functionality with our new compiler design. The package functionality remains unchanged but you will need to use the most recent version if you are trying out the beta compiler in your designs.
 
 Bugfixes
 ^^^^^^^^
