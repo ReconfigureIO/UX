@@ -4,6 +4,24 @@
 Release Notes
 =============
 
+Reconfigure.io v0.18.2
+======================
+
+This release includes bugfixes and new features which bring us closer to adopting our |compiler|, which is currently in beta.
+
+Features
+^^^^^^^^
+
+* Moved over to use the new compiler, Rio, for a subset of our internal test suite.
+* Added operating clock frequency to the reports generated during the build and sim processes. Now, when viewing reports, you will see both FPGA resource usage stats **and** the operating frequency of the final design.
+* Made some fixes to our |SDAccel| to ensure it's functionality with out new compiler design. The package functionality remains unchanged but you will need to use the most recent version if you are trying out the beta compiler.
+
+Bugfixes
+^^^^^^^^
+
+* Fixed a bug that was leading to invalid Verilog being generated, causing circuits to lock up.
+* Fixed a bug in the new compiler, which was allowing excessively long Verilog identifier names to be generated, which weren't supported. This length has been limited to comply with vendor tooling requirements.
+
 Reconfigure.io v0.18.1
 ======================
 
@@ -26,7 +44,7 @@ Reconfigure.io v0.17.6
 
 This is a bugfix release focussed on enabling some in-house product tests.
 
-bugfixes
+Bugfixes
 ^^^^^^^^
 * If a vendored version of our `xcl <https://godoc.org/github.com/ReconfigureIO/sdaccel/xcl>`_ library is provided, this is now given priority over our host-side code.
 * The default `xcl <https://godoc.org/github.com/ReconfigureIO/sdaccel/xcl>`_ library has been updated to include fixes for a segfault and to allow memory proceed to run while a kernel is running.
@@ -734,3 +752,11 @@ Tool Limitations
 Build, simulations & running jobs are limited to a 2 hour timeout.
 
 Tooling only supports 'Jarvice' provider. In future ``reco-jarvice`` will be replaced with ``reco`` which will support multiple cloud providers.
+
+|SDAccel| raw:: html
+
+  <a href="https://github.com/ReconfigureIO/sdaccel" target="_blank">SDAccel package</a>
+
+|compiler| raw:: html
+
+  <a href="https://medium.com/the-recon/reconfigure-io-move-to-llvm-for-major-performance-and-usability-improvements-1f9c36ca424" target="_blank">new compiler, Rio</a>
