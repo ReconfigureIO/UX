@@ -226,7 +226,7 @@ Once a build image is complete you can access a build report to find out how muc
 
 View a build reports
 ^^^^^^^^^^^^^^^^^^^^
-Build reports are generated when a build image completes successfully. The information included in build reports is broken down into the various elements that make up the FPGA: Configurable logic blocks (LUTs and Registers), DSP blocks, and RAM. Also, the operating frequency for your design is displayed towards the bottom. This should be 250MHz – **If you find that you have an operating frequency that is different to 250MHz, please let us know either |chat| or through our |forum|.
+Build reports are generated when a build image completes successfully. The information included in build reports is broken down into the various elements that make up the FPGA: Configurable logic blocks (LUTs and Registers), DSP blocks, and RAM. Also, the operating frequency for your design is displayed towards the bottom. This should be 250MHz – **If you find that you have an operating frequency that is different to 250MHz, please let us know either** |chat| **or through our** |forum|.
 
 To view a build report, find the build ID you're interested in, either by checking your recent activity on your |Dashboard| or by viewing the build list for your project: from the project location on your local machine enter::
 

@@ -753,10 +753,10 @@ Build, simulations & running jobs are limited to a 2 hour timeout.
 
 Tooling only supports 'Jarvice' provider. In future ``reco-jarvice`` will be replaced with ``reco`` which will support multiple cloud providers.
 
-|SDAccel| raw:: html
+..|SDAccel| raw:: html
 
-  <a href="https://github.com/ReconfigureIO/sdaccel" target="_blank">SDAccel package</a>
+   <a href="https://github.com/ReconfigureIO/sdaccel" target="_blank">SDAccel package</a>
 
-|compiler| raw:: html
+.. |compiler| raw:: html
 
-  <a href="https://medium.com/the-recon/reconfigure-io-move-to-llvm-for-major-performance-and-usability-improvements-1f9c36ca424" target="_blank">new compiler, Rio</a>
+    <a href="https://medium.com/the-recon/reconfigure-io-move-to-llvm-for-major-performance-and-usability-improvements-1f9c36ca424" target="_blank">new compiler, Rio</a>
