@@ -4,7 +4,7 @@
 Release Notes
 =============
 
-Reconfigure.io v0.18.2
+Reconfigure.io v0.18.3
 ======================
 
 This release includes bugfixes and new features which bring us closer to adopting our |compiler|, which is currently in beta.
