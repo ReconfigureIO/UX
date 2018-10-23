@@ -226,7 +226,7 @@ Once a build image is complete you can access a build report to find out how muc
 
 View a build reports
 ^^^^^^^^^^^^^^^^^^^^
-Build reports are generated when a build image completes successfully. The information included in build reports is broken down into the various elements that make up the FPGA: Configurable logic blocks (LUTs and Registers), DSP blocks, and RAM.
+Build reports are generated when a build image completes successfully. The information included in build reports is broken down into the various elements that make up the FPGA: Configurable logic blocks (LUTs and Registers), DSP blocks, and RAM. Also, the operating frequency for your design is displayed towards the bottom. This should be 250MHz – **If you find that you have an operating frequency that is different to 250MHz, please let us know either** |chat| **or through our** |forum|.
 
 To view a build report, find the build ID you're interested in, either by checking your recent activity on your |Dashboard| or by viewing the build list for your project: from the project location on your local machine enter::
 
@@ -242,7 +242,7 @@ Here's an example report from our Histogram-array example:
 
 .. code-block:: shell
   :linenos:
-  :emphasize-lines: 76, 77, 78, 79, 80
+  :emphasize-lines: 76, 77, 78, 79, 80, 82
 
   Build Report: {
     "partName": "xcvu9p-flgb2104-2-i",
@@ -324,7 +324,30 @@ Here's an example report from our Histogram-array example:
       "available": 9067200,
       "description": "Weighted Average",
       "utilisation": 0.44
-    }
+    },
+    "Clock Frequency": "250MHz",
+    "timing": [
+      {
+        "step": "verilog",
+        "seconds": "1.99",
+        "kb": "218640"
+      },
+      {
+        "step": "verilog",
+        "seconds": "3.38",
+        "kb": "300436"
+      },
+      {
+        "step": "xo",
+        "seconds": "95.17",
+        "kb": "1634584"
+      },
+      {
+        "step": "xclbin",
+        "seconds": "9816.19",
+        "kb": "7627724"
+      }
+    ]
   }
 
 We advise optimizing your designs for low overall utilization. Keeping your designs compact means they build faster, and there's more scope to scale them up in future. When thinking about optimizing in this way, the **Weighted Average** score highlighted at the bottom of the report is the most useful at first glance. You can see this design is small, which you would expect as it's simple, and is using up only 0.44% of the FPGA's available resources. Viewing the weighted average across several design iterations is a good use of this feature.
@@ -351,3 +374,11 @@ When looking at build reports for ideas on how to optimise your code, it's usefu
 .. |mapreduce| raw:: html
 
    <a href="https://medium.com/the-recon/scaling-up-your-reconfigure-io-applications-17f2dbc797fc" target="_blank">MapReduce framework</a>
+
+.. |chat| raw:: html
+
+   <a href="https://app.reconfigure.io/dashboard" target="_blank">by starting a conversation through Dashboard</a>
+
+.. |forum| raw:: html
+
+   <a href="https://community.reconfigure.io/c/help" target="_blank">forum</a>
