@@ -753,7 +753,7 @@ Build, simulations & running jobs are limited to a 2 hour timeout.
 
 Tooling only supports 'Jarvice' provider. In future ``reco-jarvice`` will be replaced with ``reco`` which will support multiple cloud providers.
 
-..|SDAccel| raw:: html
+.. |SDAccel| raw:: html
 
    <a href="https://github.com/ReconfigureIO/sdaccel" target="_blank">SDAccel package</a>
 
