@@ -1,5 +1,9 @@
 13 – Check and simulate
 -----------------------
+.. sidebar:: Note!
+
+    ``reco`` remembers projects once they are set so you only need to create and set a project once per location.
+    
 Now we're moving over to the Reconfigure.io tooling we need to create a project for this example, let's call it ``multiplyArray``::
 
   reco project create multiplyArray
