@@ -1,6 +1,6 @@
 4 – Simulate
 ------------
-We just ran a check on your local machine to see if the FPGA-side code is compatible with our compiler. From this next step onwards you will be uploading code to our service, so our tooling requires that you work within a project - **Note, you only need to create and set a project once for each program you work on**. Projects are used to collate simulation, graph, build and deployment data for each program you're working on.
+We just ran a check on your local machine to see if the FPGA-side code is compatible with our compiler. From this next step onwards you will be uploading code to our service, so our tooling requires that you work within a project - **Note, you only need to create and set a project once for each program workspace**. Projects are used to collate simulation, graph, build and deployment data for each program you're working on.
 
 Let's define a project – call it ``histogram``, and set that project to be active::
 
