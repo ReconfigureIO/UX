@@ -1,6 +1,8 @@
 4 – Simulate
 ------------
-The check that we just ran runs on your loca machine. From this next step onwards you will be uploading code to our cloud service so our tooling requires that you work within a project, so, before we start anything else, let's define a project – call it ``histogram``, and set that project to be active::
+We just ran a check on your local machine to see if the FPGA-side code is compatible with our compiler. From this next step onwards you will be uploading code to our service, so our tooling requires that you work within a project - **Note, you only need to create and set a project once for each program you work on**. Projects are used to collate simulation, graph, build and deployment data for each program you're working on.
+
+Let's define a project – call it ``histogram``, and set that project to be active::
 
   reco project create histogram
   reco project set histogram
