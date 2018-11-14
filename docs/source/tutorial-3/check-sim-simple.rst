@@ -1,5 +1,10 @@
 9 – Check and simulate
 -----------------------
+
+.. sidebar:: Setting a project
+
+    Project settings are saved locally so you only need to create and set a project once per location. Once set, all simulations, builds, graphs and deployments will be saved within the active project.
+    
 Now we're going to use ``reco`` to check the code you have written is compatible with the Reconfigure.io compiler, and then we'll simulate your code. First, let's create a project to work within::
 
   reco project create multiply1
