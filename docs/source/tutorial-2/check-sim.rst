@@ -7,9 +7,9 @@ Now the code is complete and we know it conforms to the Go language, let's check
   $ reco check
   $GOPATH/github.com/your-github-username/tutorials/addition-gaps/main.go checked successfully
 
-.. sidebar:: Note!
+  .. sidebar:: Setting a project
 
-    ``reco`` remembers projects once they are set so you only need to create and set a project once per location.
+      Project settings are saved locally so you only need to create and set a project once per location. Once set, all simulations, builds, graphs and deployments will be saved within the active project.
 
 Next, once you have dealt with any errors that might have come up, use our hardware simulator to test how your code will run on the FPGA. First, create a project to work within and set it to be active::
 
