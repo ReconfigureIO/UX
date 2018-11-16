@@ -145,7 +145,7 @@ When using ``reco`` to simulate, build and deploy your programs, you will work w
 
 * ``create-project`` is used to create a new project
 * ``projects`` displays a list of all active projects for your account
-* ``set-project`` sets a project to use for the program code you're currently working on - this only needs to be run once per project workspace location. 
+* ``set-project`` sets a project to use for the program code you're currently working on - this is saved locally so only needs to be run once per project location. 
 
 .. image::  images/ProjectsStructureNew.png
 
