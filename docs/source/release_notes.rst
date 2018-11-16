@@ -4,6 +4,18 @@
 Release Notes
 =============
 
+Reconfigure.io v0.18.5
+======================
+
+This release includes features that bring us closer to adopting our |compiler|, which is currently in beta.
+
+Features
+^^^^^^^^
+
+* We have introduced a new compiler stage within LLVM that lets us optimise configuration for our FPGA target, as opposed to conventional software.
+* Loop unrolling has been turned off for any loop that contains a function. This feature is set to be reversed once we have made improvements to our loop-unrolling cost model, so we can avoid performance regressions due to duplicated functions using excessive FPGA resources. 
+
+
 Reconfigure.io v0.18.3
 ======================
 
