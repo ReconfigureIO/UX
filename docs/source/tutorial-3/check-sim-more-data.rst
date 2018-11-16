@@ -1,5 +1,10 @@
 13 – Check and simulate
 -----------------------
+
+.. sidebar:: Setting a project
+
+    Project settings are saved locally so you only need to create and set a project once per location. Once set, all simulations, builds, graphs and deployments will be saved within the active project.
+
 Now we're moving over to the Reconfigure.io tooling we need to create a project for this example, let's call it ``multiplyArray``::
 
   reco project create multiplyArray
