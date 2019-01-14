@@ -80,7 +80,7 @@ a:hover {
 }
 
 .wy-nav-top a:before {
-  content: url('https://app.reconfigure.io/assets/images/logo.svg');
+  content: url('http://docs.reconfigure.io/_images/logo.svg');
   display: block;
   max-width: 100%;
   height: auto;
@@ -110,7 +110,7 @@ a:hover {
 }
 
 .wy-side-nav-search .icon:after {
-  content: url('https://app.reconfigure.io/assets/images/logo.svg');
+  content: url('http://docs.reconfigure.io/_images/logo.svg');
   display: block;
   max-width: 100%;
   height: auto;
